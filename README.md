@@ -1,4 +1,0 @@
-descent
-=======
-
-Descent app
