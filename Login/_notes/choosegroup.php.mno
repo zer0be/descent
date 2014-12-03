@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsGetGroups" value="name:grp_id;datatype:int,name:grp_name;datatype:string,name:grp_startedby;datatype:string" />
+	<infoitem key="UD_rsCamList" value="name:cam_id;datatype:int,name:cam_name;datatype:string" />
+	<infoitem key="UD_rsGetMage" value="name:hero_name;datatype:string" />
+	<infoitem key="UD_rsGetMageClass" value="name:skill_class;datatype:string" />
+	<infoitem key="UD_rsGetWarrior" value="name:hero_name;datatype:string" />
+	<infoitem key="UD_rsGetWarriorClass" value="name:skill_class;datatype:string" />
+	<infoitem key="UD_rsGetScout" value="name:hero_name;datatype:string" />
+	<infoitem key="UD_rsGetScoutClass" value="name:skill_class;datatype:string" />
+	<infoitem key="UD_rsGetHealer" value="name:hero_name;datatype:string" />
+	<infoitem key="UD_rsGetHealerClass" value="name:skill_class;datatype:string" />
+	<infoitem key="UD_rsPlayerAccess" value="name:player_username;datatype:string" />
+	<infoitem key="UD_rsGETgroups" value="name:grp_name;datatype:string,name:date;datatype:string" />
+</info>

@@ -1,0 +1,70 @@
+.purpleTable {
+	background-image: url(images/purpleOverlay.png);
+	background-repeat: repeat;
+	margin-bottom: 5px;
+	border-radius: 20px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+.goldSQTable {
+	background-image: url(images/goldOverlay.png);
+	background-repeat: repeat;
+	margin: auto;
+}
+.goldTable {
+	background-image: url(images/goldOverlay.png);
+	background-repeat: repeat;
+	margin-bottom: 5px;
+	border-radius: 20px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+.goldcoin {
+	background-image: url(images/logos/gold.png);
+	margin-bottom: 5px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+	background-repeat: no-repeat;
+}
+
+
+
+
+.redTable {
+	background-image: url(images/redOverlay.png);
+	background-repeat: repeat;
+	margin-bottom: 5px;
+	border-radius: 20px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.blackTable {
+	background-image: url(images/blackOverlay.png);
+	background-repeat: repeat;
+	margin-bottom: 5px;
+	border-radius: 20px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.background {
+	background-image: url(images/wallpaper.jpg);
+	background-repeat: repeat-y;
+	background-position: 0px 0px;
+	background-color: #000;
+}
+.pageTitle {
+	font-size: x-large;
+	color: #FFF;
+}
+.pageTitleBlack {
+	font-size: x-large;
+	color: #000;
+	font-weight: bold;
+}

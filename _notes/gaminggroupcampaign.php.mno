@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsGetCampaigns" value="name:ggrp_id;datatype:int,name:ggrp_name;datatype:string,name:ggrp_timestamp;datatype:timestamp,name:ggrp_dm;datatype:string,name:ggrp_player1;datatype:string,name:ggrp_char1;datatype:string,name:ggrp_mage1;datatype:string,name:ggrp_player2;datatype:string,name:ggrp_char2;datatype:string,name:ggrp_warrior2;datatype:string,name:ggrp_player3;datatype:string,name:ggrp_char3;datatype:string,name:ggrp_scout3;datatype:string,name:ggrp_player4;datatype:string,name:ggrp_char4;datatype:string,name:ggrp_healer4;datatype:string,name:ggrp_playerOL;datatype:string,name:ggrp_overlord;datatype:string,name:ggrp_campaign;datatype:string" />
+	<infoitem key="UD_rsGroupDetails" value="name:grp_name;datatype:string,name:grp_creation;datatype:timestamp,name:grp_startedby;datatype:string,name:grp_state_country;datatype:string,name:grp_city;datatype:string" />
+	<infoitem key="UD_rsPlayerAccess" value="name:player_handle;datatype:string" />
+</info>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="MM_Form_Count" value="1" />
+	<infoitem key="PageAccessControlMethod" value="dontUseAccessList" />
+	<infoitem key="MM_URL1" value="urlGamingID" />
+	<infoitem key="MM_URL_Count" value="7" />
+	<infoitem key="MM_URL2" value="urlPlayerID" />
+	<infoitem key="MM_URL3" value="urlDungeonID" />
+	<infoitem key="MM_URL4" value="urlHeroID" />
+	<infoitem key="MM_URL5" value="urlClassID" />
+	<infoitem key="PageAccessControl" value="admin" />
+	<infoitem key="MM_Form1" value="ggrp_id" />
+	<infoitem key="MM_URL6" value="urlCampaignID" />
+	<infoitem key="MM_URL7" value="urlGroupName" />
+</info>

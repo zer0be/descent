@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsTerrain" value="name:terrian_name;datatype:string,name:terrian_description;datatype:string,name:terrian_image;datatype:string" />
+	<infoitem key="UD_rsCampaignList" value="name:cam_id;datatype:int,name:cam_name;datatype:string,name:expansion;datatype:string" />
+</info>

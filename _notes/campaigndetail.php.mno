@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsGroupCampaign" value="name:ggrp_id;datatype:int,name:ggrp_name;datatype:string,name:ggrp_timestamp;datatype:timestamp,name:ggrp_dm;datatype:string,name:ggrp_player1;datatype:string,name:ggrp_char1;datatype:string,name:ggrp_mage1;datatype:string,name:ggrp_player2;datatype:string,name:ggrp_char2;datatype:string,name:ggrp_warrior2;datatype:string,name:ggrp_player3;datatype:string,name:ggrp_char3;datatype:string,name:ggrp_scout3;datatype:string,name:ggrp_player4;datatype:string,name:ggrp_char4;datatype:string,name:ggrp_healer4;datatype:string,name:ggrp_playerOL;datatype:string,name:ggrp_overlord;datatype:string,name:ggrp_campaign;datatype:string" />
+	<infoitem key="UD_rsSelectedLog" value="name:cam_id;datatype:int,name:cam_name;datatype:string,name:cam_map;datatype:string,name:cam_log;datatype:string,name:expansion;datatype:string,name:edition;datatype:string,name:cam_logo;datatype:string,name:cam_icon;datatype:string" />
+	<infoitem key="UD_rsPortrait1" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsPortrait2" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsPortrait3" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsPortrait4" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsLog" value="name:date;datatype:string,name:log_dun;datatype:string,name:log_dun_win;datatype:string,name:log_encount_1;datatype:string,name:log_id;datatype:int" />
+	<infoitem key="UD_rsGetOverlord" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsSumGoldLoot" value="name:goldshop;datatype:real" />
+	<infoitem key="UD_rsGetXPtotalPlayer1" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPtotalPlayer2" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPtotalPlayer3" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPtotalPlayer4" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPtotalOverlord" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPremainingOverlord" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPremainingPlayer1" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPremainingPlayer2" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPremainingPlayer3" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPremainingPlayer4" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetSkillsOverlord" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer1" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer2" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer3" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer4" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetItemsOverlord" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetItemsPlayer1" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetItemsPlayer2" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetItemsPlayer3" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetItemsPlayer4" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsPLayerAccess" value="name:player_handle;datatype:string" />
+</info>

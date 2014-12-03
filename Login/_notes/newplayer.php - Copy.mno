@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsPlayerList" value="name:player_id;datatype:int,name:player_handle;datatype:string,name:player_password;datatype:string" />
+</info>

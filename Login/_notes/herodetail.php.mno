@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsSelectedCampaign" value="name:cam_id;datatype:int,name:cam_name;datatype:string,name:cam_map;datatype:string,name:cam_log;datatype:string,name:expansion;datatype:string,name:edition;datatype:string,name:cam_logo;datatype:string,name:cam_icon;datatype:string" />
+	<infoitem key="UD_rsSelectGamingGroup" value="name:ggrp_id;datatype:int,name:ggrp_name;datatype:string,name:ggrp_timestamp;datatype:timestamp,name:ggrp_dm;datatype:string,name:ggrp_player1;datatype:string,name:ggrp_char1;datatype:string,name:ggrp_player2;datatype:string,name:ggrp_char2;datatype:string,name:ggrp_player3;datatype:string,name:ggrp_char3;datatype:string,name:ggrp_player4;datatype:string,name:ggrp_char4;datatype:string,name:ggrp_playerOL;datatype:string,name:ggrp_overlord;datatype:string,name:ggrp_campaign;datatype:string" />
+	<infoitem key="UD_rsGetGamingGroup" value="name:ggrp_id;datatype:int,name:ggrp_name;datatype:string,name:ggrp_timestamp;datatype:timestamp,name:ggrp_dm;datatype:string,name:ggrp_player1;datatype:string,name:ggrp_char1;datatype:string,name:ggrp_player2;datatype:string,name:ggrp_char2;datatype:string,name:ggrp_player3;datatype:string,name:ggrp_char3;datatype:string,name:ggrp_player4;datatype:string,name:ggrp_char4;datatype:string,name:ggrp_playerOL;datatype:string,name:ggrp_overlord;datatype:string,name:ggrp_campaign;datatype:string" />
+	<infoitem key="UD_rsGetSkills" value="name:shop_skills;datatype:string" />
+	<infoitem key="UD_rsGetGear" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetHero" value="name:hero_id;datatype:int,name:hero_name;datatype:string,name:hero_expansion;datatype:string,name:hero_card;datatype:string,name:hero_bust;datatype:string" />
+</info>

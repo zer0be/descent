@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsCurrentCityDetails" value="name:shop_id;datatype:int,name:shop_player;datatype:string,name:shop_xp;datatype:int,name:shop_gold;datatype:int,name:shop_market_bought;datatype:string,name:shop_market_sold;datatype:string,name:shop_goldsold;datatype:int,name:shop_relics;datatype:string,name:shop_equipped;datatype:string,name:shop_skills;datatype:string,name:shop_latestdungeon;datatype:string,name:shop_groupid;datatype:int" />
+	<infoitem key="UD_rsGetGroup" value="name:ggrp_id;datatype:int,name:ggrp_name;datatype:string,name:ggrp_timestamp;datatype:timestamp,name:ggrp_dm;datatype:string,name:ggrp_player1;datatype:string,name:ggrp_char1;datatype:string,name:ggrp_mage1;datatype:string,name:ggrp_player2;datatype:string,name:ggrp_char2;datatype:string,name:ggrp_warrior2;datatype:string,name:ggrp_player3;datatype:string,name:ggrp_char3;datatype:string,name:ggrp_scout3;datatype:string,name:ggrp_player4;datatype:string,name:ggrp_char4;datatype:string,name:ggrp_healer4;datatype:string,name:ggrp_playerOL;datatype:string,name:ggrp_overlord;datatype:string,name:ggrp_campaign;datatype:string" />
+	<infoitem key="UD_rsMarketList" value="name:market_item_name;datatype:string" />
+	<infoitem key="UD_rsSkillList" value="name:skill_name;datatype:string,name:skill_cost;datatype:int" />
+	<infoitem key="UD_rsGetxpGold" value="name:shop_xp;datatype:int,name:shop_gold;datatype:int" />
+	<infoitem key="UD_rsFoundRelics" value="name:shop_relics;datatype:string" />
+	<infoitem key="UD_rsShopMarket" value="name:shop_market_bought;datatype:string,name:shop_gold;datatype:int" />
+	<infoitem key="UD_rsLearnSkill" value="name:shop_skills;datatype:string" />
+	<infoitem key="UD_rsSolditems" value="name:shop_market_sold;datatype:string,name:shop_goldsold;datatype:int" />
+	<infoitem key="UD_rsSellableItems" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetHero" value="name:hero_id;datatype:int,name:hero_name;datatype:string,name:hero_type;datatype:string,name:hero_expansion;datatype:string,name:hero_card;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsPlayerAccess" value="name:player_handle;datatype:string" />
+	<infoitem key="UD_rsItems2sell" value="name:shop_market_bought;datatype:string,name:shop_id;datatype:int" />
+	<infoitem key="UD_rsGetXPtotal" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetXPremaining" value="name:SUM(shop_xp);datatype:real" />
+	<infoitem key="UD_rsGetSkillsLearned" value="name:shop_skills;datatype:string" />
+	<infoitem key="UD_rsGetItemsEquipped" value="name:shop_market_bought;datatype:string" />
+	<infoitem key="UD_rsGetGroupGold" value="name:groupgold;datatype:real" />
+	<infoitem key="UD_rsMarketRelicList" value="name:market_item_name;datatype:string" />
+	<infoitem key="UD_rsMarketClassList" value="name:market_item_name;datatype:string" />
+	<infoitem key="UD_rsFoundItem" value="name:shop_market_bought;datatype:string" />
+</info>
