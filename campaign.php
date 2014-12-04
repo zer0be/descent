@@ -16,7 +16,7 @@ if (isset($_GET['pageNum_rsSelectGroup'])) {
 $startRow_rsSelectGroup = $pageNum_rsSelectGroup * $maxRows_rsSelectGroup;
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSelectGroup = "SELECT grp_name, grp_creation, grp_state_country, grp_city FROM tbgroup ORDER BY grp_name ASC";
+$query_rsSelectGroup = "SELECT grp_id, grp_name, grp_creation, grp_state_country, grp_city FROM tbgroup ORDER BY grp_name ASC";
 $query_limit_rsSelectGroup = sprintf("%s LIMIT %d, %d", $query_rsSelectGroup, $startRow_rsSelectGroup, $maxRows_rsSelectGroup);
 $rsSelectGroup = mysql_query($query_limit_rsSelectGroup, $dbDescent) or die(mysql_error());
 $row_rsSelectGroup = mysql_fetch_assoc($rsSelectGroup);
@@ -92,7 +92,7 @@ $queryString_rsSelectGroup = sprintf("&totalRows_rsSelectGroup=%d%s", $totalRows
               </tr>
               <?php do { ?>
                 <tr>
-                  <td><a href="gaminggroupcampaign.php?urlGgrp=<?php echo $row_rsSelectGroup['grp_name']; ?>"><?php echo $row_rsSelectGroup['grp_name']; ?></a></td>
+                  <td><a href="gaminggroupcampaign.php?urlGgrp=<?php echo $row_rsSelectGroup['grp_id']; ?>"><?php echo $row_rsSelectGroup['grp_name']; ?></a></td>
                   <td><?php echo $row_rsSelectGroup['grp_state_country']; ?></td>
                   <td><?php echo $row_rsSelectGroup['grp_city']; ?></td>
                 </tr>

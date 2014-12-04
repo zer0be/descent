@@ -16,6 +16,10 @@ body{
 	overflow: auto;
 }
 
+.center{
+	text-align: center;
+}
+
 #heroes a{
 	text-decoration: none;
 }
@@ -161,4 +165,75 @@ body{
 
 .items .xp-label{
 	font-size: 12px;
+}
+
+.campaigns-overview{
+	color: #333;
+}
+
+.campaigns-overview h1{
+	margin: 0px;
+	padding: 15px 0 0;
+}
+
+.campaigns-overview .subtitle{
+	margin-bottom: 20px;
+}
+
+.campaigns-overview h2{
+	margin: 0;
+}
+
+#campaigns-overview .campaigns-overview-campaign{
+	display: block;
+	width: 500px;
+	float: left;
+	padding: 20px 50px;
+}
+
+
+#campaigns-overview .campaigns-overview-campaign .timestamp{
+	margin-bottom: 10px;
+	color: #666;
+}
+
+#campaigns-overview .hero{
+	display: block;
+	width: 98px;
+	height: 200px;
+	float: left;
+	position: relative;
+	margin: 1px;
+
+	color: #fff;
+	text-shadow: 0 0 1px #000, 0 0 10px #000;
+}
+
+#campaigns-overview .hero .name, 
+#campaigns-overview .hero .class, 
+#campaigns-overview .hero .player{
+	text-align: center;
+}
+
+#campaigns-overview .hero .name{
+	font-size: 12px;
+	padding-top: 75px;
+}
+
+#campaigns-overview .hero .class{
+	font-size: 10px;
+}
+
+#campaigns-overview .hero .player{
+	font-size: 18px;
+	text-transform: uppercase;
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+   	width: 100%;
+}
+
+#campaigns-overview a{
+	text-decoration: none;
+	color: #333;
 }

@@ -20,7 +20,7 @@ var_dump($row_rsGroupCampaign);
 // ------------- //
 
 // Select the players (heroes and overlord)
-$query_rsCharData = sprintf("SELECT * FROM tbcharacters WHERE char_game_id = %s", GetSQLValueString($gameID, "int"));
+$query_rsCharData = sprintf("SELECT * FROM tbcharacters INNER JOIN tbheroes ON tbcharacters.char_hero = tbheroes.hero_id WHERE char_game_id = %s", GetSQLValueString($gameID, "int"));
 $rsCharData = mysql_query($query_rsCharData, $dbDescent) or die(mysql_error());
 $row_rsCharData = mysql_fetch_assoc($rsCharData);
 $totalRows_rsCharData = mysql_num_rows($rsCharData);
@@ -30,16 +30,10 @@ $ip = 0;
 
 do {
 
-  // FIX ME: Can't we get the image in a simpler way than doing this extra db loop?
-  $query_rsHeroImage = sprintf("SELECT hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($row_rsCharData['char_hero'], "text"));
-  $rsHeroImage = mysql_query($query_rsHeroImage, $dbDescent) or die(mysql_error());
-  $row_rsHeroImage = mysql_fetch_assoc($rsHeroImage);
-  $totalRows_rsHeroImage = mysql_num_rows($rsHeroImage);
-
   $players[$ip] = array(
     "player" => $row_rsCharData['char_player'],
-    "name" => $row_rsCharData['char_hero'],
-    "img" => $row_rsHeroImage['hero_img'],
+    "name" => $row_rsCharData['hero_name'],
+    "img" => $row_rsCharData['hero_img'],
     "class" => $row_rsCharData['char_class'],
     "xp" => 0,
   );
@@ -56,7 +50,7 @@ $ip++;
 
 
 
-
+/*
 mysql_free_result($rsSelectedLog);
 
 mysql_free_result($rsPortrait1);
@@ -116,4 +110,6 @@ mysql_free_result($rsGetItemsPlayer4);
 mysql_free_result($rsPLayerAccess);
 
 mysql_free_result($rsGroupCampaign);
+
+*/
 ?>

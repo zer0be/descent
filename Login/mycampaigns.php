@@ -357,7 +357,7 @@ body {
 <p>&nbsp;</p>
 <table width="400" border="1" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="800 align=" align="center"" valign="top" class="background"center> <p><a href="../index.html" target="_top"><img src="../images/campaigntrackerlogo.png" width="360" height="106" hspace="0" vspace="0" border="0" align="top" /></a>
+    <td width="800" align=" align="center"" valign="top" class="background"center> <p><a href="../index.html" target="_top"><img src="../images/campaigntrackerlogo.png" width="360" height="106" hspace="0" vspace="0" border="0" align="top" /></a>
     <br>
     <a href="<?php echo $logoutAction ?>"><span class="normal">Logout</span></a><span class="normal">, <?php echo $row_rsPlayerList['player_username']; ?></span></p>
       <p>
@@ -408,7 +408,7 @@ body {
         </tr>
         <?php do { ?>
           <tr>
-            <td rowspan="2" bgcolor="#333333" class="pageTitle"><a href="mycampaigndetail.php?urlGamingID=<?php echo $row_rsGETcampaignList['ggrp_id']; ?>">+</a></td>
+            <td rowspan="2" bgcolor="#333333" class="pageTitle"><a href="../campaign_overview.php?urlGamingID=<?php echo $row_rsGETcampaignList['ggrp_id']; ?>">+</a></td>
             <td colspan="2" bgcolor="#333333"><span class="header"><?php echo $row_rsGETcampaignList['ggrp_name']; ?></span></td>
             <td colspan="2" bgcolor="#333333"><span class="header"><?php echo $row_rsGETcampaignList['ggrp_campaign']; ?></span></td>
             <td bgcolor="#333333"><span class="normal"><?php echo $row_rsGETcampaignList['ggrp_timestamp']; ?></span></td>
