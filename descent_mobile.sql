@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 04 dec 2014 om 16:21
--- Serverversie: 5.6.16
--- PHP-versie: 5.5.11
+-- Gegenereerd op: 04 dec 2014 om 21:42
+-- Serverversie: 5.6.21
+-- PHP-versie: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -56,29 +56,32 @@ INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_map`, `cam_log`, `expansion
 --
 
 CREATE TABLE IF NOT EXISTS `tbcharacters` (
-  `char_id` int(3) NOT NULL AUTO_INCREMENT,
+`char_id` int(3) NOT NULL,
   `char_ggrp_id` int(3) DEFAULT NULL,
   `char_game_id` int(3) DEFAULT NULL,
   `char_player` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
-  `char_hero` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
-  `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  PRIMARY KEY (`char_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `char_hero` int(3) DEFAULT NULL,
+  `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcharacters`
 --
 
 INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_player`, `char_hero`, `char_class`) VALUES
-(1, 7, 14, 'Tundrra', 'Leoric of the Book', 'Runemaster'),
-(2, 7, 14, 'Nimm', 'Laughin Buldar', 'Berserker'),
-(3, 7, 14, 'Gloki', 'Tobin Farslayer', 'Wildlander'),
-(4, 7, 14, 'Djarum', 'Elder Mok', 'Disciple'),
-(5, 7, 14, 'Shared Overlord Role', 'Overlord', ''),
-(6, 17, 38, 'dllrt', 'Overlord', 'Dragon''s Greed'),
-(7, 17, 38, 'Maaike', 'Shiver', 'Runemaster'),
-(8, 17, 38, 'Tim', 'Tomble Burrowell', 'Thief'),
-(9, 17, 38, 'Frauke', 'Grisban the Thirsty', 'Berserker');
+(1, 7, 14, 'Tundrra', 21, 'Runemaster'),
+(2, 7, 14, 'Nimm', 19, 'Berserker'),
+(3, 7, 14, 'Gloki', 20, 'Wildlander'),
+(4, 7, 14, 'Djarum', 26, 'Disciple'),
+(5, 7, 14, 'Shared Overlord Role', 17, ''),
+(6, 17, 38, 'dllrt', 17, 'Dragon''s Greed'),
+(7, 17, 38, 'Maaike', 14, 'Runemaster'),
+(8, 17, 38, 'Tim', 45, 'Thief'),
+(9, 17, 38, 'Frauke', 60, 'Berserker'),
+(11, 17, 39, 'Maaike', 3, 'Runemaster'),
+(12, 17, 39, 'Frauke', 59, 'Berserker'),
+(13, 17, 39, 'Tim', 46, 'Thief'),
+(14, 17, 39, 'dllrt', 17, 'Dragon''s Greed');
 
 -- --------------------------------------------------------
 
@@ -196,13 +199,12 @@ INSERT INTO `tbdungeonlist` (`dun_id`, `dun_name`, `dun_expansion`, `dun_act`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbgames` (
-  `game_id` int(3) NOT NULL AUTO_INCREMENT,
+`game_id` int(3) NOT NULL,
   `game_grp_id` int(3) DEFAULT NULL,
   `game_timestamp` varchar(19) DEFAULT NULL,
   `game_dm` varchar(9) DEFAULT NULL,
-  `game_camp_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+  `game_camp_id` int(3) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgames`
@@ -295,8 +297,7 @@ CREATE TABLE IF NOT EXISTS `tbheroes` (
   `hero_type` varchar(8) DEFAULT NULL,
   `hero_expansion` varchar(7) DEFAULT NULL,
   `hero_card` varchar(22) DEFAULT NULL,
-  `hero_img` varchar(26) DEFAULT NULL,
-  PRIMARY KEY (`hero_id`)
+  `hero_img` varchar(26) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1021,8 +1022,7 @@ CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
   `shop_equipped` varchar(3) DEFAULT NULL,
   `shop_skills` varchar(28) DEFAULT NULL,
   `shop_latestdungeon` varchar(26) DEFAULT NULL,
-  `shop_notes` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`spendxp_id`)
+  `shop_notes` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1076,6 +1076,48 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_player
 (261, 39, 'Ashrian', 'yes', 'Stoneskin', '**Starting Gear**', ''),
 (269, 38, 'Shiver', 'yes', 'Exploding Rune', 'First Blood', '');
 
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `tbcharacters`
+--
+ALTER TABLE `tbcharacters`
+ ADD PRIMARY KEY (`char_id`);
+
+--
+-- Indexen voor tabel `tbgames`
+--
+ALTER TABLE `tbgames`
+ ADD PRIMARY KEY (`game_id`);
+
+--
+-- Indexen voor tabel `tbheroes`
+--
+ALTER TABLE `tbheroes`
+ ADD PRIMARY KEY (`hero_id`);
+
+--
+-- Indexen voor tabel `tbskills_aquired`
+--
+ALTER TABLE `tbskills_aquired`
+ ADD PRIMARY KEY (`spendxp_id`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `tbcharacters`
+--
+ALTER TABLE `tbcharacters`
+MODIFY `char_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT voor een tabel `tbgames`
+--
+ALTER TABLE `tbgames`
+MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
