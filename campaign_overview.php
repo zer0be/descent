@@ -26,8 +26,12 @@
 		<title>Descent 2nd Edition Campaign Tracker</title>
 	</head>
 	<body>
+		<!-- include the campaign date -->
 		<?php include 'campaign_data.php'; ?>
+
 		<div id="wrapper">
+			<?php if (!(isset($_GET['urlCharID']))) {
+			?>
 
 			<div id="heroes" class="clearfix">
 				<?php 
@@ -36,7 +40,7 @@
 					foreach ($players as $h){
 						if (!($players[$ih]['name'] == "Overlord")){
 				?>
-							<a href="#">
+							<a href="campaign_overview.php?urlGamingID=<?php echo $gameID; ?>&urlCharID=<?php echo $players[$ih]['id']; ?>">
 								<div class="hero" style="background: url('img/heroes/<?php print $players[$ih]['img']; ?>');">
 									<div class="name"><?php print $players[$ih]['name']; ?></div>
 									<div class="class"><?php print $players[$ih]['class']; ?></div>
@@ -115,6 +119,35 @@
 				?>
 			</div><!-- close campaign -->
 			<?php
+			} else {
+				?>
+				<div id="heroes-detail" class="clearfix">
+				<?php 
+					// loop through heroes
+					$ih = 0;
+					foreach ($players as $h){
+						if (($players[$ih]['id'] == $charID)){
+				?>
+							
+								<div class="hero" style="background: url('img/heroes/<?php print $players[$ih]['img']; ?>');">
+									<div class="name"><?php print $players[$ih]['name']; ?></div>
+									<div class="class"><?php print $players[$ih]['class']; ?></div>
+									<div class="player"><?php print $players[$ih]['player']; ?></div>
+									<div class="xp"><?php print $players[$ih]['xp']; ?><span class="xp-label">XP</span></div>
+								</div> <!-- close hero -->
+				<?php
+						}
+					$ih++;
+					} //close foreach
+				?>
+			</div> <!-- close heroes -->
+			<?php
+				do {
+
+				  var_dump($row_rsSkillsData);
+
+				} while ($row_rsCharData = mysql_fetch_assoc($rsSkillsData));
+			}
 			/*
 			echo '<pre>';
 			print_r($campaign);

@@ -4,6 +4,10 @@ if (isset($_GET['urlGamingID'])) {
   $gameID = $_GET['urlGamingID'];
 }
 
+if (isset($_GET['urlCharID'])) {
+  $charID = $_GET['urlCharID'];
+}
+
 //select the database
 mysql_select_db($database_dbDescent, $dbDescent);
 
@@ -13,7 +17,7 @@ $rsGroupCampaign = mysql_query($query_rsGroupCampaign, $dbDescent) or die(mysql_
 $row_rsGroupCampaign = mysql_fetch_assoc($rsGroupCampaign);
 $totalRows_rsGroupCampaign = mysql_num_rows($rsGroupCampaign);
 
-var_dump($row_rsGroupCampaign);
+//var_dump($row_rsGroupCampaign);
 
 // ------------- //
 // -- PLAYERS -- //
@@ -31,6 +35,7 @@ $ip = 0;
 do {
 
   $players[$ip] = array(
+    "id" => $row_rsCharData['char_id'],
     "player" => $row_rsCharData['char_player'],
     "name" => $row_rsCharData['hero_name'],
     "img" => $row_rsCharData['hero_img'],
@@ -44,8 +49,13 @@ $ip++;
 
 
 // ------------ //
+// -- Skills -- //
 // ------------ //
-// ------------ //
+
+$query_rsSkillsData = sprintf("SELECT * FROM tbcharacters INNER JOIN tbskills_aquired ON tbcharacters.char_id = tbskills_aquired.spendxp_char_id WHERE char_game_id = %s", GetSQLValueString($gameID, "int"));
+$rsSkillsData = mysql_query($query_rsSkillsData, $dbDescent) or die(mysql_error());
+$row_rsSkillsData = mysql_fetch_assoc($rsSkillsData);
+$totalRows_rsSkillsData = mysql_num_rows($rsSkillsData);
 
 
 

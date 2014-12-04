@@ -90,7 +90,7 @@ do {
           $ih = 0;
           foreach ($campaign_players as $h){
         ?>
-                <div class="hero" style="background: url('img/heroes/<?php print $campaign_players[$ih]['img'];?> '); background-size: cover;">
+                <div class="hero" style="background: url('img/heroes/<?php print $campaign_players[$ih]['img'];?> ') center; background-size: cover;">
                   <div class="name"><?php print $campaign_players[$ih]['name']; ?></div>
                   <div class="class"><?php print $campaign_players[$ih]['class']; ?></div>
                   <div class="player"><?php print $campaign_players[$ih]['player']; ?></div>
