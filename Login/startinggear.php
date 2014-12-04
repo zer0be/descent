@@ -65,7 +65,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbCityShop (shop_id, shop_player, shop_latestdungeon, shop_notes, shop_groupid) VALUES (%s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbitems_aquired (shop_id, shop_player, shop_latestdungeon, shop_notes, shop_groupid) VALUES (%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['shop_id'], "int"),
                        GetSQLValueString($_POST['shop_player'], "text"),
                        GetSQLValueString($_POST['shop_latestdungeon'], "text"),
@@ -80,7 +80,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsGroupCampaign = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGroupCampaign = sprintf("SELECT * FROM tbGamingGroup WHERE ggrp_dm = %s ORDER BY ggrp_id DESC LIMIT 1", GetSQLValueString($colname_rsGroupCampaign, "text"));
+$query_rsGroupCampaign = sprintf("SELECT * FROM tbgaminggroup WHERE ggrp_dm = %s ORDER BY ggrp_id DESC LIMIT 1", GetSQLValueString($colname_rsGroupCampaign, "text"));
 $rsGroupCampaign = mysql_query($query_rsGroupCampaign, $dbDescent) or die(mysql_error());
 $row_rsGroupCampaign = mysql_fetch_assoc($rsGroupCampaign);
 $totalRows_rsGroupCampaign = mysql_num_rows($rsGroupCampaign);
@@ -99,7 +99,7 @@ if (isset($_SESSION['campaignlog'])) {
   $colname_rsSelectedLog = $_SESSION['campaignlog'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSelectedLog = sprintf("SELECT * FROM tbCampaign WHERE cam_name = %s", GetSQLValueString($colname_rsSelectedLog, "text"));
+$query_rsSelectedLog = sprintf("SELECT * FROM tbcampaign WHERE cam_name = %s", GetSQLValueString($colname_rsSelectedLog, "text"));
 $rsSelectedLog = mysql_query($query_rsSelectedLog, $dbDescent) or die(mysql_error());
 $row_rsSelectedLog = mysql_fetch_assoc($rsSelectedLog);
 $totalRows_rsSelectedLog = mysql_num_rows($rsSelectedLog);
@@ -109,7 +109,7 @@ if (isset($_SESSION['player1'])) {
   $colname_rsPortrait1 = $_SESSION['player1'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPortrait1 = sprintf("SELECT hero_name, hero_bust FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait1, "text"));
+$query_rsPortrait1 = sprintf("SELECT hero_name, hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait1, "text"));
 $rsPortrait1 = mysql_query($query_rsPortrait1, $dbDescent) or die(mysql_error());
 $row_rsPortrait1 = mysql_fetch_assoc($rsPortrait1);
 $totalRows_rsPortrait1 = mysql_num_rows($rsPortrait1);
@@ -119,7 +119,7 @@ if (isset($_SESSION['player2'])) {
   $colname_rsPortrait2 = $_SESSION['player2'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPortrait2 = sprintf("SELECT hero_name, hero_bust FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait2, "text"));
+$query_rsPortrait2 = sprintf("SELECT hero_name, hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait2, "text"));
 $rsPortrait2 = mysql_query($query_rsPortrait2, $dbDescent) or die(mysql_error());
 $row_rsPortrait2 = mysql_fetch_assoc($rsPortrait2);
 $totalRows_rsPortrait2 = mysql_num_rows($rsPortrait2);
@@ -129,7 +129,7 @@ if (isset($_SESSION['player3'])) {
   $colname_rsPortrait3 = $_SESSION['player3'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPortrait3 = sprintf("SELECT hero_name, hero_bust FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait3, "text"));
+$query_rsPortrait3 = sprintf("SELECT hero_name, hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait3, "text"));
 $rsPortrait3 = mysql_query($query_rsPortrait3, $dbDescent) or die(mysql_error());
 $row_rsPortrait3 = mysql_fetch_assoc($rsPortrait3);
 $totalRows_rsPortrait3 = mysql_num_rows($rsPortrait3);
@@ -139,7 +139,7 @@ if (isset($_SESSION['player4'])) {
   $colname_rsPortrait4 = $_SESSION['player4'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPortrait4 = sprintf("SELECT hero_name, hero_bust FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait4, "text"));
+$query_rsPortrait4 = sprintf("SELECT hero_name, hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsPortrait4, "text"));
 $rsPortrait4 = mysql_query($query_rsPortrait4, $dbDescent) or die(mysql_error());
 $row_rsPortrait4 = mysql_fetch_assoc($rsPortrait4);
 $totalRows_rsPortrait4 = mysql_num_rows($rsPortrait4);
@@ -149,7 +149,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsLog = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsLog = sprintf("SELECT DATE_FORMAT(log_timestamp,'%%b %%d %%Y') AS date, log_dun, log_dun_win, log_encount_1 FROM tbCamLog WHERE log_ggrp_id = %s ORDER BY log_timestamp ASC", GetSQLValueString($colname_rsLog, "int"));
+$query_rsLog = sprintf("SELECT DATE_FORMAT(quest_timestamp,'%%b %%d %%Y') AS date, quest_name, quest_name_win, quest_encount_1 FROM tbquests WHERE quest_game_id = %s ORDER BY quest_timestamp ASC", GetSQLValueString($colname_rsLog, "int"));
 $rsLog = mysql_query($query_rsLog, $dbDescent) or die(mysql_error());
 $row_rsLog = mysql_fetch_assoc($rsLog);
 $totalRows_rsLog = mysql_num_rows($rsLog);
@@ -163,7 +163,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamingsession_rsCurrentEquipment = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCurrentEquipment = sprintf("SELECT shop_player, shop_xp, shop_gold FROM tbCityShop WHERE shop_latestdungeon = %s AND shop_groupid = %s AND (shop_gold !=0 OR shop_xp !=0)", GetSQLValueString($dungeonname_rsCurrentEquipment, "text"),GetSQLValueString($gamingsession_rsCurrentEquipment, "int"));
+$query_rsCurrentEquipment = sprintf("SELECT shop_player, shop_xp, shop_gold FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND (shop_gold !=0 OR shop_xp !=0)", GetSQLValueString($dungeonname_rsCurrentEquipment, "text"),GetSQLValueString($gamingsession_rsCurrentEquipment, "int"));
 $rsCurrentEquipment = mysql_query($query_rsCurrentEquipment, $dbDescent) or die(mysql_error());
 $row_rsCurrentEquipment = mysql_fetch_assoc($rsCurrentEquipment);
 $totalRows_rsCurrentEquipment = mysql_num_rows($rsCurrentEquipment);
@@ -177,7 +177,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamingsession_rsSoldItems = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSoldItems = sprintf("SELECT shop_market_sold FROM tbCityShop WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_market_sold IS NOT NULL", GetSQLValueString($dungeonname_rsSoldItems, "text"),GetSQLValueString($gamingsession_rsSoldItems, "int"));
+$query_rsSoldItems = sprintf("SELECT shop_market_sold FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_market_sold IS NOT NULL", GetSQLValueString($dungeonname_rsSoldItems, "text"),GetSQLValueString($gamingsession_rsSoldItems, "int"));
 $rsSoldItems = mysql_query($query_rsSoldItems, $dbDescent) or die(mysql_error());
 $row_rsSoldItems = mysql_fetch_assoc($rsSoldItems);
 $totalRows_rsSoldItems = mysql_num_rows($rsSoldItems);
@@ -191,7 +191,7 @@ if (isset($_GET['urlGamingID'])) {
   $groupnumber_rsBoughtItems = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsBoughtItems = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_gold < 0 AND shop_relics IS NULL AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($groupnumber_rsBoughtItems, "int"),GetSQLValueString($dungeonname_rsBoughtItems, "text"));
+$query_rsBoughtItems = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_gold < 0 AND shop_relics IS NULL AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($groupnumber_rsBoughtItems, "int"),GetSQLValueString($dungeonname_rsBoughtItems, "text"));
 $rsBoughtItems = mysql_query($query_rsBoughtItems, $dbDescent) or die(mysql_error());
 $row_rsBoughtItems = mysql_fetch_assoc($rsBoughtItems);
 $totalRows_rsBoughtItems = mysql_num_rows($rsBoughtItems);
@@ -205,7 +205,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsFoundRelics = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsFoundRelics = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_relics='yes'", GetSQLValueString($dungeonname_rsFoundRelics, "text"),GetSQLValueString($gamingsession_rsFoundRelics, "int"));
+$query_rsFoundRelics = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_relics='yes'", GetSQLValueString($dungeonname_rsFoundRelics, "text"),GetSQLValueString($gamingsession_rsFoundRelics, "int"));
 $rsFoundRelics = mysql_query($query_rsFoundRelics, $dbDescent) or die(mysql_error());
 $row_rsFoundRelics = mysql_fetch_assoc($rsFoundRelics);
 $totalRows_rsFoundRelics = mysql_num_rows($rsFoundRelics);
@@ -219,7 +219,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamingsession_rsSkillsLearned = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSkillsLearned = sprintf("SELECT shop_skills FROM tbCityShop WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_skills IS NOT NULL AND shop_player != 'overlord'", GetSQLValueString($dungeonname_rsSkillsLearned, "text"),GetSQLValueString($gamingsession_rsSkillsLearned, "int"));
+$query_rsSkillsLearned = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_skills IS NOT NULL AND shop_player != 'overlord'", GetSQLValueString($dungeonname_rsSkillsLearned, "text"),GetSQLValueString($gamingsession_rsSkillsLearned, "int"));
 $rsSkillsLearned = mysql_query($query_rsSkillsLearned, $dbDescent) or die(mysql_error());
 $row_rsSkillsLearned = mysql_fetch_assoc($rsSkillsLearned);
 $totalRows_rsSkillsLearned = mysql_num_rows($rsSkillsLearned);
@@ -229,7 +229,7 @@ if (isset($_SESSION['overlord'])) {
   $colname_rsOverlordPort = $_SESSION['overlord'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsOverlordPort = sprintf("SELECT hero_name, hero_bust FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsOverlordPort, "text"));
+$query_rsOverlordPort = sprintf("SELECT hero_name, hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsOverlordPort, "text"));
 $rsOverlordPort = mysql_query($query_rsOverlordPort, $dbDescent) or die(mysql_error());
 $row_rsOverlordPort = mysql_fetch_assoc($rsOverlordPort);
 $totalRows_rsOverlordPort = mysql_num_rows($rsOverlordPort);
@@ -243,7 +243,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsOLskills = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsOLskills = sprintf("SELECT shop_skills FROM tbCityShop WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_player = 'overlord' AND shop_skills IS NOT NULL", GetSQLValueString($colname_rsOLskills, "int"),GetSQLValueString($dungeonname_rsOLskills, "text"));
+$query_rsOLskills = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_player = 'overlord' AND shop_skills IS NOT NULL", GetSQLValueString($colname_rsOLskills, "int"),GetSQLValueString($dungeonname_rsOLskills, "text"));
 $rsOLskills = mysql_query($query_rsOLskills, $dbDescent) or die(mysql_error());
 $row_rsOLskills = mysql_fetch_assoc($rsOLskills);
 $totalRows_rsOLskills = mysql_num_rows($rsOLskills);
@@ -253,7 +253,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerAccess = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerAccess = sprintf("SELECT player_handle FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
+$query_rsPlayerAccess = sprintf("SELECT player_handle FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
 $rsPlayerAccess = mysql_query($query_rsPlayerAccess, $dbDescent) or die(mysql_error());
 $row_rsPlayerAccess = mysql_fetch_assoc($rsPlayerAccess);
 $totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);
@@ -267,7 +267,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsFoundItems = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsFoundItems = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_gold = 0 AND shop_equipped = 'yes' AND shop_relics IS NULL AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($groupnumber_rsFoundItems, "int"),GetSQLValueString($dungeonname_rsFoundItems, "text"));
+$query_rsFoundItems = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_gold = 0 AND shop_equipped = 'yes' AND shop_relics IS NULL AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($groupnumber_rsFoundItems, "int"),GetSQLValueString($dungeonname_rsFoundItems, "text"));
 $rsFoundItems = mysql_query($query_rsFoundItems, $dbDescent) or die(mysql_error());
 $row_rsFoundItems = mysql_fetch_assoc($rsFoundItems);
 $totalRows_rsFoundItems = mysql_num_rows($rsFoundItems);
@@ -281,7 +281,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeon_rsGetNotes = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetNotes = sprintf("SELECT shop_notes FROM tbCityShop WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_notes IS NOT NULL", GetSQLValueString($colname_rsGetNotes, "int"),GetSQLValueString($dungeon_rsGetNotes, "text"));
+$query_rsGetNotes = sprintf("SELECT shop_notes FROM tbitems_aquired WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_notes IS NOT NULL", GetSQLValueString($colname_rsGetNotes, "int"),GetSQLValueString($dungeon_rsGetNotes, "text"));
 $rsGetNotes = mysql_query($query_rsGetNotes, $dbDescent) or die(mysql_error());
 $row_rsGetNotes = mysql_fetch_assoc($rsGetNotes);
 $totalRows_rsGetNotes = mysql_num_rows($rsGetNotes);
@@ -423,24 +423,24 @@ body {
           <td align="center" class="header">
 		  <?php echo $row_rsGroupCampaign['ggrp_char1']; ?>
           <br>
-          <a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char1']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_mage1']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait1['hero_bust']; ?>" width="100" /></a>
+          <a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char1']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_mage1']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait1['hero_img']; ?>" width="100" /></a>
 		  <br>
 		  <br>
 		  <?php echo $row_rsGroupCampaign['ggrp_player1']; ?>
           </td>
           <td align="center" class="header">
-            <?php echo $row_rsGroupCampaign['ggrp_char2']; ?><a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char2']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_warrior2']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait2['hero_bust']; ?>" width="100" /></a>
+            <?php echo $row_rsGroupCampaign['ggrp_char2']; ?><a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char2']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_warrior2']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait2['hero_img']; ?>" width="100" /></a>
             <br>
             <br>
           <?php echo $row_rsGroupCampaign['ggrp_player2']; ?></td>
           <td align="center" class="header">
             <?php echo $row_rsGroupCampaign['ggrp_char3']; ?>
-            <a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char3']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_scout3']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait3['hero_bust']; ?>" width="100" /></a>
+            <a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char3']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_scout3']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait3['hero_img']; ?>" width="100" /></a>
             <br>
             <br>
           <?php echo $row_rsGroupCampaign['ggrp_player3']; ?></td>
           <td align="center" class="header">
-		  <?php echo $row_rsGroupCampaign['ggrp_char4']; ?><a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char4']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_healer4']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait4['hero_bust']; ?>" width="100" /></a>
+		  <?php echo $row_rsGroupCampaign['ggrp_char4']; ?><a href="citydetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_char4']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_healer4']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsPortrait4['hero_img']; ?>" width="100" /></a>
 		  <br>
 		  <br>
 		  <?php echo $row_rsGroupCampaign['ggrp_player4']; ?></td>
@@ -459,7 +459,7 @@ body {
       <p>&nbsp;</p>
       <table width="100" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td><span class="header"><?php echo $row_rsGroupCampaign['ggrp_playerOL']; ?> <a href="overlord.php?urlGamingID=<?php echo $row_rsGroupCampaign['ggrp_id']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_overlord']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_overlord']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsOverlordPort['hero_bust']; ?>" width="100" /></a> <?php echo $row_rsGroupCampaign['ggrp_overlord']; ?></span></td>
+          <td><span class="header"><?php echo $row_rsGroupCampaign['ggrp_playerOL']; ?> <a href="overlord.php?urlGamingID=<?php echo $row_rsGroupCampaign['ggrp_id']; ?>&amp;urlDungeonID=<?php echo $_GET['urlDungeonID']; ?>&amp;urlHeroID=<?php echo $row_rsGroupCampaign['ggrp_overlord']; ?>&amp;urlClassID=<?php echo $row_rsGroupCampaign['ggrp_overlord']; ?>"><img src="../images/campaign/heroes/bust/<?php echo $row_rsOverlordPort['hero_img']; ?>" width="100" /></a> <?php echo $row_rsGroupCampaign['ggrp_overlord']; ?></span></td>
         </tr>
         <tr>
           <td><p class="header">starting skills</p>

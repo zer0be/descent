@@ -105,13 +105,13 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCreateGroup = "SELECT * FROM tbGamingGroup";
+$query_rsCreateGroup = "SELECT * FROM tbgaminggroup";
 $rsCreateGroup = mysql_query($query_rsCreateGroup, $dbDescent) or die(mysql_error());
 $row_rsCreateGroup = mysql_fetch_assoc($rsCreateGroup);
 $totalRows_rsCreateGroup = mysql_num_rows($rsCreateGroup);
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCamList = "SELECT cam_name, expansion, cam_logo, cam_icon FROM tbCampaign ORDER BY cam_name ASC";
+$query_rsCamList = "SELECT cam_name, expansion, cam_logo, cam_icon FROM tbcampaign ORDER BY cam_name ASC";
 $rsCamList = mysql_query($query_rsCamList, $dbDescent) or die(mysql_error());
 $row_rsCamList = mysql_fetch_assoc($rsCamList);
 $totalRows_rsCamList = mysql_num_rows($rsCamList);
@@ -121,7 +121,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerAccess = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerAccess = sprintf("SELECT player_username FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
+$query_rsPlayerAccess = sprintf("SELECT player_username FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
 $rsPlayerAccess = mysql_query($query_rsPlayerAccess, $dbDescent) or die(mysql_error());
 $row_rsPlayerAccess = mysql_fetch_assoc($rsPlayerAccess);
 $totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);

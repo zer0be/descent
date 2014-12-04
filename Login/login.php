@@ -32,7 +32,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = "SELECT player_id, player_handle, player_password FROM tbPlayerList";
+$query_rsPlayerList = "SELECT player_id, player_handle, player_password FROM tbplayerlist";
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);
@@ -57,7 +57,7 @@ if (isset($_POST['username'])) {
   $MM_redirecttoReferrer = true;
   mysql_select_db($database_dbDescent, $dbDescent);
   
-  $LoginRS__query=sprintf("SELECT player_username, player_password FROM tbPlayerList WHERE player_username=%s AND player_password=%s",
+  $LoginRS__query=sprintf("SELECT player_username, player_password FROM tbplayerlist WHERE player_username=%s AND player_password=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
    
   $LoginRS = mysql_query($LoginRS__query, $dbDescent) or die(mysql_error());

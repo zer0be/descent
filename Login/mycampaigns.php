@@ -205,7 +205,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_username FROM tbPlayerList WHERE player_username = %s", GetSQLValueString($colname_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_username FROM tbplayerlist WHERE player_username = %s", GetSQLValueString($colname_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);
@@ -222,7 +222,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsGETcampaignList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGETcampaignList = sprintf("SELECT * FROM tbGamingGroup WHERE ggrp_dm = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsGETcampaignList, "text"));
+$query_rsGETcampaignList = sprintf("SELECT * FROM tbgaminggroup WHERE ggrp_dm = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsGETcampaignList, "text"));
 $query_limit_rsGETcampaignList = sprintf("%s LIMIT %d, %d", $query_rsGETcampaignList, $startRow_rsGETcampaignList, $maxRows_rsGETcampaignList);
 $rsGETcampaignList = mysql_query($query_limit_rsGETcampaignList, $dbDescent) or die(mysql_error());
 $row_rsGETcampaignList = mysql_fetch_assoc($rsGETcampaignList);
@@ -240,7 +240,7 @@ if (isset($row_rsGETcampaignList['ggrp_char1'])) {
   $bust_rsGETbust1 = $row_rsGETcampaignList['ggrp_char1'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGETbust1 = sprintf("SELECT hero_bust FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($bust_rsGETbust1, "text"));
+$query_rsGETbust1 = sprintf("SELECT hero_img FROM tbheroes WHERE hero_name = %s", GetSQLValueString($bust_rsGETbust1, "text"));
 $rsGETbust1 = mysql_query($query_rsGETbust1, $dbDescent) or die(mysql_error());
 $row_rsGETbust1 = mysql_fetch_assoc($rsGETbust1);
 $totalRows_rsGETbust1 = mysql_num_rows($rsGETbust1);
@@ -250,7 +250,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsGroupPlayers = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGroupPlayers = sprintf("SELECT player_handle FROM tbPlayerList WHERE created_by = %s", GetSQLValueString($colname_rsGroupPlayers, "text"));
+$query_rsGroupPlayers = sprintf("SELECT player_handle FROM tbplayerlist WHERE created_by = %s", GetSQLValueString($colname_rsGroupPlayers, "text"));
 $rsGroupPlayers = mysql_query($query_rsGroupPlayers, $dbDescent) or die(mysql_error());
 $row_rsGroupPlayers = mysql_fetch_assoc($rsGroupPlayers);
 $totalRows_rsGroupPlayers = mysql_num_rows($rsGroupPlayers);
@@ -260,7 +260,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsGroupNames = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGroupNames = sprintf("SELECT grp_name FROM tbGroup WHERE grp_startedby = %s", GetSQLValueString($colname_rsGroupNames, "text"));
+$query_rsGroupNames = sprintf("SELECT grp_name FROM tbgroup WHERE grp_startedby = %s", GetSQLValueString($colname_rsGroupNames, "text"));
 $rsGroupNames = mysql_query($query_rsGroupNames, $dbDescent) or die(mysql_error());
 $row_rsGroupNames = mysql_fetch_assoc($rsGroupNames);
 $totalRows_rsGroupNames = mysql_num_rows($rsGroupNames);

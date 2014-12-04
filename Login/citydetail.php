@@ -274,7 +274,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "fromXPGOLD")) {
-  $insertSQL = sprintf("INSERT INTO tbCityShop (shop_id, shop_player, shop_xp, shop_gold, shop_market_bought, shop_relics, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbitems_aquired (shop_id, shop_player, shop_xp, shop_gold, shop_market_bought, shop_relics, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['shop_id'], "int"),
                        GetSQLValueString($_POST['shop_player'], "text"),
                        GetSQLValueString($_POST['shop_xp'], "int"),
@@ -289,7 +289,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "fromXPGOLD")) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbCityShop (shop_id, shop_player, shop_market_bought, shop_equipped, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbitems_aquired (shop_id, shop_player, shop_market_bought, shop_equipped, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['shop_id'], "int"),
                        GetSQLValueString($_POST['shop_player'], "text"),
                        GetSQLValueString($_POST['shop_market_bought'], "text"),
@@ -306,7 +306,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsGetGroup = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetGroup = sprintf("SELECT * FROM tbGamingGroup WHERE ggrp_id = %s", GetSQLValueString($colname_rsGetGroup, "int"));
+$query_rsGetGroup = sprintf("SELECT * FROM tbgaminggroup WHERE ggrp_id = %s", GetSQLValueString($colname_rsGetGroup, "int"));
 $rsGetGroup = mysql_query($query_rsGetGroup, $dbDescent) or die(mysql_error());
 $row_rsGetGroup = mysql_fetch_assoc($rsGetGroup);
 $totalRows_rsGetGroup = mysql_num_rows($rsGetGroup);
@@ -324,7 +324,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsCurrentCityDetails = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCurrentCityDetails = sprintf("SELECT * FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s", GetSQLValueString($playername_rsCurrentCityDetails, "text"),GetSQLValueString($groupnumber_rsCurrentCityDetails, "int"),GetSQLValueString($dungeonname_rsCurrentCityDetails, "text"));
+$query_rsCurrentCityDetails = sprintf("SELECT * FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s", GetSQLValueString($playername_rsCurrentCityDetails, "text"),GetSQLValueString($groupnumber_rsCurrentCityDetails, "int"),GetSQLValueString($dungeonname_rsCurrentCityDetails, "text"));
 $rsCurrentCityDetails = mysql_query($query_rsCurrentCityDetails, $dbDescent) or die(mysql_error());
 $row_rsCurrentCityDetails = mysql_fetch_assoc($rsCurrentCityDetails);
 $totalRows_rsCurrentCityDetails = mysql_num_rows($rsCurrentCityDetails);
@@ -334,13 +334,13 @@ if (isset($_GET['urlClassID'])) {
   $colname_rsSkillList = $_GET['urlClassID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSkillList = sprintf("SELECT skill_name, skill_cost FROM tbSkills WHERE skill_class = %s ORDER BY skill_cost DESC", GetSQLValueString($colname_rsSkillList, "text"));
+$query_rsSkillList = sprintf("SELECT skill_name, skill_cost FROM tbskills WHERE skill_class = %s ORDER BY skill_cost DESC", GetSQLValueString($colname_rsSkillList, "text"));
 $rsSkillList = mysql_query($query_rsSkillList, $dbDescent) or die(mysql_error());
 $row_rsSkillList = mysql_fetch_assoc($rsSkillList);
 $totalRows_rsSkillList = mysql_num_rows($rsSkillList);
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsMarketList = "SELECT market_item_name FROM tbMarket WHERE shop_relic = 'no' AND owner = 'hero' ORDER BY market_item_name ASC";
+$query_rsMarketList = "SELECT market_item_name FROM tbitems WHERE shop_relic = 'no' AND owner = 'hero' ORDER BY market_item_name ASC";
 $rsMarketList = mysql_query($query_rsMarketList, $dbDescent) or die(mysql_error());
 $row_rsMarketList = mysql_fetch_assoc($rsMarketList);
 $totalRows_rsMarketList = mysql_num_rows($rsMarketList);
@@ -358,7 +358,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsGetxpGold = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetxpGold = sprintf("SELECT shop_xp, shop_gold FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND (shop_xp != 0 OR shop_gold != 0)", GetSQLValueString($playername_rsGetxpGold, "text"),GetSQLValueString($groupnumber_rsGetxpGold, "int"),GetSQLValueString($dungeonname_rsGetxpGold, "text"));
+$query_rsGetxpGold = sprintf("SELECT shop_xp, shop_gold FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND (shop_xp != 0 OR shop_gold != 0)", GetSQLValueString($playername_rsGetxpGold, "text"),GetSQLValueString($groupnumber_rsGetxpGold, "int"),GetSQLValueString($dungeonname_rsGetxpGold, "text"));
 $rsGetxpGold = mysql_query($query_rsGetxpGold, $dbDescent) or die(mysql_error());
 $row_rsGetxpGold = mysql_fetch_assoc($rsGetxpGold);
 $totalRows_rsGetxpGold = mysql_num_rows($rsGetxpGold);
@@ -376,7 +376,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsFoundRelics = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsFoundRelics = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_relics = 'yes'", GetSQLValueString($playername_rsFoundRelics, "text"),GetSQLValueString($groupnumber_rsFoundRelics, "int"),GetSQLValueString($dungeonname_rsFoundRelics, "text"));
+$query_rsFoundRelics = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_relics = 'yes'", GetSQLValueString($playername_rsFoundRelics, "text"),GetSQLValueString($groupnumber_rsFoundRelics, "int"),GetSQLValueString($dungeonname_rsFoundRelics, "text"));
 $rsFoundRelics = mysql_query($query_rsFoundRelics, $dbDescent) or die(mysql_error());
 $row_rsFoundRelics = mysql_fetch_assoc($rsFoundRelics);
 $totalRows_rsFoundRelics = mysql_num_rows($rsFoundRelics);
@@ -394,7 +394,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsShopMarket = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsShopMarket = sprintf("SELECT shop_market_bought, shop_gold FROM tbCityShop WHERE shop_gold < 0 AND shop_equipped = 'yes' AND shop_relics IS NULL AND shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($playername_rsShopMarket, "text"),GetSQLValueString($groupnumber_rsShopMarket, "int"),GetSQLValueString($dungeonname_rsShopMarket, "text"));
+$query_rsShopMarket = sprintf("SELECT shop_market_bought, shop_gold FROM tbitems_aquired WHERE shop_gold < 0 AND shop_equipped = 'yes' AND shop_relics IS NULL AND shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($playername_rsShopMarket, "text"),GetSQLValueString($groupnumber_rsShopMarket, "int"),GetSQLValueString($dungeonname_rsShopMarket, "text"));
 $rsShopMarket = mysql_query($query_rsShopMarket, $dbDescent) or die(mysql_error());
 $row_rsShopMarket = mysql_fetch_assoc($rsShopMarket);
 $totalRows_rsShopMarket = mysql_num_rows($rsShopMarket);
@@ -412,7 +412,7 @@ if (isset($_GET['urlHeroID'])) {
   $playername_rsLearnSkill = $_GET['urlHeroID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsLearnSkill = sprintf("SELECT shop_skills FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_skills IS NOT NULL", GetSQLValueString($playername_rsLearnSkill, "text"),GetSQLValueString($groupnumber_rsLearnSkill, "int"),GetSQLValueString($dungeonname_rsLearnSkill, "text"));
+$query_rsLearnSkill = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_skills IS NOT NULL", GetSQLValueString($playername_rsLearnSkill, "text"),GetSQLValueString($groupnumber_rsLearnSkill, "int"),GetSQLValueString($dungeonname_rsLearnSkill, "text"));
 $rsLearnSkill = mysql_query($query_rsLearnSkill, $dbDescent) or die(mysql_error());
 $row_rsLearnSkill = mysql_fetch_assoc($rsLearnSkill);
 $totalRows_rsLearnSkill = mysql_num_rows($rsLearnSkill);
@@ -430,7 +430,7 @@ if (isset($_GET['urlHeroID'])) {
   $playername_rsSolditems = $_GET['urlHeroID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSolditems = sprintf("SELECT shop_market_sold, shop_goldsold FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_sold IS NOT NULL", GetSQLValueString($playername_rsSolditems, "text"),GetSQLValueString($groupnumber_rsSolditems, "int"),GetSQLValueString($dungeonname_rsSolditems, "text"));
+$query_rsSolditems = sprintf("SELECT shop_market_sold, shop_goldsold FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_sold IS NOT NULL", GetSQLValueString($playername_rsSolditems, "text"),GetSQLValueString($groupnumber_rsSolditems, "int"),GetSQLValueString($dungeonname_rsSolditems, "text"));
 $rsSolditems = mysql_query($query_rsSolditems, $dbDescent) or die(mysql_error());
 $row_rsSolditems = mysql_fetch_assoc($rsSolditems);
 $totalRows_rsSolditems = mysql_num_rows($rsSolditems);
@@ -440,7 +440,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsSellableItems = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSellableItems = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_groupid = %s AND shop_market_bought IS NOT NULL ORDER BY shop_market_bought ASC", GetSQLValueString($colname_rsSellableItems, "int"));
+$query_rsSellableItems = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_groupid = %s AND shop_market_bought IS NOT NULL ORDER BY shop_market_bought ASC", GetSQLValueString($colname_rsSellableItems, "int"));
 $rsSellableItems = mysql_query($query_rsSellableItems, $dbDescent) or die(mysql_error());
 $row_rsSellableItems = mysql_fetch_assoc($rsSellableItems);
 $totalRows_rsSellableItems = mysql_num_rows($rsSellableItems);
@@ -450,7 +450,7 @@ if (isset($_GET['urlHeroID'])) {
   $colname_rsGetHero = $_GET['urlHeroID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetHero = sprintf("SELECT * FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsGetHero, "text"));
+$query_rsGetHero = sprintf("SELECT * FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsGetHero, "text"));
 $rsGetHero = mysql_query($query_rsGetHero, $dbDescent) or die(mysql_error());
 $row_rsGetHero = mysql_fetch_assoc($rsGetHero);
 $totalRows_rsGetHero = mysql_num_rows($rsGetHero);
@@ -460,7 +460,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerAccess = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerAccess = sprintf("SELECT player_handle FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
+$query_rsPlayerAccess = sprintf("SELECT player_handle FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
 $rsPlayerAccess = mysql_query($query_rsPlayerAccess, $dbDescent) or die(mysql_error());
 $row_rsPlayerAccess = mysql_fetch_assoc($rsPlayerAccess);
 $totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);
@@ -474,7 +474,7 @@ if (isset($_GET['urlGamingID'])) {
   $currentgroup_rsItems2sell = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsItems2sell = sprintf("SELECT shop_market_bought, shop_id FROM tbCityShop WHERE shop_player = %s AND shop_equipped = 'yes' AND shop_groupid = %s AND shop_market_bought IS NOT NULL AND shop_relics IS NULL ORDER BY shop_market_bought ASC", GetSQLValueString($colname_rsItems2sell, "text"),GetSQLValueString($currentgroup_rsItems2sell, "int"));
+$query_rsItems2sell = sprintf("SELECT shop_market_bought, shop_id FROM tbitems_aquired WHERE shop_player = %s AND shop_equipped = 'yes' AND shop_groupid = %s AND shop_market_bought IS NOT NULL AND shop_relics IS NULL ORDER BY shop_market_bought ASC", GetSQLValueString($colname_rsItems2sell, "text"),GetSQLValueString($currentgroup_rsItems2sell, "int"));
 $rsItems2sell = mysql_query($query_rsItems2sell, $dbDescent) or die(mysql_error());
 $row_rsItems2sell = mysql_fetch_assoc($rsItems2sell);
 $totalRows_rsItems2sell = mysql_num_rows($rsItems2sell);
@@ -488,7 +488,7 @@ if (isset($_GET['urlGamingID'])) {
   $dungeongroup_rsGetXPtotal = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetXPtotal = sprintf("SELECT SUM(shop_xp) FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_xp > 0", GetSQLValueString($colname_rsGetXPtotal, "text"),GetSQLValueString($dungeongroup_rsGetXPtotal, "int"));
+$query_rsGetXPtotal = sprintf("SELECT SUM(shop_xp) FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_xp > 0", GetSQLValueString($colname_rsGetXPtotal, "text"),GetSQLValueString($dungeongroup_rsGetXPtotal, "int"));
 $rsGetXPtotal = mysql_query($query_rsGetXPtotal, $dbDescent) or die(mysql_error());
 $row_rsGetXPtotal = mysql_fetch_assoc($rsGetXPtotal);
 $totalRows_rsGetXPtotal = mysql_num_rows($rsGetXPtotal);
@@ -502,7 +502,7 @@ if (isset($_GET['urlGamingID'])) {
   $dungeongroup_rsGetXPremaining = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetXPremaining = sprintf("SELECT SUM(shop_xp) FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s", GetSQLValueString($colname_rsGetXPremaining, "text"),GetSQLValueString($dungeongroup_rsGetXPremaining, "int"));
+$query_rsGetXPremaining = sprintf("SELECT SUM(shop_xp) FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s", GetSQLValueString($colname_rsGetXPremaining, "text"),GetSQLValueString($dungeongroup_rsGetXPremaining, "int"));
 $rsGetXPremaining = mysql_query($query_rsGetXPremaining, $dbDescent) or die(mysql_error());
 $row_rsGetXPremaining = mysql_fetch_assoc($rsGetXPremaining);
 $totalRows_rsGetXPremaining = mysql_num_rows($rsGetXPremaining);
@@ -516,7 +516,7 @@ if (isset($_GET['urlGamingID'])) {
   $dungeongroup_rsGetSkillsLearned = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkillsLearned = sprintf("SELECT shop_skills FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_skills IS NOT NULL", GetSQLValueString($colname_rsGetSkillsLearned, "text"),GetSQLValueString($dungeongroup_rsGetSkillsLearned, "int"));
+$query_rsGetSkillsLearned = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_skills IS NOT NULL", GetSQLValueString($colname_rsGetSkillsLearned, "text"),GetSQLValueString($dungeongroup_rsGetSkillsLearned, "int"));
 $rsGetSkillsLearned = mysql_query($query_rsGetSkillsLearned, $dbDescent) or die(mysql_error());
 $row_rsGetSkillsLearned = mysql_fetch_assoc($rsGetSkillsLearned);
 $totalRows_rsGetSkillsLearned = mysql_num_rows($rsGetSkillsLearned);
@@ -530,7 +530,7 @@ if (isset($_GET['urlGamingID'])) {
   $dungeongroup_rsGetItemsEquipped = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetItemsEquipped = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_equipped != 'no' AND shop_market_bought IS NOT NULL", GetSQLValueString($colname_rsGetItemsEquipped, "text"),GetSQLValueString($dungeongroup_rsGetItemsEquipped, "int"));
+$query_rsGetItemsEquipped = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_equipped != 'no' AND shop_market_bought IS NOT NULL", GetSQLValueString($colname_rsGetItemsEquipped, "text"),GetSQLValueString($dungeongroup_rsGetItemsEquipped, "int"));
 $rsGetItemsEquipped = mysql_query($query_rsGetItemsEquipped, $dbDescent) or die(mysql_error());
 $row_rsGetItemsEquipped = mysql_fetch_assoc($rsGetItemsEquipped);
 $totalRows_rsGetItemsEquipped = mysql_num_rows($rsGetItemsEquipped);
@@ -540,13 +540,13 @@ if (isset($_GET['urlGamingID'])) {
   $dungeongroup_rsGetGroupGold = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetGroupGold = sprintf("SELECT SUM(shop_gold + shop_goldsold) AS groupgold FROM tbCityShop WHERE shop_groupid = %s", GetSQLValueString($dungeongroup_rsGetGroupGold, "int"));
+$query_rsGetGroupGold = sprintf("SELECT SUM(shop_gold + shop_goldsold) AS groupgold FROM tbitems_aquired WHERE shop_groupid = %s", GetSQLValueString($dungeongroup_rsGetGroupGold, "int"));
 $rsGetGroupGold = mysql_query($query_rsGetGroupGold, $dbDescent) or die(mysql_error());
 $row_rsGetGroupGold = mysql_fetch_assoc($rsGetGroupGold);
 $totalRows_rsGetGroupGold = mysql_num_rows($rsGetGroupGold);
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsMarketRelicList = "SELECT market_item_name FROM tbMarket WHERE owner = 'hero' AND shop_relic = 'yes' AND market_item_name IS NOT NULL";
+$query_rsMarketRelicList = "SELECT market_item_name FROM tbitems WHERE owner = 'hero' AND shop_relic = 'yes' AND market_item_name IS NOT NULL";
 $rsMarketRelicList = mysql_query($query_rsMarketRelicList, $dbDescent) or die(mysql_error());
 $row_rsMarketRelicList = mysql_fetch_assoc($rsMarketRelicList);
 $totalRows_rsMarketRelicList = mysql_num_rows($rsMarketRelicList);
@@ -556,7 +556,7 @@ if (isset($_GET['urlClassID'])) {
   $heroclass_rsMarketClassList = $_GET['urlClassID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsMarketClassList = sprintf("SELECT market_item_name FROM tbMarket WHERE shop_relic = 'no' AND owner = %s ORDER BY market_item_name ASC", GetSQLValueString($heroclass_rsMarketClassList, "text"));
+$query_rsMarketClassList = sprintf("SELECT market_item_name FROM tbitems WHERE shop_relic = 'no' AND owner = %s ORDER BY market_item_name ASC", GetSQLValueString($heroclass_rsMarketClassList, "text"));
 $rsMarketClassList = mysql_query($query_rsMarketClassList, $dbDescent) or die(mysql_error());
 $row_rsMarketClassList = mysql_fetch_assoc($rsMarketClassList);
 $totalRows_rsMarketClassList = mysql_num_rows($rsMarketClassList);
@@ -574,7 +574,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsFoundItem = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsFoundItem = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_gold = 0 AND shop_equipped = 'yes' AND shop_relics IS NULL AND shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($playername_rsFoundItem, "text"),GetSQLValueString($groupnumber_rsFoundItem, "int"),GetSQLValueString($dungeonname_rsFoundItem, "text"));
+$query_rsFoundItem = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_gold = 0 AND shop_equipped = 'yes' AND shop_relics IS NULL AND shop_player = %s AND shop_groupid = %s AND shop_latestdungeon = %s AND shop_market_bought IS NOT NULL", GetSQLValueString($playername_rsFoundItem, "text"),GetSQLValueString($groupnumber_rsFoundItem, "int"),GetSQLValueString($dungeonname_rsFoundItem, "text"));
 $rsFoundItem = mysql_query($query_rsFoundItem, $dbDescent) or die(mysql_error());
 $row_rsFoundItem = mysql_fetch_assoc($rsFoundItem);
 $totalRows_rsFoundItem = mysql_num_rows($rsFoundItem);
@@ -701,7 +701,7 @@ body {
       
       <table width="300" border="0" cellpadding="0" cellspacing="10" class="blackTable">
         <tr>
-          <td rowspan="2" align="center" valign="top"><span class="normal"><img src="../images/campaign/heroes/bust/<?php echo $row_rsGetHero['hero_bust']; ?>" width="100" /></span><br>
+          <td rowspan="2" align="center" valign="top"><span class="normal"><img src="../images/campaign/heroes/bust/<?php echo $row_rsGetHero['hero_img']; ?>" width="100" /></span><br>
               <span class="header"><?php echo $_GET['urlClassID']; ?><BR>
           </span></td>
           <td colspan="3" align="center" bgcolor="#9900CC"><span class="header"><?php echo $row_rsCurrentCityDetails['shop_player']; ?></span> <span class="normal"> <?php echo $row_rsGetXPremaining['SUM(shop_xp)']; ?></span><span class="header">/<?php echo $row_rsGetXPtotal['SUM(shop_xp)']; ?></span><span class="normal">XP</span>          </td>

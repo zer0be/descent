@@ -109,7 +109,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerAccess = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerAccess = sprintf("SELECT player_username FROM tbPlayerList WHERE player_username = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
+$query_rsPlayerAccess = sprintf("SELECT player_username FROM tbplayerlist WHERE player_username = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
 $rsPlayerAccess = mysql_query($query_rsPlayerAccess, $dbDescent) or die(mysql_error());
 $row_rsPlayerAccess = mysql_fetch_assoc($rsPlayerAccess);
 $totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);
@@ -119,7 +119,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsGETgroups = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGETgroups = sprintf("SELECT grp_name, DATE_FORMAT(grp_creation, '%%b %%d %%Y') AS date FROM tbGroup WHERE grp_startedby = %s ORDER BY grp_name ASC", GetSQLValueString($colname_rsGETgroups, "text"));
+$query_rsGETgroups = sprintf("SELECT grp_name, DATE_FORMAT(grp_creation, '%%b %%d %%Y') AS date FROM tbgroup WHERE grp_startedby = %s ORDER BY grp_name ASC", GetSQLValueString($colname_rsGETgroups, "text"));
 $rsGETgroups = mysql_query($query_rsGETgroups, $dbDescent) or die(mysql_error());
 $row_rsGETgroups = mysql_fetch_assoc($rsGETgroups);
 $totalRows_rsGETgroups = mysql_num_rows($rsGETgroups);

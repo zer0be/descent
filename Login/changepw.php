@@ -113,7 +113,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL = sprintf("UPDATE tbPlayerList SET player_password=%s, player_timestamp=%s WHERE player_handle=%s",
+  $updateSQL = sprintf("UPDATE tbplayerlist SET player_password=%s, player_timestamp=%s WHERE player_handle=%s",
                        GetSQLValueString($_POST['player_password'], "text"),
                        GetSQLValueString($_POST['player_timestamp'], "date"),
                        GetSQLValueString($_POST['player_handle'], "text"));
@@ -227,7 +227,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_handle FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_handle FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);
@@ -244,7 +244,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsGETcampaignList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGETcampaignList = sprintf("SELECT * FROM tbGamingGroup WHERE ggrp_dm = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsGETcampaignList, "text"));
+$query_rsGETcampaignList = sprintf("SELECT * FROM tbgaminggroup WHERE ggrp_dm = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsGETcampaignList, "text"));
 $query_limit_rsGETcampaignList = sprintf("%s LIMIT %d, %d", $query_rsGETcampaignList, $startRow_rsGETcampaignList, $maxRows_rsGETcampaignList);
 $rsGETcampaignList = mysql_query($query_limit_rsGETcampaignList, $dbDescent) or die(mysql_error());
 $row_rsGETcampaignList = mysql_fetch_assoc($rsGETcampaignList);

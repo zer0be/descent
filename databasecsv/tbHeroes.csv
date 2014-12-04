@@ -1,4 +1,4 @@
-"hero_id","hero_name","hero_type","hero_expansion","hero_card","hero_bust"
+"hero_id","hero_name","hero_type","hero_expansion","hero_card","hero_img"
 "1","Reynhart The Worthy","Warrior",,"reynhart.jpg","reynhartbust.jpg"
 "2","Logan Lashley","Scout",NULL,"logan.jpg","loganbust.jpg"
 "3","High Mage Quellen","Mage",NULL,"quellen.jpg","quellenbust.jpg"

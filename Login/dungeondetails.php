@@ -110,14 +110,14 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbCamLog (log_id, log_timestamp, log_ggrp_id, log_ggrp_name, log_dun, log_dun_win, log_encount_1) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['log_id'], "int"),
-                       GetSQLValueString($_POST['log_timestamp'], "date"),
-                       GetSQLValueString($_POST['log_ggrp_id'], "int"),
-                       GetSQLValueString($_POST['log_ggrp_name'], "text"),
-                       GetSQLValueString($_POST['log_dun'], "text"),
-                       GetSQLValueString($_POST['log_dun_win'], "text"),
-                       GetSQLValueString($_POST['log_encount_1'], "text"));
+  $insertSQL = sprintf("INSERT INTO tbquests (quest_id, quest_timestamp, quest_game_id, quest_ggrp_name, quest_name, quest_name_win, quest_encount_1) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['quest_id'], "int"),
+                       GetSQLValueString($_POST['quest_timestamp'], "date"),
+                       GetSQLValueString($_POST['quest_game_id'], "int"),
+                       GetSQLValueString($_POST['quest_ggrp_name'], "text"),
+                       GetSQLValueString($_POST['quest_name'], "text"),
+                       GetSQLValueString($_POST['quest_name_win'], "text"),
+                       GetSQLValueString($_POST['quest_encount_1'], "text"));
 
   mysql_select_db($database_dbDescent, $dbDescent);
   $Result1 = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
@@ -135,7 +135,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_handle FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_handle FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);
@@ -145,7 +145,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsSelectedCampaign = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSelectedCampaign = sprintf("SELECT * FROM tbGamingGroup WHERE ggrp_id = %s", GetSQLValueString($colname_rsSelectedCampaign, "int"));
+$query_rsSelectedCampaign = sprintf("SELECT * FROM tbgaminggroup WHERE ggrp_id = %s", GetSQLValueString($colname_rsSelectedCampaign, "int"));
 $rsSelectedCampaign = mysql_query($query_rsSelectedCampaign, $dbDescent) or die(mysql_error());
 $row_rsSelectedCampaign = mysql_fetch_assoc($rsSelectedCampaign);
 $totalRows_rsSelectedCampaign = mysql_num_rows($rsSelectedCampaign);
@@ -160,7 +160,7 @@ if (isset($row_rsSelectedCampaign['ggrp_campaign'])) {
   $colname_rsDungeonList = $row_rsSelectedCampaign['ggrp_campaign'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsDungeonList = sprintf("SELECT dun_name FROM tbDungeonList WHERE dun_expansion = %s ORDER BY dun_order ASC", GetSQLValueString($colname_rsDungeonList, "text"));
+$query_rsDungeonList = sprintf("SELECT dun_name FROM tbdungeonlist WHERE dun_expansion = %s ORDER BY dun_order ASC", GetSQLValueString($colname_rsDungeonList, "text"));
 $rsDungeonList = mysql_query($query_rsDungeonList, $dbDescent) or die(mysql_error());
 $row_rsDungeonList = mysql_fetch_assoc($rsDungeonList);
 $totalRows_rsDungeonList = mysql_num_rows($rsDungeonList);
@@ -272,7 +272,7 @@ body {
            <table align="center">
              <tr valign="baseline">
                <td nowrap="nowrap" align="right">&nbsp;</td>
-               <td><select name="log_dun">
+               <td><select name="quest_name">
                  <option value="">Completed Dungeon</option>
                  <?php
 do {  
@@ -290,7 +290,7 @@ do {
              </tr>
              <tr valign="baseline">
                <td nowrap="nowrap" align="right">Winner of the Quest:</td>
-               <td><select name="log_dun_win">
+               <td><select name="quest_name_win">
 <option value="No Winner">none</option>
 <option value="Heroes Win">Heroes Win</option>
 <option value="Overlord Wins">Overlord Wins</option>
@@ -298,7 +298,7 @@ do {
              </tr>
              <tr valign="baseline">
                <td nowrap="nowrap" align="right">Encounter 1 Victor:</td>
-               <td><select name="log_encount_1">
+               <td><select name="quest_encount_1">
                  <option value="No Winner">none</option>
                  <option value="Heroes Win">Heroes Win</option>
                  <option value="Overlord Wins">Overlord Wins</option>
@@ -308,10 +308,10 @@ do {
                <td colspan="2" align="center" nowrap="nowrap"><input type="submit" value="Complete Dungeon" /></td>
                </tr>
            </table>
-           <input type="hidden" name="log_id" value="" />
-           <input type="hidden" name="log_timestamp" value="" />
-           <input type="hidden" name="log_ggrp_id" value="<?php echo $row_rsSelectedCampaign['ggrp_id']; ?>" />
-           <input type="hidden" name="log_ggrp_name" value="<?php echo $row_rsSelectedCampaign['ggrp_name']; ?>" />
+           <input type="hidden" name="quest_id" value="" />
+           <input type="hidden" name="quest_timestamp" value="" />
+           <input type="hidden" name="quest_game_id" value="<?php echo $row_rsSelectedCampaign['ggrp_id']; ?>" />
+           <input type="hidden" name="quest_ggrp_name" value="<?php echo $row_rsSelectedCampaign['ggrp_name']; ?>" />
            <input type="hidden" name="MM_insert" value="form1" />
          </form>
          <p><a href="mycampaigndetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>">CANCEL return to campaign</a></p></td>

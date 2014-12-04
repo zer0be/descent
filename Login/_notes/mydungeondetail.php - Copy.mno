@@ -2,17 +2,17 @@
 <info>
 	<infoitem key="UD_rsGroupCampaign" value="name:ggrp_id;datatype:int,name:ggrp_name;datatype:string,name:ggrp_timestamp;datatype:timestamp,name:ggrp_dm;datatype:string,name:ggrp_player1;datatype:string,name:ggrp_char1;datatype:string,name:ggrp_mage1;datatype:string,name:ggrp_player2;datatype:string,name:ggrp_char2;datatype:string,name:ggrp_warrior2;datatype:string,name:ggrp_player3;datatype:string,name:ggrp_char3;datatype:string,name:ggrp_scout3;datatype:string,name:ggrp_player4;datatype:string,name:ggrp_char4;datatype:string,name:ggrp_healer4;datatype:string,name:ggrp_playerOL;datatype:string,name:ggrp_overlord;datatype:string,name:ggrp_campaign;datatype:string" />
 	<infoitem key="UD_rsSelectedLog" value="name:cam_id;datatype:int,name:cam_name;datatype:string,name:cam_map;datatype:string,name:cam_log;datatype:string,name:expansion;datatype:string,name:edition;datatype:string,name:cam_logo;datatype:string,name:cam_icon;datatype:string" />
-	<infoitem key="UD_rsPortrait1" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
-	<infoitem key="UD_rsPortrait2" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
-	<infoitem key="UD_rsPortrait3" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
-	<infoitem key="UD_rsPortrait4" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
-	<infoitem key="UD_rsLog" value="name:date;datatype:string,name:log_dun;datatype:string,name:log_dun_win;datatype:string,name:log_encount_1;datatype:string" />
+	<infoitem key="UD_rsPortrait1" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
+	<infoitem key="UD_rsPortrait2" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
+	<infoitem key="UD_rsPortrait3" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
+	<infoitem key="UD_rsPortrait4" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
+	<infoitem key="UD_rsLog" value="name:date;datatype:string,name:quest_name;datatype:string,name:quest_name_win;datatype:string,name:quest_encount_1;datatype:string" />
 	<infoitem key="UD_rsCurrentEquipment" value="name:shop_player;datatype:string,name:shop_xp;datatype:int,name:shop_gold;datatype:int" />
 	<infoitem key="UD_rsSoldItems" value="name:shop_market_sold;datatype:string" />
 	<infoitem key="UD_rsBoughtItems" value="name:shop_market_bought;datatype:string" />
 	<infoitem key="UD_rsFoundRelics" value="name:shop_relics;datatype:string" />
 	<infoitem key="UD_rsSkillsLearned" value="name:shop_skills;datatype:string" />
-	<infoitem key="UD_rsOverlordPort" value="name:hero_name;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsOverlordPort" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
 	<infoitem key="UD_rsOLskills" value="name:shop_skills;datatype:string" />
 	<infoitem key="UD_rsPlayerAccess" value="name:player_handle;datatype:string" />
 	<infoitem key="UD_rsFoundItems" value="name:shop_market_bought;datatype:string" />

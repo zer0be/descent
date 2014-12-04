@@ -110,7 +110,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formCreateGroup")) {
-  $insertSQL = sprintf("INSERT INTO tbGroup (grp_id, grp_name, grp_creation, grp_startedby, grp_state_country, grp_city) VALUES (%s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbgroup (grp_id, grp_name, grp_creation, grp_startedby, grp_state_country, grp_city) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['grp_id'], "int"),
                        GetSQLValueString($_POST['grp_name'], "text"),
                        GetSQLValueString($_POST['grp_creation'], "date"),
@@ -134,7 +134,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_username FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_username FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);

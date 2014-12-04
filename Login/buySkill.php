@@ -110,7 +110,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbCityShop (shop_id, shop_player, shop_xp, shop_skills, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbitems_aquired (shop_id, shop_player, shop_xp, shop_skills, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['shop_id'], "int"),
                        GetSQLValueString($_POST['shop_player'], "text"),
                        GetSQLValueString($_POST['shop_xp'], "int"),
@@ -130,7 +130,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 }
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = "SELECT player_id, player_handle, player_password FROM tbPlayerList";
+$query_rsPlayerList = "SELECT player_id, player_handle, player_password FROM tbplayerlist";
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $adminplayer_rsPlayerList = "-1";
@@ -138,7 +138,7 @@ if (isset($_SESSION['MM_Username'])) {
   $adminplayer_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_handle FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($adminplayer_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_handle FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($adminplayer_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);
@@ -148,7 +148,7 @@ if (isset($_GET['urlItemID'])) {
   $colname_rsUpdateItem = $_GET['urlItemID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsUpdateItem = sprintf("SELECT * FROM tbCityShop WHERE shop_market_bought = %s", GetSQLValueString($colname_rsUpdateItem, "text"));
+$query_rsUpdateItem = sprintf("SELECT * FROM tbitems_aquired WHERE shop_market_bought = %s", GetSQLValueString($colname_rsUpdateItem, "text"));
 $rsUpdateItem = mysql_query($query_rsUpdateItem, $dbDescent) or die(mysql_error());
 $row_rsUpdateItem = mysql_fetch_assoc($rsUpdateItem);
 $totalRows_rsUpdateItem = mysql_num_rows($rsUpdateItem);
@@ -158,7 +158,7 @@ if (isset($_GET['urlSkillID'])) {
   $colname_rsGetSkill = $_GET['urlSkillID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkill = sprintf("SELECT * FROM tbSkills WHERE skill_name = %s", GetSQLValueString($colname_rsGetSkill, "text"));
+$query_rsGetSkill = sprintf("SELECT * FROM tbskills WHERE skill_name = %s", GetSQLValueString($colname_rsGetSkill, "text"));
 $rsGetSkill = mysql_query($query_rsGetSkill, $dbDescent) or die(mysql_error());
 $row_rsGetSkill = mysql_fetch_assoc($rsGetSkill);
 $totalRows_rsGetSkill = mysql_num_rows($rsGetSkill);

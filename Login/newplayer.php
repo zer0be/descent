@@ -111,7 +111,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "formAddPlayer")) {
-  $insertSQL = sprintf("INSERT INTO tbPlayerList (player_id, player_handle, player_timestamp, created_by) VALUES (%s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbplayerlist (player_id, player_handle, player_timestamp, created_by) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($_POST['player_id'], "int"),
                        GetSQLValueString($_POST['player_handle'], "text"),
                        GetSQLValueString($_POST['player_timestamp'], "date"),
@@ -126,7 +126,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_username FROM tbPlayerList WHERE player_username = %s", GetSQLValueString($colname_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_username FROM tbplayerlist WHERE player_username = %s", GetSQLValueString($colname_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);
@@ -136,7 +136,7 @@ if (isset($_SESSION['MM_Username'])) {
   $colname_rsCurrentMembers = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCurrentMembers = sprintf("SELECT player_handle FROM tbPlayerList WHERE created_by = %s ORDER BY player_handle ASC", GetSQLValueString($colname_rsCurrentMembers, "text"));
+$query_rsCurrentMembers = sprintf("SELECT player_handle FROM tbplayerlist WHERE created_by = %s ORDER BY player_handle ASC", GetSQLValueString($colname_rsCurrentMembers, "text"));
 $rsCurrentMembers = mysql_query($query_rsCurrentMembers, $dbDescent) or die(mysql_error());
 $row_rsCurrentMembers = mysql_fetch_assoc($rsCurrentMembers);
 $totalRows_rsCurrentMembers = mysql_num_rows($rsCurrentMembers);

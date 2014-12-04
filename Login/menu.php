@@ -105,7 +105,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = "SELECT player_id, player_handle, player_password FROM tbPlayerList";
+$query_rsPlayerList = "SELECT player_id, player_handle, player_password FROM tbplayerlist";
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);$adminplayer_rsPlayerList = "-1";
@@ -113,7 +113,7 @@ if (isset($_SESSION['MM_Username'])) {
   $adminplayer_rsPlayerList = $_SESSION['MM_Username'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsPlayerList = sprintf("SELECT player_handle FROM tbPlayerList WHERE player_handle = %s", GetSQLValueString($adminplayer_rsPlayerList, "text"));
+$query_rsPlayerList = sprintf("SELECT player_handle FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($adminplayer_rsPlayerList, "text"));
 $rsPlayerList = mysql_query($query_rsPlayerList, $dbDescent) or die(mysql_error());
 $row_rsPlayerList = mysql_fetch_assoc($rsPlayerList);
 $totalRows_rsPlayerList = mysql_num_rows($rsPlayerList);

@@ -75,7 +75,7 @@ if (isset($_GET['urlCamID'])) {
   $colname_rsSelectedCampaign = $_GET['urlCamID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSelectedCampaign = sprintf("SELECT * FROM tbCampaign WHERE cam_id = %s", GetSQLValueString($colname_rsSelectedCampaign, "int"));
+$query_rsSelectedCampaign = sprintf("SELECT * FROM tbcampaign WHERE cam_id = %s", GetSQLValueString($colname_rsSelectedCampaign, "int"));
 $query_limit_rsSelectedCampaign = sprintf("%s LIMIT %d, %d", $query_rsSelectedCampaign, $startRow_rsSelectedCampaign, $maxRows_rsSelectedCampaign);
 $rsSelectedCampaign = mysql_query($query_limit_rsSelectedCampaign, $dbDescent) or die(mysql_error());
 $row_rsSelectedCampaign = mysql_fetch_assoc($rsSelectedCampaign);
@@ -104,7 +104,7 @@ if (isset($_SESSION['campaign_name'])) {
   $colname_rsSelectGamingGroup = $_SESSION['campaign_name'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSelectGamingGroup = sprintf("SELECT ggrp_name, DATE_FORMAT(ggrp_timestamp, '%%d %%b %%Y') AS date, ggrp_id FROM tbGamingGroup WHERE ggrp_campaign = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsSelectGamingGroup, "text"));
+$query_rsSelectGamingGroup = sprintf("SELECT ggrp_name, DATE_FORMAT(ggrp_timestamp, '%%d %%b %%Y') AS date, ggrp_id FROM tbgaminggroup WHERE ggrp_campaign = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsSelectGamingGroup, "text"));
 $query_limit_rsSelectGamingGroup = sprintf("%s LIMIT %d, %d", $query_rsSelectGamingGroup, $startRow_rsSelectGamingGroup, $maxRows_rsSelectGamingGroup);
 $rsSelectGamingGroup = mysql_query($query_limit_rsSelectGamingGroup, $dbDescent) or die(mysql_error());
 $row_rsSelectGamingGroup = mysql_fetch_assoc($rsSelectGamingGroup);

@@ -103,7 +103,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsGetGamingGroup = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetGamingGroup = sprintf("SELECT * FROM tbGamingGroup WHERE ggrp_id = %s", GetSQLValueString($colname_rsGetGamingGroup, "int"));
+$query_rsGetGamingGroup = sprintf("SELECT * FROM tbgaminggroup WHERE ggrp_id = %s", GetSQLValueString($colname_rsGetGamingGroup, "int"));
 $rsGetGamingGroup = mysql_query($query_rsGetGamingGroup, $dbDescent) or die(mysql_error());
 $row_rsGetGamingGroup = mysql_fetch_assoc($rsGetGamingGroup);
 $totalRows_rsGetGamingGroup = mysql_num_rows($rsGetGamingGroup);
@@ -117,7 +117,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamesession_rsGetSkills = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkills = sprintf("SELECT shop_skills FROM tbCityShop WHERE shop_player = %s AND shop_groupid = %s AND shop_skills IS NOT NULL", GetSQLValueString($playername_rsGetSkills, "text"),GetSQLValueString($gamesession_rsGetSkills, "int"));
+$query_rsGetSkills = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_skills IS NOT NULL", GetSQLValueString($playername_rsGetSkills, "text"),GetSQLValueString($gamesession_rsGetSkills, "int"));
 $rsGetSkills = mysql_query($query_rsGetSkills, $dbDescent) or die(mysql_error());
 $row_rsGetSkills = mysql_fetch_assoc($rsGetSkills);
 $totalRows_rsGetSkills = mysql_num_rows($rsGetSkills);
@@ -131,7 +131,7 @@ if (isset($_GET['urlHeroID'])) {
   $playername_rsGetGear = $_GET['urlHeroID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetGear = sprintf("SELECT shop_market_bought FROM tbCityShop WHERE shop_groupid = %s AND shop_player = %s AND shop_equipped = 'yes' AND shop_market_bought IS NOT NULL", GetSQLValueString($gamesession_rsGetGear, "int"),GetSQLValueString($playername_rsGetGear, "text"));
+$query_rsGetGear = sprintf("SELECT shop_market_bought FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND shop_equipped = 'yes' AND shop_market_bought IS NOT NULL", GetSQLValueString($gamesession_rsGetGear, "int"),GetSQLValueString($playername_rsGetGear, "text"));
 $rsGetGear = mysql_query($query_rsGetGear, $dbDescent) or die(mysql_error());
 $row_rsGetGear = mysql_fetch_assoc($rsGetGear);
 $totalRows_rsGetGear = mysql_num_rows($rsGetGear);
@@ -141,7 +141,7 @@ if (isset($_GET['urlHeroID'])) {
   $colname_rsGetHero = $_GET['urlHeroID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetHero = sprintf("SELECT * FROM tbHeroes WHERE hero_name = %s", GetSQLValueString($colname_rsGetHero, "text"));
+$query_rsGetHero = sprintf("SELECT * FROM tbheroes WHERE hero_name = %s", GetSQLValueString($colname_rsGetHero, "text"));
 $rsGetHero = mysql_query($query_rsGetHero, $dbDescent) or die(mysql_error());
 $row_rsGetHero = mysql_fetch_assoc($rsGetHero);
 $totalRows_rsGetHero = mysql_num_rows($rsGetHero);
@@ -252,7 +252,7 @@ body {
       
       <table width="500" border="0" cellspacing="0" cellpadding="5">
         <tr>
-          <td rowspan="3"><span class="pageTitle"><img src="../images/campaign/heroes/bust/<?php echo $row_rsGetHero['hero_bust']; ?>" /></span></td>
+          <td rowspan="3"><span class="pageTitle"><img src="../images/campaign/heroes/bust/<?php echo $row_rsGetHero['hero_img']; ?>" /></span></td>
           <td><span class="pageTitle"><?php echo $_GET['urlPlayerID']; ?> aka &quot;<?php echo $row_rsGetHero['hero_name']; ?>&quot;</span></td>
         </tr>
         <tr>

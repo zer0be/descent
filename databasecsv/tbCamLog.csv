@@ -1,4 +1,4 @@
-log_id,log_timestamp,log_ggrp_id,log_ggrp_name,log_dun,log_dun_win,log_encount_1
+quest_id,quest_timestamp,quest_game_id,quest_ggrp_name,quest_name,quest_name_win,quest_encount_1
 23,11/7/2014 17:40,31,Alcyone's Test Group,Ruinous Whispers,Heroes Win,Overlord Wins
 22,11/6/2014 21:45,14,NORdelving,The Masquerade Ball,Heroes Win,Heroes Win
 18,10/27/2014 7:34,25,Brothers in Arms,A Fat Goblin,Heroes Win,Overlord Wins

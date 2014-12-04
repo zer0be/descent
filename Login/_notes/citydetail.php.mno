@@ -10,7 +10,7 @@
 	<infoitem key="UD_rsLearnSkill" value="name:shop_skills;datatype:string" />
 	<infoitem key="UD_rsSolditems" value="name:shop_market_sold;datatype:string,name:shop_goldsold;datatype:int" />
 	<infoitem key="UD_rsSellableItems" value="name:shop_market_bought;datatype:string" />
-	<infoitem key="UD_rsGetHero" value="name:hero_id;datatype:int,name:hero_name;datatype:string,name:hero_type;datatype:string,name:hero_expansion;datatype:string,name:hero_card;datatype:string,name:hero_bust;datatype:string" />
+	<infoitem key="UD_rsGetHero" value="name:hero_id;datatype:int,name:hero_name;datatype:string,name:hero_type;datatype:string,name:hero_expansion;datatype:string,name:hero_card;datatype:string,name:hero_img;datatype:string" />
 	<infoitem key="UD_rsPlayerAccess" value="name:player_handle;datatype:string" />
 	<infoitem key="UD_rsItems2sell" value="name:shop_market_bought;datatype:string,name:shop_id;datatype:int" />
 	<infoitem key="UD_rsGetXPtotal" value="name:SUM(shop_xp);datatype:real" />
