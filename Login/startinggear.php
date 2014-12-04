@@ -219,7 +219,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamingsession_rsSkillsLearned = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSkillsLearned = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_skills IS NOT NULL AND shop_player != 'overlord'", GetSQLValueString($dungeonname_rsSkillsLearned, "text"),GetSQLValueString($gamingsession_rsSkillsLearned, "int"));
+$query_rsSkillsLearned = sprintf("SELECT spendxp_skill_name FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND spendxp_skill_name IS NOT NULL AND shop_player != 'overlord'", GetSQLValueString($dungeonname_rsSkillsLearned, "text"),GetSQLValueString($gamingsession_rsSkillsLearned, "int"));
 $rsSkillsLearned = mysql_query($query_rsSkillsLearned, $dbDescent) or die(mysql_error());
 $row_rsSkillsLearned = mysql_fetch_assoc($rsSkillsLearned);
 $totalRows_rsSkillsLearned = mysql_num_rows($rsSkillsLearned);
@@ -243,7 +243,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsOLskills = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsOLskills = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_player = 'overlord' AND shop_skills IS NOT NULL", GetSQLValueString($colname_rsOLskills, "int"),GetSQLValueString($dungeonname_rsOLskills, "text"));
+$query_rsOLskills = sprintf("SELECT spendxp_skill_name FROM tbitems_aquired WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_player = 'overlord' AND spendxp_skill_name IS NOT NULL", GetSQLValueString($colname_rsOLskills, "int"),GetSQLValueString($dungeonname_rsOLskills, "text"));
 $rsOLskills = mysql_query($query_rsOLskills, $dbDescent) or die(mysql_error());
 $row_rsOLskills = mysql_fetch_assoc($rsOLskills);
 $totalRows_rsOLskills = mysql_num_rows($rsOLskills);

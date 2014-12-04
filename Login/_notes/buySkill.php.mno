@@ -2,6 +2,6 @@
 <info>
 	<infoitem key="UD_rsGetItem" value="name:market_id;datatype:int,name:market_item_name;datatype:string,name:market_act;datatype:int,name:market_price;datatype:int,name:market_sellprice;datatype:int,name:shop_relic;datatype:string,name:owner;datatype:string,name:market_img;datatype:string,name:market_expansion;datatype:string" />
 	<infoitem key="UD_rsPlayerList" value="name:player_handle;datatype:string" />
-	<infoitem key="UD_rsUpdateItem" value="name:shop_id;datatype:int,name:shop_player;datatype:string,name:shop_xp;datatype:int,name:shop_gold;datatype:int,name:shop_market_bought;datatype:string,name:shop_market_sold;datatype:string,name:shop_relics;datatype:string,name:shop_equipped;datatype:string,name:shop_skills;datatype:string,name:shop_latestdungeon;datatype:string,name:shop_groupid;datatype:int" />
+	<infoitem key="UD_rsUpdateItem" value="name:shop_id;datatype:int,name:shop_player;datatype:string,name:shop_xp;datatype:int,name:shop_gold;datatype:int,name:shop_market_bought;datatype:string,name:shop_market_sold;datatype:string,name:shop_relics;datatype:string,name:shop_equipped;datatype:string,name:spendxp_skill_name;datatype:string,name:shop_latestdungeon;datatype:string,name:shop_groupid;datatype:int" />
 	<infoitem key="UD_rsGetSkill" value="name:skill_id;datatype:int,name:skill_name;datatype:string,name:skill_type;datatype:string,name:skill_class;datatype:string,name:skill_cost;datatype:int,name:skill_card;datatype:string,name:skill_expansion;datatype:string" />
 </info>

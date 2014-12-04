@@ -511,7 +511,7 @@ if (isset($_GET['urlGamingID'])) {
   $gaming_rsGetSkillsOverlord = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkillsOverlord = sprintf("SELECT shop_skills, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = 'Overlord' AND shop_skills IS NOT NULL AND shop_xp < 0", GetSQLValueString($gaming_rsGetSkillsOverlord, "int"));
+$query_rsGetSkillsOverlord = sprintf("SELECT spendxp_skill_name, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = 'Overlord' AND spendxp_skill_name IS NOT NULL AND shop_xp < 0", GetSQLValueString($gaming_rsGetSkillsOverlord, "int"));
 $rsGetSkillsOverlord = mysql_query($query_rsGetSkillsOverlord, $dbDescent) or die(mysql_error());
 $row_rsGetSkillsOverlord = mysql_fetch_assoc($rsGetSkillsOverlord);
 $totalRows_rsGetSkillsOverlord = mysql_num_rows($rsGetSkillsOverlord);
@@ -525,7 +525,7 @@ if (isset($row_rsGroupCampaign['ggrp_char1'])) {
   $player_rsGetSkillsPlayer1 = $row_rsGroupCampaign['ggrp_char1'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkillsPlayer1 = sprintf("SELECT shop_skills, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND shop_skills IS NOT NULL ORDER BY shop_xp ASC", GetSQLValueString($gaming_rsGetSkillsPlayer1, "int"),GetSQLValueString($player_rsGetSkillsPlayer1, "text"));
+$query_rsGetSkillsPlayer1 = sprintf("SELECT spendxp_skill_name, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND spendxp_skill_name IS NOT NULL ORDER BY shop_xp ASC", GetSQLValueString($gaming_rsGetSkillsPlayer1, "int"),GetSQLValueString($player_rsGetSkillsPlayer1, "text"));
 $rsGetSkillsPlayer1 = mysql_query($query_rsGetSkillsPlayer1, $dbDescent) or die(mysql_error());
 $row_rsGetSkillsPlayer1 = mysql_fetch_assoc($rsGetSkillsPlayer1);
 $totalRows_rsGetSkillsPlayer1 = mysql_num_rows($rsGetSkillsPlayer1);
@@ -539,7 +539,7 @@ if (isset($row_rsGroupCampaign['ggrp_char2'])) {
   $player_rsGetSkillsPlayer2 = $row_rsGroupCampaign['ggrp_char2'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkillsPlayer2 = sprintf("SELECT shop_skills, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND shop_skills IS NOT NULL   ORDER BY shop_xp ASC", GetSQLValueString($gaming_rsGetSkillsPlayer2, "int"),GetSQLValueString($player_rsGetSkillsPlayer2, "text"));
+$query_rsGetSkillsPlayer2 = sprintf("SELECT spendxp_skill_name, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND spendxp_skill_name IS NOT NULL   ORDER BY shop_xp ASC", GetSQLValueString($gaming_rsGetSkillsPlayer2, "int"),GetSQLValueString($player_rsGetSkillsPlayer2, "text"));
 $rsGetSkillsPlayer2 = mysql_query($query_rsGetSkillsPlayer2, $dbDescent) or die(mysql_error());
 $row_rsGetSkillsPlayer2 = mysql_fetch_assoc($rsGetSkillsPlayer2);
 $totalRows_rsGetSkillsPlayer2 = mysql_num_rows($rsGetSkillsPlayer2);
@@ -553,7 +553,7 @@ if (isset($row_rsGroupCampaign['ggrp_char3'])) {
   $player_rsGetSkillsPlayer3 = $row_rsGroupCampaign['ggrp_char3'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkillsPlayer3 = sprintf("SELECT shop_skills, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND shop_skills IS NOT NULL   ORDER BY shop_xp ASC", GetSQLValueString($gaming_rsGetSkillsPlayer3, "int"),GetSQLValueString($player_rsGetSkillsPlayer3, "text"));
+$query_rsGetSkillsPlayer3 = sprintf("SELECT spendxp_skill_name, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND spendxp_skill_name IS NOT NULL   ORDER BY shop_xp ASC", GetSQLValueString($gaming_rsGetSkillsPlayer3, "int"),GetSQLValueString($player_rsGetSkillsPlayer3, "text"));
 $rsGetSkillsPlayer3 = mysql_query($query_rsGetSkillsPlayer3, $dbDescent) or die(mysql_error());
 $row_rsGetSkillsPlayer3 = mysql_fetch_assoc($rsGetSkillsPlayer3);
 $totalRows_rsGetSkillsPlayer3 = mysql_num_rows($rsGetSkillsPlayer3);
@@ -567,7 +567,7 @@ if (isset($_GET['urlGamingID'])) {
   $gaming_rsGetSkillsPlayer4 = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkillsPlayer4 = sprintf("SELECT shop_skills, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND shop_skills IS NOT NULL  ORDER BY shop_xp ASC ", GetSQLValueString($gaming_rsGetSkillsPlayer4, "int"),GetSQLValueString($player_rsGetSkillsPlayer4, "text"));
+$query_rsGetSkillsPlayer4 = sprintf("SELECT spendxp_skill_name, shop_xp FROM tbitems_aquired WHERE shop_groupid = %s AND shop_player = %s AND spendxp_skill_name IS NOT NULL  ORDER BY shop_xp ASC ", GetSQLValueString($gaming_rsGetSkillsPlayer4, "int"),GetSQLValueString($player_rsGetSkillsPlayer4, "text"));
 $rsGetSkillsPlayer4 = mysql_query($query_rsGetSkillsPlayer4, $dbDescent) or die(mysql_error());
 $row_rsGetSkillsPlayer4 = mysql_fetch_assoc($rsGetSkillsPlayer4);
 $totalRows_rsGetSkillsPlayer4 = mysql_num_rows($rsGetSkillsPlayer4);
@@ -778,7 +778,7 @@ body {
       <table border="0" cellpadding="0" cellspacing="4" class="goldSQTable">
         <?php do { ?>
           <tr>
-            <td align="right" nowrap="nowrap"><span class="normal"><?php echo $row_rsGetSkillsOverlord['shop_skills']; ?></span></td>
+            <td align="right" nowrap="nowrap"><span class="normal"><?php echo $row_rsGetSkillsOverlord['spendxp_skill_name']; ?></span></td>
             <td align="right"><span class="normal"><?php echo $row_rsGetSkillsOverlord['shop_xp']; ?></span></td>
             </tr>
           <?php } while ($row_rsGetSkillsOverlord = mysql_fetch_assoc($rsGetSkillsOverlord)); ?>
@@ -810,7 +810,7 @@ body {
         <table border="0" cellpadding="0" cellspacing="4" class="goldSQTable">
           <?php do { ?>
             <tr class="normal">
-              <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer1['shop_skills']; ?></td>
+              <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer1['spendxp_skill_name']; ?></td>
               <td align="right"><?php echo $row_rsGetSkillsPlayer1['shop_xp']; ?></td>
               </tr>
             <?php } while ($row_rsGetSkillsPlayer1 = mysql_fetch_assoc($rsGetSkillsPlayer1)); ?>
@@ -842,7 +842,7 @@ body {
       <table cellpadding="1" cellspacing="4" class="goldSQTable">
         <?php do { ?>
           <tr class="normal">
-            <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer2['shop_skills']; ?></td>
+            <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer2['spendxp_skill_name']; ?></td>
             <td align="right"><?php echo $row_rsGetSkillsPlayer2['shop_xp']; ?></td>
             </tr>
           <?php } while ($row_rsGetSkillsPlayer2 = mysql_fetch_assoc($rsGetSkillsPlayer2)); ?>
@@ -876,7 +876,7 @@ body {
       <table cellpadding="1" cellspacing="4" class="goldSQTable">
         <?php do { ?>
           <tr class="normal">
-            <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer3['shop_skills']; ?></td>
+            <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer3['spendxp_skill_name']; ?></td>
             <td align="right"><?php echo $row_rsGetSkillsPlayer3['shop_xp']; ?></td>
             </tr>
           <?php } while ($row_rsGetSkillsPlayer3 = mysql_fetch_assoc($rsGetSkillsPlayer3)); ?>
@@ -913,7 +913,7 @@ body {
       <table cellpadding="1" cellspacing="4" class="goldSQTable">
         <?php do { ?>
           <tr class="normal">
-            <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer4['shop_skills']; ?></td>
+            <td align="right" nowrap="nowrap"><?php echo $row_rsGetSkillsPlayer4['spendxp_skill_name']; ?></td>
             <td align="right"><?php echo $row_rsGetSkillsPlayer4['shop_xp']; ?></td>
             </tr>
           <?php } while ($row_rsGetSkillsPlayer4 = mysql_fetch_assoc($rsGetSkillsPlayer4)); ?>

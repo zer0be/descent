@@ -135,18 +135,21 @@
 									<div class="player"><?php print $players[$ih]['player']; ?></div>
 									<div class="xp"><?php print $players[$ih]['xp']; ?><span class="xp-label">XP</span></div>
 								</div> <!-- close hero -->
+
+								<?php foreach ($players[$ih]['skills'] as $sk){ ?>
+								<div class="skills">
+									<div class="name"><?php print $sk['name']; ?></div>
+									<div class="xp"><?php print $sk['xp']; ?><span class="xp-label">XP</span></div>
+								</div> <!-- close skills -->
+
 				<?php
+								}
 						}
 					$ih++;
 					} //close foreach
 				?>
 			</div> <!-- close heroes -->
 			<?php
-				do {
-
-				  var_dump($row_rsSkillsData);
-
-				} while ($row_rsCharData = mysql_fetch_assoc($rsSkillsData));
 			}
 			/*
 			echo '<pre>';

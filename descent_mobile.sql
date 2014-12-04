@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 04 dec 2014 om 22:39
+-- Gegenereerd op: 05 dec 2014 om 00:06
 -- Serverversie: 5.6.21
 -- PHP-versie: 5.6.3
 
@@ -318,7 +318,7 @@ INSERT INTO `tbheroes` (`hero_id`, `hero_name`, `hero_type`, `hero_expansion`, `
 (11, 'Ravaella Lightfoot', 'Mage', '', 'ravaella.jpg', 'ravaellabust.jpg'),
 (12, 'Rendiel', 'Healer', '', 'rendiel.jpg', 'rendielbust.jpg'),
 (13, 'Serena', 'Healer', '', 'serena.jpg', 'serenabust.jpg'),
-(14, 'Shiver', 'Mage', '', 'shiver.jpg', 'shiverbust.jpg'),
+(14, 'Shiver', 'Mage', '', 'shiver.jpg', 'shiver.jpg'),
 (15, 'Thaiden Mistpeak', 'Scout', '', 'thaiden.jpg', 'thaidenbust.jpg'),
 (16, 'Orkell the Swift', 'Warrior', '', 'orkell.jpg', 'orkellbust.jpg'),
 (17, 'Overlord', 'Overlord', '', 'overlord.jpg', 'overlord.jpg'),
@@ -1016,66 +1016,68 @@ INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
-  `spendxp_id` int(3) NOT NULL DEFAULT '0',
+`spendxp_id` int(3) NOT NULL,
   `spendxp_game_id` int(2) DEFAULT NULL,
   `spendxp_player` varchar(18) DEFAULT NULL,
   `spendxp_char_id` int(3) DEFAULT NULL,
   `shop_equipped` varchar(3) DEFAULT NULL,
-  `shop_skills` varchar(28) DEFAULT NULL,
+  `spendxp_skill_id` int(3) DEFAULT NULL,
+  `spendxp_skill_name` varchar(28) DEFAULT NULL,
   `shop_latestdungeon` varchar(26) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
 --
 
-INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_player`, `spendxp_char_id`, `shop_equipped`, `shop_skills`, `shop_latestdungeon`, `shop_notes`) VALUES
-(15, 14, 'Elder Mok', 0, 'yes', 'Armor of Faith', 'Skipped Campaign Intro', ''),
-(16, 14, 'Elder Mok', 0, 'yes', 'Prayer of Healing', 'Skipped Campaign Intro', ''),
-(18, 14, 'Tobin Farslayer', 0, 'yes', 'Accurate', 'Skipped Campaign Intro', ''),
-(19, 14, 'Tobin Farslayer', 0, 'yes', 'Nimble', 'Skipped Campaign Intro', ''),
-(23, 14, 'Laughin Buldar', 0, 'yes', 'Rage', 'Skipped Campaign Intro', ''),
-(24, 14, 'Laughin Buldar', 0, 'yes', 'Brute', 'Skipped Campaign Intro', ''),
-(30, 14, 'Overlord', 0, 'yes', 'Blood Rage', 'Skipped Campaign Intro', ''),
-(61, 14, 'Leoric of the Book', 0, 'yes', 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', ''),
-(62, 14, 'Leoric of the Book', 0, 'yes', 'Exploding Rune', 'Skipped Campaign Intro', ''),
-(65, 14, 'Tobin Farslayer', 0, 'yes', 'Eagle Eyes', 'Castle Daerion', ''),
-(66, 14, 'Laughin Buldar', 0, 'yes', 'Counter Attack', 'Castle Daerion', ''),
-(76, 25, 'Leoric of the Book', 0, 'yes', 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', ''),
-(77, 25, 'Leoric of the Book', 0, 'yes', 'Exploding Rune', 'Skipped Campaign Intro', ''),
-(79, 25, 'Augur Grisom', 0, 'yes', 'Stoneskin', 'Skipped Campaign Intro', ''),
-(80, 25, 'Augur Grisom', 0, 'yes', 'Drain Spirit', 'Skipped Campaign Intro', ''),
-(82, 25, 'Tobin Farslayer', 0, 'yes', 'Greedy', 'Skipped Campaign Intro', ''),
-(83, 25, 'Tobin Farslayer', 0, 'yes', 'Appraisal', 'Skipped Campaign Intro', ''),
-(85, 25, 'Alys Raine', 0, 'yes', 'Rage', 'Skipped Campaign Intro', ''),
-(86, 25, 'Alys Raine', 0, 'yes', 'Brute', 'Skipped Campaign Intro', ''),
-(97, 14, 'Overlord', 0, 'yes', 'Blood Rage', 'Castle Daerion', ''),
-(98, 25, 'Overlord', 0, 'yes', 'Web Trap', 'Skipped Campaign Intro', ''),
-(103, 29, 'Tobin Farslayer', 0, 'yes', 'Appraisal', '', ''),
-(104, 29, 'Trenloe the Strong', 0, 'yes', 'Advance', '', ''),
-(105, 29, 'Aurim', 0, 'yes', 'Healing Rain', '', ''),
-(106, 29, 'Truthseer Kel', 0, 'yes', 'Fury of Undeath', '', ''),
-(107, 29, 'Overlord', 0, 'yes', 'Word of Pain', '', ''),
-(116, 29, 'Truthseer Kel', 0, 'yes', 'Raise Dead (Necromancer)', '', ''),
-(117, 29, 'Truthseer Kel', 0, 'yes', 'Reanimate (Necromancer)', '', ''),
-(120, 29, 'Trenloe the Strong', 0, 'yes', 'Oath of Honor', '', ''),
-(124, 29, 'Tobin Farslayer', 0, 'yes', 'Greedy', '', ''),
-(127, 29, 'Aurim', 0, 'yes', 'Stoneskin', '', ''),
-(132, 14, 'Leoric of the Book', 0, 'yes', 'Iron Will', '', ''),
-(133, 14, 'Elder Mok', 0, 'yes', 'Divine Fury', '', ''),
-(136, 14, 'Overlord', 0, 'yes', 'Explosive Runes', 'The Cardinal''s Plight', ''),
-(137, 14, 'Overlord', 0, 'yes', 'Web Trap', 'The Cardinal''s Plight', ''),
-(228, 29, 'Aurim', 0, 'yes', 'Drain Spirit', 'The Masquerade Ball', ''),
-(242, 14, 'Laughin Buldar', 0, 'yes', 'Whirlwind', 'The Masquerade Ball', ''),
-(244, 14, 'Tobin Farslayer', 0, 'yes', 'Bow Mastery', 'The Masquerade Ball', ''),
-(253, 39, 'Dezra the Vile', 0, 'yes', 'Raise Dead (Necromancer)', '**Starting Gear**', ''),
-(254, 39, 'Dezra the Vile', 0, 'yes', 'Reanimate (Necromancer)', '**Starting Gear**', ''),
-(256, 39, 'Orkell the Swift', 0, 'yes', 'Rage', '**Starting Gear**', ''),
-(258, 39, 'Tobin Farslayer', 0, 'yes', 'Set Trap', '**Starting Gear**', ''),
-(259, 39, 'Tobin Farslayer', 0, 'yes', 'Black Widow''s Web', '**Starting Gear**', ''),
-(261, 39, 'Ashrian', 0, 'yes', 'Stoneskin', '**Starting Gear**', ''),
-(269, 38, 'Shiver', 7, 'yes', 'Exploding Rune', 'First Blood', '');
+INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_player`, `spendxp_char_id`, `shop_equipped`, `spendxp_skill_id`, `spendxp_skill_name`, `shop_latestdungeon`, `shop_notes`) VALUES
+(15, 14, 'Elder Mok', 0, 'yes', NULL, 'Armor of Faith', 'Skipped Campaign Intro', ''),
+(16, 14, 'Elder Mok', 0, 'yes', NULL, 'Prayer of Healing', 'Skipped Campaign Intro', ''),
+(18, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Accurate', 'Skipped Campaign Intro', ''),
+(19, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Nimble', 'Skipped Campaign Intro', ''),
+(23, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Rage', 'Skipped Campaign Intro', ''),
+(24, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Brute', 'Skipped Campaign Intro', ''),
+(30, 14, 'Overlord', 0, 'yes', NULL, 'Blood Rage', 'Skipped Campaign Intro', ''),
+(61, 14, 'Leoric of the Book', 0, 'yes', NULL, 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', ''),
+(62, 14, 'Leoric of the Book', 0, 'yes', NULL, 'Exploding Rune', 'Skipped Campaign Intro', ''),
+(65, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Eagle Eyes', 'Castle Daerion', ''),
+(66, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Counter Attack', 'Castle Daerion', ''),
+(76, 25, 'Leoric of the Book', 0, 'yes', NULL, 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', ''),
+(77, 25, 'Leoric of the Book', 0, 'yes', NULL, 'Exploding Rune', 'Skipped Campaign Intro', ''),
+(79, 25, 'Augur Grisom', 0, 'yes', NULL, 'Stoneskin', 'Skipped Campaign Intro', ''),
+(80, 25, 'Augur Grisom', 0, 'yes', NULL, 'Drain Spirit', 'Skipped Campaign Intro', ''),
+(82, 25, 'Tobin Farslayer', 0, 'yes', NULL, 'Greedy', 'Skipped Campaign Intro', ''),
+(83, 25, 'Tobin Farslayer', 0, 'yes', NULL, 'Appraisal', 'Skipped Campaign Intro', ''),
+(85, 25, 'Alys Raine', 0, 'yes', NULL, 'Rage', 'Skipped Campaign Intro', ''),
+(86, 25, 'Alys Raine', 0, 'yes', NULL, 'Brute', 'Skipped Campaign Intro', ''),
+(97, 14, 'Overlord', 0, 'yes', NULL, 'Blood Rage', 'Castle Daerion', ''),
+(98, 25, 'Overlord', 0, 'yes', NULL, 'Web Trap', 'Skipped Campaign Intro', ''),
+(103, 29, 'Tobin Farslayer', 0, 'yes', NULL, 'Appraisal', '', ''),
+(104, 29, 'Trenloe the Strong', 0, 'yes', NULL, 'Advance', '', ''),
+(105, 29, 'Aurim', 0, 'yes', NULL, 'Healing Rain', '', ''),
+(106, 29, 'Truthseer Kel', 0, 'yes', NULL, 'Fury of Undeath', '', ''),
+(107, 29, 'Overlord', 0, 'yes', NULL, 'Word of Pain', '', ''),
+(116, 29, 'Truthseer Kel', 0, 'yes', NULL, 'Raise Dead (Necromancer)', '', ''),
+(117, 29, 'Truthseer Kel', 0, 'yes', NULL, 'Reanimate (Necromancer)', '', ''),
+(120, 29, 'Trenloe the Strong', 0, 'yes', NULL, 'Oath of Honor', '', ''),
+(124, 29, 'Tobin Farslayer', 0, 'yes', NULL, 'Greedy', '', ''),
+(127, 29, 'Aurim', 0, 'yes', NULL, 'Stoneskin', '', ''),
+(132, 14, 'Leoric of the Book', 0, 'yes', NULL, 'Iron Will', '', ''),
+(133, 14, 'Elder Mok', 0, 'yes', NULL, 'Divine Fury', '', ''),
+(136, 14, 'Overlord', 0, 'yes', NULL, 'Explosive Runes', 'The Cardinal''s Plight', ''),
+(137, 14, 'Overlord', 0, 'yes', NULL, 'Web Trap', 'The Cardinal''s Plight', ''),
+(228, 29, 'Aurim', 0, 'yes', NULL, 'Drain Spirit', 'The Masquerade Ball', ''),
+(242, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Whirlwind', 'The Masquerade Ball', ''),
+(244, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Bow Mastery', 'The Masquerade Ball', ''),
+(253, 39, 'Dezra the Vile', 0, 'yes', NULL, 'Raise Dead (Necromancer)', '**Starting Gear**', ''),
+(254, 39, 'Dezra the Vile', 0, 'yes', NULL, 'Reanimate (Necromancer)', '**Starting Gear**', ''),
+(256, 39, 'Orkell the Swift', 0, 'yes', NULL, 'Rage', '**Starting Gear**', ''),
+(258, 39, 'Tobin Farslayer', 0, 'yes', NULL, 'Set Trap', '**Starting Gear**', ''),
+(259, 39, 'Tobin Farslayer', 0, 'yes', NULL, 'Black Widow''s Web', '**Starting Gear**', ''),
+(261, 39, 'Ashrian', 0, 'yes', NULL, 'Stoneskin', '**Starting Gear**', ''),
+(269, 38, 'Shiver', 7, 'yes', 98, 'Exploding Rune', 'First Blood', ''),
+(270, 38, 'Shiver', 7, 'yes', 99, 'Ghost Armor', 'First Blood', NULL);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -1119,6 +1121,11 @@ MODIFY `char_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 ALTER TABLE `tbgames`
 MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+--
+-- AUTO_INCREMENT voor een tabel `tbskills_aquired`
+--
+ALTER TABLE `tbskills_aquired`
+MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=270;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

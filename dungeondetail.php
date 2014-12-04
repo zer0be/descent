@@ -202,7 +202,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamingsession_rsSkillsLearned = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSkillsLearned = sprintf("SELECT shop_skills, shop_player FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND shop_skills IS NOT NULL AND shop_player != 'overlord'", GetSQLValueString($dungeonname_rsSkillsLearned, "text"),GetSQLValueString($gamingsession_rsSkillsLearned, "int"));
+$query_rsSkillsLearned = sprintf("SELECT spendxp_skill_name, shop_player FROM tbitems_aquired WHERE shop_latestdungeon = %s AND shop_groupid = %s AND spendxp_skill_name IS NOT NULL AND shop_player != 'overlord'", GetSQLValueString($dungeonname_rsSkillsLearned, "text"),GetSQLValueString($gamingsession_rsSkillsLearned, "int"));
 $rsSkillsLearned = mysql_query($query_rsSkillsLearned, $dbDescent) or die(mysql_error());
 $row_rsSkillsLearned = mysql_fetch_assoc($rsSkillsLearned);
 $totalRows_rsSkillsLearned = mysql_num_rows($rsSkillsLearned);
@@ -226,7 +226,7 @@ if (isset($_GET['urlDungeonID'])) {
   $dungeonname_rsOLskills = $_GET['urlDungeonID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsOLskills = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_player = 'overlord' AND shop_skills IS NOT NULL", GetSQLValueString($colname_rsOLskills, "int"),GetSQLValueString($dungeonname_rsOLskills, "text"));
+$query_rsOLskills = sprintf("SELECT spendxp_skill_name FROM tbitems_aquired WHERE shop_groupid = %s AND shop_latestdungeon = %s AND shop_player = 'overlord' AND spendxp_skill_name IS NOT NULL", GetSQLValueString($colname_rsOLskills, "int"),GetSQLValueString($dungeonname_rsOLskills, "text"));
 $rsOLskills = mysql_query($query_rsOLskills, $dbDescent) or die(mysql_error());
 $row_rsOLskills = mysql_fetch_assoc($rsOLskills);
 $totalRows_rsOLskills = mysql_num_rows($rsOLskills);
@@ -491,7 +491,7 @@ body {
             <?php do { ?>
               <tr>
                 <td align="center" class="normal"><?php echo $row_rsSkillsLearned['shop_player']; ?></td>
-                <td align="center"><span class="normal"><?php echo $row_rsSkillsLearned['shop_skills']; ?></span></td>
+                <td align="center"><span class="normal"><?php echo $row_rsSkillsLearned['spendxp_skill_name']; ?></span></td>
               </tr>
               <?php } while ($row_rsSkillsLearned = mysql_fetch_assoc($rsSkillsLearned)); ?>
           </table></td>
@@ -500,7 +500,7 @@ body {
           <table cellpadding="5" cellspacing="5" class="purpleTable">
             <?php do { ?>
               <tr>
-                <td align="center"><span class="normal"><?php echo $row_rsOLskills['shop_skills']; ?></span></td>
+                <td align="center"><span class="normal"><?php echo $row_rsOLskills['spendxp_skill_name']; ?></span></td>
               </tr>
               <?php } while ($row_rsOLskills = mysql_fetch_assoc($rsOLskills)); ?>
           </table></td>

@@ -110,11 +110,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbitems_aquired (shop_id, shop_player, shop_xp, shop_skills, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbitems_aquired (shop_id, shop_player, shop_xp, spendxp_skill_name, shop_latestdungeon, shop_groupid) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['shop_id'], "int"),
                        GetSQLValueString($_POST['shop_player'], "text"),
                        GetSQLValueString($_POST['shop_xp'], "int"),
-                       GetSQLValueString($_POST['shop_skills'], "text"),
+                       GetSQLValueString($_POST['spendxp_skill_name'], "text"),
                        GetSQLValueString($_POST['shop_latestdungeon'], "text"),
                        GetSQLValueString($_POST['shop_groupid'], "int"));
 
@@ -287,7 +287,7 @@ do {
         </table>
         <input type="hidden" name="shop_id" value="" />
         <input type="hidden" name="shop_player" value="<?php echo $_GET['urlHeroID']; ?>" />
-        <input type="hidden" name="shop_skills" value="<?php echo $row_rsGetSkill['skill_name']; ?>" />
+        <input type="hidden" name="spendxp_skill_name" value="<?php echo $row_rsGetSkill['skill_name']; ?>" />
         <input type="hidden" name="shop_latestdungeon" value="<?php echo $_GET['urlDungeonID']; ?>" />
         <input type="hidden" name="shop_groupid" value="<?php echo $_GET['urlGamingID']; ?>" />
         <input type="hidden" name="MM_insert" value="form1" />

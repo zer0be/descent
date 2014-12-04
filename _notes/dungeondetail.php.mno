@@ -11,9 +11,9 @@
 	<infoitem key="UD_rsSoldItems" value="name:shop_market_sold;datatype:string" />
 	<infoitem key="UD_rsBoughtItems" value="name:shop_market_bought;datatype:string" />
 	<infoitem key="UD_rsFoundRelics" value="name:shop_market_bought;datatype:string" />
-	<infoitem key="UD_rsSkillsLearned" value="name:shop_skills;datatype:string,name:shop_player;datatype:string" />
+	<infoitem key="UD_rsSkillsLearned" value="name:spendxp_skill_name;datatype:string,name:shop_player;datatype:string" />
 	<infoitem key="UD_rsOverlordPort" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
-	<infoitem key="UD_rsOLskills" value="name:shop_skills;datatype:string" />
+	<infoitem key="UD_rsOLskills" value="name:spendxp_skill_name;datatype:string" />
 	<infoitem key="UD_rsPlayerAccess" value="name:player_handle;datatype:string" />
 	<infoitem key="UD_rsFoundItems" value="name:shop_market_bought;datatype:string" />
 	<infoitem key="UD_rsGetNotes" value="name:shop_notes;datatype:blob" />

@@ -19,11 +19,11 @@
 	<infoitem key="UD_rsGetXPremainingPlayer2" value="name:SUM(shop_xp);datatype:real" />
 	<infoitem key="UD_rsGetXPremainingPlayer3" value="name:SUM(shop_xp);datatype:real" />
 	<infoitem key="UD_rsGetXPremainingPlayer4" value="name:SUM(shop_xp);datatype:real" />
-	<infoitem key="UD_rsGetSkillsOverlord" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
-	<infoitem key="UD_rsGetSkillsPlayer1" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
-	<infoitem key="UD_rsGetSkillsPlayer2" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
-	<infoitem key="UD_rsGetSkillsPlayer3" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
-	<infoitem key="UD_rsGetSkillsPlayer4" value="name:shop_skills;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsOverlord" value="name:spendxp_skill_name;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer1" value="name:spendxp_skill_name;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer2" value="name:spendxp_skill_name;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer3" value="name:spendxp_skill_name;datatype:string,name:shop_xp;datatype:int" />
+	<infoitem key="UD_rsGetSkillsPlayer4" value="name:spendxp_skill_name;datatype:string,name:shop_xp;datatype:int" />
 	<infoitem key="UD_rsGetItemsOverlord" value="name:shop_market_bought;datatype:string" />
 	<infoitem key="UD_rsGetItemsPlayer1" value="name:shop_market_bought;datatype:string" />
 	<infoitem key="UD_rsGetItemsPlayer2" value="name:shop_market_bought;datatype:string" />

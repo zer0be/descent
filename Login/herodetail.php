@@ -117,7 +117,7 @@ if (isset($_GET['urlGamingID'])) {
   $gamesession_rsGetSkills = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsGetSkills = sprintf("SELECT shop_skills FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND shop_skills IS NOT NULL", GetSQLValueString($playername_rsGetSkills, "text"),GetSQLValueString($gamesession_rsGetSkills, "int"));
+$query_rsGetSkills = sprintf("SELECT spendxp_skill_name FROM tbitems_aquired WHERE shop_player = %s AND shop_groupid = %s AND spendxp_skill_name IS NOT NULL", GetSQLValueString($playername_rsGetSkills, "text"),GetSQLValueString($gamesession_rsGetSkills, "int"));
 $rsGetSkills = mysql_query($query_rsGetSkills, $dbDescent) or die(mysql_error());
 $row_rsGetSkills = mysql_fetch_assoc($rsGetSkills);
 $totalRows_rsGetSkills = mysql_num_rows($rsGetSkills);
@@ -281,7 +281,7 @@ body {
 <table cellpadding="5" cellspacing="5" class="purpleTable">
   <?php do { ?>
           <tr>
-            <td align="center" class="normal"><?php echo $row_rsGetSkills['shop_skills']; ?></td>
+            <td align="center" class="normal"><?php echo $row_rsGetSkills['spendxp_skill_name']; ?></td>
           </tr>
           <?php } while ($row_rsGetSkills = mysql_fetch_assoc($rsGetSkills)); ?>
     </table>

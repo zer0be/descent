@@ -1,4 +1,4 @@
-"shop_id","shop_player","shop_xp","shop_gold","shop_market_bought","shop_market_sold","shop_goldsold","shop_relics","shop_equipped","shop_skills","shop_latestdungeon","shop_notes","shop_groupid"
+"shop_id","shop_player","shop_xp","shop_gold","shop_market_bought","shop_market_sold","shop_goldsold","shop_relics","shop_equipped","spendxp_skill_name","shop_latestdungeon","shop_notes","shop_groupid"
 "74","Leoric of the Book",NULL,"25",NULL,NULL,"0",NULL,"yes",NULL,"Skipped Campaign Intro",NULL,"25"
 "5","Leoric of the Book","1","25",NULL,NULL,"0",NULL,"yes",NULL,"Skipped Campaign Intro",NULL,"14"
 "6","Laughin Buldar","1","25",NULL,NULL,"0",NULL,"yes",NULL,"Skipped Campaign Intro",NULL,"14"

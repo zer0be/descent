@@ -2,10 +2,10 @@
 <info>
 	<infoitem key="UD_rsPlayerList" value="name:player_handle;datatype:string" />
 	<infoitem key="UD_rsOLskill" value="name:skill_name;datatype:string,name:skill_class;datatype:string,name:skill_cost;datatype:int" />
-	<infoitem key="UD_rsCurrentSkills" value="name:shop_skills;datatype:string" />
+	<infoitem key="UD_rsCurrentSkills" value="name:spendxp_skill_name;datatype:string" />
 	<infoitem key="UD_rsGetXP" value="name:SUM(shop_xp);datatype:real" />
 	<infoitem key="UD_rsGetRelicTotalWon" value="name:shop_market_bought;datatype:string" />
-	<infoitem key="UD_rsGetSkillsTotalEquipped" value="name:shop_skills;datatype:string" />
+	<infoitem key="UD_rsGetSkillsTotalEquipped" value="name:spendxp_skill_name;datatype:string" />
 	<infoitem key="UD_rsXPremaining" value="name:SUM(shop_xp);datatype:real" />
 	<infoitem key="UD_rsRelicCurrentDungeon" value="name:shop_market_bought;datatype:string" />
 	<infoitem key="UD_rsGetRelic" value="name:market_item_name;datatype:string" />

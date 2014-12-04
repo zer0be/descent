@@ -29,11 +29,18 @@ $rsCharData = mysql_query($query_rsCharData, $dbDescent) or die(mysql_error());
 $row_rsCharData = mysql_fetch_assoc($rsCharData);
 $totalRows_rsCharData = mysql_num_rows($rsCharData);
 
+// Get the items
+$query_rsSkillsData = sprintf("SELECT * FROM tbcharacters INNER JOIN tbskills_aquired ON tbcharacters.char_id = tbskills_aquired.spendxp_char_id INNER JOIN tbskills ON tbskills_aquired.spendxp_skill_id = tbskills.skill_id WHERE char_game_id = %s", GetSQLValueString($gameID, "int"));
+$rsSkillsData = mysql_query($query_rsSkillsData, $dbDescent) or die(mysql_error());
+$row_rsSkillsData = mysql_fetch_assoc($rsSkillsData);
+$totalRows_rsSkillsData = mysql_num_rows($rsSkillsData);
+
+
+// Create the player data array
 $players = array();
 $ip = 0;
 
 do {
-
   $players[$ip] = array(
     "id" => $row_rsCharData['char_id'],
     "player" => $row_rsCharData['char_player'],
@@ -41,7 +48,24 @@ do {
     "img" => $row_rsCharData['hero_img'],
     "class" => $row_rsCharData['char_class'],
     "xp" => 0,
+    "skills" => array(),
   );
+
+  if ($row_rsSkillsData['spendxp_char_id'] == $row_rsCharData['char_id']){
+
+    $is = 0;
+    do {
+
+      $players[$ip]['skills'][$is] = array(
+        "name" => $row_rsSkillsData['skill_name'],
+        "xp" => $row_rsSkillsData['skill_cost'],
+      );
+
+      $is++;
+
+    } while ($row_rsSkillsData = mysql_fetch_assoc($rsSkillsData));
+
+  }
 
 $ip++;
 
@@ -49,13 +73,10 @@ $ip++;
 
 
 // ------------ //
-// -- Skills -- //
+// -- QUESTS -- //
 // ------------ //
 
-$query_rsSkillsData = sprintf("SELECT * FROM tbcharacters INNER JOIN tbskills_aquired ON tbcharacters.char_id = tbskills_aquired.spendxp_char_id WHERE char_game_id = %s", GetSQLValueString($gameID, "int"));
-$rsSkillsData = mysql_query($query_rsSkillsData, $dbDescent) or die(mysql_error());
-$row_rsSkillsData = mysql_fetch_assoc($rsSkillsData);
-$totalRows_rsSkillsData = mysql_num_rows($rsSkillsData);
+
 
 
 
@@ -63,39 +84,11 @@ $totalRows_rsSkillsData = mysql_num_rows($rsSkillsData);
 /*
 mysql_free_result($rsSelectedLog);
 
-mysql_free_result($rsPortrait1);
-
-mysql_free_result($rsPortrait2);
-
-mysql_free_result($rsPortrait3);
-
-mysql_free_result($rsPortrait4);
-
 mysql_free_result($rsLog);
 
 mysql_free_result($rsGetOverlord);
 
 mysql_free_result($rsSumGoldLoot);
-
-mysql_free_result($rsGetXPtotalPlayer1);
-
-mysql_free_result($rsGetXPtotalPlayer2);
-
-mysql_free_result($rsGetXPtotalPlayer3);
-
-mysql_free_result($rsGetXPtotalPlayer4);
-
-mysql_free_result($rsGetXPtotalOverlord);
-
-mysql_free_result($rsGetXPremainingOverlord);
-
-mysql_free_result($rsGetXPremainingPlayer1);
-
-mysql_free_result($rsGetXPremainingPlayer2);
-
-mysql_free_result($rsGetXPremainingPlayer3);
-
-mysql_free_result($rsGetXPremainingPlayer4);
 
 mysql_free_result($rsGetSkillsOverlord);
 
