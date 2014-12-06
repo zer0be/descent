@@ -237,3 +237,13 @@ body{
 	text-decoration: none;
 	color: #333;
 }
+
+.half-block{
+	width: 50%;
+	float: left;
+}
+
+.half-block a, .half-block img{
+	margin: 0;
+	padding: 0;
+}

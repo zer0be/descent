@@ -366,7 +366,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsLog = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsLog = sprintf("SELECT DATE_FORMAT(quest_timestamp,'%%b %%d %%Y') AS date, quest_name,  quest_name_win, quest_encount_1, quest_id FROM tbquests WHERE quest_game_id = %s ORDER BY quest_timestamp DESC", GetSQLValueString($colname_rsLog, "int"));
+$query_rsLog = sprintf("SELECT DATE_FORMAT(progress_timestamp,'%%b %%d %%Y') AS date, progress_quest_name,  progress_quest_name_win, progress_enc1_winner, progress_id FROM tbquests_progress WHERE progress_game_id = %s ORDER BY progress_timestamp DESC", GetSQLValueString($colname_rsLog, "int"));
 $rsLog = mysql_query($query_rsLog, $dbDescent) or die(mysql_error());
 $row_rsLog = mysql_fetch_assoc($rsLog);
 $totalRows_rsLog = mysql_num_rows($rsLog);
@@ -1003,13 +1003,13 @@ body {
         <?php do { ?>
           <tr>
             <td colspan="2" align="center" class="header"><span class="header"><?php echo $row_rsLog['date']; ?></span></td>
-            <td align="center"><span class="header"><?php echo $row_rsLog['quest_name']; ?></span></td>
-            <td align="center"><span class="header"><?php echo $row_rsLog['quest_name_win']; ?></span></td>
+            <td align="center"><span class="header"><?php echo $row_rsLog['progress_quest_name']; ?></span></td>
+            <td align="center"><span class="header"><?php echo $row_rsLog['progress_quest_name_win']; ?></span></td>
           </tr>
           <tr>
             <td align="center" class="header">&nbsp;</td>
             <td align="center">&nbsp;</td>
-            <td align="center"><a href="mydungeondetail.php?urlGamingID=<?php echo $row_rsGroupCampaign['ggrp_id']; ?>&amp;urlDungeonID=<?php echo $row_rsLog['quest_name']; ?>" class="normal">+ Add Details Here</a></td>
+            <td align="center"><a href="mydungeondetail.php?urlGamingID=<?php echo $row_rsGroupCampaign['ggrp_id']; ?>&amp;urlDungeonID=<?php echo $row_rsLog['progress_quest_name']; ?>" class="normal">+ Add Details Here</a></td>
             <td align="center">&nbsp;</td>
           </tr>
           <?php } while ($row_rsLog = mysql_fetch_assoc($rsLog)); ?>

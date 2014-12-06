@@ -71,13 +71,79 @@ $ip++;
 
 } while ($row_rsCharData = mysql_fetch_assoc($rsCharData));
 
+// -------------- //
+// -- CAMPAIGN -- //
+// -------------- //
 
-// ------------ //
 // -- QUESTS -- //
-// ------------ //
 
+// Get the quests
+$query_rsQuestData = sprintf("SELECT * FROM tbquests_progress INNER JOIN tbquests ON tbquests_progress.progress_quest_id = tbquests.quest_id WHERE progress_game_id = %s", GetSQLValueString($gameID, "int"));
+$rsQuestData = mysql_query($query_rsQuestData, $dbDescent) or die(mysql_error());
+$row_rsQuestData = mysql_fetch_assoc($rsQuestData);
+$totalRows_rsQuestData = mysql_num_rows($rsQuestData);
 
+$campaign = array(
+    "name" => "The Shadow Rune",
+    "quests" => array(),
+);
 
+// Create the quest data array
+$iq = 0;
+
+do {
+  //select correct reward
+  
+  // did the heroes win? - FIX ME: Make 'The Heroes' be a bool instead of text
+  if ($row_rsQuestData['progress_quest_winner'] == "Heroes Win"){
+    echo 'lololo';
+    // gold or item?
+    if($row_rsQuestData['quest_rew_h_gold'] == 0){
+      $qreward = $row_rsQuestData['quest_rew_h_item'];
+    } else {
+      $qreward = $row_rsQuestData['quest_rew_h_gold'];
+    }
+  } else {
+    // xp or item?
+    if($row_rsQuestData['quest_rew_ol_xp'] == 0){
+      $qreward = $row_rsQuestData['quest_rew_ol_item'];
+    } else {
+      $qreward = $row_rsQuestData['quest_rew_ol_xp'];
+    }
+  }
+
+  $campaign['quests'][$iq] = array(
+    "id" => $row_rsQuestData['progress_id'],
+    "timestamp" => $row_rsQuestData['progress_timestamp'],
+    "name" => $row_rsQuestData['quest_name'],
+    "act" => $row_rsQuestData['quest_act'],
+    "winner" => $row_rsQuestData['progress_quest_winner'],
+    "winner_enc1" => $row_rsQuestData['progress_enc1_winner'],
+    "reward" => $qreward,
+    "travel" => array(
+      array(
+          "type" => "Plains",
+          "event" => "<div class='v-center'>No Event</div>",
+          "outcome" => "",
+          "goldlost" => 0,
+          "item-gained" => ""
+      ),
+      array(
+          "type" => "Mountains",
+          "event" => "A mysterious jester appears and presents an irresistible offer..",
+          "outcome" => $heroes[1]['player'] . " passes all attibute tests and draws a 'Crossbow'",
+          "goldlost" => 0,
+          "item-gained" => "Crossbow"
+      ),
+    ),
+    "skills" => array(),
+    "items" => array(),
+
+  );
+
+$iq++;
+
+} while ($row_rsQuestData = mysql_fetch_assoc($rsQuestData));
 
 
 

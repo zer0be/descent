@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 05 dec 2014 om 00:06
--- Serverversie: 5.6.21
--- PHP-versie: 5.6.3
+-- Gegenereerd op: 05 dec 2014 om 18:22
+-- Serverversie: 5.6.16
+-- PHP-versie: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,27 +27,30 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tbcampaign` (
-  `cam_id` int(1) DEFAULT NULL,
-  `cam_name` varchar(19) DEFAULT NULL,
+  `cam_id` int(1) NOT NULL DEFAULT '0',
+  `cam_name` varchar(32) DEFAULT NULL,
+  `cam_s_name` varchar(32) DEFAULT NULL,
   `cam_map` varchar(24) DEFAULT NULL,
   `cam_log` varchar(24) DEFAULT NULL,
   `expansion` varchar(21) DEFAULT NULL,
   `edition` varchar(3) DEFAULT NULL,
   `cam_logo` varchar(25) DEFAULT NULL,
-  `cam_icon` varchar(26) DEFAULT NULL
+  `cam_icon` varchar(26) DEFAULT NULL,
+  PRIMARY KEY (`cam_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcampaign`
 --
 
-INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_map`, `cam_log`, `expansion`, `edition`, `cam_logo`, `cam_icon`) VALUES
-(1, 'The Shadow Rune', 'shadowRuneMap.jpg', 'shadowrune.jpg', 'Base Game 2nd Edition', '2nd', 'shadowRuneLogo.png', 'placeholder.png'),
-(2, 'Lair of the Wyrm', 'LotWmap.jpg', 'LotWlog.jpg', 'Lair of the Wyrm', '2nd', 'LairOfTheWyrmLogo.png', 'Lair-of-the-Wyrm-icon.png'),
-(3, 'Labyrinth of Ruin', 'labyrinthOfRuinMap.jpg', 'LabyrinthOfRuinLog.jpg', 'Labyrinth of Ruin', '2nd', 'LabyrinthofRuneLogo.png', 'Labyrinth-of-Ruin-icon.png'),
-(5, 'Shadow of Nerekhall', 'shadowOfNerekhallMap.jpg', 'shadowOfNerekhallLog.jpg', 'Shadow of Nerekhall', '2nd', 'ShadowofNerekhallLogo.png', 'shadowsOfNerekhallicon.png'),
-(4, 'The Trollfens', 'trollfensMap.jpg', 'trollfensLog.jpg', 'The Trollfens', '2nd', 'TheTrollfensLogo.png', 'The-Trollfens-icon.png'),
-(6, 'Manor of Ravens', 'manorOfRavensMap.jpg', 'manorOfRavensLog.jpg', 'Manor of Ravens', '2nd', 'manorOfRavensLogo.png', 'manorOfRavensIcon.png');
+INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_s_name`, `cam_map`, `cam_log`, `expansion`, `edition`, `cam_logo`, `cam_icon`) VALUES
+(0, 'The Shadow Rune', 'the_shadow_rune', 'shadowRuneMap.jpg', 'shadowrune.jpg', 'Base Game 2nd Edition', '2nd', 'shadowRuneLogo.png', 'placeholder.png'),
+(1, 'Lair of the Wyrm', 'lair_of_the_wyrm', 'LotWmap.jpg', 'LotWlog.jpg', 'Lair of the Wyrm', '2nd', 'LairOfTheWyrmLogo.png', 'Lair-of-the-Wyrm-icon.png'),
+(2, 'Labyrinth of Ruin', 'labyrinth_of_ruin', 'labyrinthOfRuinMap.jpg', 'LabyrinthOfRuinLog.jpg', 'Labyrinth of Ruin', '2nd', 'LabyrinthofRuneLogo.png', 'Labyrinth-of-Ruin-icon.png'),
+(3, 'The Trollfens', 'the_trollfens', 'trollfensMap.jpg', 'trollfensLog.jpg', 'The Trollfens', '2nd', 'TheTrollfensLogo.png', 'The-Trollfens-icon.png'),
+(4, 'Shadow of Nerekhall', 'shadow_of_nerekhall', 'shadowOfNerekhallMap.jpg', 'shadowOfNerekhallLog.jpg', 'Shadow of Nerekhall', '2nd', 'ShadowofNerekhallLogo.png', 'shadowsOfNerekhallicon.png'),
+(5, 'Manor of Ravens', 'manor_of_ravens', 'manorOfRavensMap.jpg', 'manorOfRavensLog.jpg', 'Manor of Ravens', '2nd', 'manorOfRavensLogo.png', 'manorOfRavensIcon.png'),
+(6, 'Crusade of the Forgotten', 'crusade_of_the_forgotten', NULL, NULL, NULL, '2nd', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -56,13 +59,14 @@ INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_map`, `cam_log`, `expansion
 --
 
 CREATE TABLE IF NOT EXISTS `tbcharacters` (
-`char_id` int(3) NOT NULL,
+  `char_id` int(3) NOT NULL AUTO_INCREMENT,
   `char_ggrp_id` int(3) DEFAULT NULL,
   `char_game_id` int(3) DEFAULT NULL,
   `char_player` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `char_hero` int(3) DEFAULT NULL,
-  `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
+  PRIMARY KEY (`char_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcharacters`
@@ -86,125 +90,17 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tbdungeonlist`
---
-
-CREATE TABLE IF NOT EXISTS `tbdungeonlist` (
-  `dun_id` int(2) DEFAULT NULL,
-  `dun_name` varchar(26) DEFAULT NULL,
-  `dun_expansion` varchar(24) DEFAULT NULL,
-  `dun_act` varchar(12) DEFAULT NULL,
-  `dun_order` int(1) DEFAULT NULL,
-  `dun_type` varchar(7) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Gegevens worden geëxporteerd voor tabel `tbdungeonlist`
---
-
-INSERT INTO `tbdungeonlist` (`dun_id`, `dun_name`, `dun_expansion`, `dun_act`, `dun_order`, `dun_type`) VALUES
-(1, 'First Blood', 'The Shadow Rune', 'Introduction', 2, 'Quest'),
-(2, 'A Fat Goblin', 'The Shadow Rune', 'Act 1', 3, 'Quest'),
-(3, 'The Monster''s Hoard', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(4, 'The Frozen Spire', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(5, 'Castle Daerion', 'The Shadow Rune', 'Act 1', 3, 'Quest'),
-(6, 'The Dawnblade', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(7, 'The Desecrated Tomb', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(8, 'The Cardinal''s Plight', 'The Shadow Rune', 'Act 1', 3, 'Quest'),
-(9, 'Enduring the Elements', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(10, 'The Ritual of Shadows', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(11, 'The Masquerade Ball', 'The Shadow Rune', 'Act 1', 3, 'Quest'),
-(12, 'Blood of Heroes', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(13, 'The Twin Idols', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(14, 'Death on the Wing', 'The Shadow Rune', 'Act 1', 3, 'Quest'),
-(15, 'The Wyrm Turns', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(16, 'The Wyrm Rises', 'The Shadow Rune', 'Act 2', 6, 'Quest'),
-(17, 'The Shadow Vault', 'The Shadow Rune', 'Interlude 1', 4, 'Quest'),
-(18, 'The Overlord Revealed', 'The Shadow Rune', 'Interlude 2', 5, 'Quest'),
-(19, 'Gryvorn Unleashed', 'The Shadow Rune', 'Finale 1', 7, 'Quest'),
-(20, 'The Man Who Would Be King', 'The Shadow Rune', 'Finale 2', 8, 'Quest'),
-(21, 'Gold Digger', 'Lair of the Wyrm', 'Act 1', 3, 'Quest'),
-(22, 'Rude Awakening', 'Lair of the Wyrm', 'Act 1', 3, 'Quest'),
-(23, 'What''s yours is Mine', 'Lair of the Wyrm', 'Act 1', 3, 'Quest'),
-(24, 'At the Forge', 'Lair of the Wyrm', 'Finale 1', 7, 'Quest'),
-(25, 'Armored to the Teeth', 'Lair of the Wyrm', 'Finale 2', 8, 'Quest'),
-(26, '**Skipped Campaign Intro**', 'The Shadow Rune', 'Introduction', 2, 'Pregame'),
-(27, '**Starting Gear**', 'The Shadow Rune', 'Starting', 1, 'Pregame'),
-(28, '**Skipped Campaign Intro**', 'Labyrinth of Ruin', 'Introduction', 2, 'Pregame'),
-(29, '**Starting Gear**', 'Labyrinth of Ruin', 'Starting', 1, 'Pregame'),
-(30, 'Crusade of the Forgotten', 'Crusade of the Forgotten', 'Act 1', 1, 'Rumor'),
-(31, 'Shadow Watch', 'Crusade of the Forgotten', 'Act 2', 2, 'Rumor'),
-(32, 'Ruinous Whispers', 'Labyrinth of Ruin', 'Introduction', 2, 'Quest'),
-(33, 'Gathering Foretold', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(34, 'Honor Among Thieves', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(35, 'Reclamation', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(36, 'Through the Mist', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(37, 'Barrow of Barris', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(38, 'Secrets in Stone', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(39, 'Fury of the Tempest', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(40, 'Back from the Dead', 'Labyrinth of Ruin', 'Act 1', 3, 'Quest'),
-(41, 'Pilgrimage', 'Labyrinth of Ruin', 'Interlude', 4, 'Quest'),
-(42, 'Fortune and Glory', 'Labyrinth of Ruin', 'Interlude', 4, 'Quest'),
-(43, 'Heart of the Wilds', 'Labyrinth of Ruin', 'Act 2', 5, 'Quest'),
-(44, 'Let the Truth be Buried', 'Labyrinth of Ruin', 'Act 2', 5, 'Quest'),
-(45, 'Fountain of Insight', 'Labyrinth of Ruin', 'Act 2', 5, 'Quest'),
-(46, 'Web of Power', 'Labyrinth of Ruin', 'Act 2', 5, 'Quest'),
-(47, 'Fire and Brimstone', 'Labyrinth of Ruin', 'Act 2', 5, 'Quest'),
-(48, 'Tripping the Scales', 'Labyrinth of Ruin', 'Act 2', 5, 'Quest'),
-(49, 'Endless Night', 'Labyrinth of Ruin', 'Finale', 6, 'Quest'),
-(50, 'A Glimmer of Hope', 'Labyrinth of Ruin', 'Finale', 6, 'Quest'),
-(51, '**Starting Gear**', 'Manor of Ravens', 'Starting', 1, 'Pregame'),
-(52, 'Spread Your Wings', 'Manor of Ravens', 'Act 1', 2, 'Quest'),
-(53, 'Finders and Keepers', 'Manor of Ravens', 'Act 1', 2, 'Quest'),
-(54, 'My House, My Rules', 'Manor of Ravens', 'Act 1', 2, 'Quest'),
-(55, 'Where the Heart Is', 'Manor of Ravens', 'Act 2', 3, 'Quest'),
-(56, 'Wrong Man for the Job', 'Manor of Ravens', 'Act 2', 3, 'Quest'),
-(57, 'Beneath the Manor', 'Manor of Ravens', 'Act 2', 3, 'Quest'),
-(58, '**Skipped Campaign Intro**', 'Shadow of Nerekhall', 'Introduction', 2, 'Pregame'),
-(59, '**Starting Gear**', 'Shadow of Nerekhall', 'Starting', 1, 'Pregame'),
-(60, 'A Demostration', 'Shadow of Nerekhall', 'Introduction', 2, 'Quest'),
-(61, 'Civil War', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(62, 'Without Mercy', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(63, 'Local Politics', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(64, 'Prey', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(65, 'Price of Power', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(66, 'The Incident', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(67, 'Rat-Thing King', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(68, 'Respected Citizen', 'Shadow of Nerekhall', 'Act 1', 3, 'Quest'),
-(69, 'The True Enemy', 'Shadow of Nerekhall', 'Interlude 1', 4, 'Quest'),
-(70, 'Traitors Among Us', 'Shadow of Nerekhall', 'Interlude 2', 5, 'Quest'),
-(71, 'Overdue Demise', 'Shadow of Nerekhall', 'Act 2', 6, 'Quest'),
-(72, 'Into the Dark', 'Shadow of Nerekhall', 'Act 2', 6, 'Quest'),
-(73, 'Nightmares', 'Shadow of Nerekhall', 'Act 2', 6, 'Quest'),
-(74, 'Arise My Friends', 'Shadow of Nerekhall', 'Act 2', 6, 'Quest'),
-(75, 'Wide Spread Panic', 'Shadow of Nerekhall', 'Act 2', 6, 'Quest'),
-(76, 'Lost', 'Shadow of Nerekhall', 'Act 2', 6, 'Quest'),
-(77, 'The Black Realm', 'Shadow of Nerekhall', 'Finale 1', 7, 'Quest'),
-(78, 'The City Falls', 'Shadow of Nerekhall', 'Finale 2', 8, 'Quest'),
-(79, '**Starting Gear**', 'The Trollfens', 'Starting', 1, 'Pregame'),
-(80, 'Ghost Town', 'The Trollfens', 'Act 1', 2, 'Quest'),
-(81, 'Food for Worms', 'The Trollfens', 'Act 1', 2, 'Quest'),
-(82, 'Three Heads, One Mind', 'The Trollfens', 'Act 1', 2, 'Quest'),
-(83, 'Source of Sickness', 'The Trollfens', 'Finale 1', 3, 'Quest'),
-(84, 'Spreading Affliction', 'The Trollfens', 'Finale 2', 4, 'Quest'),
-(85, '', '', '', 0, ''),
-(86, '', '', '', 0, ''),
-(87, '', '', '', 0, ''),
-(88, '', '', '', 0, '');
-
--- --------------------------------------------------------
-
---
 -- Tabelstructuur voor tabel `tbgames`
 --
 
 CREATE TABLE IF NOT EXISTS `tbgames` (
-`game_id` int(3) NOT NULL,
+  `game_id` int(3) NOT NULL AUTO_INCREMENT,
   `game_grp_id` int(3) DEFAULT NULL,
   `game_timestamp` varchar(19) DEFAULT NULL,
   `game_dm` varchar(9) DEFAULT NULL,
-  `game_camp_id` int(3) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+  `game_camp_id` int(3) DEFAULT NULL,
+  PRIMARY KEY (`game_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgames`
@@ -297,7 +193,8 @@ CREATE TABLE IF NOT EXISTS `tbheroes` (
   `hero_type` varchar(8) DEFAULT NULL,
   `hero_expansion` varchar(7) DEFAULT NULL,
   `hero_card` varchar(22) DEFAULT NULL,
-  `hero_img` varchar(26) DEFAULT NULL
+  `hero_img` varchar(26) DEFAULT NULL,
+  PRIMARY KEY (`hero_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -765,41 +662,136 @@ INSERT INTO `tbplayerlist` (`player_id`, `player_username`, `player_handle`, `pl
 --
 
 CREATE TABLE IF NOT EXISTS `tbquests` (
-  `quest_id` int(2) DEFAULT NULL,
-  `quest_timestamp` varchar(16) DEFAULT NULL,
-  `quest_game_id` int(2) DEFAULT NULL,
-  `quest_ggrp_name` varchar(23) DEFAULT NULL,
+  `quest_id` int(2) NOT NULL DEFAULT '0',
   `quest_name` varchar(26) DEFAULT NULL,
-  `quest_winner` varchar(13) DEFAULT NULL,
-  `quest_encount_1` varchar(13) DEFAULT NULL
+  `quest_type` varchar(7) DEFAULT NULL,
+  `quest_act` varchar(12) DEFAULT NULL,
+  `quest_rew_ol_xp` int(3) DEFAULT NULL,
+  `quest_rew_ol_id` int(3) DEFAULT NULL,
+  `quest_rew_h_gold` int(3) DEFAULT NULL,
+  `quest_rew_h_id` int(3) DEFAULT NULL,
+  `quest_order` int(1) DEFAULT NULL,
+  `quest_expansion_id` int(3) DEFAULT NULL,
+  PRIMARY KEY (`quest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests`
 --
 
-INSERT INTO `tbquests` (`quest_id`, `quest_timestamp`, `quest_game_id`, `quest_ggrp_name`, `quest_name`, `quest_winner`, `quest_encount_1`) VALUES
-(23, '11/7/2014 17:40', 31, 'Alcyone''s Test Group', 'Ruinous Whispers', 'Heroes Win', 'Overlord Wins'),
-(22, '11/6/2014 21:45', 14, 'NORdelving', 'The Masquerade Ball', 'Heroes Win', 'Heroes Win'),
-(18, '10/27/2014 7:34', 25, 'Brothers in Arms', 'A Fat Goblin', 'Heroes Win', 'Overlord Wins'),
-(17, '10/27/2014 7:25', 25, 'Brothers in Arms', 'Skipped Campaign Intro', 'No Winner', 'No Winner'),
-(16, '10/23/2014 21:26', 14, 'NORdelving', 'The Cardinal''s Plight', 'Overlord Wins', 'Heroes Win'),
-(20, '11/5/2014 13:12', 29, 'Brothers in Arms', '**Skipped Campaign Intro**', 'No Winner', 'No Winner'),
-(13, '10/3/2014 11:10', 14, 'NORdelving', 'Castle Daerion', 'Overlord Wins', 'Heroes Win'),
-(21, '11/5/2014 15:29', 29, 'Brothers in Arms', 'The Masquerade Ball', 'Overlord Wins', 'Overlord Wins'),
-(12, '10/3/2014 11:10', 14, 'NORdelving', 'Skipped Campaign Intro', 'none', 'none'),
-(24, '11/9/2014 14:40', 32, 'Test Creation One', '**Starting Gear**', 'No Winner', 'No Winner'),
-(25, '11/12/2014 10:41', 32, 'Test Creation One', 'A Demostration', 'Heroes Win', 'Heroes Win'),
-(26, '11/12/2014 10:54', 33, 'Test Creation One', '**Starting Gear**', 'No Winner', 'No Winner'),
-(27, '11/12/2014 12:28', 31, 'Alcyone''s Test Group', 'Barrow of Barris', 'Heroes Win', 'Heroes Win'),
-(28, '11/12/2014 16:01', 35, 'Example Game', '**Starting Gear**', 'No Winner', 'No Winner'),
-(29, '11/12/2014 16:08', 35, 'Example Game', 'First Blood', 'Heroes Win', 'Heroes Win'),
-(30, '11/14/2014 10:44', 35, 'Example Game', 'A Fat Goblin', 'Overlord Wins', 'Overlord Wins'),
-(31, '11/19/2014 15:40', 29, 'Brothers in Arms', 'Death on the Wing', 'Heroes Win', 'Heroes Win'),
-(32, '11/27/2014 7:11', 37, 'Test Creation One', 'Gold Digger', 'Heroes Win', 'Overlord Wins'),
-(33, '11/27/2014 8:19', 39, 'Test game - delete me -', '**Starting Gear**', 'No Winner', 'No Winner'),
-(34, '11/27/2014 8:25', 39, 'Test game - delete me -', 'First Blood', 'Heroes Win', 'Heroes Win'),
-(35, '11/27/2014 11:01', 38, 'Mancave', 'First Blood', 'Heroes Win', 'No Winner');
+INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `quest_rew_ol_xp`, `quest_rew_ol_id`, `quest_rew_h_gold`, `quest_rew_h_id`, `quest_order`, `quest_expansion_id`) VALUES
+(0, 'First Blood', 'Quest', 'Introduction', 0, NULL, 0, NULL, 2, 0),
+(1, 'A Fat Goblin', 'Quest', 'Act 1', 1, NULL, 25, NULL, 3, 0),
+(2, 'The Monster''s Hoard', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(3, 'The Frozen Spire', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(4, 'Castle Daerion', 'Quest', 'Act 1', 1, NULL, 25, NULL, 3, 0),
+(5, 'The Dawnblade', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(6, 'The Desecrated Tomb', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(7, 'The Cardinal''s Plight', 'Quest', 'Act 1', 0, 62, 0, 61, 3, 0),
+(8, 'Enduring the Elements', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(9, 'The Ritual of Shadows', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(10, 'The Masquerade Ball', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 0),
+(11, 'Blood of Heroes', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(12, 'The Twin Idols', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(13, 'Death on the Wing', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 0),
+(14, 'The Wyrm Turns', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(15, 'The Wyrm Rises', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
+(16, 'The Shadow Vault', 'Quest', 'Interlude 1', 0, NULL, 0, NULL, 4, 0),
+(17, 'The Overlord Revealed', 'Quest', 'Interlude 2', 0, NULL, 0, NULL, 5, 0),
+(18, 'Gryvorn Unleashed', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 7, 0),
+(19, 'The Man Who Would Be King', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 8, 0),
+(20, 'Gold Digger', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 1),
+(21, 'Rude Awakening', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 1),
+(22, 'What''s yours is Mine', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 1),
+(23, 'At the Forge', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 7, 1),
+(24, 'Armored to the Teeth', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 8, 1),
+(25, 'Ruinous Whispers', 'Quest', 'Introduction', 0, NULL, 0, NULL, 2, 2),
+(26, 'Gathering Foretold', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(27, 'Honor Among Thieves', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(28, 'Reclamation', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(29, 'Through the Mist', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(30, 'Barrow of Barris', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(31, 'Secrets in Stone', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(32, 'Fury of the Tempest', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(33, 'Back from the Dead', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
+(34, 'Pilgrimage', 'Quest', 'Interlude', 0, NULL, 0, NULL, 4, 2),
+(35, 'Fortune and Glory', 'Quest', 'Interlude', 0, NULL, 0, NULL, 4, 2),
+(36, 'Heart of the Wilds', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
+(37, 'Let the Truth be Buried', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
+(38, 'Fountain of Insight', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
+(39, 'Web of Power', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
+(40, 'Fire and Brimstone', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
+(41, 'Tripping the Scales', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
+(42, 'Endless Night', 'Quest', 'Finale', 0, NULL, 0, NULL, 6, 2),
+(43, 'A Glimmer of Hope', 'Quest', 'Finale', 0, NULL, 0, NULL, 6, 2),
+(44, 'Ghost Town', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 3),
+(45, 'Food for Worms', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 3),
+(46, 'Three Heads, One Mind', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 3),
+(47, 'Source of Sickness', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 3, 3),
+(48, 'Spreading Affliction', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 4, 3),
+(49, 'A Demostration', 'Quest', 'Introduction', 0, NULL, 0, NULL, 2, 4),
+(50, 'Civil War', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(51, 'Without Mercy', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(52, 'Local Politics', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(53, 'Prey', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(54, 'Price of Power', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(55, 'The Incident', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(56, 'Rat-Thing King', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(57, 'Respected Citizen', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
+(58, 'The True Enemy', 'Quest', 'Interlude 1', 0, NULL, 0, NULL, 4, 4),
+(59, 'Traitors Among Us', 'Quest', 'Interlude 2', 0, NULL, 0, NULL, 5, 4),
+(60, 'Overdue Demise', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
+(61, 'Into the Dark', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
+(62, 'Nightmares', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
+(63, 'Arise My Friends', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
+(64, 'Wide Spread Panic', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
+(65, 'Lost', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
+(66, 'The Black Realm', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 7, 4),
+(67, 'The City Falls', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 8, 4),
+(68, 'Spread Your Wings', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 5),
+(69, 'Finders and Keepers', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 5),
+(70, 'My House, My Rules', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 5),
+(71, 'Where the Heart Is', 'Quest', 'Act 2', 0, NULL, 0, NULL, 3, 5),
+(72, 'Wrong Man for the Job', 'Quest', 'Act 2', 0, NULL, 0, NULL, 3, 5),
+(73, 'Beneath the Manor', 'Quest', 'Act 2', 0, NULL, 0, NULL, 3, 5),
+(74, 'Crusade of the Forgotten', 'Rumor', 'Act 1', 0, NULL, 0, NULL, 1, 6),
+(75, 'Shadow Watch', 'Rumor', 'Act 2', 0, NULL, 0, NULL, 2, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `tbquests_progress`
+--
+
+CREATE TABLE IF NOT EXISTS `tbquests_progress` (
+  `progress_id` int(2) NOT NULL DEFAULT '0',
+  `progress_timestamp` varchar(16) DEFAULT NULL,
+  `progress_game_id` int(2) DEFAULT NULL,
+  `progress_quest_id` int(3) DEFAULT NULL,
+  `progress_quest_winner` varchar(13) DEFAULT NULL,
+  `progress_enc1_winner` varchar(13) DEFAULT NULL,
+  PRIMARY KEY (`progress_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `tbquests_progress`
+--
+
+INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_game_id`, `progress_quest_id`, `progress_quest_winner`, `progress_enc1_winner`) VALUES
+(13, '10/3/2014 11:10', 14, 4, 'Overlord Wins', 'Heroes Win'),
+(16, '10/23/2014 21:26', 14, 7, 'Overlord Wins', 'Heroes Win'),
+(18, '10/27/2014 7:34', 25, 1, 'Heroes Win', 'Overlord Wins'),
+(21, '11/5/2014 15:29', 29, 10, 'Overlord Wins', 'Overlord Wins'),
+(22, '11/6/2014 21:45', 14, 10, 'Heroes Win', 'Heroes Win'),
+(23, '11/7/2014 17:40', 31, 25, 'Heroes Win', 'Overlord Wins'),
+(25, '11/12/2014 10:41', 32, 49, 'Heroes Win', 'Heroes Win'),
+(27, '11/12/2014 12:28', 31, 30, 'Heroes Win', 'Heroes Win'),
+(29, '11/12/2014 16:08', 35, 0, 'Heroes Win', 'Heroes Win'),
+(30, '11/14/2014 10:44', 35, 1, 'Overlord Wins', 'Overlord Wins'),
+(31, '11/19/2014 15:40', 29, 13, 'Heroes Win', 'Heroes Win'),
+(32, '11/27/2014 7:11', 37, 20, 'Heroes Win', 'Overlord Wins'),
+(34, '11/27/2014 8:25', 38, 0, 'Heroes Win', 'Heroes Win'),
+(35, '11/27/2014 11:01', 38, 7, 'Heroes Win', 'No Winner');
 
 -- --------------------------------------------------------
 
@@ -1016,7 +1008,7 @@ INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
-`spendxp_id` int(3) NOT NULL,
+  `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,
   `spendxp_game_id` int(2) DEFAULT NULL,
   `spendxp_player` varchar(18) DEFAULT NULL,
   `spendxp_char_id` int(3) DEFAULT NULL,
@@ -1024,8 +1016,9 @@ CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
   `spendxp_skill_id` int(3) DEFAULT NULL,
   `spendxp_skill_name` varchar(28) DEFAULT NULL,
   `shop_latestdungeon` varchar(26) DEFAULT NULL,
-  `shop_notes` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8;
+  `shop_notes` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`spendxp_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=271 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
@@ -1079,53 +1072,6 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_player
 (269, 38, 'Shiver', 7, 'yes', 98, 'Exploding Rune', 'First Blood', ''),
 (270, 38, 'Shiver', 7, 'yes', 99, 'Ghost Armor', 'First Blood', NULL);
 
---
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `tbcharacters`
---
-ALTER TABLE `tbcharacters`
- ADD PRIMARY KEY (`char_id`);
-
---
--- Indexen voor tabel `tbgames`
---
-ALTER TABLE `tbgames`
- ADD PRIMARY KEY (`game_id`);
-
---
--- Indexen voor tabel `tbheroes`
---
-ALTER TABLE `tbheroes`
- ADD PRIMARY KEY (`hero_id`);
-
---
--- Indexen voor tabel `tbskills_aquired`
---
-ALTER TABLE `tbskills_aquired`
- ADD PRIMARY KEY (`spendxp_id`);
-
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `tbcharacters`
---
-ALTER TABLE `tbcharacters`
-MODIFY `char_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT voor een tabel `tbgames`
---
-ALTER TABLE `tbgames`
-MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
---
--- AUTO_INCREMENT voor een tabel `tbskills_aquired`
---
-ALTER TABLE `tbskills_aquired`
-MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=270;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

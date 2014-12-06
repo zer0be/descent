@@ -110,14 +110,14 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tbquests (quest_id, quest_timestamp, quest_game_id, quest_ggrp_name, quest_name, quest_name_win, quest_encount_1) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['quest_id'], "int"),
-                       GetSQLValueString($_POST['quest_timestamp'], "date"),
-                       GetSQLValueString($_POST['quest_game_id'], "int"),
-                       GetSQLValueString($_POST['quest_ggrp_name'], "text"),
-                       GetSQLValueString($_POST['quest_name'], "text"),
-                       GetSQLValueString($_POST['quest_name_win'], "text"),
-                       GetSQLValueString($_POST['quest_encount_1'], "text"));
+  $insertSQL = sprintf("INSERT INTO tbquests_progress (progress_id, progress_timestamp, progress_game_id, progress_ggrp_name, progress_quest_name, progress_quest_name_win, progress_enc1_winner) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['progress_id'], "int"),
+                       GetSQLValueString($_POST['progress_timestamp'], "date"),
+                       GetSQLValueString($_POST['progress_game_id'], "int"),
+                       GetSQLValueString($_POST['progress_ggrp_name'], "text"),
+                       GetSQLValueString($_POST['progress_quest_name'], "text"),
+                       GetSQLValueString($_POST['progress_quest_name_win'], "text"),
+                       GetSQLValueString($_POST['progress_enc1_winner'], "text"));
 
   mysql_select_db($database_dbDescent, $dbDescent);
   $Result1 = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
@@ -160,7 +160,7 @@ if (isset($row_rsSelectedCampaign['ggrp_campaign'])) {
   $colname_rsDungeonList = $row_rsSelectedCampaign['ggrp_campaign'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsDungeonList = sprintf("SELECT dun_name FROM tbdungeonlist WHERE dun_expansion = %s ORDER BY dun_order ASC", GetSQLValueString($colname_rsDungeonList, "text"));
+$query_rsDungeonList = sprintf("SELECT quest_name FROM tbquests WHERE quest_expansion_id = %s ORDER BY quest_order ASC", GetSQLValueString($colname_rsDungeonList, "text"));
 $rsDungeonList = mysql_query($query_rsDungeonList, $dbDescent) or die(mysql_error());
 $row_rsDungeonList = mysql_fetch_assoc($rsDungeonList);
 $totalRows_rsDungeonList = mysql_num_rows($rsDungeonList);
@@ -272,12 +272,12 @@ body {
            <table align="center">
              <tr valign="baseline">
                <td nowrap="nowrap" align="right">&nbsp;</td>
-               <td><select name="quest_name">
+               <td><select name="progress_quest_name">
                  <option value="">Completed Dungeon</option>
                  <?php
 do {  
 ?>
-                 <option value="<?php echo $row_rsDungeonList['dun_name']?>"><?php echo $row_rsDungeonList['dun_name']?></option>
+                 <option value="<?php echo $row_rsDungeonList['quest_name']?>"><?php echo $row_rsDungeonList['quest_name']?></option>
                  <?php
 } while ($row_rsDungeonList = mysql_fetch_assoc($rsDungeonList));
   $rows = mysql_num_rows($rsDungeonList);
@@ -290,7 +290,7 @@ do {
              </tr>
              <tr valign="baseline">
                <td nowrap="nowrap" align="right">Winner of the Quest:</td>
-               <td><select name="quest_name_win">
+               <td><select name="progress_quest_name_win">
 <option value="No Winner">none</option>
 <option value="Heroes Win">Heroes Win</option>
 <option value="Overlord Wins">Overlord Wins</option>
@@ -298,7 +298,7 @@ do {
              </tr>
              <tr valign="baseline">
                <td nowrap="nowrap" align="right">Encounter 1 Victor:</td>
-               <td><select name="quest_encount_1">
+               <td><select name="progress_enc1_winner">
                  <option value="No Winner">none</option>
                  <option value="Heroes Win">Heroes Win</option>
                  <option value="Overlord Wins">Overlord Wins</option>
@@ -308,10 +308,10 @@ do {
                <td colspan="2" align="center" nowrap="nowrap"><input type="submit" value="Complete Dungeon" /></td>
                </tr>
            </table>
-           <input type="hidden" name="quest_id" value="" />
-           <input type="hidden" name="quest_timestamp" value="" />
-           <input type="hidden" name="quest_game_id" value="<?php echo $row_rsSelectedCampaign['ggrp_id']; ?>" />
-           <input type="hidden" name="quest_ggrp_name" value="<?php echo $row_rsSelectedCampaign['ggrp_name']; ?>" />
+           <input type="hidden" name="progress_id" value="" />
+           <input type="hidden" name="progress_timestamp" value="" />
+           <input type="hidden" name="progress_game_id" value="<?php echo $row_rsSelectedCampaign['ggrp_id']; ?>" />
+           <input type="hidden" name="progress_ggrp_name" value="<?php echo $row_rsSelectedCampaign['ggrp_name']; ?>" />
            <input type="hidden" name="MM_insert" value="form1" />
          </form>
          <p><a href="mycampaigndetail.php?urlGamingID=<?php echo $_GET['urlGamingID']; ?>">CANCEL return to campaign</a></p></td>

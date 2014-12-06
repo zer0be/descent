@@ -61,26 +61,59 @@
 			</div> <!-- close gold -->
 
 
+
+
 			<div id="campaign">
+
+				<?php 
+					// loop through quests
+					
+					foreach ($campaign['quests'] as $qs){
+				?>
+
+				<div class="phase-column travel">
+					<?php 
+						// loop through travel steps
+						$its = 0;
+						foreach ($qs['travel'] as $ts){
+						?>
+							<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center;">
+								<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
+							</div>
+						<?php
+						$its++;
+						} //close foreach
+					?>
+				</div>
+
+				<div class="campaign-phase clearfix">
+					<div class="phase-column quest" style="background: url('img/quests/<?php print $qs['img']; ?>') no-repeat center;">
+						<div class="quest-name"><?php print $qs['name']; ?></div>
+						<div class="quest-winner"><?php print $qs['winner']; ?></div>
+						<div class="quest-reward"><span class="label">Reward</span><br /><?php print $qs['reward']; ?></div>
+					</div>
+				</div>
+				<?php
+					
+					} //close foreach
+				?>
+			</div> <!-- close campaign -->
+
+
+
+
+
+			<!-- old -->
+
+
+			
 				<?php 
 					// loop through campaign phases
 					foreach ($campaign['phases'] as $cp){
 				?>
 					<div class="campaign-phase clearfix">
 
-						<div class="phase-column travel">
-							<?php 
-								// loop through travel steps
-								foreach ($cp['travel'] as $ts){
-							?>
-								<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center;">
-									<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
-								</div>
-							<?php
-								} //close foreach
-							?>
-
-						</div>
+						
 
 						<div class="phase-column quest" style="background: url('img/quests/<?php print $cp['quest']['img']; ?>') no-repeat center;">
 							<div class="quest-name"><?php print $cp['quest']['name']; ?></div>

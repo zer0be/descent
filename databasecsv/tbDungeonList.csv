@@ -1,4 +1,4 @@
-"dun_id","dun_name","dun_expansion","dun_act","dun_order","dun_type"
+"quest_id","quest_name","quest_expansion_id","quest_act","quest_order","quest_type"
 "1","First Blood","The Shadow Rune","Introduction","2","Quest"
 "2","A Fat Goblin","The Shadow Rune","Act 1","3","Quest"
 "3","The Monster's Hoard","The Shadow Rune","Act 2","6","Quest"

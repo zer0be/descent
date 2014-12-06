@@ -132,7 +132,7 @@ if (isset($_GET['urlGamingID'])) {
   $colname_rsLog = $_GET['urlGamingID'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsLog = sprintf("SELECT DATE_FORMAT(quest_timestamp,'%%b %%d %%Y') AS date, quest_name, quest_name_win, quest_encount_1 FROM tbquests WHERE quest_game_id = %s ORDER BY quest_timestamp ASC", GetSQLValueString($colname_rsLog, "int"));
+$query_rsLog = sprintf("SELECT DATE_FORMAT(progress_timestamp,'%%b %%d %%Y') AS date, progress_quest_name, progress_quest_name_win, progress_enc1_winner FROM tbquests_progress WHERE progress_game_id = %s ORDER BY progress_timestamp ASC", GetSQLValueString($colname_rsLog, "int"));
 $rsLog = mysql_query($query_rsLog, $dbDescent) or die(mysql_error());
 $row_rsLog = mysql_fetch_assoc($rsLog);
 $totalRows_rsLog = mysql_num_rows($rsLog);
@@ -370,7 +370,7 @@ body {
 <p>&nbsp;</p>
 <table width="600" border="1" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="800 align=" align="center"" valign="top" class="background"center> <p><a href="index.html" target="_top"><img src="images/campaigntrackerlogo.png" width="360" height="106" hspace="0" vspace="0" border="0" align="top" /></a>
+    <td width="800" align=" align="center"" valign="top" class="background"center> <p><a href="index.html" target="_top"><img src="images/campaigntrackerlogo.png" width="360" height="106" hspace="0" vspace="0" border="0" align="top" /></a>
     
     
     
@@ -393,7 +393,7 @@ body {
           </td>
         </tr>
       </table>
-      <p class="normal"> Dungeon Loot, XP, Gold, City Shop Purchases and Skills Earned after the completion of <?php echo $row_rsLog['quest_name']; ?></p>
+      <p class="normal"> Dungeon Loot, XP, Gold, City Shop Purchases and Skills Earned after the completion of <?php echo $row_rsLog['progress_quest_name']; ?></p>
       <table width="600" border="0" cellspacing="0" cellpadding="15">
         <tr>
           <td align="center" class="header">

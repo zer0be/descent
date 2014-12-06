@@ -6,7 +6,7 @@
 	<infoitem key="UD_rsPortrait2" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
 	<infoitem key="UD_rsPortrait3" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
 	<infoitem key="UD_rsPortrait4" value="name:hero_name;datatype:string,name:hero_img;datatype:string" />
-	<infoitem key="UD_rsLog" value="name:date;datatype:string,name:quest_name;datatype:string,name:quest_name_win;datatype:string,name:quest_encount_1;datatype:string" />
+	<infoitem key="UD_rsLog" value="name:date;datatype:string,name:progress_quest_name;datatype:string,name:progress_quest_name_win;datatype:string,name:progress_enc1_winner;datatype:string" />
 	<infoitem key="UD_rsCurrentEquipment" value="name:shop_player;datatype:string,name:shop_xp;datatype:int,name:shop_gold;datatype:int" />
 	<infoitem key="UD_rsSoldItems" value="name:shop_market_sold;datatype:string" />
 	<infoitem key="UD_rsBoughtItems" value="name:shop_market_bought;datatype:string" />

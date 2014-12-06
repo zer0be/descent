@@ -1,4 +1,0 @@
-- Seperated the function_getSQLValuestring to a seperate file and included it where it was used, instead of having multiple versions of it
-- Deleted markup from the campaign.php file
-- Created an index file where <html> and <body> are defined, and where other pages can be included. Atm, campaign.php is included
-- Seperated logout functionality to seperate file to remove multiple versions
