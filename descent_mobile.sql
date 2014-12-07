@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 07 dec 2014 om 01:51
+-- Gegenereerd op: 07 dec 2014 om 18:16
 -- Serverversie: 5.6.21
 -- PHP-versie: 5.6.3
 
@@ -361,7 +361,7 @@ INSERT INTO `tbitems` (`item_id`, `item_name`, `market_act`, `item_default_price
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
-  `shop_id` int(3) NOT NULL DEFAULT '0',
+`shop_id` int(3) NOT NULL,
   `aq_item_id` int(3) DEFAULT NULL,
   `aq_relic_id` int(3) DEFAULT NULL,
   `aq_char_id` int(3) NOT NULL,
@@ -372,14 +372,14 @@ CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
   `shop_latestdungeon` varchar(26) DEFAULT NULL,
   `aq_progress_id` int(11) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL,
-  `shop_groupid` int(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `aq_game_id` int(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_aquired`
 --
 
-INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_id`, `shop_gold`, `shop_market_sold`, `shop_goldsold`, `shop_equipped`, `shop_latestdungeon`, `aq_progress_id`, `shop_notes`, `shop_groupid`) VALUES
+INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_id`, `shop_gold`, `shop_market_sold`, `shop_goldsold`, `shop_equipped`, `shop_latestdungeon`, `aq_progress_id`, `shop_notes`, `aq_game_id`) VALUES
 (56, 40, NULL, 2, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
 (57, 19, NULL, 3, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
 (58, 21, NULL, 4, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
@@ -396,7 +396,9 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_
 (140, NULL, 2, 1, 0, '', 0, 'yes', 'The Masquerade Ball', 22, '', 14),
 (243, 103, NULL, 2, -100, '', 0, 'yes', 'The Masquerade Ball', 22, '', 14),
 (270, 76, NULL, 7, 0, '', 0, 'yes', 'First Blood', 35, '', 38),
-(271, 82, NULL, 7, -175, '', 0, 'yes', 'First Blood', 35, '', 38);
+(271, 82, NULL, 7, -175, '', 0, 'yes', 'First Blood', 35, '', 38),
+(273, NULL, 3, 7, NULL, NULL, NULL, NULL, NULL, 37, NULL, 38),
+(274, NULL, 2, 7, NULL, NULL, NULL, NULL, NULL, 39, NULL, 38);
 
 -- --------------------------------------------------------
 
@@ -601,25 +603,32 @@ INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `qu
 --
 
 CREATE TABLE IF NOT EXISTS `tbquests_progress` (
-  `progress_id` int(2) NOT NULL DEFAULT '0',
-  `progress_timestamp` varchar(16) DEFAULT NULL,
+`progress_id` int(11) NOT NULL,
+  `progress_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `progress_game_id` int(2) DEFAULT NULL,
   `progress_quest_id` int(3) DEFAULT NULL,
   `progress_quest_winner` varchar(13) DEFAULT NULL,
-  `progress_enc1_winner` varchar(13) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `progress_enc1_winner` varchar(13) DEFAULT NULL,
+  `progress_relic_char` int(11) DEFAULT NULL,
+  `progress_set_travel` tinyint(1) NOT NULL,
+  `progress_set_spendxp` tinyint(1) NOT NULL,
+  `progress_set_items` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests_progress`
 --
 
-INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_game_id`, `progress_quest_id`, `progress_quest_winner`, `progress_enc1_winner`) VALUES
-(1, '10/3/2014 10:10', 14, 0, 'Overlord Wins', ''),
-(13, '10/3/2014 11:10', 14, 4, 'Overlord Wins', 'Heroes Win'),
-(16, '10/23/2014 21:26', 14, 7, 'Overlord Wins', 'Heroes Win'),
-(22, '11/6/2014 21:45', 14, 10, 'Heroes Win', 'Heroes Win'),
-(34, '11/27/2014 8:25', 38, 0, 'Heroes Win', 'Heroes Win'),
-(35, '11/27/2014 11:01', 38, 7, 'Heroes Win', 'No Winner');
+INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_game_id`, `progress_quest_id`, `progress_quest_winner`, `progress_enc1_winner`, `progress_relic_char`, `progress_set_travel`, `progress_set_spendxp`, `progress_set_items`) VALUES
+(1, '0000-00-00 00:00:00', 14, 0, 'Overlord Wins', '', NULL, 1, 1, 1),
+(13, '0000-00-00 00:00:00', 14, 4, 'Overlord Wins', 'Heroes Win', NULL, 1, 1, 1),
+(16, '0000-00-00 00:00:00', 14, 7, 'Overlord Wins', 'Heroes Win', NULL, 1, 1, 1),
+(22, '0000-00-00 00:00:00', 14, 10, 'Heroes Win', 'Heroes Win', NULL, 1, 1, 1),
+(34, '0000-00-00 00:00:00', 38, 0, 'Heroes Win', 'Heroes Win', NULL, 1, 1, 1),
+(35, '0000-00-00 00:00:00', 38, 7, 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
+(37, '2014-12-07 14:58:16', 38, 13, 'Heroes Win', 'Heroes Win', 7, 0, 0, 0),
+(38, '2014-12-07 17:14:43', 38, 1, 'Heroes Win', 'Heroes Win', NULL, 0, 0, 0),
+(39, '2014-12-07 17:15:13', 38, 10, 'Heroes Win', 'Overlord Wins', 7, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -967,10 +976,20 @@ MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 ALTER TABLE `tbgroup`
 MODIFY `grp_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
+-- AUTO_INCREMENT voor een tabel `tbitems_aquired`
+--
+ALTER TABLE `tbitems_aquired`
+MODIFY `shop_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=275;
+--
 -- AUTO_INCREMENT voor een tabel `tbitems_relics`
 --
 ALTER TABLE `tbitems_relics`
 MODIFY `relic_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT voor een tabel `tbquests_progress`
+--
+ALTER TABLE `tbquests_progress`
+MODIFY `progress_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT voor een tabel `tbskills_aquired`
 --
