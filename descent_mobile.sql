@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 05 dec 2014 om 18:22
--- Serverversie: 5.6.16
--- PHP-versie: 5.5.11
+-- Gegenereerd op: 07 dec 2014 om 01:51
+-- Serverversie: 5.6.21
+-- PHP-versie: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,8 +35,7 @@ CREATE TABLE IF NOT EXISTS `tbcampaign` (
   `expansion` varchar(21) DEFAULT NULL,
   `edition` varchar(3) DEFAULT NULL,
   `cam_logo` varchar(25) DEFAULT NULL,
-  `cam_icon` varchar(26) DEFAULT NULL,
-  PRIMARY KEY (`cam_id`)
+  `cam_icon` varchar(26) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -59,14 +58,13 @@ INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_s_name`, `cam_map`, `cam_lo
 --
 
 CREATE TABLE IF NOT EXISTS `tbcharacters` (
-  `char_id` int(3) NOT NULL AUTO_INCREMENT,
+`char_id` int(3) NOT NULL,
   `char_ggrp_id` int(3) DEFAULT NULL,
   `char_game_id` int(3) DEFAULT NULL,
   `char_player` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `char_hero` int(3) DEFAULT NULL,
-  `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  PRIMARY KEY (`char_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcharacters`
@@ -94,65 +92,21 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 --
 
 CREATE TABLE IF NOT EXISTS `tbgames` (
-  `game_id` int(3) NOT NULL AUTO_INCREMENT,
+`game_id` int(3) NOT NULL,
   `game_grp_id` int(3) DEFAULT NULL,
   `game_timestamp` varchar(19) DEFAULT NULL,
   `game_dm` varchar(9) DEFAULT NULL,
-  `game_camp_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+  `game_camp_id` int(3) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgames`
 --
 
 INSERT INTO `tbgames` (`game_id`, `game_grp_id`, `game_timestamp`, `game_dm`, `game_camp_id`) VALUES
-(14, 7, '2014-10-03 11:06:52', 'Tundrra', 1),
-(25, 8, '2014-10-27 07:24:16', 'Tundrra', 1),
-(29, 8, '2014-11-05 13:12:09', 'Tundrra', 1),
-(36, 15, '2014-11-26 15:54:27', 'Lawpsided', 1),
-(38, 17, '2014-11-27 07:46:16', 'dllrt', 1),
-(39, 17, '2014-12-03 08:47:05', 'dllrt', 3);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `tbgaminggroup`
---
-
-CREATE TABLE IF NOT EXISTS `tbgaminggroup` (
-  `ggrp_id` int(2) DEFAULT NULL,
-  `ggrp_name` varchar(17) DEFAULT NULL,
-  `ggrp_timestamp` varchar(19) DEFAULT NULL,
-  `ggrp_dm` varchar(9) DEFAULT NULL,
-  `ggrp_player1` varchar(9) DEFAULT NULL,
-  `ggrp_char1` varchar(18) DEFAULT NULL,
-  `ggrp_mage1` varchar(11) DEFAULT NULL,
-  `ggrp_player2` varchar(19) DEFAULT NULL,
-  `ggrp_char2` varchar(19) DEFAULT NULL,
-  `ggrp_warrior2` varchar(9) DEFAULT NULL,
-  `ggrp_player3` varchar(9) DEFAULT NULL,
-  `ggrp_char3` varchar(16) DEFAULT NULL,
-  `ggrp_scout3` varchar(10) DEFAULT NULL,
-  `ggrp_player4` varchar(19) DEFAULT NULL,
-  `ggrp_char4` varchar(14) DEFAULT NULL,
-  `ggrp_healer4` varchar(13) DEFAULT NULL,
-  `ggrp_playerOL` varchar(20) DEFAULT NULL,
-  `ggrp_overlord` varchar(8) DEFAULT NULL,
-  `ggrp_campaign` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Gegevens worden geëxporteerd voor tabel `tbgaminggroup`
---
-
-INSERT INTO `tbgaminggroup` (`ggrp_id`, `ggrp_name`, `ggrp_timestamp`, `ggrp_dm`, `ggrp_player1`, `ggrp_char1`, `ggrp_mage1`, `ggrp_player2`, `ggrp_char2`, `ggrp_warrior2`, `ggrp_player3`, `ggrp_char3`, `ggrp_scout3`, `ggrp_player4`, `ggrp_char4`, `ggrp_healer4`, `ggrp_playerOL`, `ggrp_overlord`, `ggrp_campaign`) VALUES
-(14, 'NORdelving', '2014-10-03 11:06:52', 'Tundrra', 'Tundrra', 'Leoric of the Book', 'Runemaster', 'Nimm', 'Laughin Buldar', 'Berserker', 'Gloki', 'Tobin Farslayer', 'Wildlander', 'Djarum', 'Elder Mok', 'Disciple', 'Shared Overlord Role', 'Overlord', 'The Shadow Rune'),
-(29, 'Brothers in Arms', '2014-11-05 13:12:09', 'Tundrra', 'Lazyone', 'Truthseer Kel', 'Necromancer', 'Gloki', 'Trenloe the Strong', 'Knight', 'Aaron', 'Tobin Farslayer', 'Thief', 'Tundrra', 'Aurim', 'Spiritspeaker', 'Shared Overlord Role', 'Overlord', 'The Shadow Rune'),
-(25, 'Brothers in Arms', '2014-10-27 07:24:16', 'Tundrra', 'Tundrra', 'Leoric of the Book', 'Runemaster', 'Aaron', 'Alys Raine', 'Berserker', 'Aaron', 'Tobin Farslayer', 'Thief', 'Tundrra', 'Augur Grisom', 'Spiritspeaker', 'Lazyone', 'Overlord', 'The Shadow Rune'),
-(36, 'Family Game Night', '2014-11-26 15:54:27', 'Lawpsided', 'No Player', 'No Mage', 'No Mage', 'Shared/Rotated Role', 'Nanok of the Blade', 'Berserker', 'No Player', 'No Scout', 'No Scout', 'Shared/Rotated Role', 'Avric Albright', 'Disciple', 'Lawpsided', 'Overlord', 'The Shadow Rune'),
-(38, 'Mancave', '2014-11-27 07:46:16', 'dllrt', 'Maaike', 'Shiver', 'Runemaster', 'Frauke', 'Grisban the Thirsty', 'Berserker', 'Tim', 'Tomble Burrowell', 'Thief', 'No Player', 'No Healer', 'No Healer', 'dllrt', 'Overlord', 'The Shadow Rune'),
-(NULL, 'Mancave', NULL, 'dllrt', 'Frauke', 'Leoric of the Book', 'Hexer', 'Maaike', 'Pathfinder Durik', 'Berserker', 'Tim', 'Laurel of Bloodw', 'Thief', 'No Player', 'No Healer', 'No Class', 'dllrt', 'Overlord', 'Labyrinth of Ru');
+(14, 7, '2014-10-03 11:06:52', 'Tundrra', 0),
+(38, 17, '2014-11-27 07:46:16', 'dllrt', 0),
+(39, 17, '2014-12-03 08:47:05', 'dllrt', 2);
 
 -- --------------------------------------------------------
 
@@ -161,25 +115,22 @@ INSERT INTO `tbgaminggroup` (`ggrp_id`, `ggrp_name`, `ggrp_timestamp`, `ggrp_dm`
 --
 
 CREATE TABLE IF NOT EXISTS `tbgroup` (
-  `grp_id` int(2) DEFAULT NULL,
+`grp_id` int(2) NOT NULL,
   `grp_name` varchar(23) DEFAULT NULL,
-  `grp_creation` varchar(19) DEFAULT NULL,
+  `grp_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grp_startedby` varchar(9) DEFAULT NULL,
   `grp_state_country` varchar(7) DEFAULT NULL,
   `grp_city` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgroup`
 --
 
 INSERT INTO `tbgroup` (`grp_id`, `grp_name`, `grp_creation`, `grp_startedby`, `grp_state_country`, `grp_city`) VALUES
-(19, 'redesign test group', '2014-12-02 08:47:05', 'Alcyone', 'Indiana', 'Bloomington'),
-(15, 'Family Game Night', '2014-11-26 15:53:07', 'Lawpsided', 'AZ', 'Tucson'),
-(8, 'Brothers in Arms', '2014-10-23 11:20:28', 'Tundrra', 'Indiana', 'Bloomington'),
-(7, 'NORdelving', '2014-10-01 19:26:50', 'Tundrra', 'Indiana', 'Bloomington'),
-(17, 'Mancave', '2014-11-27 07:43:39', 'dllrt', 'Belgium', 'Gent'),
-(18, 'Test game - delete me -', '2014-11-27 08:18:08', 'Alcyone', 'Indiana', 'Bloomington');
+(7, 'NORdelving', '2014-10-01 17:26:50', 'Tundrra', 'Indiana', 'Bloomington'),
+(17, 'Mancave', '2014-11-27 06:43:39', 'dllrt', 'Belgium', 'Gent'),
+(23, 'testing', '2014-12-07 00:41:20', 'dllrt', 'testing', 'testing');
 
 -- --------------------------------------------------------
 
@@ -193,8 +144,7 @@ CREATE TABLE IF NOT EXISTS `tbheroes` (
   `hero_type` varchar(8) DEFAULT NULL,
   `hero_expansion` varchar(7) DEFAULT NULL,
   `hero_card` varchar(22) DEFAULT NULL,
-  `hero_img` varchar(26) DEFAULT NULL,
-  PRIMARY KEY (`hero_id`)
+  `hero_img` varchar(26) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -220,8 +170,8 @@ INSERT INTO `tbheroes` (`hero_id`, `hero_name`, `hero_type`, `hero_expansion`, `
 (16, 'Orkell the Swift', 'Warrior', '', 'orkell.jpg', 'orkellbust.jpg'),
 (17, 'Overlord', 'Overlord', '', 'overlord.jpg', 'overlord.jpg'),
 (18, 'Elder Mok', 'Healer', '', 'eldermok.jpg', 'eldermokbust.jpg'),
-(19, 'Laughin Buldar', 'Warrior', '', 'laughinbuldar.jpg', 'laughinbuldarbust.jpg'),
-(20, 'Tobin Farslayer', 'Scout', '', 'tobinfarslayer.jpg', 'tobinfarslayerbust.jpg'),
+(19, 'Laughin Buldar', 'Warrior', '', 'laughinbuldar.jpg', 'laughin_buldar.jpg'),
+(20, 'Tobin Farslayer', 'Scout', '', 'tobinfarslayer.jpg', 'tobin_farslayer.jpg'),
 (21, 'Leoric of the Book', 'Mage', 'vanilla', 'leoricofthebook.jpg', 'leoric_of_the_book.jpg'),
 (22, 'Avric Albright', 'Healer', 'Vanilla', 'avricalbright.jpg', 'avricalbrightbust.jpg'),
 (23, 'Ashrian', 'Healer', 'Vanilla', 'ashrian.jpg', 'ashrianbust.jpg'),
@@ -289,10 +239,10 @@ INSERT INTO `tbheroes` (`hero_id`, `hero_name`, `hero_type`, `hero_expansion`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems` (
-  `market_id` int(3) DEFAULT NULL,
-  `market_item_name` varchar(38) DEFAULT NULL,
+  `item_id` int(3) NOT NULL DEFAULT '0',
+  `item_name` varchar(38) DEFAULT NULL,
   `market_act` int(1) DEFAULT NULL,
-  `market_price` int(4) DEFAULT NULL,
+  `item_default_price` int(4) DEFAULT NULL,
   `market_sellprice` int(3) DEFAULT NULL,
   `shop_relic` varchar(3) DEFAULT NULL,
   `owner` varchar(15) DEFAULT NULL,
@@ -304,13 +254,11 @@ CREATE TABLE IF NOT EXISTS `tbitems` (
 -- Gegevens worden geëxporteerd voor tabel `tbitems`
 --
 
-INSERT INTO `tbitems` (`market_id`, `market_item_name`, `market_act`, `market_price`, `market_sellprice`, `shop_relic`, `owner`, `market_img`, `market_expansion`) VALUES
+INSERT INTO `tbitems` (`item_id`, `item_name`, `market_act`, `item_default_price`, `market_sellprice`, `shop_relic`, `owner`, `market_img`, `market_expansion`) VALUES
 (1, 'Belt of Alchemy', 1, -100, 50, 'no', 'hero', 'beltofalchemy.jpg', 'The Trollfens'),
 (2, 'Belt of Waterwalking', 1, -50, 25, 'no', 'hero', 'beltofwaterwalking.jpg', 'The Trollfens'),
 (3, 'Deflecting Shield', 1, -50, 25, 'no', 'hero', 'deflectingshield.jpg', 'The Trollfens'),
 (4, 'Dire Flail', 1, -150, 75, 'no', 'hero', 'direflail.jpg', 'The Trollfens'),
-(5, 'Immunity Elixir (Relic)', 0, 0, 0, 'yes', 'hero', 'immunityelixir.jpg', 'The Trollfens'),
-(6, 'Curative Vial (Relic)', 0, 0, 0, 'yes', 'overlord', 'curativevial.jpg', 'The Trollfens'),
 (15, 'Reaper''s Scythe (Necromancer)', 0, 0, 25, 'no', 'Necromancer', 'reapersscythenecromancer.jpg', 'vanilla'),
 (19, 'Yew Shortbow (Wildlander)', 0, 0, 25, 'no', 'Wildlander', 'yewshortbowwildlander.jpg', 'vanilla'),
 (20, 'Wooden Shield (Disciple)', 0, 0, 25, 'no', 'Disciple', 'woodenshielddisciple.jpg', 'vanilla'),
@@ -334,32 +282,6 @@ INSERT INTO `tbitems` (`market_id`, `market_item_name`, `market_act`, `market_pr
 (38, 'Iron Flail (Prophet)', 0, 0, 25, 'no', 'Prophet', 'ironflailprophet.jpg', 'vanilla'),
 (39, 'Sage''s Tome (Prophet)', 0, 0, 25, 'no', 'Prophet', 'sagestomeprophet.jpg', 'vanilla'),
 (40, 'Chipped Greataxe (Berserker)', 0, 0, 25, 'no', 'Berserker', 'chippedgreataxeberserker.jpg', 'vanilla'),
-(41, 'Mending Talisman (Relic)', 0, 0, 0, 'yes', 'hero', 'mendingtalisman.jpg', 'The Trollfens'),
-(42, 'Omen of Blight (Relic)', 0, 0, 0, 'yes', 'overlord', 'omenofblight.jpg', 'The Trollfens'),
-(43, 'Workman''s Ring (Relic)', 0, 0, 0, 'yes', 'hero', 'workmansring.jpg', 'The Trollfens'),
-(44, 'Taskmaster''s Ring (Relic)', 0, 0, 0, 'yes', 'overlord', 'taskmastersring.jpg', 'The Trollfens'),
-(45, 'Gauntlets of Power (Relic)', 0, 0, 0, 'yes', 'hero', 'gauntletsofpower.jpg', 'Labyrinth of Ruin'),
-(46, 'Gauntlets of Spite (Relic)', 0, 0, 0, 'yes', 'overlord', 'guantletsofspite.jpg', 'Labyrinth of Ruin'),
-(47, 'Living Heart (Relic)', 0, 0, 0, 'yes', 'hero', 'livingheart.jpg', 'Labyrinth of Ruin'),
-(48, 'Fallen Heart (Relic)', 0, 0, 0, 'yes', 'overlord', 'fallenheart.jpg', 'Labyrinth of Ruin'),
-(49, 'Sun Stone (Relic)', 0, 0, 0, 'yes', 'hero', 'sunstone.jpg', 'Labyrinth of Ruin'),
-(50, 'Sun''s Fury (Relic)', 0, 0, 0, 'yes', 'overlord', 'sunsfury.jpg', 'Labyrinth of Ruin'),
-(51, 'Valyndra''s Bane (Relic)', 0, 0, 0, 'yes', 'hero', 'valyndrasbane.jpg', 'Lair of the Wyrm'),
-(52, 'Her Majesty''s Malice (Relic)', 0, 0, 0, 'yes', 'overlord', 'hermajestysmalice.jpg', 'Lair of the Wyrm'),
-(53, 'Aurium Mail (Relic)', 0, 0, 0, 'yes', 'hero', 'auriummail.jpg', 'Lair of the Wyrm'),
-(54, 'Valyndra''s Gift (Relic)', 0, 0, 0, 'yes', 'overlord', 'valyndrasgift.jpg', 'Lair of the Wyrm'),
-(55, 'Dawnblade (Relic)', 0, 0, 0, 'yes', 'hero', 'dawnblade.jpg', 'vanilla'),
-(56, 'Duskblade (Relic)', 0, 0, 0, 'yes', 'overlord', 'duskblade.jpg', 'vanilla'),
-(57, 'Fortuna''s Dice (Relic)', 0, 0, 0, 'yes', 'hero', 'fortunasdice.jpg', 'vanilla'),
-(58, 'Bones of Woe (Relic)', 0, 0, 0, 'yes', 'overlord', 'bonesofwoe.jpg', 'vanilla'),
-(59, 'Shield of the Dark God (Relic)', 0, 0, 0, 'yes', 'hero', 'shieldofthedarkgod.jpg', 'vanilla'),
-(60, 'Shield of Zorek''s Favor (Relic)', 0, 0, 0, 'yes', 'overlord', 'shieldofzoreksfavor.jpg', 'vanilla'),
-(61, 'Staff of Light (Relic)', 0, 0, 0, 'yes', 'hero', 'staffoflight.jpg', 'vanilla'),
-(62, 'Staff of Shadows (Relic)', 0, 0, 0, 'yes', 'overlord', 'staffofshadows.jpg', 'vanilla'),
-(63, 'The Shadow Rune (Hero Relic)', 0, 0, 0, 'yes', 'hero', 'theshadowrunehero.jpg', 'vanilla'),
-(64, 'The Shadow Rune (overlord Relic)', 0, 0, 0, 'yes', 'overlord', 'theshadowruneoverlord.jpg', 'vanilla'),
-(65, 'Trueshot (Relic)', 0, 0, 0, 'yes', 'hero', 'trueshot.jpg', 'vanilla'),
-(66, 'Scorpion''s Kiss (Relic)', 0, 0, 0, 'yes', 'overlord', 'scorpionskiss.jpg', 'vanilla'),
 (68, 'Guardian Axe', 5, -175, 75, 'no', 'hero', 'guardianaxe.jpg', 'The Trollfens'),
 (69, 'Lifedrain Scepeter', 5, -100, 50, 'no', 'hero', 'lifedrainscepter.jpg', 'The Trollfens'),
 (70, 'Mapstone', 5, -50, 25, 'no', 'hero', 'mapstone.jpg', 'The Trollfens'),
@@ -439,17 +361,16 @@ INSERT INTO `tbitems` (`market_id`, `market_item_name`, `market_act`, `market_pr
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
-  `shop_id` int(3) DEFAULT NULL,
-  `shop_player` varchar(18) DEFAULT NULL,
-  `shop_xp` varchar(2) DEFAULT NULL,
+  `shop_id` int(3) NOT NULL DEFAULT '0',
+  `aq_item_id` int(3) DEFAULT NULL,
+  `aq_relic_id` int(3) DEFAULT NULL,
+  `aq_char_id` int(3) NOT NULL,
   `shop_gold` int(4) DEFAULT NULL,
-  `shop_market_bought` varchar(30) DEFAULT NULL,
   `shop_market_sold` varchar(23) DEFAULT NULL,
   `shop_goldsold` int(2) DEFAULT NULL,
-  `shop_relics` varchar(3) DEFAULT NULL,
   `shop_equipped` varchar(3) DEFAULT NULL,
-  `shop_skills` varchar(28) DEFAULT NULL,
   `shop_latestdungeon` varchar(26) DEFAULT NULL,
+  `aq_progress_id` int(11) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL,
   `shop_groupid` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -458,142 +379,57 @@ CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
 -- Gegevens worden geëxporteerd voor tabel `tbitems_aquired`
 --
 
-INSERT INTO `tbitems_aquired` (`shop_id`, `shop_player`, `shop_xp`, `shop_gold`, `shop_market_bought`, `shop_market_sold`, `shop_goldsold`, `shop_relics`, `shop_equipped`, `shop_skills`, `shop_latestdungeon`, `shop_notes`, `shop_groupid`) VALUES
-(74, 'Leoric of the Book', '', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(5, 'Leoric of the Book', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(6, 'Laughin Buldar', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(7, 'Tobin Farslayer', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(8, 'Elder Mok', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(16, 'Elder Mok', '', 0, '', '', 0, '', 'yes', 'Prayer of Healing', 'Skipped Campaign Intro', '', 14),
-(15, 'Elder Mok', '-1', 0, '', '', 0, '', 'yes', 'Armor of Faith', 'Skipped Campaign Intro', '', 14),
-(17, 'Elder Mok', '1', 75, '', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(18, 'Tobin Farslayer', '-1', 0, '', '', 0, '', 'yes', 'Accurate', 'Skipped Campaign Intro', '', 14),
-(19, 'Tobin Farslayer', '', 0, '', '', 0, '', 'yes', 'Nimble', 'Skipped Campaign Intro', '', 14),
-(21, 'Tobin Farslayer', '1', 100, '', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(23, 'Laughin Buldar', '', 0, '', '', 0, '', 'yes', 'Rage', 'Skipped Campaign Intro', '', 14),
-(24, 'Laughin Buldar', '-1', 0, '', '', 0, '', 'yes', 'Brute', 'Skipped Campaign Intro', '', 14),
-(25, 'Laughin Buldar', '1', 0, '', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(26, 'Leoric of the Book', '1', 0, '', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(31, 'Overlord', '', 0, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(236, 'Tobin Farslayer', '', 0, 'Shield of the Dark God (Relic)', '', 0, 'yes', 'yes', '', 'Death on the Wing', '', 29),
-(71, 'Laughin Buldar', '1', 0, '', '', 0, '', 'yes', '', 'The Cardinal''s Plight', '', 14),
-(73, 'Overlord', '1', 0, 'Staff of Shadows (Relic)', '', 0, 'yes', 'yes', '', 'The Cardinal''s Plight', '', 14),
-(30, 'Overlord', '-1', 0, '', '', 0, '', 'yes', 'Blood Rage', 'Skipped Campaign Intro', '', 14),
-(32, 'Overlord', '1', 0, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(33, 'Overlord', '', 0, '', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(34, 'Overlord', '2', 0, '', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(103, 'Tobin Farslayer', '-1', 0, '', '', 0, '', 'yes', 'Appraisal', '', '', 29),
-(104, 'Trenloe the Strong', '-1', 0, '', '', 0, '', 'yes', 'Advance', '', '', 29),
-(105, 'Aurim', '-1', 0, '', '', 0, '', 'yes', 'Healing Rain', '', '', 29),
-(106, 'Truthseer Kel', '-1', 0, '', '', 0, '', 'yes', 'Fury of Undeath', '', '', 29),
-(56, 'Laughin Buldar', '', 0, 'Chipped Greataxe (Berserker)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(57, 'Tobin Farslayer', '', 0, 'Yew Shortbow (Wildlander)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(109, 'Trenloe the Strong', '1', 0, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(107, 'Overlord', '-1', 0, '', '', 0, '', 'yes', 'Word of Pain', '', '', 29),
-(108, 'Truthseer Kel', '', -75, 'Heavy Cloak', '', 0, '', 'yes', '', '', '', 29),
-(58, 'Elder Mok', '', 0, 'Iron Mace (Disciple)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(59, 'Elder Mok', '', 0, 'Wooden Shield (Disciple)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(60, 'Leoric of the Book', '', 0, 'Arcane Bolt (Runemaster)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 14),
-(61, 'Leoric of the Book', '', 0, '', '', 0, '', 'yes', 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', '', 14),
-(62, 'Leoric of the Book', '-1', 0, '', '', 0, '', 'yes', 'Exploding Rune', 'Skipped Campaign Intro', '', 14),
-(63, 'Leoric of the Book', '', -75, 'Leather Armor', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(64, 'Tobin Farslayer', '', -75, 'Scorpion Helm', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(65, 'Tobin Farslayer', '-1', 0, '', '', 0, '', 'yes', 'Eagle Eyes', 'Castle Daerion', '', 14),
-(66, 'Laughin Buldar', '-1', 0, '', '', 0, '', 'yes', 'Counter Attack', 'Castle Daerion', '', 14),
-(67, 'Laughin Buldar', '', -50, 'Iron Shield', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(68, 'Elder Mok', '', -100, 'Lucky Charm', '', 0, '', 'yes', '', 'Castle Daerion', '', 14),
-(69, 'Leoric of the Book', '1', 175, 'Magic Staff', 'Magic Staff', 0, '', 'no', '', 'The Cardinal''s Plight', '', 14),
-(70, 'Tobin Farslayer', '1', 0, '', '', 0, '', 'yes', '', 'The Cardinal''s Plight', '', 14),
-(72, 'Elder Mok', '1', 50, '', '', 0, '', 'yes', '', 'The Cardinal''s Plight', '', 14),
-(75, 'Leoric of the Book', '1', 0, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(76, 'Leoric of the Book', '0', 0, '', '', 0, '', 'yes', 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', '', 25),
-(77, 'Leoric of the Book', '-1', 0, '', '', 0, '', 'yes', 'Exploding Rune', 'Skipped Campaign Intro', '', 25),
-(78, 'Augur Grisom', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(79, 'Augur Grisom', '0', 0, '', '', 0, '', 'yes', 'Stoneskin', 'Skipped Campaign Intro', '', 25),
-(80, 'Augur Grisom', '-1', 0, '', '', 0, '', 'yes', 'Drain Spirit', 'Skipped Campaign Intro', '', 25),
-(81, 'Tobin Farslayer', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(82, 'Tobin Farslayer', '0', 0, '', '', 0, '', 'yes', 'Greedy', 'Skipped Campaign Intro', '', 25),
-(83, 'Tobin Farslayer', '-1', 0, '', '', 0, '', 'yes', 'Appraisal', 'Skipped Campaign Intro', '', 25),
-(84, 'Alys Raine', '1', 25, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(85, 'Alys Raine', '0', 0, '', '', 0, '', 'yes', 'Rage', 'Skipped Campaign Intro', '', 25),
-(86, 'Alys Raine', '-1', 0, '', '', 0, '', 'yes', 'Brute', 'Skipped Campaign Intro', '', 25),
-(87, 'Augur Grisom', '1', 75, '', '', 0, '', 'yes', '', 'A Fat Goblin', '', 25),
-(88, 'Leoric of the Book', '1', 25, '', '', 0, '', 'yes', '', 'A Fat Goblin', '', 25),
-(89, 'Tobin Farslayer', '1', 100, '', '', 0, '', 'yes', '', 'A Fat Goblin', '', 25),
-(90, 'Alys Raine', '1', 0, '', '', 0, '', 'yes', '', 'A Fat Goblin', '', 25),
-(91, 'Alys Raine', '', -75, 'Leather Armor', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(92, 'Leoric of the Book', '', 0, 'Arcane Bolt (Runemaster)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(93, 'Alys Raine', '', 0, 'Chipped Greataxe (Berserker)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(94, 'Tobin Farslayer', '', 0, 'Lucky Charm (Thief)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(95, 'Tobin Farslayer', '', 0, 'Throwing Knives (Thief)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(96, 'Augur Grisom', '', 0, 'Oakstaff (Spiritspeaker)', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(97, 'Overlord', '-1', 0, '', '', 0, '', 'yes', 'Blood Rage', 'Castle Daerion', '', 14),
-(98, 'Overlord', '-1', 0, '', '', 0, '', 'yes', 'Web Trap', 'Skipped Campaign Intro', '', 25),
-(99, 'Overlord', '1', 0, '', '', 0, '', 'yes', '', 'Skipped Campaign Intro', '', 25),
-(110, 'Truthseer Kel', '1', 0, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(111, 'Aurim', '1', 50, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(112, 'Tobin Farslayer', '1', 50, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(113, 'Overlord', '1', 0, 'Bones of Woe (Relic)', '', 0, 'yes', 'yes', '', 'The Masquerade Ball', '', 29),
-(114, 'Truthseer Kel', '1', 25, '', '', 0, '', 'yes', '', '**Skipped Campaign Intro**', '', 29),
-(115, 'Truthseer Kel', '', 0, 'Reaper''s Scythe (Necromancer)', '', 0, '', 'yes', '', '**Skipped Campaign Intro**', '', 29),
-(116, 'Truthseer Kel', '0', 0, '', '', 0, '', 'yes', 'Raise Dead (Necromancer)', '', '', 29),
-(117, 'Truthseer Kel', '0', 0, '', '', 0, '', 'yes', 'Reanimate (Necromancer)', '', '', 29),
-(118, 'Trenloe the Strong', '', 0, 'Wooden Shield (Knight)', '', 0, '', 'yes', '', '', '', 29),
-(119, 'Trenloe the Strong', '', 0, 'Iron Longsword (Knight)', 'Iron Longsword (Knight)', 25, '', 'no', '', '', '', 29),
-(120, 'Trenloe the Strong', '0', 0, '', '', 0, '', 'yes', 'Oath of Honor', '', '', 29),
-(132, 'Leoric of the Book', '-2', 0, '', '', 0, '', 'yes', 'Iron Will', '', '', 14),
-(123, 'Tobin Farslayer', '', 0, 'Lucky Charm (Thief)', '', 0, '', 'yes', '', '', '', 29),
-(124, 'Tobin Farslayer', '0', 0, '', '', 0, '', 'yes', 'Greedy', '', '', 29),
-(125, 'Aurim', '', 0, 'Oakstaff (Spiritspeaker)', '', 0, '', 'yes', '', '', '', 29),
-(127, 'Aurim', '0', 0, '', '', 0, '', 'yes', 'Stoneskin', '', '', 29),
-(128, 'Trenloe the Strong', '1', 25, '', '', 0, '', 'yes', '', '**Skipped Campaign Intro**', '', 29),
-(129, 'Overlord', '1', 0, '', '', 0, '', 'yes', '', '**Skipped Campaign Intro**', '', 29),
-(130, 'Tobin Farslayer', '1', 25, '', '', 0, '', 'yes', '', '**Skipped Campaign Intro**', '', 29),
-(131, 'Aurim', '1', 25, '', '', 0, '', 'yes', '', '**Skipped Campaign Intro**', '', 29),
-(133, 'Elder Mok', '-2', 0, '', '', 0, '', 'yes', 'Divine Fury', '', '', 14),
-(134, 'Elder Mok', '', -75, 'Heavy Cloak', '', 0, '', 'yes', '', 'The Cardinal''s Plight', '', 14),
-(135, 'Tobin Farslayer', '', -75, 'Leather Armor', '', 0, '', 'yes', '', 'The Cardinal''s Plight', '', 14),
-(136, 'Overlord', '-1', 0, '', '', 0, '', 'yes', 'Explosive Runes', 'The Cardinal''s Plight', '', 14),
-(137, 'Overlord', '-1', 0, '', '', 0, '', 'yes', 'Web Trap', 'The Cardinal''s Plight', '', 14),
-(138, 'Laughin Buldar', '1', 50, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 14),
-(139, 'Leoric of the Book', '1', 50, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 14),
-(140, 'Leoric of the Book', '', 0, 'Fortuna''s Dice (Relic)', '', 0, 'yes', 'yes', '', 'The Masquerade Ball', '', 14),
-(141, 'Tobin Farslayer', '1', 0, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 14),
-(142, 'Elder Mok', '1', 100, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 14),
-(143, 'Overlord', '1', 0, '', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 14),
-(144, 'Tobin Farslayer', '', 0, 'Sling', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(237, 'Aurim', '1', 75, '', '', 0, 'yes', 'yes', '', 'Death on the Wing', '', 29),
-(271, 'Shiver', '', -175, 'Bearded Axe', '', 0, '', 'yes', '', 'First Blood', '', 38),
-(270, 'Shiver', '', 0, 'Rune Plate', '', 0, '', 'yes', '', 'First Blood', '', 38),
-(269, 'Shiver', '-1', 0, '', '', 0, '', 'yes', 'Exploding Rune', 'First Blood', '', 38),
-(235, 'Tobin Farslayer', '1', 50, '', '', 0, 'yes', 'yes', '', 'Death on the Wing', '', 29),
-(234, 'Overlord', '1', 0, '', '', 0, '', 'yes', '', 'Death on the Wing', '', 29),
-(233, 'Trenloe the Strong', '1', 50, '', '', 0, 'yes', 'yes', '', 'Death on the Wing', '', 29),
-(268, 'Shiver', '1', 125, '', '', 0, 'yes', 'yes', '', 'First Blood', '', 38),
-(267, 'Orkell the Swift', '', -125, 'Belt of Strength', '', 0, '', 'yes', '', 'First Blood', '', 39),
-(266, 'Ashrian', '1', 0, '', '', 0, 'yes', 'yes', '', 'First Blood', '', 39),
-(228, 'Aurim', '-1', 0, '', '', 0, '', 'yes', 'Drain Spirit', 'The Masquerade Ball', '', 29),
-(229, 'Trenloe the Strong', '', -100, 'Steel Broadsword', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(230, 'Aurim', '', -75, 'Leather Armor', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 29),
-(231, 'Tobin Farslayer', '', 0, 'Throwing Knives (Thief)', 'Throwing Knives (Thief)', 25, '', 'no', '', '**Skipped Campaign Intro**', '', 29),
-(232, 'Truthseer Kel', '1', 0, '', '', 0, 'yes', 'yes', '', 'Death on the Wing', '', 29),
-(265, 'Tobin Farslayer', '1', 25, '', '', 0, 'yes', 'yes', '', 'First Blood', '', 39),
-(264, 'Overlord', '1', 0, '', '', 0, '', 'yes', '', 'First Blood', '', 39),
-(263, 'Orkell the Swift', '1', 50, '', '', 0, 'yes', 'yes', '', 'First Blood', '', 39),
-(262, 'Dezra the Vile', '1', 25, '', '', 0, 'yes', 'yes', '', 'First Blood', '', 39),
-(261, 'Ashrian', '0', 0, '', '', 0, '', 'yes', 'Stoneskin', '**Starting Gear**', '', 39),
-(260, 'Ashrian', '', 0, 'Oakstaff (Spiritspeaker)', '', 0, '', 'yes', '', '**Starting Gear**', '', 39),
-(259, 'Tobin Farslayer', '0', 0, '', '', 0, '', 'yes', 'Black Widow''s Web', '**Starting Gear**', '', 39),
-(258, 'Tobin Farslayer', '0', 0, '', '', 0, '', 'yes', 'Set Trap', '**Starting Gear**', '', 39),
-(257, 'Tobin Farslayer', '', 0, 'Hunting Knife (Stalker)', '', 0, '', 'yes', '', '**Starting Gear**', '', 39),
-(256, 'Orkell the Swift', '0', 0, '', '', 0, '', 'yes', 'Rage', '**Starting Gear**', '', 39),
-(242, 'Laughin Buldar', '-2', 0, '', '', 0, '', 'yes', 'Whirlwind', 'The Masquerade Ball', '', 14),
-(243, 'Laughin Buldar', '', -100, 'Iron Battleaxe', '', 0, '', 'yes', '', 'The Masquerade Ball', '', 14),
-(244, 'Tobin Farslayer', '-2', 0, '', '', 0, '', 'yes', 'Bow Mastery', 'The Masquerade Ball', '', 14),
-(255, 'Orkell the Swift', '', 0, 'Chipped Greataxe (Berserker)', '', 0, '', 'yes', '', '**Starting Gear**', '', 39),
-(254, 'Dezra the Vile', '0', 0, '', '', 0, '', 'yes', 'Reanimate (Necromancer)', '**Starting Gear**', '', 39),
-(253, 'Dezra the Vile', '0', 0, '', '', 0, '', 'yes', 'Raise Dead (Necromancer)', '**Starting Gear**', '', 39),
-(252, 'Dezra the Vile', '', 0, 'Reaper''s Scythe (Necromancer)', '', 0, '', 'yes', '', '**Starting Gear**', '', 39);
+INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_id`, `shop_gold`, `shop_market_sold`, `shop_goldsold`, `shop_equipped`, `shop_latestdungeon`, `aq_progress_id`, `shop_notes`, `shop_groupid`) VALUES
+(56, 40, NULL, 2, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
+(57, 19, NULL, 3, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
+(58, 21, NULL, 4, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
+(59, 20, NULL, 4, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
+(60, 33, NULL, 1, 0, '', 0, 'yes', 'Skipped Campaign Intro', 1, '', 14),
+(63, 85, NULL, 1, -75, '', 0, 'yes', 'Castle Daerion', 13, '', 14),
+(64, 86, NULL, 3, -75, '', 0, 'yes', 'Castle Daerion', 13, '', 14),
+(67, 87, NULL, 2, -50, '', 0, 'yes', 'Castle Daerion', 13, '', 14),
+(68, 88, NULL, 4, -100, '', 0, 'yes', 'Castle Daerion', 13, '', 14),
+(69, 84, NULL, 1, 175, 'Magic Staff', 0, 'no', 'The Cardinal''s Plight', 16, '', 14),
+(73, NULL, 4, 5, 0, '', 0, 'yes', 'The Cardinal''s Plight', 16, '', 14),
+(134, 105, NULL, 4, -75, '', 0, 'yes', 'The Cardinal''s Plight', 16, '', 14),
+(135, 85, NULL, 3, -75, '', 0, 'yes', 'The Cardinal''s Plight', 16, '', 14),
+(140, NULL, 2, 1, 0, '', 0, 'yes', 'The Masquerade Ball', 22, '', 14),
+(243, 103, NULL, 2, -100, '', 0, 'yes', 'The Masquerade Ball', 22, '', 14),
+(270, 76, NULL, 7, 0, '', 0, 'yes', 'First Blood', 35, '', 38),
+(271, 82, NULL, 7, -175, '', 0, 'yes', 'First Blood', 35, '', 38);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `tbitems_relics`
+--
+
+CREATE TABLE IF NOT EXISTS `tbitems_relics` (
+`relic_id` int(3) NOT NULL,
+  `relic_h_name` varchar(24) NOT NULL,
+  `relic_ol_name` varchar(24) NOT NULL,
+  `relic_exp_id` int(3) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `tbitems_relics`
+--
+
+INSERT INTO `tbitems_relics` (`relic_id`, `relic_h_name`, `relic_ol_name`, `relic_exp_id`) VALUES
+(1, 'Dawnblade', 'Duskblade', 0),
+(2, 'Fortuna''s Dice', 'Bones of Woe', 0),
+(3, 'Shield of the Dark God', 'Shield of Zorek''s Favor', 0),
+(4, 'Staff of Light', 'Staff of Shadows', 0),
+(5, 'The Shadow Rune', 'The Shadow Rune', 0),
+(6, 'Trueshot', 'Scorpion''s Kiss', 0),
+(7, 'Valyndra''s Bane', 'Her Majesty''s Malice', 1),
+(8, 'Aurium Mail', 'Valyndra''s Gift', 1),
+(9, 'Gauntlets of Power', 'Gauntlets of Spite', 2),
+(10, 'Living Heart', 'Fallen Heart', 2),
+(11, 'Sun Stone', 'Sun''s Fury', 2),
+(12, 'Immunity Elixir', 'Curative Vial', 3),
+(13, 'Mending Talisman', 'Omen of Blight', 3),
+(14, 'Workman''s Ring', 'Taskmaster''s Ring', 3);
 
 -- --------------------------------------------------------
 
@@ -602,11 +438,11 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `shop_player`, `shop_xp`, `shop_gold`,
 --
 
 CREATE TABLE IF NOT EXISTS `tbplayerlist` (
-  `player_id` int(2) DEFAULT NULL,
+  `player_id` int(2) NOT NULL DEFAULT '0',
   `player_username` varchar(14) DEFAULT NULL,
   `player_handle` varchar(19) DEFAULT NULL,
   `player_password` varchar(14) DEFAULT NULL,
-  `player_timestamp` varchar(19) DEFAULT NULL,
+  `player_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` varchar(14) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -615,45 +451,46 @@ CREATE TABLE IF NOT EXISTS `tbplayerlist` (
 --
 
 INSERT INTO `tbplayerlist` (`player_id`, `player_username`, `player_handle`, `player_password`, `player_timestamp`, `created_by`) VALUES
-(1, 'Tundrra', 'Tundrra', 'testDescent123', '2014-11-25 19:50:04', 'Tundrra'),
-(2, '', 'Nimm', '', '2014-09-10 11:51:53', 'Tundrra'),
-(3, '', 'Gloki', '', '2014-09-10 11:51:53', 'Tundrra'),
-(4, '', 'Djarum', '', '2014-09-10 11:51:53', 'Tundrra'),
-(5, '', 'Aaron', '', '2014-09-10 11:51:53', 'Tundrra'),
-(6, '', 'Lazyone', '', '2014-09-10 11:52:20', 'Tundrra'),
-(7, 'Alcyone', 'Alcyone', 'booger', '2014-11-25 19:59:14', 'Alcyone'),
-(13, '', 'Testplayer', 'Descent', '2014-11-12 15:45:04', 'Testplayer'),
-(12, '', 'Shared/Rotated Role', '', '2014-10-01 19:22:50', 'ALL'),
-(14, '', 'Talolan', '', '2014-11-12 15:54:53', ''),
-(15, '', 'Lasarian', '', '2014-11-12 15:57:33', ''),
-(16, '', 'Bammer', '', '2014-11-12 15:57:47', ''),
-(17, '', 'Kermit', '', '2014-11-12 15:59:06', ''),
-(18, '', 'Phelaia', '', '2014-11-12 15:59:16', ''),
-(19, '', 'Santhus', '', '2014-11-12 15:59:29', ''),
-(20, 'Eagletsi', 'Eagletsi', 'descent2014', '2014-11-19 18:06:07', 'Eagletsi'),
-(21, 'Lawpsided', 'Lawpsided', 'DescentJoseph', '2014-11-25 19:53:00', 'Lawpsided'),
-(22, '', 'Rachael', '', '2014-11-26 15:54:38', 'Lawpsided'),
-(23, '', 'Joseph', '', '2014-11-26 15:54:46', 'Lawpsided'),
-(24, '', 'James', '', '2014-11-26 15:54:51', 'Lawpsided'),
-(25, '', 'Raymond', '', '2014-11-26 15:54:56', 'Lawpsided'),
-(26, '', 'John', '', '2014-11-26 15:55:01', 'Lawpsided'),
-(27, '', 'Tyler', '', '2014-11-26 15:55:08', 'Lawpsided'),
-(28, '', 'roxanne', '', '2014-11-26 16:03:23', 'Alcyone'),
-(29, '', 'jon', '', '2014-11-26 16:03:59', 'Alcyone'),
-(30, '', 'simon', '', '2014-11-26 16:06:05', 'Alcyone'),
-(32, '', 'tundrra', '', '2014-11-26 21:42:26', 'Alcyone'),
-(33, 'michaelsciscoe', 'michaelsciscoe', 'descent2014', '2014-11-27 07:07:47', 'michaelsciscoe'),
-(34, 'dllrt', 'dllrt', 'descent2014', '2014-11-27 07:07:47', 'dllrt'),
-(35, '', 'tundrra', '', '2014-11-27 07:08:29', 'michaelsciscoe'),
-(36, '', 'alcyone', '', '2014-11-27 07:08:39', 'michaelsciscoe'),
-(37, '', 'Tim', '', '2014-11-27 07:44:14', 'dllrt'),
-(38, '', 'Maaike', '', '2014-11-27 07:44:22', 'dllrt'),
-(39, '', 'Frauke', '', '2014-11-27 07:44:28', 'dllrt'),
-(40, '', 'Talolan', '', '2014-11-27 08:17:03', 'Alcyone'),
-(41, '', 'Lasarian ', '', '2014-11-27 08:17:14', 'Alcyone'),
-(42, '', 'steven', '', '2014-12-02 08:33:53', 'Alcyone'),
-(43, '', 'Riveni', '', '2014-12-02 08:39:54', 'Alcyone'),
-(44, '', 'Bammer', '', '2014-12-02 14:32:18', 'Alcyone');
+(0, NULL, 'testing', NULL, '2014-12-07 00:43:52', 'dllrt'),
+(1, 'Tundrra', 'Tundrra', 'testDescent123', '2014-11-25 18:50:04', 'Tundrra'),
+(2, '', 'Nimm', '', '2014-09-10 09:51:53', 'Tundrra'),
+(3, '', 'Gloki', '', '2014-09-10 09:51:53', 'Tundrra'),
+(4, '', 'Djarum', '', '2014-09-10 09:51:53', 'Tundrra'),
+(5, '', 'Aaron', '', '2014-09-10 09:51:53', 'Tundrra'),
+(6, '', 'Lazyone', '', '2014-09-10 09:52:20', 'Tundrra'),
+(7, 'Alcyone', 'Alcyone', 'booger', '2014-11-25 18:59:14', 'Alcyone'),
+(12, '', 'Shared/Rotated Role', '', '2014-10-01 17:22:50', 'ALL'),
+(13, '', 'Testplayer', 'Descent', '2014-11-12 14:45:04', 'Testplayer'),
+(14, '', 'Talolan', '', '2014-11-12 14:54:53', ''),
+(15, '', 'Lasarian', '', '2014-11-12 14:57:33', ''),
+(16, '', 'Bammer', '', '2014-11-12 14:57:47', ''),
+(17, '', 'Kermit', '', '2014-11-12 14:59:06', ''),
+(18, '', 'Phelaia', '', '2014-11-12 14:59:16', ''),
+(19, '', 'Santhus', '', '2014-11-12 14:59:29', ''),
+(20, 'Eagletsi', 'Eagletsi', 'descent2014', '2014-11-19 17:06:07', 'Eagletsi'),
+(21, 'Lawpsided', 'Lawpsided', 'DescentJoseph', '2014-11-25 18:53:00', 'Lawpsided'),
+(22, '', 'Rachael', '', '2014-11-26 14:54:38', 'Lawpsided'),
+(23, '', 'Joseph', '', '2014-11-26 14:54:46', 'Lawpsided'),
+(24, '', 'James', '', '2014-11-26 14:54:51', 'Lawpsided'),
+(25, '', 'Raymond', '', '2014-11-26 14:54:56', 'Lawpsided'),
+(26, '', 'John', '', '2014-11-26 14:55:01', 'Lawpsided'),
+(27, '', 'Tyler', '', '2014-11-26 14:55:08', 'Lawpsided'),
+(28, '', 'roxanne', '', '2014-11-26 15:03:23', 'Alcyone'),
+(29, '', 'jon', '', '2014-11-26 15:03:59', 'Alcyone'),
+(30, '', 'simon', '', '2014-11-26 15:06:05', 'Alcyone'),
+(32, '', 'tundrra', '', '2014-11-26 20:42:26', 'Alcyone'),
+(33, 'michaelsciscoe', 'michaelsciscoe', 'descent2014', '2014-11-27 06:07:47', 'michaelsciscoe'),
+(34, 'dllrt', 'dllrt', 'descent2014', '2014-11-27 06:07:47', 'dllrt'),
+(35, '', 'tundrra', '', '2014-11-27 06:08:29', 'michaelsciscoe'),
+(36, '', 'alcyone', '', '2014-11-27 06:08:39', 'michaelsciscoe'),
+(37, '', 'Tim', '', '2014-11-27 06:44:14', 'dllrt'),
+(38, '', 'Maaike', '', '2014-11-27 06:44:22', 'dllrt'),
+(39, '', 'Frauke', '', '2014-11-27 06:44:28', 'dllrt'),
+(40, '', 'Talolan', '', '2014-11-27 07:17:03', 'Alcyone'),
+(41, '', 'Lasarian ', '', '2014-11-27 07:17:14', 'Alcyone'),
+(42, '', 'steven', '', '2014-12-02 07:33:53', 'Alcyone'),
+(43, '', 'Riveni', '', '2014-12-02 07:39:54', 'Alcyone'),
+(44, '', 'Bammer', '', '2014-12-02 13:32:18', 'Alcyone');
 
 -- --------------------------------------------------------
 
@@ -667,95 +504,95 @@ CREATE TABLE IF NOT EXISTS `tbquests` (
   `quest_type` varchar(7) DEFAULT NULL,
   `quest_act` varchar(12) DEFAULT NULL,
   `quest_rew_ol_xp` int(3) DEFAULT NULL,
-  `quest_rew_ol_id` int(3) DEFAULT NULL,
+  `quest_rew_h_xp` int(3) NOT NULL,
   `quest_rew_h_gold` int(3) DEFAULT NULL,
-  `quest_rew_h_id` int(3) DEFAULT NULL,
+  `quest_rew_relic_id` int(3) DEFAULT NULL,
+  `quest_rew_special` tinyint(1) NOT NULL DEFAULT '0',
   `quest_order` int(1) DEFAULT NULL,
-  `quest_expansion_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`quest_id`)
+  `quest_expansion_id` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests`
 --
 
-INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `quest_rew_ol_xp`, `quest_rew_ol_id`, `quest_rew_h_gold`, `quest_rew_h_id`, `quest_order`, `quest_expansion_id`) VALUES
-(0, 'First Blood', 'Quest', 'Introduction', 0, NULL, 0, NULL, 2, 0),
-(1, 'A Fat Goblin', 'Quest', 'Act 1', 1, NULL, 25, NULL, 3, 0),
-(2, 'The Monster''s Hoard', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(3, 'The Frozen Spire', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(4, 'Castle Daerion', 'Quest', 'Act 1', 1, NULL, 25, NULL, 3, 0),
-(5, 'The Dawnblade', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(6, 'The Desecrated Tomb', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(7, 'The Cardinal''s Plight', 'Quest', 'Act 1', 0, 62, 0, 61, 3, 0),
-(8, 'Enduring the Elements', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(9, 'The Ritual of Shadows', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(10, 'The Masquerade Ball', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 0),
-(11, 'Blood of Heroes', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(12, 'The Twin Idols', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(13, 'Death on the Wing', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 0),
-(14, 'The Wyrm Turns', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(15, 'The Wyrm Rises', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 0),
-(16, 'The Shadow Vault', 'Quest', 'Interlude 1', 0, NULL, 0, NULL, 4, 0),
-(17, 'The Overlord Revealed', 'Quest', 'Interlude 2', 0, NULL, 0, NULL, 5, 0),
-(18, 'Gryvorn Unleashed', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 7, 0),
-(19, 'The Man Who Would Be King', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 8, 0),
-(20, 'Gold Digger', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 1),
-(21, 'Rude Awakening', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 1),
-(22, 'What''s yours is Mine', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 1),
-(23, 'At the Forge', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 7, 1),
-(24, 'Armored to the Teeth', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 8, 1),
-(25, 'Ruinous Whispers', 'Quest', 'Introduction', 0, NULL, 0, NULL, 2, 2),
-(26, 'Gathering Foretold', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(27, 'Honor Among Thieves', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(28, 'Reclamation', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(29, 'Through the Mist', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(30, 'Barrow of Barris', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(31, 'Secrets in Stone', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(32, 'Fury of the Tempest', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(33, 'Back from the Dead', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 2),
-(34, 'Pilgrimage', 'Quest', 'Interlude', 0, NULL, 0, NULL, 4, 2),
-(35, 'Fortune and Glory', 'Quest', 'Interlude', 0, NULL, 0, NULL, 4, 2),
-(36, 'Heart of the Wilds', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
-(37, 'Let the Truth be Buried', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
-(38, 'Fountain of Insight', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
-(39, 'Web of Power', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
-(40, 'Fire and Brimstone', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
-(41, 'Tripping the Scales', 'Quest', 'Act 2', 0, NULL, 0, NULL, 5, 2),
-(42, 'Endless Night', 'Quest', 'Finale', 0, NULL, 0, NULL, 6, 2),
-(43, 'A Glimmer of Hope', 'Quest', 'Finale', 0, NULL, 0, NULL, 6, 2),
-(44, 'Ghost Town', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 3),
-(45, 'Food for Worms', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 3),
-(46, 'Three Heads, One Mind', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 3),
-(47, 'Source of Sickness', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 3, 3),
-(48, 'Spreading Affliction', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 4, 3),
-(49, 'A Demostration', 'Quest', 'Introduction', 0, NULL, 0, NULL, 2, 4),
-(50, 'Civil War', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(51, 'Without Mercy', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(52, 'Local Politics', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(53, 'Prey', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(54, 'Price of Power', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(55, 'The Incident', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(56, 'Rat-Thing King', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(57, 'Respected Citizen', 'Quest', 'Act 1', 0, NULL, 0, NULL, 3, 4),
-(58, 'The True Enemy', 'Quest', 'Interlude 1', 0, NULL, 0, NULL, 4, 4),
-(59, 'Traitors Among Us', 'Quest', 'Interlude 2', 0, NULL, 0, NULL, 5, 4),
-(60, 'Overdue Demise', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
-(61, 'Into the Dark', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
-(62, 'Nightmares', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
-(63, 'Arise My Friends', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
-(64, 'Wide Spread Panic', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
-(65, 'Lost', 'Quest', 'Act 2', 0, NULL, 0, NULL, 6, 4),
-(66, 'The Black Realm', 'Quest', 'Finale 1', 0, NULL, 0, NULL, 7, 4),
-(67, 'The City Falls', 'Quest', 'Finale 2', 0, NULL, 0, NULL, 8, 4),
-(68, 'Spread Your Wings', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 5),
-(69, 'Finders and Keepers', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 5),
-(70, 'My House, My Rules', 'Quest', 'Act 1', 0, NULL, 0, NULL, 2, 5),
-(71, 'Where the Heart Is', 'Quest', 'Act 2', 0, NULL, 0, NULL, 3, 5),
-(72, 'Wrong Man for the Job', 'Quest', 'Act 2', 0, NULL, 0, NULL, 3, 5),
-(73, 'Beneath the Manor', 'Quest', 'Act 2', 0, NULL, 0, NULL, 3, 5),
-(74, 'Crusade of the Forgotten', 'Rumor', 'Act 1', 0, NULL, 0, NULL, 1, 6),
-(75, 'Shadow Watch', 'Rumor', 'Act 2', 0, NULL, 0, NULL, 2, 6);
+INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `quest_rew_ol_xp`, `quest_rew_h_xp`, `quest_rew_h_gold`, `quest_rew_relic_id`, `quest_rew_special`, `quest_order`, `quest_expansion_id`) VALUES
+(0, 'First Blood', 'Quest', 'Introduction', 0, 0, 0, NULL, 0, 2, 0),
+(1, 'A Fat Goblin', 'Quest', 'Act 1', 1, 0, 25, NULL, 0, 3, 0),
+(2, 'The Monster''s Hoard', 'Quest', 'Act 2', 0, 0, 0, 6, 0, 6, 0),
+(3, 'The Frozen Spire', 'Quest', 'Act 2', 0, 1, 2, NULL, 0, 6, 0),
+(4, 'Castle Daerion', 'Quest', 'Act 1', 1, 0, 25, NULL, 0, 3, 0),
+(5, 'The Dawnblade', 'Quest', 'Act 2', 0, 0, 0, 1, 1, 6, 0),
+(6, 'The Desecrated Tomb', 'Quest', 'Act 2', 0, 0, 0, 1, 1, 6, 0),
+(7, 'The Cardinal''s Plight', 'Quest', 'Act 1', 0, 0, 0, 4, 0, 3, 0),
+(8, 'Enduring the Elements', 'Quest', 'Act 2', 1, 0, 25, NULL, 1, 6, 0),
+(9, 'The Ritual of Shadows', 'Quest', 'Act 2', 1, 0, 25, NULL, 1, 6, 0),
+(10, 'The Masquerade Ball', 'Quest', 'Act 1', 0, 0, 0, 2, 0, 3, 0),
+(11, 'Blood of Heroes', 'Quest', 'Act 2', 2, 1, 0, NULL, 0, 6, 0),
+(12, 'The Twin Idols', 'Quest', 'Act 2', 2, 1, 0, NULL, 0, 6, 0),
+(13, 'Death on the Wing', 'Quest', 'Act 1', 0, 0, 0, 3, 0, 3, 0),
+(14, 'The Wyrm Turns', 'Quest', 'Act 2', 2, 1, 0, NULL, 0, 6, 0),
+(15, 'The Wyrm Rises', 'Quest', 'Act 2', 1, 0, 25, NULL, 0, 6, 0),
+(16, 'The Shadow Vault', 'Quest', 'Interlude 1', 0, 0, 0, 5, 0, 4, 0),
+(17, 'The Overlord Revealed', 'Quest', 'Interlude 2', 0, 0, 0, 5, 0, 5, 0),
+(18, 'Gryvorn Unleashed', 'Quest', 'Finale 1', 0, 0, 0, NULL, 0, 7, 0),
+(19, 'The Man Who Would Be King', 'Quest', 'Finale 2', 0, 0, 0, NULL, 0, 8, 0),
+(20, 'Gold Digger', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 1),
+(21, 'Rude Awakening', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 1),
+(22, 'What''s yours is Mine', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 1),
+(23, 'At the Forge', 'Quest', 'Finale 1', 0, 0, 0, NULL, 0, 7, 1),
+(24, 'Armored to the Teeth', 'Quest', 'Finale 2', 0, 0, 0, NULL, 0, 8, 1),
+(25, 'Ruinous Whispers', 'Quest', 'Introduction', 0, 0, 0, NULL, 0, 2, 2),
+(26, 'Gathering Foretold', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(27, 'Honor Among Thieves', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(28, 'Reclamation', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(29, 'Through the Mist', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(30, 'Barrow of Barris', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(31, 'Secrets in Stone', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(32, 'Fury of the Tempest', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(33, 'Back from the Dead', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 2),
+(34, 'Pilgrimage', 'Quest', 'Interlude', 0, 0, 0, NULL, 0, 4, 2),
+(35, 'Fortune and Glory', 'Quest', 'Interlude', 0, 0, 0, NULL, 0, 4, 2),
+(36, 'Heart of the Wilds', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 5, 2),
+(37, 'Let the Truth be Buried', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 5, 2),
+(38, 'Fountain of Insight', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 5, 2),
+(39, 'Web of Power', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 5, 2),
+(40, 'Fire and Brimstone', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 5, 2),
+(41, 'Tripping the Scales', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 5, 2),
+(42, 'Endless Night', 'Quest', 'Finale', 0, 0, 0, NULL, 0, 6, 2),
+(43, 'A Glimmer of Hope', 'Quest', 'Finale', 0, 0, 0, NULL, 0, 6, 2),
+(44, 'Ghost Town', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 2, 3),
+(45, 'Food for Worms', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 2, 3),
+(46, 'Three Heads, One Mind', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 2, 3),
+(47, 'Source of Sickness', 'Quest', 'Finale 1', 0, 0, 0, NULL, 0, 3, 3),
+(48, 'Spreading Affliction', 'Quest', 'Finale 2', 0, 0, 0, NULL, 0, 4, 3),
+(49, 'A Demostration', 'Quest', 'Introduction', 0, 0, 0, NULL, 0, 2, 4),
+(50, 'Civil War', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(51, 'Without Mercy', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(52, 'Local Politics', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(53, 'Prey', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(54, 'Price of Power', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(55, 'The Incident', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(56, 'Rat-Thing King', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(57, 'Respected Citizen', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 3, 4),
+(58, 'The True Enemy', 'Quest', 'Interlude 1', 0, 0, 0, NULL, 0, 4, 4),
+(59, 'Traitors Among Us', 'Quest', 'Interlude 2', 0, 0, 0, NULL, 0, 5, 4),
+(60, 'Overdue Demise', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 6, 4),
+(61, 'Into the Dark', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 6, 4),
+(62, 'Nightmares', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 6, 4),
+(63, 'Arise My Friends', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 6, 4),
+(64, 'Wide Spread Panic', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 6, 4),
+(65, 'Lost', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 6, 4),
+(66, 'The Black Realm', 'Quest', 'Finale 1', 0, 0, 0, NULL, 0, 7, 4),
+(67, 'The City Falls', 'Quest', 'Finale 2', 0, 0, 0, NULL, 0, 8, 4),
+(68, 'Spread Your Wings', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 2, 5),
+(69, 'Finders and Keepers', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 2, 5),
+(70, 'My House, My Rules', 'Quest', 'Act 1', 0, 0, 0, NULL, 0, 2, 5),
+(71, 'Where the Heart Is', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 3, 5),
+(72, 'Wrong Man for the Job', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 3, 5),
+(73, 'Beneath the Manor', 'Quest', 'Act 2', 0, 0, 0, NULL, 0, 3, 5),
+(74, 'Crusade of the Forgotten', 'Rumor', 'Act 1', 0, 0, 0, NULL, 0, 1, 6),
+(75, 'Shadow Watch', 'Rumor', 'Act 2', 0, 0, 0, NULL, 0, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -769,8 +606,7 @@ CREATE TABLE IF NOT EXISTS `tbquests_progress` (
   `progress_game_id` int(2) DEFAULT NULL,
   `progress_quest_id` int(3) DEFAULT NULL,
   `progress_quest_winner` varchar(13) DEFAULT NULL,
-  `progress_enc1_winner` varchar(13) DEFAULT NULL,
-  PRIMARY KEY (`progress_id`)
+  `progress_enc1_winner` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -778,18 +614,10 @@ CREATE TABLE IF NOT EXISTS `tbquests_progress` (
 --
 
 INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_game_id`, `progress_quest_id`, `progress_quest_winner`, `progress_enc1_winner`) VALUES
+(1, '10/3/2014 10:10', 14, 0, 'Overlord Wins', ''),
 (13, '10/3/2014 11:10', 14, 4, 'Overlord Wins', 'Heroes Win'),
 (16, '10/23/2014 21:26', 14, 7, 'Overlord Wins', 'Heroes Win'),
-(18, '10/27/2014 7:34', 25, 1, 'Heroes Win', 'Overlord Wins'),
-(21, '11/5/2014 15:29', 29, 10, 'Overlord Wins', 'Overlord Wins'),
 (22, '11/6/2014 21:45', 14, 10, 'Heroes Win', 'Heroes Win'),
-(23, '11/7/2014 17:40', 31, 25, 'Heroes Win', 'Overlord Wins'),
-(25, '11/12/2014 10:41', 32, 49, 'Heroes Win', 'Heroes Win'),
-(27, '11/12/2014 12:28', 31, 30, 'Heroes Win', 'Heroes Win'),
-(29, '11/12/2014 16:08', 35, 0, 'Heroes Win', 'Heroes Win'),
-(30, '11/14/2014 10:44', 35, 1, 'Overlord Wins', 'Overlord Wins'),
-(31, '11/19/2014 15:40', 29, 13, 'Heroes Win', 'Heroes Win'),
-(32, '11/27/2014 7:11', 37, 20, 'Heroes Win', 'Overlord Wins'),
 (34, '11/27/2014 8:25', 38, 0, 'Heroes Win', 'Heroes Win'),
 (35, '11/27/2014 11:01', 38, 7, 'Heroes Win', 'No Winner');
 
@@ -1008,70 +836,146 @@ INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
-  `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,
+`spendxp_id` int(3) NOT NULL,
   `spendxp_game_id` int(2) DEFAULT NULL,
-  `spendxp_player` varchar(18) DEFAULT NULL,
   `spendxp_char_id` int(3) DEFAULT NULL,
   `shop_equipped` varchar(3) DEFAULT NULL,
   `spendxp_skill_id` int(3) DEFAULT NULL,
-  `spendxp_skill_name` varchar(28) DEFAULT NULL,
-  `shop_latestdungeon` varchar(26) DEFAULT NULL,
-  `shop_notes` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`spendxp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=271 ;
+  `spendxp_progress_id` int(3) DEFAULT NULL,
+  `shop_notes` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
 --
 
-INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_player`, `spendxp_char_id`, `shop_equipped`, `spendxp_skill_id`, `spendxp_skill_name`, `shop_latestdungeon`, `shop_notes`) VALUES
-(15, 14, 'Elder Mok', 0, 'yes', NULL, 'Armor of Faith', 'Skipped Campaign Intro', ''),
-(16, 14, 'Elder Mok', 0, 'yes', NULL, 'Prayer of Healing', 'Skipped Campaign Intro', ''),
-(18, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Accurate', 'Skipped Campaign Intro', ''),
-(19, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Nimble', 'Skipped Campaign Intro', ''),
-(23, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Rage', 'Skipped Campaign Intro', ''),
-(24, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Brute', 'Skipped Campaign Intro', ''),
-(30, 14, 'Overlord', 0, 'yes', NULL, 'Blood Rage', 'Skipped Campaign Intro', ''),
-(61, 14, 'Leoric of the Book', 0, 'yes', NULL, 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', ''),
-(62, 14, 'Leoric of the Book', 0, 'yes', NULL, 'Exploding Rune', 'Skipped Campaign Intro', ''),
-(65, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Eagle Eyes', 'Castle Daerion', ''),
-(66, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Counter Attack', 'Castle Daerion', ''),
-(76, 25, 'Leoric of the Book', 0, 'yes', NULL, 'Runic Knowledge (Runemaster)', 'Skipped Campaign Intro', ''),
-(77, 25, 'Leoric of the Book', 0, 'yes', NULL, 'Exploding Rune', 'Skipped Campaign Intro', ''),
-(79, 25, 'Augur Grisom', 0, 'yes', NULL, 'Stoneskin', 'Skipped Campaign Intro', ''),
-(80, 25, 'Augur Grisom', 0, 'yes', NULL, 'Drain Spirit', 'Skipped Campaign Intro', ''),
-(82, 25, 'Tobin Farslayer', 0, 'yes', NULL, 'Greedy', 'Skipped Campaign Intro', ''),
-(83, 25, 'Tobin Farslayer', 0, 'yes', NULL, 'Appraisal', 'Skipped Campaign Intro', ''),
-(85, 25, 'Alys Raine', 0, 'yes', NULL, 'Rage', 'Skipped Campaign Intro', ''),
-(86, 25, 'Alys Raine', 0, 'yes', NULL, 'Brute', 'Skipped Campaign Intro', ''),
-(97, 14, 'Overlord', 0, 'yes', NULL, 'Blood Rage', 'Castle Daerion', ''),
-(98, 25, 'Overlord', 0, 'yes', NULL, 'Web Trap', 'Skipped Campaign Intro', ''),
-(103, 29, 'Tobin Farslayer', 0, 'yes', NULL, 'Appraisal', '', ''),
-(104, 29, 'Trenloe the Strong', 0, 'yes', NULL, 'Advance', '', ''),
-(105, 29, 'Aurim', 0, 'yes', NULL, 'Healing Rain', '', ''),
-(106, 29, 'Truthseer Kel', 0, 'yes', NULL, 'Fury of Undeath', '', ''),
-(107, 29, 'Overlord', 0, 'yes', NULL, 'Word of Pain', '', ''),
-(116, 29, 'Truthseer Kel', 0, 'yes', NULL, 'Raise Dead (Necromancer)', '', ''),
-(117, 29, 'Truthseer Kel', 0, 'yes', NULL, 'Reanimate (Necromancer)', '', ''),
-(120, 29, 'Trenloe the Strong', 0, 'yes', NULL, 'Oath of Honor', '', ''),
-(124, 29, 'Tobin Farslayer', 0, 'yes', NULL, 'Greedy', '', ''),
-(127, 29, 'Aurim', 0, 'yes', NULL, 'Stoneskin', '', ''),
-(132, 14, 'Leoric of the Book', 0, 'yes', NULL, 'Iron Will', '', ''),
-(133, 14, 'Elder Mok', 0, 'yes', NULL, 'Divine Fury', '', ''),
-(136, 14, 'Overlord', 0, 'yes', NULL, 'Explosive Runes', 'The Cardinal''s Plight', ''),
-(137, 14, 'Overlord', 0, 'yes', NULL, 'Web Trap', 'The Cardinal''s Plight', ''),
-(228, 29, 'Aurim', 0, 'yes', NULL, 'Drain Spirit', 'The Masquerade Ball', ''),
-(242, 14, 'Laughin Buldar', 0, 'yes', NULL, 'Whirlwind', 'The Masquerade Ball', ''),
-(244, 14, 'Tobin Farslayer', 0, 'yes', NULL, 'Bow Mastery', 'The Masquerade Ball', ''),
-(253, 39, 'Dezra the Vile', 0, 'yes', NULL, 'Raise Dead (Necromancer)', '**Starting Gear**', ''),
-(254, 39, 'Dezra the Vile', 0, 'yes', NULL, 'Reanimate (Necromancer)', '**Starting Gear**', ''),
-(256, 39, 'Orkell the Swift', 0, 'yes', NULL, 'Rage', '**Starting Gear**', ''),
-(258, 39, 'Tobin Farslayer', 0, 'yes', NULL, 'Set Trap', '**Starting Gear**', ''),
-(259, 39, 'Tobin Farslayer', 0, 'yes', NULL, 'Black Widow''s Web', '**Starting Gear**', ''),
-(261, 39, 'Ashrian', 0, 'yes', NULL, 'Stoneskin', '**Starting Gear**', ''),
-(269, 38, 'Shiver', 7, 'yes', 98, 'Exploding Rune', 'First Blood', ''),
-(270, 38, 'Shiver', 7, 'yes', 99, 'Ghost Armor', 'First Blood', NULL);
+INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_char_id`, `shop_equipped`, `spendxp_skill_id`, `spendxp_progress_id`, `shop_notes`) VALUES
+(15, 14, 4, 'yes', 15, 0, ''),
+(16, 14, 4, 'yes', 14, 0, ''),
+(18, 14, 3, 'yes', 1, 0, ''),
+(19, 14, 3, 'yes', 2, 0, ''),
+(23, 14, 2, 'yes', 33, 0, ''),
+(24, 14, 2, 'yes', 10, 0, ''),
+(30, 14, 5, 'yes', 39, 0, ''),
+(61, 14, 1, 'yes', 13, 0, ''),
+(62, 14, 1, 'yes', 98, 0, ''),
+(65, 14, 3, 'yes', 26, 13, ''),
+(66, 14, 2, 'yes', 32, 13, ''),
+(97, 14, 5, 'yes', 39, 13, ''),
+(132, 14, 1, 'yes', 101, 0, ''),
+(133, 14, 4, 'yes', 18, 0, ''),
+(136, 14, 5, 'yes', 187, 16, ''),
+(137, 14, 5, 'yes', 189, 16, ''),
+(242, 14, 2, 'yes', 38, 22, ''),
+(244, 14, 3, 'yes', 27, 22, ''),
+(269, 38, 7, 'yes', 98, 34, ''),
+(270, 38, 7, 'yes', 99, 34, NULL);
 
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `tbcampaign`
+--
+ALTER TABLE `tbcampaign`
+ ADD PRIMARY KEY (`cam_id`);
+
+--
+-- Indexen voor tabel `tbcharacters`
+--
+ALTER TABLE `tbcharacters`
+ ADD PRIMARY KEY (`char_id`);
+
+--
+-- Indexen voor tabel `tbgames`
+--
+ALTER TABLE `tbgames`
+ ADD PRIMARY KEY (`game_id`);
+
+--
+-- Indexen voor tabel `tbgroup`
+--
+ALTER TABLE `tbgroup`
+ ADD PRIMARY KEY (`grp_id`);
+
+--
+-- Indexen voor tabel `tbheroes`
+--
+ALTER TABLE `tbheroes`
+ ADD PRIMARY KEY (`hero_id`);
+
+--
+-- Indexen voor tabel `tbitems`
+--
+ALTER TABLE `tbitems`
+ ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexen voor tabel `tbitems_aquired`
+--
+ALTER TABLE `tbitems_aquired`
+ ADD PRIMARY KEY (`shop_id`);
+
+--
+-- Indexen voor tabel `tbitems_relics`
+--
+ALTER TABLE `tbitems_relics`
+ ADD PRIMARY KEY (`relic_id`);
+
+--
+-- Indexen voor tabel `tbplayerlist`
+--
+ALTER TABLE `tbplayerlist`
+ ADD PRIMARY KEY (`player_id`);
+
+--
+-- Indexen voor tabel `tbquests`
+--
+ALTER TABLE `tbquests`
+ ADD PRIMARY KEY (`quest_id`);
+
+--
+-- Indexen voor tabel `tbquests_progress`
+--
+ALTER TABLE `tbquests_progress`
+ ADD PRIMARY KEY (`progress_id`);
+
+--
+-- Indexen voor tabel `tbskills_aquired`
+--
+ALTER TABLE `tbskills_aquired`
+ ADD PRIMARY KEY (`spendxp_id`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `tbcharacters`
+--
+ALTER TABLE `tbcharacters`
+MODIFY `char_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT voor een tabel `tbgames`
+--
+ALTER TABLE `tbgames`
+MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+--
+-- AUTO_INCREMENT voor een tabel `tbgroup`
+--
+ALTER TABLE `tbgroup`
+MODIFY `grp_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT voor een tabel `tbitems_relics`
+--
+ALTER TABLE `tbitems_relics`
+MODIFY `relic_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT voor een tabel `tbskills_aquired`
+--
+ALTER TABLE `tbskills_aquired`
+MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=271;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

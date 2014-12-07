@@ -86,6 +86,10 @@ body{
 	line-height: 6px;
 }
 
+.campaign-phase{
+	margin-bottom: 20px;
+}
+
 .phase-column{
 	display: block;
 	width: 298px;
@@ -94,6 +98,7 @@ body{
 	float: left;
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #ccc;
+	position: relative;
 }
 
 .phase-column .v-center{
@@ -148,19 +153,27 @@ body{
 
 .items{
 	float: left;
-	margin: 5px 5px 0;
+	margin: 0 5px 0;
+}
+
+.item{
+	margin-top: 3px;
+}
+
+.relic{
+	margin-bottom: 3px;
 }
 
 .item-name{
 	text-align: center;
-	width: 213px;
-	margin-top: 10px;
+	width: 203px; /* FIX ME: When - is removed from skill costs set me back to 213 */
+	margin-top: 5px;
 }
 
 .item-xp{
 	font-size: 16px;
-	width: 25px;
-	margin-top: 9px;
+	width: 35px; /* FIX ME: When - is removed from skill costs set me back to 25 */
+	margin-top: 5px;
 }
 
 .items .xp-label{
@@ -244,6 +257,19 @@ body{
 }
 
 .half-block a, .half-block img{
-	margin: 0;
-	padding: 0;
+	display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+.column-title{
+	font-weight: bold;
+}
+
+
+.relics{
+	position: absolute;
+	bottom: 0;
 }

@@ -5,7 +5,7 @@ $currentPage = $_SERVER["PHP_SELF"];
 
 // FIX ME: Check if these db queries shouldn't be rewritten to something more simple
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCampaignList = "SELECT cam_id, cam_name, cam_s_name, expansion, cam_logo, cam_icon FROM tbcampaign ORDER BY cam_id ASC";
+$query_rsCampaignList = "SELECT cam_id, cam_name, expansion, cam_logo, cam_icon FROM tbcampaign ORDER BY cam_id ASC";
 $rsCampaignList = mysql_query($query_rsCampaignList, $dbDescent) or die(mysql_error());
 $row_rsCampaignList = mysql_fetch_assoc($rsCampaignList);
 $totalRows_rsCampaignList = mysql_num_rows($rsCampaignList);
@@ -55,12 +55,22 @@ if (!empty($_SERVER['QUERY_STRING'])) {
   }
 }
 $queryString_rsSelectGroup = sprintf("&totalRows_rsSelectGroup=%d%s", $totalRows_rsSelectGroup, $queryString_rsSelectGroup);
+
+
+
 ?>
 
 <div class="clearfix">
   <div id="" class="half-block">
   <h2 class="center">Campaigns</h2>
-    <?php do { ?><a href="campaignmap.php?urlCamID=<?php echo $row_rsCampaignList['cam_id']; ?>" target="_self"><img src="img/campaigns/logos/<?php echo $row_rsCampaignList['cam_s_name']; ?>.jpg" /></a><?php } while ($row_rsCampaignList = mysql_fetch_assoc($rsCampaignList)); ?>
+    <?php do { 
+      $short = $row_rsCampaignList['cam_name'];
+      $short = strtolower($short);
+      $short = str_replace(" ","_",$short);
+      $short = preg_replace("/[^A-Za-z0-9_]/","",$short);
+      ?>
+      <a href="campaignmap.php?urlCamID=<?php echo $row_rsCampaignList['cam_id']; ?>"><img src="img/campaigns/logos/<?php echo $short; ?>.jpg" /></a>
+    <?php } while ($row_rsCampaignList = mysql_fetch_assoc($rsCampaignList)); ?>
   </div>
 
   <div id="gaming-groups" class="half-block">
