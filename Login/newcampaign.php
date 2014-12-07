@@ -1,19 +1,37 @@
+<?php
+  //-----------------------//
+  //remove me after include//
+  //-----------------------//
 
+  //include the db
+  require_once('../Connections/dbDescent.php'); 
+
+  //initialize the session
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+
+  //include functions
+  include '../includes/function_logout.php';
+  include '../includes/function_getSQLValueString.php';
+
+
+
+?>
 <?php
 
-
-
-
 mysql_select_db($database_dbDescent, $dbDescent);
+/*
 $query_rsCreateGroup = "SELECT * FROM tbgaminggroup";
 $rsCreateGroup = mysql_query($query_rsCreateGroup, $dbDescent) or die(mysql_error());
 $row_rsCreateGroup = mysql_fetch_assoc($rsCreateGroup);
 $totalRows_rsCreateGroup = mysql_num_rows($rsCreateGroup);
+*/
 
-$query_rsCamList = "SELECT cam_name, expansion, cam_logo, cam_icon FROM tbcampaign ORDER BY cam_name ASC";
-$rsCamList = mysql_query($query_rsCamList, $dbDescent) or die(mysql_error());
-$row_rsCamList = mysql_fetch_assoc($rsCamList);
-$totalRows_rsCamList = mysql_num_rows($rsCamList);
+$query_rsCampaigns = "SELECT * FROM tbcampaign ORDER BY cam_type ASC";
+$rsCampaigns = mysql_query($query_rsCampaigns, $dbDescent) or die(mysql_error());
+$row_rsCampaigns = mysql_fetch_assoc($rsCampaigns);
+$totalRows_rsCampaigns = mysql_num_rows($rsCampaigns);
 
 $colname_rsPlayerAccess = "-1";
 if (isset($_SESSION['MM_Username'])) {
@@ -24,32 +42,69 @@ $query_rsPlayerAccess = sprintf("SELECT player_username FROM tbplayerlist WHERE 
 $rsPlayerAccess = mysql_query($query_rsPlayerAccess, $dbDescent) or die(mysql_error());
 $row_rsPlayerAccess = mysql_fetch_assoc($rsPlayerAccess);
 $totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);
+
+
+$selectOptions = array();
+$checboxOptions = array();
+
+do {
+
+  if($row_rsCampaigns['cam_type'] == "full" || $row_rsCampaigns['cam_type'] == "mini"){
+    $selectOptions[] = '<option value="' . $row_rsCampaigns['cam_id'] . '">' . $row_rsCampaigns['cam_name'] . '</option>';
+  }
+
+  $checboxOptions[] = '<input type="checkbox" name="option1" value="' . $row_rsCampaigns['cam_id'] . '"> ' . $row_rsCampaigns['cam_name'] . '<br />';
+
+} while ($row_rsCampaigns = mysql_fetch_assoc($rsCampaigns));
+
+
 ?>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<table width="450" border="1" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="800" align=" align="center"" valign="top" class="background"center> <p class="normal"><a href="../index.html" target="_top"><img src="../images/campaigntrackerlogo.png" width="360" height="106" hspace="0" vspace="0" border="0" align="top" /></a>
-    <br><table width="400" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><a href="mycampaigns.php" class="normal"><?php echo $row_rsPlayerAccess['player_username']; ?> My Campaigns</a></td>
-    <td align="right"> <a href="<?php echo $logoutAction ?>"><span class="normal">Logout</span></a></td>
-  </tr>
-</table>
 
-  
-      <p class="header">&nbsp;</p>
+<body>
+
+  <form action="<?php echo $editFormAction; ?>" method="post" name="start-quest-form" id="new_campaign-form">
+    <div>Select Main Campaign</div>
+    <select name="progress_quest_id">
+
+      <?php foreach($selectOptions as $so) {
+        echo $so;
+      } ?>
+
+    </select>
+    <div>Select Expansions</div>
+
+    <?php foreach($checboxOptions as $co) {
+      echo $co;
+    } ?>
+
+    <input type="submit" value="Select" />
+
+    <input type="hidden" name="progress_timestamp" value="" />
+    <input type="hidden" name="MM_insert" value="new_campaign-form" />
+    
+    
+    
+
+  </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
       <table width="385" border="0" cellpadding="15" cellspacing="0" class="purpleTable">
         <tr>
-          <td align="center" class="header"><p><span class="pageTitle">Choose A Campaign</span>&nbsp;</p>
+          <td align="center" class="header">
             <table border="0" cellpadding="0" cellspacing="5">
               <?php do { ?>
-                <tr>
-                    <td width="30">&nbsp;</td>
-                    <td width="50">&nbsp;</td>
-                    <td width="48">&nbsp;</td>
-                    <td width="40">&nbsp;</td>
-                </tr>
                 <tr>
                   <td colspan="3"><a href="choosegroup.php?urlCampaignID=<?php echo $row_rsCamList['cam_name']; ?>"><?php echo $row_rsCamList['expansion']; ?><br>
                   <img src="../images/logos/<?php echo $row_rsCamList['cam_logo']; ?>" height="30" /></a></td>
@@ -59,13 +114,7 @@ $totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);
             </table></td>
         </tr>
       </table>
-      <p>&nbsp;</p>
-      <p><a href="mycampaigns.php" class="header">**EXIT TO MYCAMPAIGNS**</a></p>
-      <p class="normal"><a href="../index.html" target="_top">Home</a>| <a href="../campaign.php">Campaign</a></p>
-      
-    </td>
-</tr>
-</table>
+
 
 
 

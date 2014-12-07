@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 07 dec 2014 om 18:16
+-- Gegenereerd op: 07 dec 2014 om 21:42
 -- Serverversie: 5.6.21
 -- PHP-versie: 5.6.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `tbcampaign` (
   `cam_id` int(1) NOT NULL DEFAULT '0',
   `cam_name` varchar(32) DEFAULT NULL,
-  `cam_s_name` varchar(32) DEFAULT NULL,
+  `cam_type` varchar(20) NOT NULL,
   `cam_map` varchar(24) DEFAULT NULL,
   `cam_log` varchar(24) DEFAULT NULL,
   `expansion` varchar(21) DEFAULT NULL,
@@ -42,14 +42,14 @@ CREATE TABLE IF NOT EXISTS `tbcampaign` (
 -- Gegevens worden geëxporteerd voor tabel `tbcampaign`
 --
 
-INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_s_name`, `cam_map`, `cam_log`, `expansion`, `edition`, `cam_logo`, `cam_icon`) VALUES
-(0, 'The Shadow Rune', 'the_shadow_rune', 'shadowRuneMap.jpg', 'shadowrune.jpg', 'Base Game 2nd Edition', '2nd', 'shadowRuneLogo.png', 'placeholder.png'),
-(1, 'Lair of the Wyrm', 'lair_of_the_wyrm', 'LotWmap.jpg', 'LotWlog.jpg', 'Lair of the Wyrm', '2nd', 'LairOfTheWyrmLogo.png', 'Lair-of-the-Wyrm-icon.png'),
-(2, 'Labyrinth of Ruin', 'labyrinth_of_ruin', 'labyrinthOfRuinMap.jpg', 'LabyrinthOfRuinLog.jpg', 'Labyrinth of Ruin', '2nd', 'LabyrinthofRuneLogo.png', 'Labyrinth-of-Ruin-icon.png'),
-(3, 'The Trollfens', 'the_trollfens', 'trollfensMap.jpg', 'trollfensLog.jpg', 'The Trollfens', '2nd', 'TheTrollfensLogo.png', 'The-Trollfens-icon.png'),
-(4, 'Shadow of Nerekhall', 'shadow_of_nerekhall', 'shadowOfNerekhallMap.jpg', 'shadowOfNerekhallLog.jpg', 'Shadow of Nerekhall', '2nd', 'ShadowofNerekhallLogo.png', 'shadowsOfNerekhallicon.png'),
-(5, 'Manor of Ravens', 'manor_of_ravens', 'manorOfRavensMap.jpg', 'manorOfRavensLog.jpg', 'Manor of Ravens', '2nd', 'manorOfRavensLogo.png', 'manorOfRavensIcon.png'),
-(6, 'Crusade of the Forgotten', 'crusade_of_the_forgotten', NULL, NULL, NULL, '2nd', NULL, NULL);
+INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_type`, `cam_map`, `cam_log`, `expansion`, `edition`, `cam_logo`, `cam_icon`) VALUES
+(0, 'The Shadow Rune', 'full', 'shadowRuneMap.jpg', 'shadowrune.jpg', 'Base Game 2nd Edition', '2nd', 'shadowRuneLogo.png', 'placeholder.png'),
+(1, 'Lair of the Wyrm', 'mini', 'LotWmap.jpg', 'LotWlog.jpg', 'Lair of the Wyrm', '2nd', 'LairOfTheWyrmLogo.png', 'Lair-of-the-Wyrm-icon.png'),
+(2, 'Labyrinth of Ruin', 'full', 'labyrinthOfRuinMap.jpg', 'LabyrinthOfRuinLog.jpg', 'Labyrinth of Ruin', '2nd', 'LabyrinthofRuneLogo.png', 'Labyrinth-of-Ruin-icon.png'),
+(3, 'The Trollfens', 'mini', 'trollfensMap.jpg', 'trollfensLog.jpg', 'The Trollfens', '2nd', 'TheTrollfensLogo.png', 'The-Trollfens-icon.png'),
+(4, 'Shadow of Nerekhall', 'full', 'shadowOfNerekhallMap.jpg', 'shadowOfNerekhallLog.jpg', 'Shadow of Nerekhall', '2nd', 'ShadowofNerekhallLogo.png', 'shadowsOfNerekhallicon.png'),
+(5, 'Manor of Ravens', 'mini', 'manorOfRavensMap.jpg', 'manorOfRavensLog.jpg', 'Manor of Ravens', '2nd', 'manorOfRavensLogo.png', 'manorOfRavensIcon.png'),
+(6, 'Crusade of the Forgotten', 'monster', NULL, NULL, NULL, '2nd', NULL, NULL);
 
 -- --------------------------------------------------------
 
