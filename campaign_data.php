@@ -29,7 +29,7 @@ $rsCharData = mysql_query($query_rsCharData, $dbDescent) or die(mysql_error());
 $row_rsCharData = mysql_fetch_assoc($rsCharData);
 $totalRows_rsCharData = mysql_num_rows($rsCharData);
 
-// Get the items
+// Get the skills
 $query_rsSkillsData = sprintf("SELECT * 
   FROM tbcharacters 
   INNER JOIN tbskills_aquired ON tbcharacters.char_id = tbskills_aquired.spendxp_char_id 
@@ -51,7 +51,7 @@ do {
     "name" => $row_rsCharData['hero_name'],
     "img" => $row_rsCharData['hero_img'],
     "class" => $row_rsCharData['char_class'],
-    "xp" => 0,
+    "xp" => $row_rsCharData['char_xp'],
     "skills" => array(),
   );
 
@@ -81,6 +81,7 @@ $ip++;
  
 $campaign = array(
     "name" => "The Shadow Rune",
+    "gold" => $row_rsGroupCampaign['game_gold'],
     "quests" => array(),
 );
 
@@ -115,28 +116,52 @@ $totalRows_rsQuestData = mysql_num_rows($rsQuestData);
 $iq = 0;
 
 do {
+
+  $qreward = 0;
+  $qrewardH = 0; 
+  $qrewardOL = 0; 
   //select correct reward
   
-  // did the heroes win? - FIX ME: Make 'The Heroes' be a bool instead of text
-  $isRelic = 0;
+  // set the type of reward so we can save it correctly later  
+  $rewardTypeH = "";
+  if($row_rsQuestData['quest_rew_h_gold'] != 0){
+    $rewardTypeH = "gold";
+    $qrewardH = $row_rsQuestData['quest_rew_h_gold'];
+  } else if($row_rsQuestData['quest_rew_h_xp'] != 0){
+    $rewardTypeH = "hxp";
+    $qrewardH = $row_rsQuestData['quest_rew_h_xp'];
+  } else {
+    $rewardTypeH = "relic";
+    $qrewardH = $row_rsQuestData['relic_h_name'];
+  }
+
+  $rewardTypeOL = "";
+  if($row_rsQuestData['quest_rew_ol_xp'] != 0){
+    $rewardTypeOL = "olxp";
+    $qrewardOL = $row_rsQuestData['quest_rew_ol_xp'];
+  } else {
+    $rewardTypeOL = "relic";  
+    $qrewardOL = $row_rsQuestData['relic_ol_name'];
+  }
+
+  // did the heroes win? - FIX ME: Make 'The Heroes' be a bool instead of text - Also all this setting of rewards needs to be simpler?
   if ($row_rsQuestData['progress_quest_winner'] == "Heroes Win"){
     //var_dump($row_rsQuestData);
     // gold or item?
     if($row_rsQuestData['quest_rew_h_gold'] != 0){
       $qreward = $row_rsQuestData['quest_rew_h_gold'];
     } else if($row_rsQuestData['quest_rew_h_xp'] != 0){
-      $qreward = $row_rsQuestData['quest_rew_h_xp'] . "<span class='label'>XP</span>";
+      $qreward = $row_rsQuestData['quest_rew_h_xp'];
     } else {
       $qreward = $row_rsQuestData['relic_h_name'];
-      $isRelic = 1;
+      
     }
   } else {
     // xp or item?
     if($row_rsQuestData['quest_rew_ol_xp'] != 0){
-      $qreward = $row_rsQuestData['quest_rew_ol_xp'] . "<span class='label'>XP</span>";
+      $qreward = $row_rsQuestData['quest_rew_ol_xp'];   
     } else {
       $qreward = $row_rsQuestData['relic_ol_name'];
-      $isRelic = 1;  
     }
   }
 
@@ -155,7 +180,10 @@ do {
     "winner" => $row_rsQuestData['progress_quest_winner'],
     "winner_enc1" => $row_rsQuestData['progress_enc1_winner'],
     "reward" => $qreward,
-    "reward_is_relic" => $isRelic,
+    "rewardH" => $qrewardH,
+    "rewardOL" => $qrewardOL,
+    "reward_type_h" => $rewardTypeH,
+    "reward_type_ol" => $rewardTypeOL,
     "relic_id" => $row_rsQuestData['relic_id'],
     "travel_set" => $row_rsQuestData['progress_set_travel'], 
     "travel" => array(
@@ -169,7 +197,7 @@ do {
       array(
           "type" => "Mountains",
           "event" => "A mysterious jester appears and presents an irresistible offer..",
-          "outcome" => $heroes[1]['player'] . " passes all attibute tests and draws a 'Crossbow'",
+          "outcome" => "passes all attibute tests and draws a 'Crossbow'",
           "goldlost" => 0,
           "item-gained" => "Crossbow"
       ),
@@ -205,7 +233,7 @@ do {
 
   } while ($row_rsQuestSkillsData = mysql_fetch_assoc($rsQuestSkillsData));
 
-  // Get the skills
+  // Get the items
   $query_rsQuestItemsData = sprintf("SELECT * 
     FROM tbitems_aquired 
     LEFT JOIN tbitems ON tbitems_aquired.aq_item_id = tbitems.item_id
@@ -282,41 +310,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "start-quest-form"))
 
   mysql_select_db($database_dbDescent, $dbDescent);
   $Result1 = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
-
-  $insertGoTo = "campaign_overview.php?urlGamingID=" . $row_rsSelectedCampaign['ggrp_id'] . "";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $insertGoTo));
-}
-
-
-// Save Quest Details
-
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "quest-details-form")) {
-  $insertSQL = sprintf("UPDATE tbquests_progress SET progress_quest_winner = %s, progress_enc1_winner = %s, progress_relic_char = %s WHERE progress_quest_id = %s AND progress_game_id = %s",
-                       GetSQLValueString($_POST['progress_quest_winner'], "text"),
-                       GetSQLValueString($_POST['progress_enc1_winner'], "text"),
-                       GetSQLValueString($_POST['progress_relic_recipiant'], "int"),
-                       GetSQLValueString($_POST['progress_quest_id'], "int"),
-                       GetSQLValueString($_POST['progress_game_id'], "int"));
-
-  // FIX ME: Replace shop_group
-  $insertSQL2 = sprintf("INSERT INTO tbitems_aquired (aq_relic_id, aq_progress_id, aq_char_id, aq_game_id) VALUES (%s, %s, %s, %s)",
-                       GetSQLValueString($_POST['progress_relic_id'], "int"),
-                       GetSQLValueString($_POST['progress_id'], "int"),
-                       GetSQLValueString($_POST['progress_relic_recipiant'], "int"),
-                       GetSQLValueString($_POST['progress_game_id'], "int"));
-
-  mysql_select_db($database_dbDescent, $dbDescent);
-  $Result1 = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
-  $Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
 
   $insertGoTo = "campaign_overview.php?urlGamingID=" . $row_rsSelectedCampaign['ggrp_id'] . "";
   if (isset($_SERVER['QUERY_STRING'])) {

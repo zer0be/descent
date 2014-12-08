@@ -39,14 +39,11 @@
 		    $("#start-quest-form").hide();
 		  });
 
-		  $(".quest-details-button").click(function(){
-		    $("#quest-details-form").toggle();
-		  });
 		});
 		</script>
 	</head>
 	<body>
-		<!-- include the campaign date -->
+		<!-- include the campaign data -->
 		<?php include 'campaign_data.php'; ?>
 
 		<div id="wrapper">
@@ -75,7 +72,7 @@
 				</div> <!-- close heroes -->
 
 			<div class="gold">
-				<div class="gold-amount"><?php print $gold; ?></div>
+				<div class="gold-amount"><?php print $campaign['gold']; ?></div>
 				<div class="gold-label">GOLD</div>
 			</div> <!-- close gold -->
 
@@ -179,57 +176,25 @@
 						<?php if ($qs['winner'] == NULL){ ?>
 
 							<div class="quest-name"><?php print $qs['name']; ?></div>
-							<div class="center subbutton quest-details-button"><p class="title">Add Details</p></div>
-							<form action="<?php echo $editFormAction; ?>" method="post" name="quest-details-form" id="quest-details-form">
-								<div>Quest Winner</div>
-								<select name="progress_quest_winner">
-			            <option value="Heroes Win">Heroes Win</option>
-									<option value="Overlord Wins">Overlord Wins</option>
-			          </select>
-
-			          <div>Encounter 1 Winner</div>
-			          <select name="progress_enc1_winner">
-			          	<option value="No Winner">No Winner</option>
-			            <option value="Heroes Win">Heroes Win</option>
-									<option value="Overlord Wins">Overlord Wins</option>
-			          </select>
-
-			          <div>Relic Recipiant</div>
-			          <?php if($qs['reward_is_relic'] == 1){ ?>
-			          	<select name="progress_relic_recipiant">
-
-				          <?php 
-										// loop through heroes
-										$ish = 0;
-										foreach ($players as $h){
-										?>
-											<option value="<?php print $players[$ish]['id']; ?>"><?php print $players[$ish]['name']; ?></option>
-										<?php
-										$ish++;
-										} //close foreach
-									?>
-
-			          </select>
-			          <?php } ?>
-
-
-			          <div><input type="submit" value="Save" /></div>
-
-			          <input type="hidden" name="progress_quest_id" value="<?php echo $qs['quest_id']; ?>" />
-			          <input type="hidden" name="progress_game_id" value="<?php echo $gameID; ?>" />
-			          <input type="hidden" name="progress_id" value="<?php echo $qs['id']; ?>" />
-			          <input type="hidden" name="progress_relic_id" value="<?php echo $qs['relic_id']; ?>" />
-			          <input type="hidden" name="MM_insert" value="quest-details-form" />
-			        </form>
-
-
+							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=q" class="title">Add Details</a></div>
 
 
 						<?php } else { ?>
 
 							<div class="quest-name"><?php print $qs['name']; ?></div>
 							<div class="quest-winner"><?php print $qs['winner']; ?></div>
-							<div class="quest-reward"><span class="label">Reward</span><br /><?php print $qs['reward']; ?></div>
+							<div class="quest-reward"><span class="label">Reward</span>
+								<br />
+								<?php 
+									if($qs['reward_type_h'] == "xp" || $qs['reward_type_ol'] == "xp"){
+										echo $qs['reward'] . '<span class="label">XP</span>';
+									} else if($qs['reward_type_h'] == "gold"){
+										echo ($qs['reward'] * (count($players) - 1)) . '<span class="label"> GOLD</span>';
+									} else {
+										echo $qs['reward'];
+									}
+								?>
+							</div>
 
 						<?php } ?>
 					</div>
@@ -238,8 +203,10 @@
 				
 					<div class="phase-column spend-xp">
 						<div class="column-title center">Skills</div>
-						<?php if ($qs['spendxp_set'] == 0){ ?>
-							<div class="center subbutton"><p class="title">Add Items</p></div>
+						<?php if ($qs['winner'] == NULL){ ?>
+							<div class="center"><p class="title">Add Quest Details First</p></div>
+						<?php } else if ($qs['winner'] != NULL && $qs['spendxp_set'] == 0){ ?>
+							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=xp"  class="title">Spend XP</a></div>
 						<?php } else { ?>
 
 							<?php 
@@ -262,7 +229,9 @@
 
 					<div class="phase-column buy-items">
 						<div class="column-title center">Items</div>
-						<?php if ($qs['items_set'] == 0){ ?>
+						<?php if ($qs['winner'] == NULL){ ?>
+							<div class="center"><p class="title">Add Quest Details First</p></div>
+						<?php } else if ($qs['winner'] != NULL && $qs['items_set'] == 0){ ?>
 							<div class="center subbutton"><p class="title">Add Items</p></div>
 						<?php } else { ?>
 

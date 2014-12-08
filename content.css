@@ -122,7 +122,7 @@ body{
 	font-size: 12px;
 }
 
-.quest{
+.quest, .save-left-column{
 	text-align: center;
 	color: #ccc;
 	text-shadow: 0 0 1px #000, 0 0 10px #000;
@@ -315,7 +315,7 @@ body{
 }
 
 
-#start-quest-form, #start-rumor-form, #quest-details-form{
+#start-quest-form, #start-rumor-form{
 	display: none;
 }
 
@@ -323,4 +323,50 @@ body{
 	margin: 0 auto;
 	padding: 0 20px;
 	width: 340px;
+}
+
+/* --------------------- */
+/* -- Quest Save Page -- */
+/* --------------------- */
+
+.save-left-column{
+	display: block;
+	width: 300px;
+	height: 400px;
+	background: #ddd;
+	float: left;
+	position: relative;
+}
+
+.save-right-column{
+	display: block;
+	width: 860px;
+	min-height: 380px;
+	background: #ddd;
+	float: left;
+	position: relative;
+	padding: 10px 20px;
+}
+
+.list-checkbox{
+	width: 210px;
+	float: left;
+}
+
+.list-checkbox input{
+	margin: 10px 10px 0;
+	float: left;
+}
+
+.list-checkbox div{
+	float: left;
+}
+
+.list-checkbox .search-gold{
+	font-style: italic;
+	font-size: 12px;
+}
+
+#select-item{
+	display: none;
 }
