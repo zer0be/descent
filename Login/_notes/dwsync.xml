@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="login.php" server="descentmobile.info/public_html/" local="130620039891383855" remote="130620003600000000" />
-<file name="menu.php" server="descentmobile.info/public_html/" local="130581096580497597" remote="130581060600000000" />
-<file name="newgroup.php" server="descentmobile.info/public_html/" local="130620051861059053" remote="130620015600000000" />
-<file name="newcampaign.php" server="descentmobile.info/public_html/" local="130620115165316311" remote="130620079200000000" />
-<file name="newplayer.php" server="descentmobile.info/public_html/" local="130620048940404062" remote="130620012600000000" />
-<file name="dungeondetails.php" server="descentmobile.info/public_html/" local="130602910252090067" remote="130602876000000000" />
-<file name="overlord.php" server="descentmobile.info/public_html/" local="130609150949508073" remote="130609114800000000" />
-<file name="sellitem.php" server="descentmobile.info/public_html/" local="130602910025379625" remote="130602876000000000" />
-<file name="buyitem.php" server="descentmobile.info/public_html/" local="130602910023909541" remote="130602876000000000" />
-<file name="buySkill.php" server="descentmobile.info/public_html/" local="130602910026879711" remote="130602876000000000" />
-<file name="citydetail.php" server="descentmobile.info/public_html/" local="130616125602238726" remote="130616089200000000" />
-<file name="mycampaigns.php" server="descentmobile.info/public_html/" local="130620893628558981" remote="130620858000000000" />
-<file name="mycampaigndetail.php" server="descentmobile.info/public_html/" local="130617787649931964" remote="130617751200000000" />
-<file name="mydungeondetail.php" server="descentmobile.info/public_html/" local="130615743826119316" remote="130615707600000000" />
-<file name="herodetail.php" server="descentmobile.info/public_html/" local="130602910253570151" remote="130602876000000000" />
-<file name="changepw.php" server="descentmobile.info/public_html/" local="130614399889825996" remote="130614363600000000" />
-<file name="REDESIGNSmycampaigndetail.php" server="descentmobile.info/public_html/" local="130617814187436089" remote="130617777600000000" />
-<file name="chooseheroes.php" server="descentmobile.info/public_html/" local="130620209326305920" remote="130620173400000000" />
-<file name="choosegroup.php" server="descentmobile.info/public_html/" local="130620137632998305" remote="130620109800000000" />
-<file name="startinggear.php" server="descentmobile.info/public_html/" local="130620221356829836" remote="130620184800000000" />
+<file name="login.php" server="descentmobile.info/public_html/" local="130622963842981116" remote="130625260800000000" />
+<file name="menu.php" server="descentmobile.info/public_html/" local="130622963843411141" remote="130625260800000000" />
+<file name="newgroup.php" server="descentmobile.info/public_html/" local="130625256025405997" remote="130625260800000000" />
+<file name="newcampaign.php" server="descentmobile.info/public_html/" local="130625256025165984" remote="130625260800000000" />
+<file name="newplayer.php" server="descentmobile.info/public_html/" local="130625256025736016" remote="130625260800000000" />
+<file name="dungeondetails.php" server="descentmobile.info/public_html/" local="130625256019245645" remote="130625260800000000" />
+<file name="overlord.php" server="descentmobile.info/public_html/" local="130622963853451715" remote="130625260800000000" />
+<file name="sellitem.php" server="descentmobile.info/public_html/" local="130622963854301763" remote="130625260800000000" />
+<file name="buyitem.php" server="descentmobile.info/public_html/" local="130622963835610694" remote="130625260800000000" />
+<file name="buySkill.php" server="descentmobile.info/public_html/" local="130622963834740645" remote="130625260800000000" />
+<file name="citydetail.php" server="descentmobile.info/public_html/" local="130622963841301020" remote="130625260800000000" />
+<file name="mycampaigns.php" server="descentmobile.info/public_html/" local="130625256022455829" remote="130625260800000000" />
+<file name="mycampaigndetail.php" server="descentmobile.info/public_html/" local="130625256021615781" remote="130625260800000000" />
+<file name="mydungeondetail.php" server="descentmobile.info/public_html/" local="130625256024345937" remote="130625260800000000" />
+<file name="herodetail.php" server="descentmobile.info/public_html/" local="130622963842701100" remote="130625260800000000" />
+<file name="changepw.php" server="descentmobile.info/public_html/" local="130622963836790762" remote="130625260800000000" />
+<file name="REDESIGNSmycampaigndetail.php" server="descentmobile.info/public_html/" local="130625256013885338" remote="130625260800000000" />
+<file name="chooseheroes.php" server="descentmobile.info/public_html/" local="130625256018205585" remote="130625260800000000" />
+<file name="choosegroup.php" server="descentmobile.info/public_html/" local="130622963837320792" remote="130625260800000000" />
+<file name="startinggear.php" server="descentmobile.info/public_html/" local="130625256026966087" remote="130625260800000000" />
+<file name="BACKUPnewcampaign - Copy.php" server="descentmobile.info/public_html/" local="130622963828500288" remote="130625260800000000" />
+<file name="create.php" server="descentmobile.info/public_html/" local="130625256018355594" remote="130625260800000000" />
+<file name="dashboard.php" server="descentmobile.info/public_html/" local="130625256018455600" remote="130625260800000000" />
+<file name="newcampaign - Copy.php" server="descentmobile.info/public_html/" local="130622963850191528" remote="130625260800000000" />
 </dwsync>

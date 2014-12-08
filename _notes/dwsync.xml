@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="index.html" server="sciscoedesigns.com/public_html/" local="129316738733552753" remote="129316702800000000" />
-<file name="index.html" server="descentmobile.info/public_html/" local="130602787100525733" remote="130602875400000000" />
+<file name="index.html" server="descentmobile.info/public_html/" local="130625305433050749" remote="130625269200000000" />
 <file name="favicon.ico" server="descentmobile.info/public_html/" local="129339132734850235" remote="129339133800000000" />
 <file name="descentIcon.gif" server="descentmobile.info/public_html/" local="129344850837368275" remote="129344815800000000" />
 <file name="apple-touch-icon.png" server="descentmobile.info/public_html/" local="129360493481992192" remote="129360458400000000" />
-<file name="vanilla.html" server="descentmobile.info/public_html/" local="130547862055090830" remote="130547826600000000" />
 <file name="rtl.html" server="descentmobile.info/public_html/" local="130547862293570743" remote="130547826600000000" />
 <file name="secondedition.php" server="descentmobile.info/public_html/" local="130547862836116846" remote="130547826600000000" />
-<file name="firstedition.html" server="descentmobile.info/public_html/" local="130547862620657979" remote="130547826600000000" />
-<file name="campaign.php" server="descentmobile.info/public_html/" local="130602943276536952" remote="130602907200000000" />
-<file name="campaignmap.php" server="descentmobile.info/public_html/" local="130609260839285269" remote="130609224600000000" />
-<file name="gaminggroupcampaign.php" server="descentmobile.info/public_html/" local="130620906524301370" remote="130620870000000000" />
-<file name="cssDescentMobile.css" server="descentmobile.info/public_html/" local="130612675994006227" remote="130612639800000000" />
-<file name="dungeondetail.php" server="descentmobile.info/public_html/" local="130615378281951203" remote="130615342200000000" />
-<file name="campaigndetail.php" server="descentmobile.info/public_html/" local="130612674933425565" remote="130612639800000000" />
+<file name="campaign.php" server="descentmobile.info/public_html/" local="130625313098891051" remote="130625277000000000" />
+<file name="campaignmap.php" server="descentmobile.info/public_html/" local="130622963861052150" remote="130625259600000000" />
+<file name="gaminggroupcampaign.php" server="descentmobile.info/public_html/" local="130622963865012376" remote="130625259600000000" />
+<file name="dungeondetail.php" server="descentmobile.info/public_html/" local="130625256034236502" remote="130625259600000000" />
+<file name="index.php" server="descentmobile.info/public_html/" local="130625256037566693" remote="130625259600000000" />
+<file name="descent_mobile.sql" server="descentmobile.info/public_html/" local="130625256032776419" remote="130625259600000000" />
+<file name="descent.sublime-workspace" server="descentmobile.info/public_html/" local="130625256032476402" remote="130625259600000000" />
+<file name="content.css" server="descentmobile.info/public_html/" local="130625256031956372" remote="130625259600000000" />
+<file name="campaign_overview.php" server="descentmobile.info/public_html/" local="130625256031826365" remote="130625259600000000" />
+<file name="campaign_data_pt2.php" server="descentmobile.info/public_html/" local="130625256030476287" remote="130625259600000000" />
+<file name="campaign_data.php" server="descentmobile.info/public_html/" local="130625256028486173" remote="130625259600000000" />
+<file name=".gitignore" server="descentmobile.info/public_html/" local="130625256011135181" remote="130625259600000000" />
+<file name="function_getSQLValueString.php" server="descentmobile.info/public_html/" local="130622963864302335" remote="130625259600000000" />
+<file name="index_test.php" server="descentmobile.info/public_html/" local="130621104604867406" remote="130625259600000000" />
+<file name="heroes_test.php" server="descentmobile.info/public_html/" local="130621104601867235" remote="130625259600000000" />
+<file name="campaign_test.php" server="descentmobile.info/public_html/" local="130621104601077190" remote="130625259600000000" />
 </dwsync>
