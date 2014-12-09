@@ -137,12 +137,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "quest-details-form"
   $insertSQLH = sprintf("UPDATE tbcharacters SET char_xp = char_xp + %s WHERE char_game_id = %s AND char_hero != %s", 
 	                       GetSQLValueString($xpHeroes, "int"),
 	                       GetSQLValueString($gameID, "int"),
-	                       GetSQLValueString(17, "int")); //17 is the code for the overlord
+	                       GetSQLValueString(0, "int")); //0 is the code for the overlord
 
   $insertSQLOl = sprintf("UPDATE tbcharacters SET char_xp = char_xp + %s WHERE char_game_id = %s AND char_hero = %s",
 	                       GetSQLValueString($xpOverlord, "int"),
 	                       GetSQLValueString($gameID, "int"),
-	                       GetSQLValueString(17, "int"));
+	                       GetSQLValueString(0, "int"));
 
 
 

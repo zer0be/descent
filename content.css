@@ -370,3 +370,63 @@ body{
 #select-item{
 	display: none;
 }
+
+.select-hero{
+	width: 150px;
+	float: left;
+}
+
+.select-hero input[type=checkbox]{
+	margin: 0 65px;
+}
+
+.select-hero-image{
+	display: block;
+	width: 148px;
+	height: 250px;
+	float: left;
+	position: relative;
+	margin: 1px;
+
+	color: #fff;
+	text-shadow: 0 0 1px #000, 0 0 10px #000;
+}
+
+.select-hero-image .hero-name{
+	text-align: center;
+	font-size: 12px;
+	padding-top: 75px;
+}
+
+.hero-select{
+	width: 300px;
+	float: left;
+}
+
+.hero-select img{
+	width: 300px;
+	height: 500px;
+}
+/*
+#heroselect input[type=checkbox]{
+display:none;
+}
+ 
+#heroselect input[type=checkbox] + label{
+height: 200px;
+width: 100px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+#heroselect input[type=checkbox]:checked + label{
+height: 200px;
+width: 100px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+
+*/
+
+#warrior1, #mage1, #scout1, #healer1{
+	display: none;
+}
