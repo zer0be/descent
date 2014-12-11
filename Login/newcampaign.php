@@ -1,24 +1,4 @@
 <?php
-  //-----------------------//
-  //remove me after include//
-  //-----------------------//
-
-  //include the db
-  require_once('../Connections/dbDescent.php'); 
-
-  //initialize the session
-  if (!isset($_SESSION)) {
-    session_start();
-  }
-
-  //include functions
-  include '../includes/function_logout.php';
-  include '../includes/function_getSQLValueString.php';
-
-
-
-?>
-<?php
 
 mysql_select_db($database_dbDescent, $dbDescent);
 /*
@@ -33,19 +13,14 @@ $rsCampaigns = mysql_query($query_rsCampaigns, $dbDescent) or die(mysql_error())
 $row_rsCampaigns = mysql_fetch_assoc($rsCampaigns);
 $totalRows_rsCampaigns = mysql_num_rows($rsCampaigns);
 
-$colname_rsPlayerAccess = "-1";
-if (isset($_SESSION['MM_Username'])) {
-  $colname_rsPlayerAccess = $_SESSION['MM_Username'];
-}
-
-$query_rsPlayerAccess = sprintf("SELECT player_username FROM tbplayerlist WHERE player_handle = %s", GetSQLValueString($colname_rsPlayerAccess, "text"));
-$rsPlayerAccess = mysql_query($query_rsPlayerAccess, $dbDescent) or die(mysql_error());
-$row_rsPlayerAccess = mysql_fetch_assoc($rsPlayerAccess);
-$totalRows_rsPlayerAccess = mysql_num_rows($rsPlayerAccess);
-
+$query_rsGroups = sprintf("SELECT * FROM tbgroup WHERE grp_startedby = %s ORDER BY grp_name ASC ", GetSQLValueString($username, "text"));
+$rsGroups = mysql_query($query_rsGroups, $dbDescent) or die(mysql_error());
+$row_rsGroups = mysql_fetch_assoc($rsGroups);
+$totalRows_rsGroups = mysql_num_rows($rsGroups);
 
 $selectOptions = array();
 $checboxOptions = array();
+$groupOptions = array();
 
 do {
 
@@ -57,15 +32,52 @@ do {
 
 } while ($row_rsCampaigns = mysql_fetch_assoc($rsCampaigns));
 
+do {
 
+  $groupOptions[] = '<option value="' . $row_rsGroups['grp_id'] . '"> ' . $row_rsGroups['grp_name'] . '<br />';
+
+} while ($row_rsGroups = mysql_fetch_assoc($rsGroups));
+
+// POST
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "new_game-form")) {
+
+  $insertSQL = sprintf("INSERT INTO tbgames (game_grp_id, game_dm, game_camp_id) VALUES (%s, %s, %s)",
+                          GetSQLValueString($_POST['group_id'], "int"),
+                          GetSQLValueString($username, "text"),
+                          GetSQLValueString($_POST['campaign_id'], "int"));
+
+
+  $Result = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
+  $ResultID = mysql_insert_id();
+
+  $query_rsIntroduction = sprintf("SELECT * FROM tbquests WHERE quest_act = %s AND quest_expansion_id = %s",
+                          GetSQLValueString("Introduction", "text"),
+                          GetSQLValueString($_POST['campaign_id'], "int"));
+  $rsIntroduction = mysql_query($query_rsIntroduction, $dbDescent) or die(mysql_error());
+  $row_rsIntroduction = mysql_fetch_assoc($rsIntroduction);
+  $totalRows_rsIntroduction = mysql_num_rows($rsIntroduction);
+
+  $insertSQL2 = sprintf("INSERT INTO tbquests_progress (progress_game_id, progress_quest_id) VALUES (%s, %s)",
+                          GetSQLValueString($ResultID, "int"),
+                          GetSQLValueString($row_rsIntroduction['quest_id'], "int"));
+
+
+  $Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
+
+  $insertGoTo = "create.php?urlGamingID=" . $ResultID ."&urlGrpID=" . $_POST['group_id'];
+    header(sprintf("Location: %s", $insertGoTo));
+}
 ?>
 
-
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../content.css">
+  </head>
 <body>
 
-  <form action="<?php echo $editFormAction; ?>" method="post" name="start-quest-form" id="new_campaign-form">
+  <form action="create.php" method="post" name="start-quest-form" id="new_game-form">
     <div>Select Main Campaign</div>
-    <select name="progress_quest_id">
+    <select name="campaign_id">
 
       <?php foreach($selectOptions as $so) {
         echo $so;
@@ -78,56 +90,21 @@ do {
       echo $co;
     } ?>
 
-    <input type="submit" value="Select" />
+    <select name="group_id">
 
-    <input type="hidden" name="progress_timestamp" value="" />
-    <input type="hidden" name="MM_insert" value="new_campaign-form" />
+      <?php foreach($groupOptions as $go) {
+        echo $go;
+      } ?>
+
+    </select>
+
+    <input type="submit" value="Select" />
+    <input type="hidden" name="MM_insert" value="new_game-form" />
     
     
     
 
   </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-      <table width="385" border="0" cellpadding="15" cellspacing="0" class="purpleTable">
-        <tr>
-          <td align="center" class="header">
-            <table border="0" cellpadding="0" cellspacing="5">
-              <?php do { ?>
-                <tr>
-                  <td colspan="3"><a href="choosegroup.php?urlCampaignID=<?php echo $row_rsCamList['cam_name']; ?>"><?php echo $row_rsCamList['expansion']; ?><br>
-                  <img src="../images/logos/<?php echo $row_rsCamList['cam_logo']; ?>" height="30" /></a></td>
-                  <td><a href="choosegroup.php?urlCampaignID=<?php echo $row_rsCamList['cam_name']; ?>"><img src="../images/logos/<?php echo $row_rsCamList['cam_icon']; ?>" height="30" /></a></td>
-                </tr>
-                <?php } while ($row_rsCamList = mysql_fetch_assoc($rsCamList)); ?>
-            </table></td>
-        </tr>
-      </table>
-
-
-
-
-
-<p>&nbsp;</p>
-
-
 </body>
 </html>
-<?php
-mysql_free_result($rsCreateGroup);
-
-mysql_free_result($rsCamList);
-
-mysql_free_result($rsPlayerAccess);
-?>

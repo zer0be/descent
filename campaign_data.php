@@ -128,18 +128,22 @@ do {
   } else if($row_rsQuestData['quest_rew_h_xp'] != 0){
     $rewardTypeH = "hxp";
     $qrewardH = $row_rsQuestData['quest_rew_h_xp'];
-  } else {
+  } else if ($row_rsQuestData['quest_rew_relic_id'] != NULL){
     $rewardTypeH = "relic";
     $qrewardH = $row_rsQuestData['relic_h_name'];
+  } else {
+    $rewardTypeH = "none";
   }
 
   $rewardTypeOL = "";
   if($row_rsQuestData['quest_rew_ol_xp'] != 0){
     $rewardTypeOL = "olxp";
     $qrewardOL = $row_rsQuestData['quest_rew_ol_xp'];
-  } else {
+  } else if ($row_rsQuestData['quest_rew_relic_id'] != NULL){
     $rewardTypeOL = "relic";  
     $qrewardOL = $row_rsQuestData['relic_ol_name'];
+  } else {
+    $rewardTypeOL = "none";
   }
 
   // did the heroes win? - FIX ME: Make 'The Heroes' be a bool instead of text - Also all this setting of rewards needs to be simpler?
@@ -317,40 +321,4 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "start-quest-form"))
   header(sprintf("Location: %s", $insertGoTo));
 }
 
-
-
-/*
-mysql_free_result($rsSelectedLog);
-
-mysql_free_result($rsLog);
-
-mysql_free_result($rsGetOverlord);
-
-mysql_free_result($rsSumGoldLoot);
-
-mysql_free_result($rsGetSkillsOverlord);
-
-mysql_free_result($rsGetSkillsPlayer1);
-
-mysql_free_result($rsGetSkillsPlayer2);
-
-mysql_free_result($rsGetSkillsPlayer3);
-
-mysql_free_result($rsGetSkillsPlayer4);
-
-mysql_free_result($rsGetItemsOverlord);
-
-mysql_free_result($rsGetItemsPlayer1);
-
-mysql_free_result($rsGetItemsPlayer2);
-
-mysql_free_result($rsGetItemsPlayer3);
-
-mysql_free_result($rsGetItemsPlayer4);
-
-mysql_free_result($rsPLayerAccess);
-
-mysql_free_result($rsGroupCampaign);
-
-*/
 ?>

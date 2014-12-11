@@ -8,6 +8,11 @@ if (isset($_GET['urlGamingID'])) {
   $gameID = $_GET['urlGamingID'];
 } 
 
+$editFormAction = $_SERVER['PHP_SELF'];
+if (isset($_SERVER['QUERY_STRING'])) {
+  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+}
+
 //select the database
 mysql_select_db($database_dbDescent, $dbDescent);
 
@@ -254,7 +259,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
         // Save Character
         $insertSQL = sprintf("INSERT INTO tbcharacters (char_ggrp_id, char_game_id, char_player, char_hero, char_class) VALUES (%s, %s, %s, %s, %s)",
                                 GetSQLValueString(20, "int"),
-                                GetSQLValueString(40, "int"),
+                                GetSQLValueString($gameID, "int"),
                                 GetSQLValueString($xshdb['player'], "text"),
                                 GetSQLValueString($xshdb['id'], "int"),
                                 GetSQLValueString($xshdb['class'], "text"));
@@ -272,7 +277,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
           $insertSQL2 = sprintf("INSERT INTO tbitems_aquired (aq_item_id, aq_char_id, aq_game_id) VALUES (%s, %s, %s)",
                                 GetSQLValueString($row_rsStarting['class_item_id1'], "int"),
                                 GetSQLValueString($Result1ID, "int"),
-                                GetSQLValueString(40, "int"));
+                                GetSQLValueString($gameID, "int"));
 
           $Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
         }
@@ -282,7 +287,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
           $insertSQL2 = sprintf("INSERT INTO tbitems_aquired (aq_item_id, aq_char_id, aq_game_id) VALUES (%s, %s, %s)",
                                 GetSQLValueString($row_rsStarting['class_item_id2'], "int"),
                                 GetSQLValueString($Result1ID, "int"),
-                                GetSQLValueString(40, "int"));
+                                GetSQLValueString($gameID, "int"));
 
           $Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
         }
@@ -292,14 +297,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
           $insertSQL3 = sprintf("INSERT INTO tbskills_aquired (spendxp_skill_id, spendxp_char_id, spendxp_game_id) VALUES (%s, %s, %s)",
                                 GetSQLValueString($row_rsStarting['class_skill_id'], "int"),
                                 GetSQLValueString($Result1ID, "int"),
-                                GetSQLValueString(40, "int"));
+                                GetSQLValueString($gameID, "int"));
 
           $Result3 = mysql_query($insertSQL3, $dbDescent) or die(mysql_error());
         }
       }
 
-    //$insertGoTo = "campaign_overview.php?urlGamingID=" . $gameID;
-    $insertGoTo = "../campaign_overview.php?urlGamingID=" . '40';
+    $insertGoTo = "../campaign_overview.php?urlGamingID=" . $gameID;
     header(sprintf("Location: %s", $insertGoTo));
   } else {
     $heroes_set = 1;
@@ -360,7 +364,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
   <body>
       <div class="clearfix">
         <?php if (($heroes_set == 0 || ($heroes_set == 1 && $totalHeroes < 2) || $Unique == 0) && $classes_set == 0){ ?>
-        <form action="create.php" method="post" name="set-heroes-form" id="set-heroes-form">
+        <form action="<?php echo $editFormAction; ?>" method="post" name="set-heroes-form" id="set-heroes-form">
 
           <div class="hero-select" class="clearfix">
             <img id="heroimg1" src="../img/heroes/nohero.jpg" />
@@ -397,7 +401,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
           <input type="hidden" name="MM_insert" value="set-heroes-form" />
         </form>
       <?php } else if(($heroes_set == 1 && $totalHeroes >= 2 && $Unique == 1) || ($classes_set == 1 && $UniqueS == 0) || ($classes_set == 1 && $UniqueP == 0)){ ?>
-        <form action="create.php" method="post" name="save-heroes-form" id="save-heroes-form">
+        <form action="<?php echo $editFormAction; ?>" method="post" name="save-heroes-form" id="save-heroes-form">
           <?php $ip = 1; ?>
         	<?php foreach ($selectedHeroes as $xsh){ ?>
         	<div class="hero-select" class="clearfix">

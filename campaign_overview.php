@@ -281,36 +281,7 @@
 
 			<?php
 			} else {
-				?>
-				<div id="heroes-detail" class="clearfix">
-				<?php 
-					// loop through heroes
-					$ih = 0;
-					foreach ($players as $h){
-						if (($players[$ih]['id'] == $charID)){
-				?>
-							
-								<div class="hero" style="background: url('img/heroes/<?php print $players[$ih]['img']; ?>');">
-									<div class="name"><?php print $players[$ih]['name']; ?></div>
-									<div class="class"><?php print $players[$ih]['class']; ?></div>
-									<div class="player"><?php print $players[$ih]['player']; ?></div>
-									<div class="xp"><?php print $players[$ih]['xp']; ?><span class="xp-label">XP</span></div>
-								</div> <!-- close hero -->
-
-								<?php foreach ($players[$ih]['skills'] as $sk){ ?>
-								<div class="skills">
-									<div class="name"><?php print $sk['name']; ?></div>
-									<div class="xp"><?php print $sk['xp']; ?><span class="xp-label">XP</span></div>
-								</div> <!-- close skills -->
-
-				<?php
-								}
-						}
-					$ih++;
-					} //close foreach
-				?>
-			</div> <!-- close heroes -->
-			<?php
+				include 'campaign_overview_hero.php';
 			}
 			/*
 			echo '<pre>';

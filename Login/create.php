@@ -62,9 +62,13 @@ if (isset($_SESSION['MM_Username'])) {
 if (isset($_GET['urlGrpName'])) { // normal page or detail page?
   //include 'newplayer.php';
   
+} else if (isset($_GET['urlGamingID'])) { // normal page or detail page?
+  include 'selectheroes.php';
+  
 } else {
   //include 'newgroup.php';
-  include 'selectheroes.php';
+  //
+  include 'newcampaign.php';
   
 }
 
