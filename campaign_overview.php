@@ -1,6 +1,4 @@
 <?php
-	include 'heroes_test.php';
-	include 'campaign_test.php';
 
 	//-----------------------//
 	//remove me after include//
@@ -150,7 +148,7 @@
 					
 					foreach ($campaign['quests'] as $qs){
 				?>
-				<div class="campaign-phase clearfix">
+				<div class="campaign-phase campaign-phase-<?php echo $qs['id']; ?> clearfix">
 					<div class="phase-column travel">
 						<?php if ($qs['travel_set'] == 0){ ?>
 							<div class="center subbutton"><p class="title">Add Travel Steps</p></div>

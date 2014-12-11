@@ -111,12 +111,10 @@ $totalRows_rsQuestData = mysql_num_rows($rsQuestData);
 */
 
 
-
 // Create the campaign data array
 $iq = 0;
 
 do {
-
   $qreward = 0;
   $qrewardH = 0; 
   $qrewardOL = 0; 

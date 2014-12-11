@@ -166,13 +166,13 @@ body{
 
 .item-name{
 	text-align: center;
-	width: 203px; /* FIX ME: When - is removed from skill costs set me back to 213 */
+	width: 213px; 
 	margin-top: 5px;
 }
 
 .item-xp{
 	font-size: 16px;
-	width: 35px; /* FIX ME: When - is removed from skill costs set me back to 25 */
+	width: 25px;
 	margin-top: 5px;
 }
 
@@ -427,6 +427,38 @@ padding: 0 0 0 0px;
 
 */
 
-#warrior1, #mage1, #scout1, #healer1{
-	display: none;
+
+
+#save-heroes-form select, #set-heroes-form select{
+	width: 300px;
+	height: 30px;
+	font-size: 18px;
+	text-align: center;
+}
+
+#save-heroes-form input, #set-heroes-form input{
+	background-color: #666;
+	border: none;
+	border-bottom: 5px solid #333;
+	color: #fff;
+	font-size: 18px;
+	width: 300px;
+	height: 40px;
+	text-align: center;
+	margin-left: 450px;
+	margin-top: 20px;
+}
+
+#save-heroes-form input:hover, #set-heroes-form input:hover{
+	background-color: #333;
+	border: none;
+	border-bottom: 5px solid #111;
+	color: #fff;
+}
+
+.error{
+	padding: 20px 10px 0px;
+	color: red;
+	font-style: italic;
+	text-align: center;
 }

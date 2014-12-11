@@ -50,16 +50,22 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
+
+if (isset($_SESSION['MM_Username'])) {
+  $username = $_SESSION['MM_Username'];
+}
 ?>
 <div id="wrapper">
 <?php
 
 
 if (isset($_GET['urlGrpName'])) { // normal page or detail page?
-  include 'newplayer.php';
+  //include 'newplayer.php';
+  
 } else {
   //include 'newgroup.php';
   include 'selectheroes.php';
+  
 }
 
 ?>
