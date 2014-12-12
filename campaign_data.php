@@ -117,7 +117,7 @@ $questsAct1 = 0;
 $questsAct2 = 0;
 $interludeDone = 0;
 $wonForInterlude = 0;
-$wonForInterlude = 0;
+$wonForFinale = 0;
 $currentAct = "Act 1";
 $canChoose = array();
 $cantChoose = array();
@@ -340,8 +340,6 @@ $totalRows_rsAvQuestList = mysql_num_rows($rsAvQuestList);
 $questOptions = array();
 do {
   $olquests[] = $row_rsAvQuestList['quest_next_ol_id'];
-
-  echo $currentAct;
             
   // filter out completed quests
   if(!(in_array($row_rsAvQuestList['quest_id'], $questsCompleted))){ 
@@ -371,9 +369,6 @@ do {
       }
     }
   } 
-
-  echo $currentAct;
-  echo $wonForInterlude;
 
 } while ($row_rsAvQuestList = mysql_fetch_assoc($rsAvQuestList));
 
