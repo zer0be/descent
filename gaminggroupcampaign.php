@@ -26,6 +26,7 @@ include 'includes/function_getSQLValueString.php';
     <META NAME="keywords" CONTENT="Descent Journeys in the dark, Road to Legend, Sea of Blood, SoB, RtL, JitD, Descent, descent 2nd, descentinthedark.com, descentinthedark, fantasy flight games, fantasyflightgames, second edition, campaign track, campaign, table top gaming, gaming, shadow rune" />
   </head>
   <body>
+    <a href='index.php'><div id="header"></div></a>
 
 <?php
 
@@ -60,7 +61,7 @@ do {
   <?php
 
   // Select the players (heroes and overlord)
-  $query_rsCharData = sprintf("SELECT * FROM tbcharacters INNER JOIN tbheroes ON tbcharacters.char_hero = tbheroes.hero_id WHERE char_game_id = %s", GetSQLValueString($row_rsGetCampaigns['game_id'], "int"));
+  $query_rsCharData = sprintf("SELECT * FROM tbcharacters INNER JOIN tbheroes ON tbcharacters.char_hero = tbheroes.hero_id WHERE char_game_id = %s ORDER BY hero_id", GetSQLValueString($row_rsGetCampaigns['game_id'], "int"));
   $rsCharData = mysql_query($query_rsCharData, $dbDescent) or die(mysql_error());
   $row_rsCharData = mysql_fetch_assoc($rsCharData);
   $totalRows_rsCharData = mysql_num_rows($rsCharData);
@@ -99,6 +100,9 @@ do {
         <?php
           $ih++;
           } //close foreach
+          for ($x = $ih; $x < 5; $x++){ ?>
+            <div class="hero" style="background: url('img/heroes/nohero.jpg') center; background-size: cover;"></div>
+         <?php }
         ?>
         
       </div> <!-- close heroes-campaign -->

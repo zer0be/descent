@@ -5,7 +5,7 @@ $currentPage = $_SERVER["PHP_SELF"];
 
 // FIX ME: Check if these db queries shouldn't be rewritten to something more simple
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsCampaignList = "SELECT cam_id, cam_name, expansion, cam_logo, cam_icon FROM tbcampaign ORDER BY cam_id ASC";
+$query_rsCampaignList = "SELECT cam_id, cam_name, expansion, cam_logo, cam_icon FROM tbcampaign WHERE cam_type = 'full' OR cam_type = 'mini' ORDER BY cam_type ASC";
 $rsCampaignList = mysql_query($query_rsCampaignList, $dbDescent) or die(mysql_error());
 $row_rsCampaignList = mysql_fetch_assoc($rsCampaignList);
 $totalRows_rsCampaignList = mysql_num_rows($rsCampaignList);
@@ -74,14 +74,16 @@ $queryString_rsSelectGroup = sprintf("&totalRows_rsSelectGroup=%d%s", $totalRows
   </div>
 
   <div id="gaming-groups" class="half-block">
-    <h2 class="center">Gaming Groups</h2>
-    <p class="center">Search For a Gaming Group</p>
-    <?php do { ?>
-    <div>
-      <div class="half-block"><a href="gaminggroupcampaign.php?urlGgrp=<?php echo $row_rsSelectGroup['grp_id']; ?>"><?php echo $row_rsSelectGroup['grp_name']; ?></a></div>
-      <div class="half-block"><?php echo $row_rsSelectGroup['grp_city'] . ", " . $row_rsSelectGroup['grp_state_country']; ?></div>
+    <div class="inner">
+      <h2 class="center">Gaming Groups</h2>
+      <p class="center">Search For a Gaming Group</p>
+      <?php do { ?>
+      <div>
+        <div class="half-block"><a href="gaminggroupcampaign.php?urlGgrp=<?php echo $row_rsSelectGroup['grp_id']; ?>"><?php echo $row_rsSelectGroup['grp_name']; ?></a></div>
+        <div class="half-block"><?php echo $row_rsSelectGroup['grp_city'] . ", " . $row_rsSelectGroup['grp_state_country']; ?></div>
+      </div>
+      <?php } while ($row_rsSelectGroup = mysql_fetch_assoc($rsSelectGroup)); ?>
     </div>
-    <?php } while ($row_rsSelectGroup = mysql_fetch_assoc($rsSelectGroup)); ?>
   </div>
 </div>
 

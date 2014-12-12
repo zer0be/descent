@@ -111,9 +111,19 @@ $totalRows_rsQuestData = mysql_num_rows($rsQuestData);
 */
 
 
-// Create the campaign data array
+// Set some variables
 $iq = 0;
+$questsAct1 = 0;
+$questsAct2 = 0;
+$interludeDone = 0;
+$wonForInterlude = 0;
+$wonForInterlude = 0;
+$currentAct = "Act 1";
+$canChoose = array();
+$cantChoose = array();
+$olquests = array();
 
+// Create the campaign data array
 do {
   $qreward = 0;
   $qrewardH = 0; 
@@ -211,6 +221,31 @@ do {
 
   );
 
+  // keep track of where we are in the campaign
+  if ($row_rsQuestData['quest_act'] == "Act 1" && $row_rsQuestData['progress_quest_type'] == "Quest"){
+    $questsAct1 += 1;
+  } else if ($row_rsQuestData['quest_act'] == "Interlude" && $row_rsQuestData['progress_quest_type'] == "Quest"){
+    $interludeDone = 1; 
+  } else if ($row_rsQuestData['quest_act'] == "Act 2" && $row_rsQuestData['progress_quest_type'] == "Quest"){
+    $questsAct2 += 1; 
+  }
+
+  // filter out act II quests that can/can't be selected because heroes won
+  if ($row_rsQuestData['progress_quest_winner'] == "Heroes Win" && $row_rsQuestData['quest_next_h_id'] != NULL){
+    $canChoose[] = $row_rsQuestData['quest_next_h_id'];
+    $cantChoose[] = $row_rsQuestData['quest_next_ol_id'];
+  }
+
+  if ($row_rsQuestData['progress_quest_winner'] == "Heroes Win" && $row_rsQuestData['quest_act'] == "Act 1"){
+    $wonForInterlude += 1;
+  }
+
+  if ($row_rsQuestData['progress_quest_winner'] == "Heroes Win" && $row_rsQuestData['quest_act'] == "Act 2"){
+    $wonForFinale += 1;
+  }
+
+  
+
   // Get the skills
   $query_rsQuestSkillsData = sprintf("SELECT * 
     FROM tbskills_aquired 
@@ -281,6 +316,13 @@ $iq++;
 } while ($row_rsQuestData = mysql_fetch_assoc($rsQuestData));
 
 
+if ($questsAct1 == 3 && $interludeDone == 0){
+  $currentAct = "Interlude";
+} else if ($questsAct1 == 3 && $interludeDone == 1 && $questsAct2 < 3){
+  $currentAct = "Act 2";
+} else if ($questsAct2 == 3){
+  $currentAct = "Finale";
+}
 
 // Available Quests
 
@@ -289,9 +331,55 @@ $rsAvQuestList = mysql_query($query_rsAvQuestList, $dbDescent) or die(mysql_erro
 $row_rsAvQuestList = mysql_fetch_assoc($rsAvQuestList);
 $totalRows_rsAvQuestList = mysql_num_rows($rsAvQuestList);
 
+// make an array with completed quests for options
+  $questsCompleted = array();
+  foreach ($campaign['quests'] as $qos){
+    $questsCompleted[] = $qos['quest_id'];
+  }
+
+$questOptions = array();
+do {
+  $olquests[] = $row_rsAvQuestList['quest_next_ol_id'];
+
+  echo $currentAct;
+            
+  // filter out completed quests
+  if(!(in_array($row_rsAvQuestList['quest_id'], $questsCompleted))){ 
+    if ($currentAct == "Act 1"){
+      if($row_rsAvQuestList['quest_act'] == "Act 1"){
+        $questOptions[] = '<option value="' . $row_rsAvQuestList['quest_id'] . '">' . $row_rsAvQuestList['quest_name'] . '</option>';
+      }
+    } else if ($currentAct == "Act 2"){
+      if(in_array($row_rsAvQuestList['quest_id'], $canChoose) || (in_array($row_rsAvQuestList['quest_id'], $olquests) && (!(in_array($row_rsAvQuestList['quest_id'],$cantChoose))))){
+        $questOptions[] = '<option value="' . $row_rsAvQuestList['quest_id'] . '">' . $row_rsAvQuestList['quest_name'] . '</option>';
+      }
+    } else if ($currentAct == "Interlude"){
+      if($row_rsAvQuestList['quest_act'] == "Interlude"){
+        if ($wonForInterlude >= 2 && $row_rsAvQuestList['quest_next_h_id'] == 999){
+          $questOptions[] = '<option value="' . $row_rsAvQuestList['quest_id'] . '">' . $row_rsAvQuestList['quest_name'] . '</option>';
+        } else if ($wonForInterlude < 2 && $row_rsAvQuestList['quest_next_ol_id'] == 999){
+          $questOptions[] = '<option value="' . $row_rsAvQuestList['quest_id'] . '">' . $row_rsAvQuestList['quest_name'] . '</option>';
+        }
+      }
+    } else if ($currentAct == "Finale"){
+      if($row_rsAvQuestList['quest_act'] == "Finale"){
+        if ($wonForFinale >= 2 && $row_rsAvQuestList['quest_next_h_id'] == 999){
+          $questOptions[] = '<option value="' . $row_rsAvQuestList['quest_id'] . '">' . $row_rsAvQuestList['quest_name'] . '</option>';
+        } else if ($wonForFinale < 2 && $row_rsAvQuestList['quest_next_ol_id'] == 999){
+          $questOptions[] = '<option value="' . $row_rsAvQuestList['quest_id'] . '">' . $row_rsAvQuestList['quest_name'] . '</option>';
+        }
+      }
+    }
+  } 
+
+  echo $currentAct;
+  echo $wonForInterlude;
+
+} while ($row_rsAvQuestList = mysql_fetch_assoc($rsAvQuestList));
+
 // Available Rumors
 
-$query_rsAvRumorList = sprintf("SELECT * FROM tbquests WHERE quest_expansion_id != %s ORDER BY quest_order ASC", GetSQLValueString($row_rsGroupCampaign['game_camp_id'], "int"));
+$query_rsAvRumorList = sprintf("SELECT * FROM tbquests LEFT JOIN tbcampaign ON quest_expansion_id = cam_id WHERE quest_expansion_id != %s AND quest_act = %s AND cam_type = %s ORDER BY quest_order ASC", GetSQLValueString($row_rsGroupCampaign['game_camp_id'], "int"), GetSQLValueString($currentAct, "text"), GetSQLValueString("mini", "text"));
 $rsAvRumorList = mysql_query($query_rsAvRumorList, $dbDescent) or die(mysql_error());
 $row_rsAvRumorList = mysql_fetch_assoc($rsAvRumorList);
 $totalRows_rsAvRumorList = mysql_num_rows($rsAvRumorList);

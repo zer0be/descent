@@ -23,7 +23,6 @@
           foreach ($players as $h){
             if (($players[$ih]['id'] == $detailCharID)){
         ?>
-              
                 <div class="hero" style="background: url('img/heroes/<?php print $players[$ih]['img']; ?>');">
                   <div class="name"><?php print $players[$ih]['name']; ?></div>
                   <div class="class"><?php print $players[$ih]['class']; ?></div>
@@ -32,25 +31,29 @@
                 </div> <!-- close hero -->
 
                 <div class="detail-items phase-column">
-                <?php do { ?>            
-                  <div class="items item-name"><?php print $row_rsDetailItems['item_name']; ?></div>
-                  <?php if ($row_rsDetailItems['item_default_price'] == 0){ ?>
-                    <div class="items item-xp">FREE</div>
-                  <?php } else { ?>
-                    <div class="items item-xp"><?php print $row_rsDetailItems['item_default_price']; ?><span class="xp-label">GOLD</span></div>
-                  <?php } ?>
+                <?php do { ?>
+                  <div class="item clearfix">      
+                    <div class="hero-mini items" style="background: url('img/<?php print $row_rsDetailItems['item_type']; ?>.jpg') center;"></div>  
+                    <div class="items item-name"><?php print $row_rsDetailItems['item_name']; ?></div>
+                    <?php if ($row_rsDetailItems['item_default_price'] == 0){ ?>
+                      <div class="items item-xp">FREE</div>
+                    <?php } else { ?>
+                      <div class="items item-xp cost"><?php print $row_rsDetailItems['item_default_price']; ?><span class="xp-label">G</span></div>
+                    <?php } ?>
+                  </div>
                 <?php } while ($row_rsDetailItems = mysql_fetch_assoc($rsDetailItems)); ?>
                 </div> <!-- close items -->
 
                 <div class="detail-skills phase-column">
                 <?php do { ?>
-                
-                  <div class="items item-name"><?php print $row_rsDetailSkills['skill_name']; ?></div>
-                  <?php if ($row_rsDetailSkills['skill_cost'] == 0){ ?>
-                    <div class="items item-xp">FREE</div>
-                  <?php } else { ?>
-                    <div class="items item-xp"><?php echo $row_rsDetailSkills['skill_cost']; ?><span class="xp-label">XP</span></div>
-                  <?php } ?>
+                  <div class="item clearfix">   
+                    <div class="items item-name"><?php print $row_rsDetailSkills['skill_name']; ?></div>
+                    <?php if ($row_rsDetailSkills['skill_cost'] == 0){ ?>
+                      <div class="items item-xp">FREE</div>
+                    <?php } else { ?>
+                      <div class="items item-xp"><?php echo $row_rsDetailSkills['skill_cost']; ?><span class="xp-label">XP</span></div>
+                    <?php } ?>
+                  </div>
                 <?php } while ($row_rsDetailSkills = mysql_fetch_assoc($rsDetailSkills)); ?>
                 </div> <!-- close skills -->
 

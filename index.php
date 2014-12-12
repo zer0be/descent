@@ -23,6 +23,8 @@ include 'includes/function_getSQLValueString.php';
 		<META NAME="keywords" CONTENT="Descent Journeys in the dark, Road to Legend, Sea of Blood, SoB, RtL, JitD, Descent, descent 2nd, descentinthedark.com, descentinthedark, fantasy flight games, fantasyflightgames, second edition, campaign track, campaign, table top gaming, gaming, shadow rune" />
 	</head>
 	<body>
+		<!-- <div id="toolbar"></div> -->
+		<a href='index.php'><div id="header"></div></a>
 		<div id="wrapper">
 		<?php 
 

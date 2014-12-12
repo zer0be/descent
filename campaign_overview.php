@@ -79,14 +79,6 @@
 
 			<div id="campaign">
 
-				<?php 
-					// make an array with completed quests for options
-					$questsCompleted = array();
-					foreach ($campaign['quests'] as $qos){
-						$questsCompleted[] = $qos['quest_id'];
-					}
-				?>
-
 				<div class="buttons clearfix">
 					<div class="center button quest-button"><p class="title">Start New Quest</p></div>
 					<div class="center button rumor-button"><p class="title">Start New Rumor</p></div>
@@ -94,18 +86,13 @@
 
 				<form action="<?php echo $editFormAction; ?>" method="post" name="start-quest-form" id="start-quest-form">
 					<select name="progress_quest_id">
-            <option value="">Quest</option>
-            <?php do { ?>
-							
-            	<!-- filter out completed quests -->
-            	<?php if(!(in_array($row_rsAvQuestList['quest_id'], $questsCompleted))){ ?>
-             	<option value="<?php echo $row_rsAvQuestList['quest_id']?>"><?php echo $row_rsAvQuestList['quest_name']?></option>
-             	<?php } ?>
+            <option value="">Select Quest</option>
 
-
-
-
-            <?php } while ($row_rsAvQuestList = mysql_fetch_assoc($rsAvQuestList));
+            <?php 
+            
+            foreach ($questOptions as $xqo){
+            	echo $xqo;
+            }
 									
 						$rows = mysql_num_rows($rsAvQuestList);
 						if($rows > 0) {
