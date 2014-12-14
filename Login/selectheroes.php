@@ -158,6 +158,7 @@ $classesWarrior = array();
 $classesMage = array();
 $classesScout = array();
 $classesHealer = array();
+$classesOverlord = array();
 do{
   // FIX ME: Make value an id $row_rsClasses['class_id'] instead of the name (change in database)
   if ($row_rsClasses['class_archetype'] == "Warrior"){
@@ -168,7 +169,9 @@ do{
     $classesScout[] = '<option value="' . $row_rsClasses['class_name'] . '">' . $row_rsClasses['class_name'] . '</option>';
   } else if ($row_rsClasses['class_archetype'] == "Healer"){
     $classesHealer[] = '<option value="' . $row_rsClasses['class_name'] . '">' . $row_rsClasses['class_name'] . '</option>';
-  } 
+  } else if ($row_rsClasses['class_archetype'] == "Overlord"){
+    $classesOverlord[] = '<option value="' . $row_rsClasses['class_name'] . '">' . $row_rsClasses['class_name'] . '</option>';
+  }
 
 } while ($row_rsClasses = mysql_fetch_assoc($rsClasses));
 
@@ -186,19 +189,24 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
   $saveHeroes = array();
     // add hero 1 data to an array
     $saveHeroes[0] = array(
+      "id" => 0,
+      "class" => $_POST['classOverlord'],
+      "player" => $_POST['playerOverlord'],
+    );
+    $saveHeroes[1] = array(
       "id" => $_POST['heroId1'],
       "class" => $_POST['class1'],
       "player" => $_POST['player1'],
     );
     // add hero 2 data to an array
-    $saveHeroes[1] = array(
+    $saveHeroes[2] = array(
       "id" => $_POST['heroId2'],
       "class" => $_POST['class2'],
       "player" => $_POST['player2'],
     );
     // add hero 3 data to an array, if there is a third hero
     if (isset($_POST['heroId3'])){
-      $saveHeroes[2] = array(   
+      $saveHeroes[3] = array(   
         "id" => $_POST['heroId3'],
         "class" => $_POST['class3'],
         "player" => $_POST['player3'],  
@@ -206,7 +214,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
     }
     // add hero 4 data to an array, if there is a fourth hero
     if (isset($_POST['heroId4'])){
-      $saveHeroes[3] = array(
+      $saveHeroes[4] = array(
         "id" => $_POST['heroId4'],
         "class" => $_POST['class4'],
         "player" => $_POST['player4'],
@@ -430,6 +438,16 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
         		
         	</div>
         	<?php $ip++; } ?>
+          
+          <!-- Overlord -->
+          <div>
+            <select id="class_hero1" name="classOverlord">
+              <?php foreach ($classesOverlord as $co) { echo $co; } ?>
+            </select>
+            <select id="class_hero1" name="playerOverlord">
+              <?php foreach ($playerOptions as $po) { echo $po; } ?>
+            </select>
+          </div>
           
           <input name="buttonSaveClasses" type="submit" id="buttonSaveClasses" value="Save Heroes" />
           <input type="hidden" name="MM_insert" value="save-heroes-form" />

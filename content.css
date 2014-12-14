@@ -128,20 +128,30 @@ body{
 }
 
 .travel-step{
-	height: 80px;
+	/*height: 80px;*/
 	padding: 10px;
 	padding-left: 60px;
+	display: table;
+}
+
+.phase-column.travel{
+	overflow: auto;
+}
+
+.travel-child{
+	display: table-cell;
+  vertical-align: middle;
 }
 
 .travel-event{
-	font-size: 12px;
+	font-size: 11px;
 	font-style: italic;
-	margin-bottom: 7px;
+	margin-bottom: 3px;
 	font-weight: 600;
 }
 
 .travel-outcome{
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .quest, .save-left-column{
@@ -372,12 +382,16 @@ body{
 	position: relative;
 }
 
+.save-back-column{
+	float: left;
+}
+
 .save-right-column{
 	display: block;
 	width: 860px;
 	min-height: 380px;
 	background: #ddd;
-	float: left;
+	float: right;
 	position: relative;
 	padding: 10px 20px;
 }
@@ -461,16 +475,7 @@ padding: 0 0 0 0px;
 
 */
 
-
-
-#save-heroes-form select, #set-heroes-form select{
-	width: 300px;
-	height: 30px;
-	font-size: 18px;
-	text-align: center;
-}
-
-#save-heroes-form input, #set-heroes-form input{
+input[type="submit"], a.normal-button{
 	background-color: #666;
 	border: none;
 	border-bottom: 5px solid #333;
@@ -479,15 +484,47 @@ padding: 0 0 0 0px;
 	width: 300px;
 	height: 40px;
 	text-align: center;
-	margin-left: 450px;
 	margin-top: 20px;
 }
 
-#save-heroes-form input:hover, #set-heroes-form input:hover{
+a.normal-button{
+	margin-top: 0;
+	display: block;
+	text-decoration: none;
+	height: 33px;
+	padding-top: 7px;
+}
+
+.save-back-column a.normal-button{
+	background-color: #333;
+	border-bottom: 5px solid #111;
+}
+
+.save-back-column a.normal-button:hover{
+	background-color: #666;
+	border-bottom: 5px solid #333;
+}
+
+input[type="submit"]:hover, a.normal-button:hover{
 	background-color: #333;
 	border: none;
 	border-bottom: 5px solid #111;
 	color: #fff;
+}
+
+select{
+	width: 300px;
+	height: 30px;
+	font-size: 18px;
+	text-align: center;
+}
+
+#save-heroes-form input, #set-heroes-form input{
+	margin-left: 450px;
+}
+
+#travel-details-form input{
+	margin-left: 60px;
 }
 
 .error{
@@ -496,3 +533,9 @@ padding: 0 0 0 0px;
 	font-style: italic;
 	text-align: center;
 }
+
+
+#travel-details-form .travel-step{
+	height: auto;
+}
+

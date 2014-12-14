@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 12 dec 2014 om 19:27
--- Serverversie: 5.6.16
--- PHP-versie: 5.5.11
+-- Gegenereerd op: 14 dec 2014 om 04:33
+-- Serverversie: 5.6.21
+-- PHP-versie: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tbcampaign` (
-  `cam_id` int(1) NOT NULL DEFAULT '0',
+  `cam_id` int(1) NOT NULL,
   `cam_name` varchar(32) DEFAULT NULL,
   `cam_type` varchar(20) NOT NULL,
   `cam_map` varchar(24) DEFAULT NULL,
@@ -35,8 +35,7 @@ CREATE TABLE IF NOT EXISTS `tbcampaign` (
   `expansion` varchar(21) DEFAULT NULL,
   `edition` varchar(3) DEFAULT NULL,
   `cam_logo` varchar(25) DEFAULT NULL,
-  `cam_icon` varchar(26) DEFAULT NULL,
-  PRIMARY KEY (`cam_id`)
+  `cam_icon` varchar(26) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -54,6 +53,17 @@ INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_type`, `cam_map`, `cam_log`
 (7, 'Oath of the Outcast', 'monster', NULL, NULL, NULL, '2nd', NULL, NULL),
 (8, 'Crown of Destiny', 'monster', NULL, NULL, NULL, '2nd', NULL, NULL),
 (9, 'Guardians of Deephall', 'monster', NULL, NULL, NULL, '2nd', NULL, NULL),
+(10, 'Belthir Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(11, 'Eliza Farrow Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(12, 'Alric Farrow Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(13, 'Merick Farrow Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(14, 'Baron Zachareth Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(15, 'Splig Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(16, 'Valyndra Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(17, 'Ariad Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(18, 'Queen Ariad Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(19, 'Raythen Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
+(20, 'Serena Lieutenant Pack', 'lieutenant', NULL, NULL, NULL, '2nd', NULL, NULL),
 (99, 'Conversion Kit', 'monster', NULL, NULL, NULL, '1st', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -63,15 +73,14 @@ INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_type`, `cam_map`, `cam_log`
 --
 
 CREATE TABLE IF NOT EXISTS `tbcharacters` (
-  `char_id` int(3) NOT NULL AUTO_INCREMENT,
+`char_id` int(3) NOT NULL,
   `char_ggrp_id` int(3) DEFAULT NULL,
   `char_game_id` int(3) DEFAULT NULL,
   `char_player` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `char_hero` int(3) DEFAULT NULL,
   `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `char_xp` int(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`char_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
+  `char_xp` int(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcharacters`
@@ -87,18 +96,10 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 (7, 17, 38, 'Maaike', 30, 'Runemaster', 4),
 (8, 17, 38, 'Tim', 6, 'Thief', 4),
 (9, 17, 38, 'Frauke', 2, 'Berserker', 4),
-(11, 17, 39, 'Maaike', 10, 'Runemaster', 0),
-(12, 17, 39, 'Frauke', 1, 'Berserker', 0),
-(13, 17, 39, 'Tim', 5, 'Thief', 0),
-(14, 17, 39, 'dllrt', 0, 'Dragon''s Greed', 0),
-(56, 20, 47, 'Frauke', 2, 'Berserker', 0),
-(57, 20, 47, 'dllrt', 4, 'Necromancer', 0),
-(58, 20, 47, 'Maaike', 6, 'Wildlander', 0),
-(59, 20, 47, 'Tim', 8, 'Spiritspeaker', 0),
-(60, 20, 48, 'dllrt', 1, 'Berserker', 6),
-(61, 20, 48, 'Frauke', 4, 'Necromancer', 6),
-(62, 20, 48, 'Maaike', 5, 'Wildlander', 6),
-(63, 20, 48, 'Tim', 15, 'Spiritspeaker', 6);
+(68, 20, 50, 'dllrt', 0, 'Cursed By Power', 0),
+(69, 20, 50, 'Frauke', 2, 'Berserker', 0),
+(70, 20, 50, 'Tim', 6, 'Thief', 0),
+(71, 20, 50, 'Maaike', 30, 'Runemaster', 1);
 
 -- --------------------------------------------------------
 
@@ -107,15 +108,14 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 --
 
 CREATE TABLE IF NOT EXISTS `tbclasses` (
-  `class_id` int(3) NOT NULL AUTO_INCREMENT,
+`class_id` int(3) NOT NULL,
   `class_name` varchar(24) NOT NULL,
   `class_archetype` varchar(20) NOT NULL,
   `class_item_id1` int(3) DEFAULT NULL,
   `class_item_id2` int(3) DEFAULT NULL,
   `class_skill_id` int(11) NOT NULL,
-  `class_exp_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+  `class_exp_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbclasses`
@@ -137,7 +137,17 @@ INSERT INTO `tbclasses` (`class_id`, `class_name`, `class_archetype`, `class_ite
 (13, 'Treasure Hunter', 'Scout', 28, 29, 125, 2),
 (14, 'Apothecary', 'Healer', 37, NULL, 60, 2),
 (15, 'Stalker', 'Scout', 32, NULL, 115, 3),
-(16, 'Prophet', 'Healer', 38, 39, 51, 3);
+(16, 'Prophet', 'Healer', 38, 39, 51, 3),
+(21, 'Hybrid Loyalty', 'Overlord', NULL, NULL, 201, 10),
+(22, 'Endless Thirst', 'Overlord', NULL, NULL, 211, 11),
+(23, 'The Fallen Elite', 'Overlord', NULL, NULL, 221, 12),
+(24, 'Cursed By Power', 'Overlord', NULL, NULL, 231, 13),
+(25, 'Seeds of Betrayal', 'Overlord', NULL, NULL, 241, 14),
+(26, 'Goblin Uprising', 'Overlord', NULL, NULL, 251, 15),
+(27, 'Dragon''s Greed', 'Overlord', NULL, NULL, 261, 16),
+(28, 'Dark Illusions', 'Overlord', NULL, NULL, 271, 17),
+(29, 'Tangled Web', 'Overlord', NULL, NULL, 281, 18),
+(30, 'Skulduggery', 'Overlord', NULL, NULL, 291, 19);
 
 -- --------------------------------------------------------
 
@@ -146,14 +156,13 @@ INSERT INTO `tbclasses` (`class_id`, `class_name`, `class_archetype`, `class_ite
 --
 
 CREATE TABLE IF NOT EXISTS `tbgames` (
-  `game_id` int(3) NOT NULL AUTO_INCREMENT,
+`game_id` int(3) NOT NULL,
   `game_grp_id` int(3) DEFAULT NULL,
   `game_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `game_dm` varchar(9) DEFAULT NULL,
   `game_camp_id` int(3) DEFAULT NULL,
-  `game_gold` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+  `game_gold` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgames`
@@ -162,9 +171,7 @@ CREATE TABLE IF NOT EXISTS `tbgames` (
 INSERT INTO `tbgames` (`game_id`, `game_grp_id`, `game_timestamp`, `game_dm`, `game_camp_id`, `game_gold`) VALUES
 (14, 7, '2014-10-03 09:06:52', 'Tundrra', 0, 0),
 (38, 17, '2014-11-27 06:46:16', 'dllrt', 0, 200),
-(39, 17, '2014-12-03 07:47:05', 'dllrt', 2, 0),
-(47, 17, '2014-12-11 17:26:47', 'dllrt', 4, 0),
-(48, 17, '2014-12-11 17:28:38', 'dllrt', 0, 400);
+(50, 17, '2014-12-13 23:31:22', 'dllrt', 0, 275);
 
 -- --------------------------------------------------------
 
@@ -173,14 +180,13 @@ INSERT INTO `tbgames` (`game_id`, `game_grp_id`, `game_timestamp`, `game_dm`, `g
 --
 
 CREATE TABLE IF NOT EXISTS `tbgroup` (
-  `grp_id` int(2) NOT NULL AUTO_INCREMENT,
+`grp_id` int(2) NOT NULL,
   `grp_name` varchar(23) DEFAULT NULL,
   `grp_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grp_startedby` varchar(9) DEFAULT NULL,
   `grp_state_country` varchar(7) DEFAULT NULL,
-  `grp_city` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`grp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+  `grp_city` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgroup`
@@ -203,8 +209,7 @@ CREATE TABLE IF NOT EXISTS `tbheroes` (
   `hero_type` varchar(8) DEFAULT NULL,
   `hero_expansion` varchar(7) DEFAULT NULL,
   `hero_card` varchar(22) DEFAULT NULL,
-  `hero_img` varchar(26) DEFAULT NULL,
-  PRIMARY KEY (`hero_id`)
+  `hero_img` varchar(26) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -318,8 +323,7 @@ CREATE TABLE IF NOT EXISTS `tbitems` (
   `item_starting` tinyint(1) NOT NULL,
   `owner` varchar(15) DEFAULT NULL,
   `market_img` varchar(36) DEFAULT NULL,
-  `item_exp_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`item_id`)
+  `item_exp_id` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -434,7 +438,7 @@ INSERT INTO `tbitems` (`item_id`, `item_name`, `item_type`, `market_act`, `item_
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
-  `shop_id` int(3) NOT NULL AUTO_INCREMENT,
+`shop_id` int(3) NOT NULL,
   `aq_item_id` int(3) DEFAULT NULL,
   `aq_relic_id` int(3) DEFAULT NULL,
   `aq_char_id` int(3) NOT NULL,
@@ -444,9 +448,8 @@ CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
   `shop_equipped` varchar(3) DEFAULT NULL,
   `aq_progress_id` int(11) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL,
-  `aq_game_id` int(2) DEFAULT NULL,
-  PRIMARY KEY (`shop_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=311 ;
+  `aq_game_id` int(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=324 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_aquired`
@@ -472,22 +475,12 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_
 (271, 82, NULL, 7, -175, '', 0, 'yes', 35, '', 38),
 (278, NULL, 3, 6, NULL, NULL, NULL, NULL, 43, NULL, 38),
 (279, NULL, 2, 7, NULL, NULL, NULL, NULL, 56, NULL, 38),
-(294, 22, NULL, 51, NULL, NULL, NULL, NULL, NULL, NULL, 40),
-(295, 23, NULL, 51, NULL, NULL, NULL, NULL, NULL, NULL, 40),
-(296, 15, NULL, 52, NULL, NULL, NULL, NULL, NULL, NULL, 40),
-(297, 40, NULL, 53, NULL, NULL, NULL, NULL, NULL, NULL, 42),
-(298, 15, NULL, 54, NULL, NULL, NULL, NULL, NULL, NULL, 42),
-(299, 19, NULL, 55, NULL, NULL, NULL, NULL, NULL, NULL, 42),
-(300, 40, NULL, 56, NULL, NULL, NULL, NULL, NULL, NULL, 47),
-(301, 15, NULL, 57, NULL, NULL, NULL, NULL, NULL, NULL, 47),
-(302, 19, NULL, 58, NULL, NULL, NULL, NULL, NULL, NULL, 47),
-(303, 36, NULL, 59, NULL, NULL, NULL, NULL, NULL, NULL, 47),
-(304, 40, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, 48),
-(305, 15, NULL, 61, NULL, NULL, NULL, NULL, NULL, NULL, 48),
-(306, 19, NULL, 62, NULL, NULL, NULL, NULL, NULL, NULL, 48),
-(307, 36, NULL, 63, NULL, NULL, NULL, NULL, NULL, NULL, 48),
-(309, NULL, 2, 61, NULL, NULL, NULL, NULL, 61, NULL, 48),
-(310, NULL, 4, 60, NULL, NULL, NULL, NULL, 65, NULL, 48);
+(318, 40, NULL, 69, NULL, NULL, NULL, NULL, NULL, NULL, 50),
+(319, 30, NULL, 70, NULL, NULL, NULL, NULL, NULL, NULL, 50),
+(320, 31, NULL, 70, NULL, NULL, NULL, NULL, NULL, NULL, 50),
+(321, 33, NULL, 71, NULL, NULL, NULL, NULL, NULL, NULL, 50),
+(322, NULL, 3, 70, NULL, NULL, NULL, NULL, 83, NULL, 50),
+(323, NULL, 4, 68, NULL, NULL, NULL, NULL, 86, NULL, 50);
 
 -- --------------------------------------------------------
 
@@ -496,32 +489,32 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems_relics` (
-  `relic_id` int(3) NOT NULL AUTO_INCREMENT,
+`relic_id` int(3) NOT NULL,
   `relic_h_name` varchar(24) NOT NULL,
   `relic_ol_name` varchar(24) NOT NULL,
-  `relic_exp_id` int(3) NOT NULL,
-  PRIMARY KEY (`relic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `relic_type` varchar(8) NOT NULL,
+  `relic_exp_id` int(3) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_relics`
 --
 
-INSERT INTO `tbitems_relics` (`relic_id`, `relic_h_name`, `relic_ol_name`, `relic_exp_id`) VALUES
-(1, 'Dawnblade', 'Duskblade', 0),
-(2, 'Fortuna''s Dice', 'Bones of Woe', 0),
-(3, 'Shield of the Dark God', 'Shield of Zorek''s Favor', 0),
-(4, 'Staff of Light', 'Staff of Shadows', 0),
-(5, 'The Shadow Rune', 'The Shadow Rune', 0),
-(6, 'Trueshot', 'Scorpion''s Kiss', 0),
-(7, 'Valyndra''s Bane', 'Her Majesty''s Malice', 1),
-(8, 'Aurium Mail', 'Valyndra''s Gift', 1),
-(9, 'Gauntlets of Power', 'Gauntlets of Spite', 2),
-(10, 'Living Heart', 'Fallen Heart', 2),
-(11, 'Sun Stone', 'Sun''s Fury', 2),
-(12, 'Immunity Elixir', 'Curative Vial', 3),
-(13, 'Mending Talisman', 'Omen of Blight', 3),
-(14, 'Workman''s Ring', 'Taskmaster''s Ring', 3);
+INSERT INTO `tbitems_relics` (`relic_id`, `relic_h_name`, `relic_ol_name`, `relic_type`, `relic_exp_id`) VALUES
+(1, 'Dawnblade', 'Duskblade', '1h', 0),
+(2, 'Fortuna''s Dice', 'Bones of Woe', 'other', 0),
+(3, 'Shield of the Dark God', 'Shield of Zorek''s Favor', '1h', 0),
+(4, 'Staff of Light', 'Staff of Shadows', '2h', 0),
+(5, 'The Shadow Rune', 'The Shadow Rune', '2h', 0),
+(6, 'Trueshot', 'Scorpion''s Kiss', '2h', 0),
+(7, 'Valyndra''s Bane', 'Her Majesty''s Malice', '2h', 1),
+(8, 'Aurium Mail', 'Valyndra''s Gift', 'armor', 1),
+(9, 'Gauntlets of Power', 'Gauntlets of Spite', 'other', 2),
+(10, 'Living Heart', 'Fallen Heart', 'other', 2),
+(11, 'Sun Stone', 'Sun''s Fury', 'other', 2),
+(12, 'Immunity Elixir', 'Curative Vial', 'other', 3),
+(13, 'Mending Talisman', 'Omen of Blight', 'other', 3),
+(14, 'Workman''s Ring', 'Taskmaster''s Ring', 'other', 3);
 
 -- --------------------------------------------------------
 
@@ -535,8 +528,7 @@ CREATE TABLE IF NOT EXISTS `tbplayerlist` (
   `player_handle` varchar(19) DEFAULT NULL,
   `player_password` varchar(14) DEFAULT NULL,
   `player_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` varchar(14) DEFAULT NULL,
-  PRIMARY KEY (`player_id`)
+  `created_by` varchar(14) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -602,92 +594,92 @@ CREATE TABLE IF NOT EXISTS `tbquests` (
   `quest_rew_h_gold` int(3) DEFAULT NULL,
   `quest_rew_relic_id` int(3) DEFAULT NULL,
   `quest_rew_special` tinyint(1) NOT NULL DEFAULT '0',
+  `quest_travel` varchar(64) DEFAULT NULL,
   `quest_order` int(1) DEFAULT NULL,
-  `quest_expansion_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`quest_id`)
+  `quest_expansion_id` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests`
 --
 
-INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `quest_next_h_id`, `quest_next_ol_id`, `quest_rew_ol_xp`, `quest_rew_h_xp`, `quest_rew_h_gold`, `quest_rew_relic_id`, `quest_rew_special`, `quest_order`, `quest_expansion_id`) VALUES
-(0, 'First Blood', 'Quest', 'Introduction', NULL, NULL, 0, 0, 0, NULL, 0, 2, 0),
-(1, 'A Fat Goblin', 'Quest', 'Act 1', 2, 3, 1, 0, 25, NULL, 0, 3, 0),
-(2, 'The Monster''s Hoard', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, 6, 0, 6, 0),
-(3, 'The Frozen Spire', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 6, 0),
-(4, 'Castle Daerion', 'Quest', 'Act 1', 5, 6, 1, 0, 25, NULL, 0, 3, 0),
-(5, 'The Dawnblade', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, 1, 1, 6, 0),
-(6, 'The Desecrated Tomb', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, 1, 1, 6, 0),
-(7, 'The Cardinal''s Plight', 'Quest', 'Act 1', 8, 9, 0, 0, 0, 4, 0, 3, 0),
-(8, 'Enduring the Elements', 'Quest', 'Act 2', NULL, NULL, 1, 0, 25, NULL, 1, 6, 0),
-(9, 'The Ritual of Shadows', 'Quest', 'Act 2', NULL, NULL, 1, 0, 25, NULL, 1, 6, 0),
-(10, 'The Masquerade Ball', 'Quest', 'Act 1', 11, 12, 0, 0, 0, 2, 0, 3, 0),
-(11, 'Blood of Heroes', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 6, 0),
-(12, 'The Twin Idols', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 6, 0),
-(13, 'Death on the Wing', 'Quest', 'Act 1', 14, 15, 0, 0, 0, 3, 0, 3, 0),
-(14, 'The Wyrm Turns', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 6, 0),
-(15, 'The Wyrm Rises', 'Quest', 'Act 2', NULL, NULL, 1, 0, 25, NULL, 0, 6, 0),
-(16, 'The Shadow Vault', 'Quest', 'Interlude', NULL, NULL, 0, 0, 0, 5, 0, 4, 0),
-(17, 'The Overlord Revealed', 'Quest', 'Interlude', NULL, NULL, 0, 0, 0, 5, 0, 5, 0),
-(18, 'Gryvorn Unleashed', 'Quest', 'Finale', NULL, NULL, 0, 0, 0, NULL, 0, 7, 0),
-(19, 'The Man Who Would Be King', 'Quest', 'Finale', NULL, NULL, 0, 0, 0, NULL, 0, 8, 0),
-(20, 'Gold Digger', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 1),
-(21, 'Rude Awakening', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 1),
-(22, 'What''s yours is Mine', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 1),
-(23, 'At the Forge', 'Quest', 'Finale 1', NULL, NULL, 0, 0, 0, NULL, 0, 7, 1),
-(24, 'Armored to the Teeth', 'Quest', 'Finale 2', NULL, NULL, 0, 0, 0, NULL, 0, 8, 1),
-(25, 'Ruinous Whispers', 'Quest', 'Introduction', NULL, NULL, 0, 0, 0, NULL, 0, 2, 2),
-(26, 'Gathering Foretold', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(27, 'Honor Among Thieves', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(28, 'Reclamation', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(29, 'Through the Mist', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(30, 'Barrow of Barris', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(31, 'Secrets in Stone', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(32, 'Fury of the Tempest', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(33, 'Back from the Dead', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 2),
-(34, 'Pilgrimage', 'Quest', 'Interlude', NULL, NULL, 0, 0, 0, NULL, 0, 4, 2),
-(35, 'Fortune and Glory', 'Quest', 'Interlude', NULL, NULL, 0, 0, 0, NULL, 0, 4, 2),
-(36, 'Heart of the Wilds', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 2),
-(37, 'Let the Truth be Buried', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 2),
-(38, 'Fountain of Insight', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 2),
-(39, 'Web of Power', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 2),
-(40, 'Fire and Brimstone', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 2),
-(41, 'Tripping the Scales', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 2),
-(42, 'Endless Night', 'Quest', 'Finale', NULL, NULL, 0, 0, 0, NULL, 0, 6, 2),
-(43, 'A Glimmer of Hope', 'Quest', 'Finale', NULL, NULL, 0, 0, 0, NULL, 0, 6, 2),
-(44, 'Ghost Town', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 2, 3),
-(45, 'Food for Worms', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 2, 3),
-(46, 'Three Heads, One Mind', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 2, 3),
-(47, 'Source of Sickness', 'Quest', 'Finale 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 3),
-(48, 'Spreading Affliction', 'Quest', 'Finale 2', NULL, NULL, 0, 0, 0, NULL, 0, 4, 3),
-(49, 'A Demostration', 'Quest', 'Introduction', NULL, NULL, 0, 0, 0, NULL, 0, 2, 4),
-(50, 'Civil War', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(51, 'Without Mercy', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(52, 'Local Politics', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(53, 'Prey', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(54, 'Price of Power', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(55, 'The Incident', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(56, 'Rat-Thing King', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(57, 'Respected Citizen', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 3, 4),
-(58, 'The True Enemy', 'Quest', 'Interlude 1', NULL, NULL, 0, 0, 0, NULL, 0, 4, 4),
-(59, 'Traitors Among Us', 'Quest', 'Interlude 2', NULL, NULL, 0, 0, 0, NULL, 0, 5, 4),
-(60, 'Overdue Demise', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 6, 4),
-(61, 'Into the Dark', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 6, 4),
-(62, 'Nightmares', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 6, 4),
-(63, 'Arise My Friends', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 6, 4),
-(64, 'Wide Spread Panic', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 6, 4),
-(65, 'Lost', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 6, 4),
-(66, 'The Black Realm', 'Quest', 'Finale 1', NULL, NULL, 0, 0, 0, NULL, 0, 7, 4),
-(67, 'The City Falls', 'Quest', 'Finale 2', NULL, NULL, 0, 0, 0, NULL, 0, 8, 4),
-(68, 'Spread Your Wings', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 2, 5),
-(69, 'Finders and Keepers', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 2, 5),
-(70, 'My House, My Rules', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 2, 5),
-(71, 'Where the Heart Is', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 3, 5),
-(72, 'Wrong Man for the Job', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 3, 5),
-(73, 'Beneath the Manor', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 3, 5),
-(74, 'Crusade of the Forgotten', 'Rumor', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, 1, 6),
-(75, 'Shadow Watch', 'Rumor', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, 2, 6);
+INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `quest_next_h_id`, `quest_next_ol_id`, `quest_rew_ol_xp`, `quest_rew_h_xp`, `quest_rew_h_gold`, `quest_rew_relic_id`, `quest_rew_special`, `quest_travel`, `quest_order`, `quest_expansion_id`) VALUES
+(0, 'First Blood', 'Quest', 'Introduction', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 0),
+(1, 'A Fat Goblin', 'Quest', 'Act 1', 2, 3, 1, 0, 25, NULL, 0, 'road,road,plains', 3, 0),
+(2, 'The Monster''s Hoard', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, 6, 0, 'road,water,mountains,plains,forest,mountains', 6, 0),
+(3, 'The Frozen Spire', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 'road,water,mountains,plains,forest,mountains', 6, 0),
+(4, 'Castle Daerion', 'Quest', 'Act 1', 5, 6, 1, 0, 25, NULL, 0, 'road,road', 3, 0),
+(5, 'The Dawnblade', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, 1, 1, 'road,road,forest', 6, 0),
+(6, 'The Desecrated Tomb', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, 1, 1, 'road,road,forest', 6, 0),
+(7, 'The Cardinal''s Plight', 'Quest', 'Act 1', 8, 9, 0, 0, 0, 4, 0, 'road,water,plains,mountains', 3, 0),
+(8, 'Enduring the Elements', 'Quest', 'Act 2', NULL, NULL, 1, 0, 25, NULL, 1, 'road,water,plains,water', 6, 0),
+(9, 'The Ritual of Shadows', 'Quest', 'Act 2', NULL, NULL, 1, 0, 25, NULL, 1, 'road,water,plains,road', 6, 0),
+(10, 'The Masquerade Ball', 'Quest', 'Act 1', 11, 12, 0, 0, 0, 2, 0, 'road,road,plains', 3, 0),
+(11, 'Blood of Heroes', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 'road,water,plains,road', 6, 0),
+(12, 'The Twin Idols', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 'road,water,plains,road,forest,mountains', 6, 0),
+(13, 'Death on the Wing', 'Quest', 'Act 1', 14, 15, 0, 0, 0, 3, 0, 'road,road,water', 3, 0),
+(14, 'The Wyrm Turns', 'Quest', 'Act 2', NULL, NULL, 2, 1, 0, NULL, 0, 'road,water,plains,mountains,plains,mountains', 6, 0),
+(15, 'The Wyrm Rises', 'Quest', 'Act 2', NULL, NULL, 1, 0, 25, NULL, 0, 'road,water,plains,mountains,plains,mountains', 6, 0),
+(16, 'The Shadow Vault', 'Quest', 'Interlude', 999, NULL, 0, 0, 0, 5, 0, 'road,road,plains,forest', 4, 0),
+(17, 'The Overlord Revealed', 'Quest', 'Interlude', NULL, 999, 0, 0, 0, 5, 0, 'road,road,plains,forest', 5, 0),
+(18, 'Gryvorn Unleashed', 'Quest', 'Finale', 999, NULL, 0, 0, 0, NULL, 0, 'road,water,mountains,plains', 7, 0),
+(19, 'The Man Who Would Be King', 'Quest', 'Finale', NULL, 999, 0, 0, 0, NULL, 0, 'road,water,mountains,plains', 8, 0),
+(20, 'Gold Digger', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 1),
+(21, 'Rude Awakening', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 1),
+(22, 'What''s yours is Mine', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 1),
+(23, 'At the Forge', 'Quest', 'Finale 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 7, 1),
+(24, 'Armored to the Teeth', 'Quest', 'Finale 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 8, 1),
+(25, 'Ruinous Whispers', 'Quest', 'Introduction', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 2),
+(26, 'Gathering Foretold', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(27, 'Honor Among Thieves', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(28, 'Reclamation', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(29, 'Through the Mist', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(30, 'Barrow of Barris', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(31, 'Secrets in Stone', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(32, 'Fury of the Tempest', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(33, 'Back from the Dead', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 2),
+(34, 'Pilgrimage', 'Quest', 'Interlude', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 4, 2),
+(35, 'Fortune and Glory', 'Quest', 'Interlude', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 4, 2),
+(36, 'Heart of the Wilds', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 2),
+(37, 'Let the Truth be Buried', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 2),
+(38, 'Fountain of Insight', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 2),
+(39, 'Web of Power', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 2),
+(40, 'Fire and Brimstone', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 2),
+(41, 'Tripping the Scales', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 2),
+(42, 'Endless Night', 'Quest', 'Finale', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 2),
+(43, 'A Glimmer of Hope', 'Quest', 'Finale', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 2),
+(44, 'Ghost Town', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 3),
+(45, 'Food for Worms', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 3),
+(46, 'Three Heads, One Mind', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 3),
+(47, 'Source of Sickness', 'Quest', 'Finale 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 3),
+(48, 'Spreading Affliction', 'Quest', 'Finale 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 4, 3),
+(49, 'A Demostration', 'Quest', 'Introduction', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 4),
+(50, 'Civil War', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(51, 'Without Mercy', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(52, 'Local Politics', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(53, 'Prey', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(54, 'Price of Power', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(55, 'The Incident', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(56, 'Rat-Thing King', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(57, 'Respected Citizen', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 4),
+(58, 'The True Enemy', 'Quest', 'Interlude 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 4, 4),
+(59, 'Traitors Among Us', 'Quest', 'Interlude 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 5, 4),
+(60, 'Overdue Demise', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 4),
+(61, 'Into the Dark', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 4),
+(62, 'Nightmares', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 4),
+(63, 'Arise My Friends', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 4),
+(64, 'Wide Spread Panic', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 4),
+(65, 'Lost', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 6, 4),
+(66, 'The Black Realm', 'Quest', 'Finale 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 7, 4),
+(67, 'The City Falls', 'Quest', 'Finale 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 8, 4),
+(68, 'Spread Your Wings', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 5),
+(69, 'Finders and Keepers', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 5),
+(70, 'My House, My Rules', 'Quest', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 5),
+(71, 'Where the Heart Is', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 5),
+(72, 'Wrong Man for the Job', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 5),
+(73, 'Beneath the Manor', 'Quest', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 3, 5),
+(74, 'Crusade of the Forgotten', 'Rumor', 'Act 1', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 1, 6),
+(75, 'Shadow Watch', 'Rumor', 'Act 2', NULL, NULL, 0, 0, 0, NULL, 0, NULL, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -696,7 +688,7 @@ INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `qu
 --
 
 CREATE TABLE IF NOT EXISTS `tbquests_progress` (
-  `progress_id` int(11) NOT NULL AUTO_INCREMENT,
+`progress_id` int(11) NOT NULL,
   `progress_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `progress_game_id` int(2) DEFAULT NULL,
   `progress_quest_id` int(3) DEFAULT NULL,
@@ -706,9 +698,8 @@ CREATE TABLE IF NOT EXISTS `tbquests_progress` (
   `progress_relic_char` int(11) DEFAULT NULL,
   `progress_set_travel` tinyint(1) NOT NULL,
   `progress_set_spendxp` tinyint(1) NOT NULL,
-  `progress_set_items` tinyint(1) NOT NULL,
-  PRIMARY KEY (`progress_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
+  `progress_set_items` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests_progress`
@@ -725,13 +716,10 @@ INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_
 (54, '2014-12-08 23:34:08', 38, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
 (55, '2014-12-08 23:34:49', 38, 4, 'Quest', 'Overlord Wins', 'No Winner', NULL, 0, 0, 0),
 (56, '2014-12-08 23:35:29', 38, 10, 'Quest', 'Heroes Win', 'No Winner', 7, 0, 0, 0),
-(57, '2014-12-11 17:26:47', 47, 49, 'Quest', NULL, NULL, NULL, 0, 0, 0),
-(60, '2014-12-11 21:58:34', 48, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
-(62, '2014-12-12 15:10:20', 38, 5, 'Quest', NULL, NULL, NULL, 0, 0, 0),
-(63, '2014-12-12 15:36:55', 48, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
-(64, '2014-12-12 15:37:03', 48, 4, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
-(65, '2014-12-12 15:37:09', 48, 7, 'Quest', 'Overlord Wins', 'No Winner', 60, 0, 0, 0),
-(66, '2014-12-12 16:07:44', 48, 16, 'Quest', NULL, NULL, NULL, 0, 0, 0);
+(82, '2014-12-13 23:31:22', 50, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
+(83, '2014-12-13 23:33:33', 50, 13, 'Quest', 'Heroes Win', 'Overlord Wins', 70, 1, 0, 0),
+(85, '2014-12-13 23:38:10', 50, 4, 'Quest', 'Overlord Wins', 'No Winner', NULL, 1, 1, 0),
+(86, '2014-12-14 00:29:17', 50, 7, 'Quest', 'Overlord Wins', 'Overlord Wins', 68, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -740,16 +728,15 @@ INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_
 --
 
 CREATE TABLE IF NOT EXISTS `tbsearch` (
-  `search_id` int(11) NOT NULL AUTO_INCREMENT,
+`search_id` int(11) NOT NULL,
   `search_name` varchar(32) NOT NULL,
   `search_description` text NOT NULL,
   `search_value` int(11) NOT NULL,
   `search_amount` int(11) NOT NULL DEFAULT '1',
   `search_special` tinyint(1) NOT NULL,
   `search_found` int(11) NOT NULL,
-  `search_exp_id` int(11) NOT NULL,
-  PRIMARY KEY (`search_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `search_exp_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbsearch`
@@ -773,202 +760,312 @@ INSERT INTO `tbsearch` (`search_id`, `search_name`, `search_description`, `searc
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills` (
-  `skill_id` int(3) NOT NULL AUTO_INCREMENT,
+`skill_id` int(3) NOT NULL,
   `skill_name` varchar(28) DEFAULT NULL,
   `skill_type` varchar(8) DEFAULT NULL,
-  `skill_class` varchar(15) DEFAULT NULL,
+  `skill_class` varchar(24) DEFAULT NULL,
+  `skill_plot` tinyint(1) NOT NULL,
   `skill_cost` int(2) DEFAULT NULL,
   `skill_card` varchar(28) DEFAULT NULL,
-  `skill_expansion` varchar(17) DEFAULT NULL,
-  PRIMARY KEY (`skill_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=200 ;
+  `skill_expansion` varchar(17) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills`
 --
 
-INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `skill_cost`, `skill_card`, `skill_expansion`) VALUES
-(1, 'Accurate', 'Scout', 'Wildlander', 1, 'accurate.jpg', '0'),
-(2, 'Nimble', 'Scout', 'Wildlander', 0, 'nimble.jpg', '0'),
-(10, 'Brute', 'Warrior', 'Berserker', 1, 'brute.jpg', '0'),
-(11, 'Raise Dead', 'Mage', 'Necromancer', 0, 'raisedeadnecromancer.jpg', '0'),
-(13, 'Runic Knowledge', 'Mage', 'Runemaster', 0, 'runicknowledgerunemaster.jpg', '0'),
-(14, 'Prayer of Healing', 'Healer', 'Disciple', 0, 'prayerofhealing.jpg', '0'),
-(15, 'Armor of Faith', 'Healer', 'Disciple', 1, 'armoffaith.jpg', '0'),
-(16, 'Blessed Strike', 'Healer', 'Disciple', 1, 'blessedstrike.jpg', '0'),
-(17, 'Cleansing Touch', 'Healer', 'Disciple', 1, 'cleansingtouch.jpg', '0'),
-(18, 'Divine Fury', 'Healer', 'Disciple', 2, 'divinefury.jpg', '0'),
-(19, 'Prayer of Peace', 'Healer', 'Disciple', 2, 'prayerofpeace.jpg', '0'),
-(20, 'Time of Need', 'Healer', 'Disciple', 2, 'timeofneed.jpg', '0'),
-(21, 'Holy Power', 'Healer', 'Disciple', 3, 'holypower.jpg', '0'),
-(22, 'Radiant Light', 'Healer', 'Disciple', 3, 'radiantlight.jpg', '0'),
-(25, 'Danger Sense', 'Scout', 'Wildlander', 1, 'dangersense.jpg', '0'),
-(26, 'Eagle Eyes', 'Scout', 'Wildlander', 1, 'eagleeyes.jpg', '0'),
-(27, 'Bow Mastery', 'Scout', 'Wildlander', 2, 'bowmastery.jpg', '0'),
-(28, 'First Strike', 'Scout', 'Wildlander', 2, 'firststrike.jpg', '0'),
-(29, 'Fleet of Foot', 'Scout', 'Wildlander', 2, 'fleetoffoot.jpg', '0'),
-(30, 'Black Arrow', 'Scout', 'Wildlander', 3, 'blackarrow.jpg', '0'),
-(31, 'Running Shot', 'Scout', 'Wildlander', 3, 'runningshot.jpg', '0'),
-(32, 'Counter Attack', 'Warrior', 'Berserker', 1, 'counterattack.jpg', '0'),
-(33, 'Rage', 'Warrior', 'Berserker', 0, 'rage.jpg', '0'),
-(35, 'Cripple', 'Warrior', 'Berserker', 1, 'cripple.jpg', '0'),
-(36, 'Charge', 'Warrior', 'Berserker', 2, 'charge.jpg', '0'),
-(37, 'Weapon Mastery', 'Warrior', 'Berserker', 2, 'weaponmastery.jpg', '0'),
-(38, 'Whirlwind', 'Warrior', 'Berserker', 2, 'whirlwind.jpg', '0'),
-(39, 'Death Rage', 'Warrior', 'Berserker', 3, 'deathrage.jpg', '0'),
-(40, 'Execute', 'Warrior', 'Berserker', 3, 'excute.jpg', '0'),
-(43, 'Corpse Blast', 'Mage', 'Necromancer', 1, 'corpseblast.jpg', '0'),
-(44, 'Fury of Undeath', 'Mage', 'Necromancer', 1, 'furyofundeath.jpg', '0'),
-(45, 'Deathly Haste', 'Mage', 'Necromancer', 1, 'deathlyhaste.jpg', '0'),
-(46, 'Dark Pact', 'Mage', 'Necromancer', 2, 'darkpact.jpg', '0'),
-(47, 'Vampiric Blood', 'Mage', 'Necromancer', 2, 'vampiricblood.jpg', '0'),
-(48, 'Undead Might', 'Mage', 'Necromancer', 2, 'undeadmight.jpg', '0'),
-(49, 'Army of Death', 'Mage', 'Necromancer', 3, 'armyofdeath.jpg', '0'),
-(50, 'Dying Command', 'Mage', 'Necromancer', 3, 'dyingcommand.jpg', '0'),
-(51, 'Soothing Insight', 'Healer', 'Prophet', 0, 'soothinginsight.jpg', '0'),
-(52, 'Battle Vision', 'Healer', 'Prophet', 1, 'battlevision.jpg', '0'),
-(53, 'Forewarning', 'Healer', 'Prophet', 1, 'forewarning.jpg', '0'),
-(54, 'Grim Fate', 'Healer', 'Prophet', 1, 'grimfate.jpg', '0'),
-(55, 'All-Seeing', 'Healer', 'Prophet', 2, 'allseeing.jpg', '0'),
-(56, 'Lifeline', 'Healer', 'Prophet', 2, 'lifeline.jpg', '0'),
-(57, 'Victory Foretold', 'Healer', 'Prophet', 2, 'victoryforetold.jpg', '0'),
-(58, 'Focused Insights', 'Healer', 'Prophet', 3, 'focusedinsights.jpg', '0'),
-(59, 'Omniscience', 'Healer', 'Prophet', 3, 'omniscience.jpg', '0'),
-(60, 'Brew Elixir', 'Healer', 'Apothecary', 0, 'brewelixir.jpg', '2'),
-(61, 'Concoction', 'Healer', 'Apothecary', 1, 'concoction.jpg', '2'),
-(62, 'Herbal Lore', 'Healer', 'Apothecary', 1, 'herballore.jpg', '2'),
-(63, 'Inky Substance', 'Healer', 'Apothecary', 1, 'inkysubstance.jpg', '2'),
-(64, 'Bottled Courage', 'Healer', 'Apothecary', 2, 'bottledcourage.jpg', '2'),
-(65, 'Protective Tonic', 'Healer', 'Apothecary', 2, 'protectivetonic.jpg', '2'),
-(66, 'Secret Formula', 'Healer', 'Apothecary', 2, 'secretformula.jpg', '2'),
-(67, 'Hidden Stash', 'Healer', 'Apothecary', 3, 'hiddenstash.jpg', '2'),
-(68, 'Potent Remedies', 'Healer', 'Apothecary', 3, 'potentremedies.jpg', '2'),
-(69, 'Stoneskin', 'Healer', 'Spiritspeaker', 0, 'stoneskin.jpg', '0'),
-(70, 'Drain Spirit', 'Healer', 'Spiritspeaker', 1, 'drainspirit.jpg', '0'),
-(71, 'Healing Rain', 'Healer', 'Spiritspeaker', 1, 'healingrain.jpg', '0'),
-(72, 'Shared Pain', 'Healer', 'Spiritspeaker', 1, 'sharedpain.jpg', '0'),
-(73, 'Cloud of Mist', 'Healer', 'Spiritspeaker', 2, 'cloudofmist.jpg', '0'),
-(74, 'Nature''s Bounty', 'Healer', 'Spiritspeaker', 2, 'naturesbounty.jpg', '0'),
-(75, 'Tempest', 'Healer', 'Spiritspeaker', 2, 'tempest.jpg', '0'),
-(76, 'Ancestor Spirits', 'Healer', 'Spiritspeaker', 3, 'ancestorspirits.jpg', '0'),
-(77, 'Vigor', 'Healer', 'Spiritspeaker', 3, 'vigor.jpg', '0'),
-(79, 'Terracall', 'Mage', 'Geomancer', 0, 'terracall.jpg', '1'),
-(80, 'Earthen Anguish', 'Mage', 'Geomancer', 1, 'earthenanguish.jpg', '1'),
-(81, 'Quaking Word', 'Mage', 'Geomancer', 1, 'quakingword.jpg', '1'),
-(82, 'Stone Tonuge', 'Mage', 'Geomancer', 1, 'stonetongue.jpg', '1'),
-(83, 'Ley Line', 'Mage', 'Geomancer', 2, 'leyline.jpg', '1'),
-(84, 'Molten Fury', 'Mage', 'Geomancer', 2, 'moltenfury.jpg', '1'),
-(85, 'Ways of Stone', 'Mage', 'Geomancer', 2, 'waysofstone.jpg', '1'),
-(86, 'Gravity Spike', 'Mage', 'Geomancer', 3, 'gavityspike.jpg', '1'),
-(87, 'Cataclysm', 'Mage', 'Geomancer', 3, 'cataclysm.jpg', '1'),
-(88, 'Enfeebling Hex', 'Mage', 'Hexer', 0, 'enfeeblinghex.jpg', '2'),
-(89, 'Affliction', 'Mage', 'Hexer', 1, 'affliction.jpg', '2'),
-(90, 'Plague Spasm', 'Mage', 'Hexer', 1, 'plaguespasm.jpg', '2'),
-(91, 'Viral Hex', 'Mage', 'Hexer', 1, 'viralhex.jpg', '2'),
-(92, 'Crippling Curse', 'Mage', 'Hexer', 2, 'cripplingcurse.jpg', '2'),
-(93, 'Fel Command', 'Mage', 'Hexer', 2, 'felcommand.jpg', '2'),
-(94, 'Internal Rot', 'Mage', 'Hexer', 2, 'internalrot.jpg', '2'),
-(95, 'Accursed Arms', 'Mage', 'Hexer', 3, 'accursedarms.jpg', '2'),
-(96, 'Plague Cloud', 'Mage', 'Hexer', 3, 'plaguecloud.jpg', '2'),
-(98, 'Exploding Rune', 'Mage', 'Runemaster', 1, 'explodingrune.jpg', '0'),
-(99, 'Ghost Armor', 'Mage', 'Runemaster', 1, 'ghostarmor.jpg', '0'),
-(100, 'Inscribe Rune', 'Mage', 'Runemaster', 1, 'inscriberune.jpg', '0'),
-(101, 'Iron Will', 'Mage', 'Runemaster', 2, 'ironwill.jpg', '0'),
-(102, 'Rune Mastery', 'Mage', 'Runemaster', 2, 'runemastery.jpg', '0'),
-(103, 'Runic Sorcery', 'Mage', 'Runemaster', 2, 'runesorcery.jpg', '0'),
-(104, 'Break the Rune', 'Mage', 'Runemaster', 3, 'breaktherune.jpg', '0'),
-(105, 'Quick Casting', 'Mage', 'Runemaster', 3, 'quickcasting.jpg', '0'),
-(106, 'Exploit', 'Scout', 'Stalker', 1, 'exploit.jpg', '3'),
-(107, 'Hunter''s Mark', 'Scout', 'Stalker', 1, 'huntersmark.jpg', '3'),
-(108, 'Makeshift Trap', 'Scout', 'Stalker', 1, 'makeshifttrap.jpg', '3'),
-(109, 'Easy Prey', 'Scout', 'Stalker', 2, 'easyprey.jpg', '3'),
-(110, 'Lay of the Land', 'Scout', 'Stalker', 2, 'layoftheland.jpg', '3'),
-(111, 'Poison Barbs', 'Scout', 'Stalker', 2, 'poisonbarbs.jpg', '3'),
-(112, 'Ambush', 'Scout', 'Stalker', 3, 'ambush.jpg', '3'),
-(113, 'Upper Hand', 'Scout', 'Stalker', 3, 'upperhand.jpg', '3'),
-(115, 'Set Trap', 'Scout', 'Stalker', 0, 'settrap.jpg', '3'),
-(116, 'Greedy', 'Scout', 'Thief', 0, 'greedy.jpg', '0'),
-(117, 'Appraisal', 'Scout', 'Thief', 1, 'appraisal.jpg', '0'),
-(118, 'Dirty Tricks', 'Scout', 'Thief', 1, 'dirtytricks.jpg', '0'),
-(119, 'Sneaky', 'Scout', 'Thief', 1, 'sneaky.jpg', '0'),
-(120, 'Caltrops', 'Scout', 'Thief', 2, 'caltrops.jpg', '0'),
-(121, 'Tumble', 'Scout', 'Thief', 2, 'tumble.jpg', '0'),
-(122, 'Unseen', 'Scout', 'Thief', 2, 'unseen.jpg', '0'),
-(123, 'Bushwhack', 'Scout', 'Thief', 3, 'bushwhack.jpg', '0'),
-(124, 'Luck', 'Scout', 'Thief', 3, 'lurk.jpg', '0'),
-(125, 'Delver', 'Scout', 'Treasure Hunter', 0, 'delver.jpg', '2'),
-(126, 'Dungeoneer', 'Scout', 'Treasure Hunter', 1, 'dungeoneer.jpg', '2'),
-(127, 'Gold Rush', 'Scout', 'Treasure Hunter', 1, 'goldrush.jpg', '2'),
-(128, 'Survey', 'Scout', 'Treasure Hunter', 1, 'survey.jpg', '2'),
-(129, 'Guard the Spoils', 'Scout', 'Treasure Hunter', 2, 'guardthespoils.jpg', '2'),
-(130, 'Lure of Fortune', 'Scout', 'Treasure Hunter', 2, 'lureoffortune.jpg', '2'),
-(131, 'Sleight of Hand', 'Scout', 'Treasure Hunter', 2, 'sleightofhand.jpg', '2'),
-(132, 'Finder''s Keepers', 'Scout', 'Treasure Hunter', 3, 'finderskeepers.jpg', '2'),
-(133, 'Trail of Riches', 'Scout', 'Treasure Hunter', 3, 'trailofriches.jpg', '2'),
-(135, 'Bound by the Hunt', 'Warrior', 'Beastmaster', 0, 'boundbythehunt.jpg', '2'),
-(136, 'Bestial Rage', 'Warrior', 'Beastmaster', 1, 'bestialrage.jpg', '2'),
-(137, 'Stalker', 'Warrior', 'Beastmaster', 1, 'stalker.jpg', '2'),
-(138, 'Survivalist', 'Warrior', 'Beastmaster', 1, 'survivalist.jpg', '2'),
-(139, 'Feral Frenzy', 'Warrior', 'Beastmaster', 2, 'feralfrenzy.jpg', '2'),
-(140, 'Savagery', 'Warrior', 'Beastmaster', 2, 'savagery.jpg', '2'),
-(141, 'Shadow Hunter', 'Warrior', 'Beastmaster', 2, 'shadowhunter.jpg', '2'),
-(142, 'Changing Skins', 'Warrior', 'Beastmaster', 3, 'changingskins.jpg', '2'),
-(143, 'Predator', 'Warrior', 'Beastmaster', 3, 'predator.jpg', '2'),
-(144, 'Valor of Heroes', 'Warrior', 'Champion', 0, 'valorofheroes.jpg', '1'),
-(145, 'A Living Legend', 'Warrior', 'Champion', 1, 'alivinglegend.jpg', '1'),
-(146, 'Glory of Battle', 'Warrior', 'Champion', 1, 'gloryofbattle.jpg', '1'),
-(147, 'Inspiring Presence', 'Warrior', 'Champion', 1, 'inspiringpresence.jpg', '1'),
-(148, 'Motivating Charge', 'Warrior', 'Champion', 2, 'motivatingcharge.jpg', '1'),
-(149, 'No Mercy', 'Warrior', 'Champion', 2, 'nomercy.jpg', '1'),
-(150, 'Stoic Resolve', 'Warrior', 'Champion', 2, 'stoicresolve.jpg', '1'),
-(151, 'For the Cause', 'Warrior', 'Champion', 3, 'forthecause.jpg', '1'),
-(152, 'Valorous Strike', 'Warrior', 'Champion', 3, 'valorousstrike.jpg', '1'),
-(153, 'Oath of Honor', 'Warrior', 'Knight', 0, 'oathofhonor.jpg', '0'),
-(154, 'Advance', 'Warrior', 'Knight', 1, 'advance.jpg', '0'),
-(155, 'Challenge', 'Warrior', 'Knight', 1, 'challenge.jpg', '0'),
-(156, 'Defend', 'Warrior', 'Knight', 1, 'defend.jpg', '0'),
-(157, 'Defense Training', 'Warrior', 'Knight', 2, 'defensetraining.jpg', '0'),
-(158, 'Guard', 'Warrior', 'Knight', 2, 'guard.jpg', '0'),
-(159, 'Shield Slam', 'Warrior', 'Knight', 2, 'shieldslam.jpg', '0'),
-(160, 'Inspiration', 'Warrior', 'Knight', 3, 'inspiration.jpg', '0'),
-(161, 'Stalwart', 'Warrior', 'Knight', 3, 'stalwart.jpg', '0'),
-(162, 'Bloodlust', 'Overlord', 'Warlord', 2, 'bloodlust.jpg', '0'),
-(163, 'Bloodrage', 'Overlord', 'Warlord', 1, 'bloodrage.jpg', '0'),
-(164, 'Outbreak', 'Overlord', 'Infector', 2, 'outbreak.jpg', '3'),
-(165, 'Virulent Infection', 'Overlord', 'Infector', 1, 'virulentinfection.jpg', '3'),
-(166, 'Adaptive Contagion', 'Overlord', 'Infector', 1, 'adaptivecontagion.jpg', '3'),
-(167, 'Airborne', 'Overlord', 'Infector', 1, 'airborne.jpg', '3'),
-(168, 'Contamnated', 'Overlord', 'Infector', 1, 'contaminated.jpg', '3'),
-(169, 'Dark Host', 'Overlord', 'Infector', 3, 'darkhost.jpg', '3'),
-(170, 'Tainted Blow', 'Overlord', 'Infector', 2, 'taintedblow.jpg', '3'),
-(171, 'Diabolic Power', 'Overlord', 'Magus', 3, 'diabolicpower.jpg', '0'),
-(172, 'Rise Again', 'Overlord', 'Magus', 2, 'riseagain.jpg', '0'),
-(173, 'Unholy Ritual', 'Overlord', 'Magus', 1, 'unholyritual.jpg', '0'),
-(174, 'Word of Despair', 'Overlord', 'Magus', 2, 'wordofdespair.jpg', '0'),
-(175, 'Word of Pain', 'Overlord', 'Magus', 1, 'wordofpain.jpg', '0'),
-(176, 'Toxic Reprisal', 'Overlord', 'Overlord Reward', 0, 'toxicreprisal.jpg', '3'),
-(177, 'Secrets of Flesh', 'Overlord', 'Overlord Reward', 0, 'secretsofflesh.jpg', '3'),
-(178, 'Offertory Affliction', 'Overlord', 'Overlord Reward', 0, 'offertoryaffliction.jpg', '3'),
-(179, 'Trading Pains', 'Overlord', 'Punisher', 1, 'tradingpains.jpg', '1'),
-(180, 'Blood Bargaining', 'Overlord', 'Punisher', 3, 'bloodbargaining.jpg', '1'),
-(181, 'Exploit Weakness', 'Overlord', 'Punisher', 2, 'exploitweakness.jpg', '1'),
-(182, 'No Rest for the Wicked', 'Overlord', 'Punisher', 1, 'norestforthewicked.jpg', '1'),
-(183, 'Price of Prevention', 'Overlord', 'Punisher', 2, 'priceofprevention.jpg', '1'),
-(184, 'Splig''s Revenge', 'Overlord', 'Quest Reward', 0, 'spligsrevenge.jpg', '2'),
-(185, 'Twin Souls', 'Overlord', 'Quest Reward', 0, 'twinsouls.jpg', '2'),
-(186, 'The Wyrm Queen''s Favor', 'Overlord', 'Rumor Reward', 0, 'thewyrmqueensfavor.jpg', '1'),
-(187, 'Explosive Runes', 'Overlord', 'Saboteur', 1, 'explosiverunes.jpg', '0'),
-(188, 'Uthuk Demon Trap', 'Overlord', 'Saboteur', 3, 'uthukdemontrap.jpg', '0'),
-(189, 'Web Trap', 'Overlord', 'Saboteur', 1, 'webtrap.jpg', '0'),
-(190, 'Wicked Laughter', 'Overlord', 'Saboteur', 2, 'wickedlaughter.jpg', '0'),
-(191, 'Curse of the Monkey God', 'Overlord', 'Saboteur', 2, 'curseofthemonkeygod.jpg', '0'),
-(192, 'Dark Remedy', 'Overlord', 'Universal', 1, 'darkremedy.jpg', '2'),
-(193, 'Dark Resilience', 'Overlord', 'Universal', 1, 'darkreslience.jpg', '0'),
-(194, 'Plan Ahead', 'Overlord', 'Universal', 1, 'planahead.jpg', '0'),
-(195, 'Schemes', 'Overlord', 'Universal', 1, 'schemes.jpg', '0'),
-(197, 'Dark Fortitude', 'Overlord', 'Warlord', 1, 'darkfortitude.jpg', '0'),
-(198, 'Expert Blow', 'Overlord', 'Warlord', 2, 'expertblow.jpg', '0'),
-(199, 'Reinforce', 'Overlord', 'Warlord', 3, 'reinforce.jpg', '0');
+INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `skill_plot`, `skill_cost`, `skill_card`, `skill_expansion`) VALUES
+(1, 'Accurate', 'Scout', 'Wildlander', 0, 1, 'accurate.jpg', '0'),
+(2, 'Nimble', 'Scout', 'Wildlander', 0, 0, 'nimble.jpg', '0'),
+(10, 'Brute', 'Warrior', 'Berserker', 0, 1, 'brute.jpg', '0'),
+(11, 'Raise Dead', 'Mage', 'Necromancer', 0, 0, 'raisedeadnecromancer.jpg', '0'),
+(13, 'Runic Knowledge', 'Mage', 'Runemaster', 0, 0, 'runicknowledgerunemaster.jpg', '0'),
+(14, 'Prayer of Healing', 'Healer', 'Disciple', 0, 0, 'prayerofhealing.jpg', '0'),
+(15, 'Armor of Faith', 'Healer', 'Disciple', 0, 1, 'armoffaith.jpg', '0'),
+(16, 'Blessed Strike', 'Healer', 'Disciple', 0, 1, 'blessedstrike.jpg', '0'),
+(17, 'Cleansing Touch', 'Healer', 'Disciple', 0, 1, 'cleansingtouch.jpg', '0'),
+(18, 'Divine Fury', 'Healer', 'Disciple', 0, 2, 'divinefury.jpg', '0'),
+(19, 'Prayer of Peace', 'Healer', 'Disciple', 0, 2, 'prayerofpeace.jpg', '0'),
+(20, 'Time of Need', 'Healer', 'Disciple', 0, 2, 'timeofneed.jpg', '0'),
+(21, 'Holy Power', 'Healer', 'Disciple', 0, 3, 'holypower.jpg', '0'),
+(22, 'Radiant Light', 'Healer', 'Disciple', 0, 3, 'radiantlight.jpg', '0'),
+(25, 'Danger Sense', 'Scout', 'Wildlander', 0, 1, 'dangersense.jpg', '0'),
+(26, 'Eagle Eyes', 'Scout', 'Wildlander', 0, 1, 'eagleeyes.jpg', '0'),
+(27, 'Bow Mastery', 'Scout', 'Wildlander', 0, 2, 'bowmastery.jpg', '0'),
+(28, 'First Strike', 'Scout', 'Wildlander', 0, 2, 'firststrike.jpg', '0'),
+(29, 'Fleet of Foot', 'Scout', 'Wildlander', 0, 2, 'fleetoffoot.jpg', '0'),
+(30, 'Black Arrow', 'Scout', 'Wildlander', 0, 3, 'blackarrow.jpg', '0'),
+(31, 'Running Shot', 'Scout', 'Wildlander', 0, 3, 'runningshot.jpg', '0'),
+(32, 'Counter Attack', 'Warrior', 'Berserker', 0, 1, 'counterattack.jpg', '0'),
+(33, 'Rage', 'Warrior', 'Berserker', 0, 0, 'rage.jpg', '0'),
+(35, 'Cripple', 'Warrior', 'Berserker', 0, 1, 'cripple.jpg', '0'),
+(36, 'Charge', 'Warrior', 'Berserker', 0, 2, 'charge.jpg', '0'),
+(37, 'Weapon Mastery', 'Warrior', 'Berserker', 0, 2, 'weaponmastery.jpg', '0'),
+(38, 'Whirlwind', 'Warrior', 'Berserker', 0, 2, 'whirlwind.jpg', '0'),
+(39, 'Death Rage', 'Warrior', 'Berserker', 0, 3, 'deathrage.jpg', '0'),
+(40, 'Execute', 'Warrior', 'Berserker', 0, 3, 'excute.jpg', '0'),
+(43, 'Corpse Blast', 'Mage', 'Necromancer', 0, 1, 'corpseblast.jpg', '0'),
+(44, 'Fury of Undeath', 'Mage', 'Necromancer', 0, 1, 'furyofundeath.jpg', '0'),
+(45, 'Deathly Haste', 'Mage', 'Necromancer', 0, 1, 'deathlyhaste.jpg', '0'),
+(46, 'Dark Pact', 'Mage', 'Necromancer', 0, 2, 'darkpact.jpg', '0'),
+(47, 'Vampiric Blood', 'Mage', 'Necromancer', 0, 2, 'vampiricblood.jpg', '0'),
+(48, 'Undead Might', 'Mage', 'Necromancer', 0, 2, 'undeadmight.jpg', '0'),
+(49, 'Army of Death', 'Mage', 'Necromancer', 0, 3, 'armyofdeath.jpg', '0'),
+(50, 'Dying Command', 'Mage', 'Necromancer', 0, 3, 'dyingcommand.jpg', '0'),
+(51, 'Soothing Insight', 'Healer', 'Prophet', 0, 0, 'soothinginsight.jpg', '0'),
+(52, 'Battle Vision', 'Healer', 'Prophet', 0, 1, 'battlevision.jpg', '0'),
+(53, 'Forewarning', 'Healer', 'Prophet', 0, 1, 'forewarning.jpg', '0'),
+(54, 'Grim Fate', 'Healer', 'Prophet', 0, 1, 'grimfate.jpg', '0'),
+(55, 'All-Seeing', 'Healer', 'Prophet', 0, 2, 'allseeing.jpg', '0'),
+(56, 'Lifeline', 'Healer', 'Prophet', 0, 2, 'lifeline.jpg', '0'),
+(57, 'Victory Foretold', 'Healer', 'Prophet', 0, 2, 'victoryforetold.jpg', '0'),
+(58, 'Focused Insights', 'Healer', 'Prophet', 0, 3, 'focusedinsights.jpg', '0'),
+(59, 'Omniscience', 'Healer', 'Prophet', 0, 3, 'omniscience.jpg', '0'),
+(60, 'Brew Elixir', 'Healer', 'Apothecary', 0, 0, 'brewelixir.jpg', '2'),
+(61, 'Concoction', 'Healer', 'Apothecary', 0, 1, 'concoction.jpg', '2'),
+(62, 'Herbal Lore', 'Healer', 'Apothecary', 0, 1, 'herballore.jpg', '2'),
+(63, 'Inky Substance', 'Healer', 'Apothecary', 0, 1, 'inkysubstance.jpg', '2'),
+(64, 'Bottled Courage', 'Healer', 'Apothecary', 0, 2, 'bottledcourage.jpg', '2'),
+(65, 'Protective Tonic', 'Healer', 'Apothecary', 0, 2, 'protectivetonic.jpg', '2'),
+(66, 'Secret Formula', 'Healer', 'Apothecary', 0, 2, 'secretformula.jpg', '2'),
+(67, 'Hidden Stash', 'Healer', 'Apothecary', 0, 3, 'hiddenstash.jpg', '2'),
+(68, 'Potent Remedies', 'Healer', 'Apothecary', 0, 3, 'potentremedies.jpg', '2'),
+(69, 'Stoneskin', 'Healer', 'Spiritspeaker', 0, 0, 'stoneskin.jpg', '0'),
+(70, 'Drain Spirit', 'Healer', 'Spiritspeaker', 0, 1, 'drainspirit.jpg', '0'),
+(71, 'Healing Rain', 'Healer', 'Spiritspeaker', 0, 1, 'healingrain.jpg', '0'),
+(72, 'Shared Pain', 'Healer', 'Spiritspeaker', 0, 1, 'sharedpain.jpg', '0'),
+(73, 'Cloud of Mist', 'Healer', 'Spiritspeaker', 0, 2, 'cloudofmist.jpg', '0'),
+(74, 'Nature''s Bounty', 'Healer', 'Spiritspeaker', 0, 2, 'naturesbounty.jpg', '0'),
+(75, 'Tempest', 'Healer', 'Spiritspeaker', 0, 2, 'tempest.jpg', '0'),
+(76, 'Ancestor Spirits', 'Healer', 'Spiritspeaker', 0, 3, 'ancestorspirits.jpg', '0'),
+(77, 'Vigor', 'Healer', 'Spiritspeaker', 0, 3, 'vigor.jpg', '0'),
+(79, 'Terracall', 'Mage', 'Geomancer', 0, 0, 'terracall.jpg', '1'),
+(80, 'Earthen Anguish', 'Mage', 'Geomancer', 0, 1, 'earthenanguish.jpg', '1'),
+(81, 'Quaking Word', 'Mage', 'Geomancer', 0, 1, 'quakingword.jpg', '1'),
+(82, 'Stone Tonuge', 'Mage', 'Geomancer', 0, 1, 'stonetongue.jpg', '1'),
+(83, 'Ley Line', 'Mage', 'Geomancer', 0, 2, 'leyline.jpg', '1'),
+(84, 'Molten Fury', 'Mage', 'Geomancer', 0, 2, 'moltenfury.jpg', '1'),
+(85, 'Ways of Stone', 'Mage', 'Geomancer', 0, 2, 'waysofstone.jpg', '1'),
+(86, 'Gravity Spike', 'Mage', 'Geomancer', 0, 3, 'gavityspike.jpg', '1'),
+(87, 'Cataclysm', 'Mage', 'Geomancer', 0, 3, 'cataclysm.jpg', '1'),
+(88, 'Enfeebling Hex', 'Mage', 'Hexer', 0, 0, 'enfeeblinghex.jpg', '2'),
+(89, 'Affliction', 'Mage', 'Hexer', 0, 1, 'affliction.jpg', '2'),
+(90, 'Plague Spasm', 'Mage', 'Hexer', 0, 1, 'plaguespasm.jpg', '2'),
+(91, 'Viral Hex', 'Mage', 'Hexer', 0, 1, 'viralhex.jpg', '2'),
+(92, 'Crippling Curse', 'Mage', 'Hexer', 0, 2, 'cripplingcurse.jpg', '2'),
+(93, 'Fel Command', 'Mage', 'Hexer', 0, 2, 'felcommand.jpg', '2'),
+(94, 'Internal Rot', 'Mage', 'Hexer', 0, 2, 'internalrot.jpg', '2'),
+(95, 'Accursed Arms', 'Mage', 'Hexer', 0, 3, 'accursedarms.jpg', '2'),
+(96, 'Plague Cloud', 'Mage', 'Hexer', 0, 3, 'plaguecloud.jpg', '2'),
+(98, 'Exploding Rune', 'Mage', 'Runemaster', 0, 1, 'explodingrune.jpg', '0'),
+(99, 'Ghost Armor', 'Mage', 'Runemaster', 0, 1, 'ghostarmor.jpg', '0'),
+(100, 'Inscribe Rune', 'Mage', 'Runemaster', 0, 1, 'inscriberune.jpg', '0'),
+(101, 'Iron Will', 'Mage', 'Runemaster', 0, 2, 'ironwill.jpg', '0'),
+(102, 'Rune Mastery', 'Mage', 'Runemaster', 0, 2, 'runemastery.jpg', '0'),
+(103, 'Runic Sorcery', 'Mage', 'Runemaster', 0, 2, 'runesorcery.jpg', '0'),
+(104, 'Break the Rune', 'Mage', 'Runemaster', 0, 3, 'breaktherune.jpg', '0'),
+(105, 'Quick Casting', 'Mage', 'Runemaster', 0, 3, 'quickcasting.jpg', '0'),
+(106, 'Exploit', 'Scout', 'Stalker', 0, 1, 'exploit.jpg', '3'),
+(107, 'Hunter''s Mark', 'Scout', 'Stalker', 0, 1, 'huntersmark.jpg', '3'),
+(108, 'Makeshift Trap', 'Scout', 'Stalker', 0, 1, 'makeshifttrap.jpg', '3'),
+(109, 'Easy Prey', 'Scout', 'Stalker', 0, 2, 'easyprey.jpg', '3'),
+(110, 'Lay of the Land', 'Scout', 'Stalker', 0, 2, 'layoftheland.jpg', '3'),
+(111, 'Poison Barbs', 'Scout', 'Stalker', 0, 2, 'poisonbarbs.jpg', '3'),
+(112, 'Ambush', 'Scout', 'Stalker', 0, 3, 'ambush.jpg', '3'),
+(113, 'Upper Hand', 'Scout', 'Stalker', 0, 3, 'upperhand.jpg', '3'),
+(115, 'Set Trap', 'Scout', 'Stalker', 0, 0, 'settrap.jpg', '3'),
+(116, 'Greedy', 'Scout', 'Thief', 0, 0, 'greedy.jpg', '0'),
+(117, 'Appraisal', 'Scout', 'Thief', 0, 1, 'appraisal.jpg', '0'),
+(118, 'Dirty Tricks', 'Scout', 'Thief', 0, 1, 'dirtytricks.jpg', '0'),
+(119, 'Sneaky', 'Scout', 'Thief', 0, 1, 'sneaky.jpg', '0'),
+(120, 'Caltrops', 'Scout', 'Thief', 0, 2, 'caltrops.jpg', '0'),
+(121, 'Tumble', 'Scout', 'Thief', 0, 2, 'tumble.jpg', '0'),
+(122, 'Unseen', 'Scout', 'Thief', 0, 2, 'unseen.jpg', '0'),
+(123, 'Bushwhack', 'Scout', 'Thief', 0, 3, 'bushwhack.jpg', '0'),
+(124, 'Luck', 'Scout', 'Thief', 0, 3, 'lurk.jpg', '0'),
+(125, 'Delver', 'Scout', 'Treasure Hunter', 0, 0, 'delver.jpg', '2'),
+(126, 'Dungeoneer', 'Scout', 'Treasure Hunter', 0, 1, 'dungeoneer.jpg', '2'),
+(127, 'Gold Rush', 'Scout', 'Treasure Hunter', 0, 1, 'goldrush.jpg', '2'),
+(128, 'Survey', 'Scout', 'Treasure Hunter', 0, 1, 'survey.jpg', '2'),
+(129, 'Guard the Spoils', 'Scout', 'Treasure Hunter', 0, 2, 'guardthespoils.jpg', '2'),
+(130, 'Lure of Fortune', 'Scout', 'Treasure Hunter', 0, 2, 'lureoffortune.jpg', '2'),
+(131, 'Sleight of Hand', 'Scout', 'Treasure Hunter', 0, 2, 'sleightofhand.jpg', '2'),
+(132, 'Finder''s Keepers', 'Scout', 'Treasure Hunter', 0, 3, 'finderskeepers.jpg', '2'),
+(133, 'Trail of Riches', 'Scout', 'Treasure Hunter', 0, 3, 'trailofriches.jpg', '2'),
+(135, 'Bound by the Hunt', 'Warrior', 'Beastmaster', 0, 0, 'boundbythehunt.jpg', '2'),
+(136, 'Bestial Rage', 'Warrior', 'Beastmaster', 0, 1, 'bestialrage.jpg', '2'),
+(137, 'Stalker', 'Warrior', 'Beastmaster', 0, 1, 'stalker.jpg', '2'),
+(138, 'Survivalist', 'Warrior', 'Beastmaster', 0, 1, 'survivalist.jpg', '2'),
+(139, 'Feral Frenzy', 'Warrior', 'Beastmaster', 0, 2, 'feralfrenzy.jpg', '2'),
+(140, 'Savagery', 'Warrior', 'Beastmaster', 0, 2, 'savagery.jpg', '2'),
+(141, 'Shadow Hunter', 'Warrior', 'Beastmaster', 0, 2, 'shadowhunter.jpg', '2'),
+(142, 'Changing Skins', 'Warrior', 'Beastmaster', 0, 3, 'changingskins.jpg', '2'),
+(143, 'Predator', 'Warrior', 'Beastmaster', 0, 3, 'predator.jpg', '2'),
+(144, 'Valor of Heroes', 'Warrior', 'Champion', 0, 0, 'valorofheroes.jpg', '1'),
+(145, 'A Living Legend', 'Warrior', 'Champion', 0, 1, 'alivinglegend.jpg', '1'),
+(146, 'Glory of Battle', 'Warrior', 'Champion', 0, 1, 'gloryofbattle.jpg', '1'),
+(147, 'Inspiring Presence', 'Warrior', 'Champion', 0, 1, 'inspiringpresence.jpg', '1'),
+(148, 'Motivating Charge', 'Warrior', 'Champion', 0, 2, 'motivatingcharge.jpg', '1'),
+(149, 'No Mercy', 'Warrior', 'Champion', 0, 2, 'nomercy.jpg', '1'),
+(150, 'Stoic Resolve', 'Warrior', 'Champion', 0, 2, 'stoicresolve.jpg', '1'),
+(151, 'For the Cause', 'Warrior', 'Champion', 0, 3, 'forthecause.jpg', '1'),
+(152, 'Valorous Strike', 'Warrior', 'Champion', 0, 3, 'valorousstrike.jpg', '1'),
+(153, 'Oath of Honor', 'Warrior', 'Knight', 0, 0, 'oathofhonor.jpg', '0'),
+(154, 'Advance', 'Warrior', 'Knight', 0, 1, 'advance.jpg', '0'),
+(155, 'Challenge', 'Warrior', 'Knight', 0, 1, 'challenge.jpg', '0'),
+(156, 'Defend', 'Warrior', 'Knight', 0, 1, 'defend.jpg', '0'),
+(157, 'Defense Training', 'Warrior', 'Knight', 0, 2, 'defensetraining.jpg', '0'),
+(158, 'Guard', 'Warrior', 'Knight', 0, 2, 'guard.jpg', '0'),
+(159, 'Shield Slam', 'Warrior', 'Knight', 0, 2, 'shieldslam.jpg', '0'),
+(160, 'Inspiration', 'Warrior', 'Knight', 0, 3, 'inspiration.jpg', '0'),
+(161, 'Stalwart', 'Warrior', 'Knight', 0, 3, 'stalwart.jpg', '0'),
+(162, 'Bloodlust', 'Overlord', 'Warlord', 0, 2, 'bloodlust.jpg', '0'),
+(163, 'Bloodrage', 'Overlord', 'Warlord', 0, 1, 'bloodrage.jpg', '0'),
+(164, 'Outbreak', 'Overlord', 'Infector', 0, 2, 'outbreak.jpg', '3'),
+(165, 'Virulent Infection', 'Overlord', 'Infector', 0, 1, 'virulentinfection.jpg', '3'),
+(166, 'Adaptive Contagion', 'Overlord', 'Infector', 0, 1, 'adaptivecontagion.jpg', '3'),
+(167, 'Airborne', 'Overlord', 'Infector', 0, 1, 'airborne.jpg', '3'),
+(168, 'Contamnated', 'Overlord', 'Infector', 0, 1, 'contaminated.jpg', '3'),
+(169, 'Dark Host', 'Overlord', 'Infector', 0, 3, 'darkhost.jpg', '3'),
+(170, 'Tainted Blow', 'Overlord', 'Infector', 0, 2, 'taintedblow.jpg', '3'),
+(171, 'Diabolic Power', 'Overlord', 'Magus', 0, 3, 'diabolicpower.jpg', '0'),
+(172, 'Rise Again', 'Overlord', 'Magus', 0, 2, 'riseagain.jpg', '0'),
+(173, 'Unholy Ritual', 'Overlord', 'Magus', 0, 1, 'unholyritual.jpg', '0'),
+(174, 'Word of Despair', 'Overlord', 'Magus', 0, 2, 'wordofdespair.jpg', '0'),
+(175, 'Word of Pain', 'Overlord', 'Magus', 0, 1, 'wordofpain.jpg', '0'),
+(176, 'Toxic Reprisal', 'Overlord', 'Overlord Reward', 0, 0, 'toxicreprisal.jpg', '3'),
+(177, 'Secrets of Flesh', 'Overlord', 'Overlord Reward', 0, 0, 'secretsofflesh.jpg', '3'),
+(178, 'Offertory Affliction', 'Overlord', 'Overlord Reward', 0, 0, 'offertoryaffliction.jpg', '3'),
+(179, 'Trading Pains', 'Overlord', 'Punisher', 0, 1, 'tradingpains.jpg', '1'),
+(180, 'Blood Bargaining', 'Overlord', 'Punisher', 0, 3, 'bloodbargaining.jpg', '1'),
+(181, 'Exploit Weakness', 'Overlord', 'Punisher', 0, 2, 'exploitweakness.jpg', '1'),
+(182, 'No Rest for the Wicked', 'Overlord', 'Punisher', 0, 1, 'norestforthewicked.jpg', '1'),
+(183, 'Price of Prevention', 'Overlord', 'Punisher', 0, 2, 'priceofprevention.jpg', '1'),
+(184, 'Splig''s Revenge', 'Overlord', 'Quest Reward', 0, 0, 'spligsrevenge.jpg', '2'),
+(185, 'Twin Souls', 'Overlord', 'Quest Reward', 0, 0, 'twinsouls.jpg', '2'),
+(186, 'The Wyrm Queen''s Favor', 'Overlord', 'Rumor Reward', 0, 0, 'thewyrmqueensfavor.jpg', '1'),
+(187, 'Explosive Runes', 'Overlord', 'Saboteur', 0, 1, 'explosiverunes.jpg', '0'),
+(188, 'Uthuk Demon Trap', 'Overlord', 'Saboteur', 0, 3, 'uthukdemontrap.jpg', '0'),
+(189, 'Web Trap', 'Overlord', 'Saboteur', 0, 1, 'webtrap.jpg', '0'),
+(190, 'Wicked Laughter', 'Overlord', 'Saboteur', 0, 2, 'wickedlaughter.jpg', '0'),
+(191, 'Curse of the Monkey God', 'Overlord', 'Saboteur', 0, 2, 'curseofthemonkeygod.jpg', '0'),
+(192, 'Dark Remedy', 'Overlord', 'Universal', 0, 1, 'darkremedy.jpg', '2'),
+(193, 'Dark Resilience', 'Overlord', 'Universal', 0, 1, 'darkreslience.jpg', '0'),
+(194, 'Plan Ahead', 'Overlord', 'Universal', 0, 1, 'planahead.jpg', '0'),
+(195, 'Schemes', 'Overlord', 'Universal', 0, 1, 'schemes.jpg', '0'),
+(197, 'Dark Fortitude', 'Overlord', 'Warlord', 0, 1, 'darkfortitude.jpg', '0'),
+(198, 'Expert Blow', 'Overlord', 'Warlord', 0, 2, 'expertblow.jpg', '0'),
+(199, 'Reinforce', 'Overlord', 'Warlord', 0, 3, 'reinforce.jpg', '0'),
+(201, 'Dual Training', 'Overlord', 'Hybrid Loyalty', 1, 0, NULL, '10'),
+(202, 'Fight With Honor', 'Overlord', 'Hybrid Loyalty', 1, 2, NULL, '10'),
+(203, 'Cut a Deal', 'Overlord', 'Hybrid Loyalty', 1, 2, NULL, '10'),
+(204, 'Show of Force', 'Overlord', 'Hybrid Loyalty', 1, 2, NULL, '10'),
+(205, 'Make Our Own Luck', 'Overlord', 'Hybrid Loyalty', 1, 2, NULL, '10'),
+(206, 'End It!', 'Overlord', 'Hybrid Loyalty', 1, 2, NULL, '10'),
+(207, 'Bribery', 'Overlord', 'Hybrid Loyalty', 1, 2, NULL, '10'),
+(208, 'Resourceful', 'Overlord', 'Hybrid Loyalty', 1, 3, NULL, '10'),
+(209, 'Hazard Pay', 'Overlord', 'Hybrid Loyalty', 1, 4, NULL, '10'),
+(210, 'Summon Belthir', 'Overlord', 'Hybrid Loyalty', 1, 3, NULL, '10'),
+(211, 'Bloodline', 'Overlord', 'Endless Thirst', 1, 0, NULL, '11'),
+(212, 'Bad Dreams', 'Overlord', 'Endless Thirst', 1, 1, NULL, '11'),
+(213, 'Night''s Embrace', 'Overlord', 'Endless Thirst', 1, 1, NULL, '11'),
+(214, 'Fangs in the Dark', 'Overlord', 'Endless Thirst', 1, 2, NULL, '11'),
+(215, 'The Power of Blood', 'Overlord', 'Endless Thirst', 1, 2, NULL, '11'),
+(216, 'Nighttime Hunt', 'Overlord', 'Endless Thirst', 1, 3, NULL, '11'),
+(217, 'Scent of Blood', 'Overlord', 'Endless Thirst', 1, 3, NULL, '11'),
+(218, 'The Taste of Suffering', 'Overlord', 'Endless Thirst', 1, 3, NULL, '11'),
+(219, 'The Lady''s Care', 'Overlord', 'Endless Thirst', 1, 3, NULL, '11'),
+(220, 'Summon Eliza', 'Overlord', 'Endless Thirst', 1, 3, NULL, '11'),
+(221, 'Armor of Darkness', 'Overlord', 'The Fallen Elite', 1, 0, NULL, '12'),
+(222, 'Trial of Knighthood', 'Overlord', 'The Fallen Elite', 1, 2, NULL, '12'),
+(223, 'Veteran Council', 'Overlord', 'The Fallen Elite', 1, 2, NULL, '12'),
+(224, 'Fight in Formation', 'Overlord', 'The Fallen Elite', 1, 2, NULL, '12'),
+(225, 'Unkillable', 'Overlord', 'The Fallen Elite', 1, 3, NULL, '12'),
+(226, 'Knight Training', 'Overlord', 'The Fallen Elite', 1, 3, NULL, '12'),
+(227, 'Dark Champions', 'Overlord', 'The Fallen Elite', 1, 2, NULL, '12'),
+(228, 'Vengeful Resolve', 'Overlord', 'The Fallen Elite', 1, 3, NULL, '12'),
+(229, 'Refuse to Die', 'Overlord', 'The Fallen Elite', 1, 4, NULL, '12'),
+(230, 'Summon Alric', 'Overlord', 'The Fallen Elite', 1, 3, NULL, '12'),
+(231, 'Dark Pact', 'Overlord', 'Cursed By Power', 1, 0, NULL, '13'),
+(232, 'Greater Power', 'Overlord', 'Cursed By Power', 1, 2, NULL, '13'),
+(233, 'The Dark Mark', 'Overlord', 'Cursed By Power', 1, 2, NULL, '13'),
+(234, 'The Grasping Grave', 'Overlord', 'Cursed By Power', 1, 2, NULL, '13'),
+(235, 'Masques', 'Overlord', 'Cursed By Power', 1, 2, NULL, '13'),
+(236, 'Mystic Might', 'Overlord', 'Cursed By Power', 1, 3, NULL, '13'),
+(237, 'Thaumaturgy', 'Overlord', 'Cursed By Power', 1, 3, NULL, '13'),
+(238, 'Bolt From the Blue', 'Overlord', 'Cursed By Power', 1, 3, NULL, '13'),
+(239, 'Cabal', 'Overlord', 'Cursed By Power', 1, 4, NULL, '13'),
+(240, 'Summon Merick', 'Overlord', 'Cursed By Power', 1, 3, NULL, '13'),
+(241, 'Sole Purpose', 'Overlord', 'Seeds of Betrayal', 1, 0, NULL, '14'),
+(242, 'Scrying and Plotting', 'Overlord', 'Seeds of Betrayal', 1, 1, NULL, '14'),
+(243, 'Rush of Power', 'Overlord', 'Seeds of Betrayal', 1, 2, NULL, '14'),
+(244, 'Two-Pronged Gambit', 'Overlord', 'Seeds of Betrayal', 1, 2, NULL, '14'),
+(245, 'Nefarius Power', 'Overlord', 'Seeds of Betrayal', 1, 2, NULL, '14'),
+(246, 'Always Prepared', 'Overlord', 'Seeds of Betrayal', 1, 2, NULL, '14'),
+(247, 'False Friends', 'Overlord', 'Seeds of Betrayal', 1, 3, NULL, '14'),
+(248, 'Trouble on the Road', 'Overlord', 'Seeds of Betrayal', 1, 3, NULL, '14'),
+(249, 'Meticulous Planning', 'Overlord', 'Seeds of Betrayal', 1, 4, NULL, '14'),
+(250, 'Summon Zachareth', 'Overlord', 'Seeds of Betrayal', 1, 3, NULL, '14'),
+(251, 'Spirited Retreat', 'Overlord', 'Goblin Uprising', 1, 0, NULL, '15'),
+(252, 'Feral Instincts', 'Overlord', 'Goblin Uprising', 1, 1, NULL, '15'),
+(253, 'Overfed', 'Overlord', 'Goblin Uprising', 1, 2, NULL, '15'),
+(254, 'Meat Shield', 'Overlord', 'Goblin Uprising', 1, 2, NULL, '15'),
+(255, 'Emergency Rations', 'Overlord', 'Goblin Uprising', 1, 2, NULL, '15'),
+(256, 'Dive into Cover', 'Overlord', 'Goblin Uprising', 1, 3, NULL, '15'),
+(257, 'Goblin Ambush', 'Overlord', 'Goblin Uprising', 1, 3, NULL, '15'),
+(258, 'Raided Armory', 'Overlord', 'Goblin Uprising', 1, 4, NULL, '15'),
+(259, 'Scavenge', 'Overlord', 'Goblin Uprising', 1, 4, NULL, '15'),
+(260, 'Summon Splig', 'Overlord', 'Goblin Uprising', 1, 3, NULL, '15'),
+(261, 'Mine All Mine', 'Overlord', 'Dragon''s Greed', 1, 0, NULL, '16'),
+(262, 'Terrifying Presence', 'Overlord', 'Dragon''s Greed', 1, 2, NULL, '16'),
+(263, 'Iron-Hard Scales', 'Overlord', 'Dragon''s Greed', 1, 2, NULL, '16'),
+(264, 'Jealous Rage', 'Overlord', 'Dragon''s Greed', 1, 3, NULL, '16'),
+(265, 'Massive Bulk', 'Overlord', 'Dragon''s Greed', 1, 3, NULL, '16'),
+(266, 'Punish the Weak', 'Overlord', 'Dragon''s Greed', 1, 3, NULL, '16'),
+(267, 'Aurium Plating', 'Overlord', 'Dragon''s Greed', 1, 3, NULL, '16'),
+(268, 'Valyndra''s Shadow', 'Overlord', 'Dragon''s Greed', 1, 4, NULL, '16'),
+(269, 'Guardians of the Hoard', 'Overlord', 'Dragon''s Greed', 1, 4, NULL, '16'),
+(270, 'Summon Valyndra', 'Overlord', 'Dragon''s Greed', 1, 3, NULL, '16'),
+(271, 'Misdirection', 'Overlord', 'Dark Illusions', 1, 0, NULL, '17'),
+(272, 'Tainted Blood', 'Overlord', 'Dark Illusions', 1, 1, NULL, '17'),
+(273, 'Intricate Schemes', 'Overlord', 'Dark Illusions', 1, 1, NULL, '17'),
+(274, 'Malediction', 'Overlord', 'Dark Illusions', 1, 2, NULL, '17'),
+(275, 'Mirage', 'Overlord', 'Dark Illusions', 1, 2, NULL, '17'),
+(276, 'Enthrall', 'Overlord', 'Dark Illusions', 1, 2, NULL, '17'),
+(277, 'Phantasm', 'Overlord', 'Dark Illusions', 1, 3, NULL, '17'),
+(278, 'Darkness Falls', 'Overlord', 'Dark Illusions', 1, 3, NULL, '17'),
+(279, 'The Ritual Continues', 'Overlord', 'Dark Illusions', 1, 4, NULL, '17'),
+(280, 'Summon Ariad', 'Overlord', 'Dark Illusions', 1, 3, NULL, '17'),
+(281, 'Natural Camouflage', 'Overlord', 'Tangled Web', 1, 0, NULL, '18'),
+(282, 'Feral Instincts', 'Overlord', 'Tangled Web', 1, 1, NULL, '18'),
+(283, 'Web of Deception', 'Overlord', 'Tangled Web', 1, 2, NULL, '18'),
+(284, 'Entangling Weave', 'Overlord', 'Tangled Web', 1, 2, NULL, '18'),
+(285, 'Unsafe Passage', 'Overlord', 'Tangled Web', 1, 2, NULL, '18'),
+(286, 'Hidden Predator', 'Overlord', 'Tangled Web', 1, 2, NULL, '18'),
+(287, 'Embrace Darkness', 'Overlord', 'Tangled Web', 1, 2, NULL, '18'),
+(288, 'Solitary Prey', 'Overlord', 'Tangled Web', 1, 3, NULL, '18'),
+(289, 'Salvage Exploitation', 'Overlord', 'Tangled Web', 1, 4, NULL, '18'),
+(290, 'Summon Queen Ariad', 'Overlord', 'Tangled Web', 1, 3, NULL, '18'),
+(291, 'Petty Theft', 'Overlord', 'Skulduggery', 1, 0, NULL, '19'),
+(292, 'Concealment', 'Overlord', 'Skulduggery', 1, 2, NULL, '19'),
+(293, 'Slippery', 'Overlord', 'Skulduggery', 1, 2, NULL, '19'),
+(294, 'Distraction', 'Overlord', 'Skulduggery', 1, 2, NULL, '19'),
+(295, 'Foiled Again', 'Overlord', 'Skulduggery', 1, 2, NULL, '19'),
+(296, 'Covetous', 'Overlord', 'Skulduggery', 1, 2, NULL, '19'),
+(297, 'Guarded Treasure', 'Overlord', 'Skulduggery', 1, 3, NULL, '19'),
+(298, 'Cursed Treasure', 'Overlord', 'Skulduggery', 1, 3, NULL, '19'),
+(299, 'Bait and Switch', 'Overlord', 'Skulduggery', 1, 3, NULL, '19'),
+(300, 'Summon Raythen', 'Overlord', 'Skulduggery', 1, 3, NULL, '19'),
+(301, 'Brethren', 'Overlord', 'Silent Protector', 1, 0, NULL, '20'),
+(302, 'Diplomatic', 'Overlord', 'Silent Protector', 1, 1, NULL, '20'),
+(303, 'Curative Spirit', 'Overlord', 'Silent Protector', 1, 2, NULL, '20'),
+(304, 'Traveler''s Rest', 'Overlord', 'Silent Protector', 1, 3, NULL, '20'),
+(305, 'Pity the Weak', 'Overlord', 'Silent Protector', 1, 2, NULL, '20'),
+(306, 'Pacify', 'Overlord', 'Silent Protector', 1, 2, NULL, '20'),
+(307, 'Shared Burdens', 'Overlord', 'Silent Protector', 1, 3, NULL, '20'),
+(308, 'Power in Mourning', 'Overlord', 'Silent Protector', 1, 3, NULL, '20'),
+(309, 'Oath of Silence', 'Overlord', 'Silent Protector', 1, 3, NULL, '20'),
+(310, 'Summon Serena', 'Overlord', 'Silent Protector', 1, 3, NULL, '20');
 
 -- --------------------------------------------------------
 
@@ -977,14 +1074,13 @@ INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
-  `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,
+`spendxp_id` int(3) NOT NULL,
   `spendxp_game_id` int(2) DEFAULT NULL,
   `spendxp_char_id` int(3) DEFAULT NULL,
   `spendxp_skill_id` int(3) DEFAULT NULL,
   `spendxp_progress_id` int(3) DEFAULT NULL,
-  `shop_notes` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`spendxp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=294 ;
+  `shop_notes` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
@@ -1011,18 +1107,276 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_char_i
 (244, 14, 3, 27, 22, ''),
 (269, 38, 7, 98, 34, ''),
 (270, 38, 7, 99, 34, NULL),
-(283, 42, 53, 33, NULL, NULL),
-(284, 42, 54, 11, NULL, NULL),
-(285, 42, 55, 2, NULL, NULL),
-(286, 47, 56, 33, NULL, NULL),
-(287, 47, 57, 11, NULL, NULL),
-(288, 47, 58, 2, NULL, NULL),
-(289, 47, 59, 69, NULL, NULL),
-(290, 48, 60, 33, NULL, NULL),
-(291, 48, 61, 11, NULL, NULL),
-(292, 48, 62, 2, NULL, NULL),
-(293, 48, 63, 69, NULL, NULL);
+(298, 50, 68, 231, NULL, NULL),
+(299, 50, 69, 33, NULL, NULL),
+(300, 50, 70, 116, NULL, NULL),
+(301, 50, 71, 13, NULL, NULL),
+(302, 50, 69, 10, 86, NULL),
+(303, 50, 70, 118, 86, NULL),
+(304, 50, 70, 122, 86, NULL),
+(305, 50, 71, 103, 86, NULL),
+(306, 50, 69, 39, 85, NULL),
+(307, 50, 71, 99, 85, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `tbtravel`
+--
+
+CREATE TABLE IF NOT EXISTS `tbtravel` (
+`travel_id` int(11) NOT NULL,
+  `travel_type` varchar(24) NOT NULL,
+  `travel_name` varchar(64) NOT NULL,
+  `travel_card` int(4) NOT NULL,
+  `travel_event` text NOT NULL,
+  `travel_result` text NOT NULL,
+  `travel_special` varchar(8) DEFAULT NULL,
+  `travel_exp_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `tbtravel`
+--
+
+INSERT INTO `tbtravel` (`travel_id`, `travel_type`, `travel_name`, `travel_card`, `travel_event`, `travel_result`, `travel_special`, `travel_exp_id`) VALUES
+(0, 'all', 'No Event', 0, 'No Event', 'No Event', NULL, 0),
+(1, 'plains', 'Moss-covered Standing Stones', 1, 'You come across a collection of mosscovered standing stones.', 'Each hero tests Willpower and suffers 1 fatigue if he fails. If all heroes pass, each hero draws 1 Search Card.', NULL, 0),
+(2, 'forest', 'Dense Thicket', 1, 'You hear weeping at the center of a dense thicket.', 'If you choose to investigate, each hero suffers 1 Damage and the overlord discards 1 random Overlord card.', NULL, 0),
+(3, 'mountains', 'Unforgiving Slopes', 1, 'You''re caught on the unforgiving slopes during a fierce storm.', 'Each hero suffers 1 Damage and 1 Fatigue.', NULL, 0),
+(4, 'road', 'Traveling Merchant', 2, 'You come across a traveling merchant.', 'Each hero tests Knowledge and draws 1 Search card if he passes.', NULL, 0),
+(5, 'plains', 'Band of Refugees', 2, 'You come across a band of refugees.', 'If you stop and help them, the overlord draws 1 Overlord card. if you refuse them, each hero suffers 1 Damage', NULL, 0),
+(6, 'forest', 'Lost', 2, 'You become lost.', 'Hero players choose one hero to test Willpower. If he fails, each hero suffers 1 Fatigue.', NULL, 0),
+(7, 'plains', 'Smoke Smudging the Horizon', 3, 'You see smoke smudging the horizon in the distance.', 'The overlord draws 1 Overlord card.', NULL, 0),
+(8, 'forest', 'Peaceful Glade', 3, 'Unexpectedly, you find a beautiful and peaceful glade in the woods.', 'Each hero recovers all Damage and Fatigue.', NULL, 0),
+(9, 'mountains', 'An Ettin Appears', 3, 'An ettin appears from the mountains and attacks the heroes!', 'Each hero tests Might and suffers 1 Damage if he fails. If all heroes fail, each hero suffers 1 additional Damage.', NULL, 0),
+(10, 'plains', 'Lawless Brigands', 4, 'Lawless brigands accost you.', 'Hero players choose one hero to test Might to scare them off. If he fails, each hero suffers 1 Damage in the battle.', NULL, 0),
+(11, 'forest', 'Webs Hang Everywhere!', 4, 'Webs hang everywhere!', 'Each hero tests Awareness. Each hero who fails is ambushed by a spider and is Poisoned. If all heroes fail, each hero suffers 1 Damage.', NULL, 0),
+(12, 'water', 'Something Glimmers', 4, 'Something glimmers at the bottom of the pool!', 'Hero players choose one hero to test Awareness to dive in after it. If he passes, draw 1 Search card.', NULL, 0),
+(13, 'forest', 'Latari Elves', 5, 'A band of Latari Elves is beset by minions of the overlord.', 'Heroes may choose to leap to their defense, and each suffer 1 Damage. If they do not, the overlord draws 2 Overlord cards.', NULL, 0),
+(14, 'mountains', 'A Dwarf of Dunwarr', 5, 'A dwarf of Dunwarr is burying his brother. He warns you of dangers ahead.', 'Do not draw a Travel Event card for the next travel icon you stop at this phase.', NULL, 0),
+(15, 'water', 'Fat Bloated Corpses', 5, 'Fat, bloated corpses float in the water. As you approach, they moan and rise!', 'Each hero tests Willpower. Each hero who fails is overcome by zombies and is Diseased.', NULL, 0),
+(16, 'road', 'Hidden Path', 6, 'You find a hidden path and make excellent time!', 'Do not draw a Travel event card for the next travel icon you stop at this phase.', NULL, 0),
+(17, 'mountain', 'Minions Emerge!', 6, 'The overlord''s minions emerge!', 'The overlord chooses 1 attribute. Each hero must test the chose attribute. Each hero that fails suffers 1 Damage and 1 Fatigue.', NULL, 0),
+(18, 'forest', 'The overlord''s minions emerge!', 6, 'The overlord''s minions emerge!', 'The overlord chooses 1 attribute. Each hero must test the chose attribute. Each hero that fails suffers 1 Damage and 1 Fatigue.', NULL, 0),
+(19, 'road', 'Traveling Sage', 7, 'A traveling sage gives you access to his library.', 'Hero players choose one hero to test Knowledge. If he passes, he may look at the overlord''s hand of cards and choose 1 to discard.', NULL, 0),
+(20, 'forest', 'Spiders!', 7, 'Spiders! Gods be good, spiders!', 'The hero with the lowest Awareness (overlord''s choice in the case of a tie) is Poisoned.', NULL, 0),
+(21, 'water', 'Pestilential Miasma', 7, 'A pestilential miasma seems to rise from the water.', 'The hero with the lowest Might (overlord''s choice in the case of a tie) is Diseased.', NULL, 0),
+(22, 'plains', 'Burning Farm', 8, 'You find a farm already burning and stop to give the farmers a proper burial.', 'The overlord draws 1 Overlord card.', NULL, 0),
+(23, 'mountain', 'Mysterious Cave', 8, 'A mysterious cave mouth looms ahead.', 'If the heroes choose to enter, draw 1 search card and the overlord draws 1 Overlord card.', NULL, 0),
+(24, 'water', 'Mysterious Robed Figure', 8, 'A mysterious robed figure offers you a ride on his pole-bardge.', 'If the heroes choose to ride, each hero recovers all Fatigue, but the overlord draws 1 Overlord card.', NULL, 0),
+(25, 'road', 'The Overlord''s Spies', 9, 'The overlord''s spies are everywhere.', 'Each hero tests Knowledge. The overlord draws 1 Overlord card for each hero that fails.', NULL, 0),
+(26, 'mountain', 'Landslide!', 9, 'Landslide!', 'Each hero tests Might. Each hero that fails suffers 2 Fatigue.', NULL, 0),
+(27, 'water', 'Last Night''s Rain', 9, 'After last night''s rain, the rivers are running high and fast.', 'Each hero tests Knowledge. Each hero that fails suffers 2 Fatigue.', NULL, 0),
+(28, 'plains', 'Tree with Golden Apples', 10, 'You pause briefly in an orchard, which you discover has a tree with golden apples.', 'Hero players choose one hero to test Willpower. If he passes, draw 1 Search Card.', NULL, 0),
+(29, 'mountains', 'Arrows fly', 10, 'Arrows fly from behind the boulders ahead!', 'Each hero tests Awareness and suffers 1 Damage if he fails. If all heroes fail, each hero suffers 1 additional Damage', NULL, 0),
+(30, 'water', 'Tentacles', 10, 'Tentacles burst from the water and attempt to pull the heroes in!', 'Each hero tests Might and suffers 1 fatigue if he fails. If all heroes fail, each hero suffers 1 Damage.', NULL, 0),
+(32, 'road', 'Wrong turn', 11, 'You think you took a wrong turn...', 'Each hero tests Knowledge and suffers 1 Fatigue if he fails. If all heroes pass, do not draw an event for the next path you travel on this phase.', NULL, 1),
+(33, 'water', 'A Ferryman', 11, 'You begin to tire after the long journey. A ferryman sympathizes and offers you a ride.', 'You must spend 25 gold or each hero suffers 1 Fatigue.', 'gold', 1),
+(34, 'plains', 'Winged Minions', 11, 'Winged minions of the overlord descend to assault you from above.', 'One hero tests Awareness. if he fails, each hero suffers 1 Damage and 1 Fatigue.', NULL, 1),
+(35, 'all', 'Mysterious Herald', 12, 'As you make your way towards your destination, you are approached by a mysterious herald.\r\n"Tread carefully, heroes," the cloaked strangers says. "There are minions of evil everywhere! A terrible plot is afoot, just nearby, and it must be stopped! Come!"', 'The heroes may force the overlord to immediately play a Rumor card featuring a quest of the current act.\r\nif the heroes choose not to do this, or if the overlord does not have any Rumor cards in his hand featuring a valid quest, treat this Travel Event cards as "No Event."\r\nAfter resolving this event, retun this card to the game box.', NULL, 1),
+(36, 'plains', 'The Enemy''s Scouts', 13, 'You encounter the enemy''s scouts.', 'The hero with the highest Awareness may suffer 1 fatigue to look at 1 random card from the overlord''s hand, or suffer 2 Damage to force the overlord to discard 1 random card.', NULL, 1),
+(37, 'forest', 'An Old Crone', 13, 'You encounter an old crone who whispers a curse before disappearing back into the mists.', 'Each hero must test Willpower. Each hero who fails succumbs to her spell and is Burning.', NULL, 1),
+(38, 'mountain', 'Mysterious Jester', 13, 'A mysterious jester appears and presents an irresistible offer...', 'One hero tests each of his attributes (Willpower, Knowledge, Awareness, and Might). If he passes all tests, draw 1 card from the current Act''s Shop Item deck.', 'item', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `tbtravel_aquired`
+--
+
+CREATE TABLE IF NOT EXISTS `tbtravel_aquired` (
+`travel_aq_id` int(11) NOT NULL,
+  `travel_aq_event_id` int(4) NOT NULL,
+  `travel_aq_progress_id` int(4) NOT NULL,
+  `travel_aq_game_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `tbtravel_aquired`
+--
+
+INSERT INTO `tbtravel_aquired` (`travel_aq_id`, `travel_aq_event_id`, `travel_aq_progress_id`, `travel_aq_game_id`) VALUES
+(27, 32, 83, 50),
+(28, 16, 83, 50),
+(29, 0, 83, 50),
+(30, 16, 85, 50),
+(31, 0, 85, 50),
+(32, 4, 86, 50),
+(33, 15, 86, 50),
+(34, 5, 86, 50),
+(35, 3, 86, 50);
+
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `tbcampaign`
+--
+ALTER TABLE `tbcampaign`
+ ADD PRIMARY KEY (`cam_id`);
+
+--
+-- Indexen voor tabel `tbcharacters`
+--
+ALTER TABLE `tbcharacters`
+ ADD PRIMARY KEY (`char_id`);
+
+--
+-- Indexen voor tabel `tbclasses`
+--
+ALTER TABLE `tbclasses`
+ ADD PRIMARY KEY (`class_id`);
+
+--
+-- Indexen voor tabel `tbgames`
+--
+ALTER TABLE `tbgames`
+ ADD PRIMARY KEY (`game_id`);
+
+--
+-- Indexen voor tabel `tbgroup`
+--
+ALTER TABLE `tbgroup`
+ ADD PRIMARY KEY (`grp_id`);
+
+--
+-- Indexen voor tabel `tbheroes`
+--
+ALTER TABLE `tbheroes`
+ ADD PRIMARY KEY (`hero_id`);
+
+--
+-- Indexen voor tabel `tbitems`
+--
+ALTER TABLE `tbitems`
+ ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexen voor tabel `tbitems_aquired`
+--
+ALTER TABLE `tbitems_aquired`
+ ADD PRIMARY KEY (`shop_id`);
+
+--
+-- Indexen voor tabel `tbitems_relics`
+--
+ALTER TABLE `tbitems_relics`
+ ADD PRIMARY KEY (`relic_id`);
+
+--
+-- Indexen voor tabel `tbplayerlist`
+--
+ALTER TABLE `tbplayerlist`
+ ADD PRIMARY KEY (`player_id`);
+
+--
+-- Indexen voor tabel `tbquests`
+--
+ALTER TABLE `tbquests`
+ ADD PRIMARY KEY (`quest_id`);
+
+--
+-- Indexen voor tabel `tbquests_progress`
+--
+ALTER TABLE `tbquests_progress`
+ ADD PRIMARY KEY (`progress_id`);
+
+--
+-- Indexen voor tabel `tbsearch`
+--
+ALTER TABLE `tbsearch`
+ ADD PRIMARY KEY (`search_id`);
+
+--
+-- Indexen voor tabel `tbskills`
+--
+ALTER TABLE `tbskills`
+ ADD PRIMARY KEY (`skill_id`);
+
+--
+-- Indexen voor tabel `tbskills_aquired`
+--
+ALTER TABLE `tbskills_aquired`
+ ADD PRIMARY KEY (`spendxp_id`);
+
+--
+-- Indexen voor tabel `tbtravel`
+--
+ALTER TABLE `tbtravel`
+ ADD PRIMARY KEY (`travel_id`);
+
+--
+-- Indexen voor tabel `tbtravel_aquired`
+--
+ALTER TABLE `tbtravel_aquired`
+ ADD PRIMARY KEY (`travel_aq_id`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `tbcharacters`
+--
+ALTER TABLE `tbcharacters`
+MODIFY `char_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
+--
+-- AUTO_INCREMENT voor een tabel `tbclasses`
+--
+ALTER TABLE `tbclasses`
+MODIFY `class_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT voor een tabel `tbgames`
+--
+ALTER TABLE `tbgames`
+MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+--
+-- AUTO_INCREMENT voor een tabel `tbgroup`
+--
+ALTER TABLE `tbgroup`
+MODIFY `grp_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT voor een tabel `tbitems_aquired`
+--
+ALTER TABLE `tbitems_aquired`
+MODIFY `shop_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=324;
+--
+-- AUTO_INCREMENT voor een tabel `tbitems_relics`
+--
+ALTER TABLE `tbitems_relics`
+MODIFY `relic_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT voor een tabel `tbquests_progress`
+--
+ALTER TABLE `tbquests_progress`
+MODIFY `progress_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=87;
+--
+-- AUTO_INCREMENT voor een tabel `tbsearch`
+--
+ALTER TABLE `tbsearch`
+MODIFY `search_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT voor een tabel `tbskills`
+--
+ALTER TABLE `tbskills`
+MODIFY `skill_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=311;
+--
+-- AUTO_INCREMENT voor een tabel `tbskills_aquired`
+--
+ALTER TABLE `tbskills_aquired`
+MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=308;
+--
+-- AUTO_INCREMENT voor een tabel `tbtravel`
+--
+ALTER TABLE `tbtravel`
+MODIFY `travel_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+--
+-- AUTO_INCREMENT voor een tabel `tbtravel_aquired`
+--
+ALTER TABLE `tbtravel_aquired`
+MODIFY `travel_aq_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

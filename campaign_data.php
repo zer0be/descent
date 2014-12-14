@@ -111,6 +111,7 @@ $totalRows_rsQuestData = mysql_num_rows($rsQuestData);
 */
 
 
+
 // Set some variables
 $iq = 0;
 $questsAct1 = 0;
@@ -129,6 +130,7 @@ do {
   $qrewardH = 0; 
   $qrewardOL = 0; 
   //select correct reward
+  
   
   // set the type of reward so we can save it correctly later  
   $rewardTypeH = "";
@@ -197,29 +199,17 @@ do {
     "reward_type_h" => $rewardTypeH,
     "reward_type_ol" => $rewardTypeOL,
     "relic_id" => $row_rsQuestData['relic_id'],
-    "travel_set" => $row_rsQuestData['progress_set_travel'], 
-    "travel" => array(
-      array(
-          "type" => "Plains",
-          "event" => "<div class='v-center'>No Event</div>",
-          "outcome" => "",
-          "goldlost" => 0,
-          "item-gained" => ""
-      ),
-      array(
-          "type" => "Mountains",
-          "event" => "A mysterious jester appears and presents an irresistible offer..",
-          "outcome" => "passes all attibute tests and draws a 'Crossbow'",
-          "goldlost" => 0,
-          "item-gained" => "Crossbow"
-      ),
-    ),
+    "travel_set" => $row_rsQuestData['progress_set_travel'],
+    "travel_steps" => $row_rsQuestData['quest_travel'],
+    "travel" => array(),
     "spendxp_set" => $row_rsQuestData['progress_set_spendxp'],
     "spendxp" => array(),
     "items_set" => $row_rsQuestData['progress_set_items'],
     "items" => array(),
 
   );
+
+
 
   // keep track of where we are in the campaign
   if ($row_rsQuestData['quest_act'] == "Act 1" && $row_rsQuestData['progress_quest_type'] == "Quest"){
@@ -244,6 +234,32 @@ do {
     $wonForFinale += 1;
   }
 
+  // Get the Travel Steps
+
+  $query_rsQuestTravelData = sprintf("SELECT * 
+    FROM tbtravel_aquired 
+    INNER JOIN tbtravel ON tbtravel_aquired.travel_aq_event_id = tbtravel.travel_id 
+    WHERE travel_aq_progress_id = %s", GetSQLValueString($row_rsQuestData['progress_id'], "int"));
+  $rsQuestTravelData = mysql_query($query_rsQuestTravelData, $dbDescent) or die(mysql_error());
+  $row_rsQuestTravelData = mysql_fetch_assoc($rsQuestTravelData);
+  $totalRows_rsQuestTravelData = mysql_num_rows($rsQuestTravelData);
+
+  $questTravelSteps = explode(',', $row_rsQuestData['quest_travel']);
+  $qts = 0;
+  do {
+
+    $campaign['quests'][$iq]['travel'][] = array(
+          "type" => $questTravelSteps[$qts],
+          "event" => $row_rsQuestTravelData['travel_event'],
+          "outcome" => $row_rsQuestTravelData['travel_result'],
+          "goldlost" => 0,
+          "item-gained" => ""
+      );
+    $qts++;
+
+  } while ($row_rsQuestTravelData = mysql_fetch_assoc($rsQuestTravelData));
+
+ 
   
 
   // Get the skills

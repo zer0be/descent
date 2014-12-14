@@ -137,8 +137,8 @@
 				?>
 				<div class="campaign-phase campaign-phase-<?php echo $qs['id']; ?> clearfix">
 					<div class="phase-column travel">
-						<?php if ($qs['travel_set'] == 0){ ?>
-							<div class="center subbutton"><p class="title">Add Travel Steps</p></div>
+						<?php if ($qs['travel_set'] == 0 && $qs['act'] != "Introduction"){ ?>
+							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=t" class="title">Add Travel Steps</a></div>
 						<?php } else { ?>
 
 							<?php 
@@ -147,7 +147,9 @@
 								foreach ($qs['travel'] as $ts){
 								?>
 									<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center;">
-										<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
+										<div class="travel-child">
+											<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
+										</div>
 									</div>
 								<?php
 								$its++;
@@ -158,25 +160,30 @@
 					</div>
 
 					<div class="phase-column quest" style="background: url('img/quests/<?php print $qs['img']; ?>') no-repeat center;">
-						<?php if ($qs['winner'] == NULL){ ?>
+						<?php if ($qs['winner'] == NULL && ($qs['travel_set'] == 1 || $qs['act'] == "Introduction")){ ?>
 
 							<div class="quest-name"><?php print $qs['name']; ?></div>
 							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=q" class="title">Add Details</a></div>
-
-
+						<?php } else if ($qs['winner'] == NULL && ($qs['travel_set'] == 0 || $qs['act'] != "Introduction")){ ?>
+							<div class="quest-name"><?php print $qs['name']; ?></div>
+							<div class="center">Add Travel Details first</div>
 						<?php } else { ?>
 
 							<div class="quest-name"><?php print $qs['name']; ?></div>
 							<div class="quest-winner"><?php print $qs['winner']; ?></div>
 							<div class="quest-reward"><span class="label">Reward</span>
 								<br />
-								<?php 
-									if($qs['reward_type_h'] == "xp" || $qs['reward_type_ol'] == "xp"){
-										echo $qs['reward'] . '<span class="label">XP</span>';
-									} else if($qs['reward_type_h'] == "gold"){
-										echo ($qs['reward'] * (count($players) - 1)) . '<span class="label"> GOLD</span>';
+								<?php
+									if ($qs['act'] != "Introduction"){
+										if($qs['reward_type_h'] == "hxp" || $qs['reward_type_ol'] == "olxp"){
+											echo $qs['reward'] . '<span class="label">XP</span>';
+										} else if($qs['reward_type_h'] == "gold"){
+											echo ($qs['reward'] * (count($players) - 1)) . '<span class="label"> GOLD</span>';
+										} else {
+											echo $qs['reward'];
+										}
 									} else {
-										echo $qs['reward'];
+										echo "None";
 									}
 								?>
 							</div>
