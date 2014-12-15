@@ -224,7 +224,7 @@
 						<?php if ($qs['winner'] == NULL){ ?>
 							<div class="center"><p class="title">Add Quest Details First</p></div>
 						<?php } else if ($qs['winner'] != NULL && $qs['items_set'] == 0){ ?>
-							<div class="center subbutton"><p class="title">Add Items</p></div>
+							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=it"  class="title">Shop & Trade</a></div>
 						<?php } else { ?>
 
 							<?php 

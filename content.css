@@ -366,7 +366,7 @@ body{
 #start-quest-form, #start-rumor-form{
 	margin: 0 auto;
 	padding: 0 20px;
-	width: 340px;
+	width: 300px;
 }
 
 /* --------------------- */
@@ -394,6 +394,27 @@ body{
 	float: right;
 	position: relative;
 	padding: 10px 20px;
+}
+
+.buy-column{
+	display: block;
+	width: 280px;
+	height: 210px;
+	float: left;
+	position: relative;
+}
+
+.buy-column.even{
+	margin: 0 10px;
+}
+
+.buy-column select, .buy-column input[type="submit"]{
+	width: 280px;
+}
+
+.buy-column input[type="submit"]{
+	position: absolute;
+	bottom: 0;
 }
 
 .list-checkbox{

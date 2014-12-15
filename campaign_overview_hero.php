@@ -51,11 +51,13 @@
                   <?php } while ($row_rsDetailItems = mysql_fetch_assoc($rsDetailItems)); ?>
 
                   <?php do { ?>
-                    <div class="item clearfix">      
-                      <div class="hero-mini items" style="background: url('img/<?php print $row_rsDetailRelics['relic_type']; ?>.jpg') center;"></div>  
-                      <div class="items item-name"><?php print $row_rsDetailRelics['relic_h_name']; ?></div> <!-- FIX ME: Overlord relics and stuff -->
-                      <div class="items item-xp cost">Relic</div>
-                    </div>
+                    <?php if (isset($row_rsDetailRelics['relic_h_name'])){ ?>
+                      <div class="item clearfix">      
+                        <div class="hero-mini items" style="background: url('img/<?php print $row_rsDetailRelics['relic_type']; ?>.jpg') center;"></div>  
+                        <div class="items item-name"><?php print $row_rsDetailRelics['relic_h_name']; ?></div> <!-- FIX ME: Overlord relics and stuff -->
+                        <div class="items item-xp cost">Relic</div>
+                      </div>
+                    <?php } ?>
                   <?php } while ($row_rsDetailRelics = mysql_fetch_assoc($rsDetailRelics)); ?>
                 </div> <!-- close items -->
 

@@ -8,7 +8,7 @@ $row_rsCreateGroup = mysql_fetch_assoc($rsCreateGroup);
 $totalRows_rsCreateGroup = mysql_num_rows($rsCreateGroup);
 */
 
-$query_rsCampaigns = "SELECT * FROM tbcampaign ORDER BY cam_type ASC";
+$query_rsCampaigns = "SELECT * FROM tbcampaign";
 $rsCampaigns = mysql_query($query_rsCampaigns, $dbDescent) or die(mysql_error());
 $row_rsCampaigns = mysql_fetch_assoc($rsCampaigns);
 $totalRows_rsCampaigns = mysql_num_rows($rsCampaigns);
@@ -28,7 +28,7 @@ do {
     $selectOptions[] = '<option value="' . $row_rsCampaigns['cam_id'] . '">' . $row_rsCampaigns['cam_name'] . '</option>';
   }
 
-  $checboxOptions[] = '<input type="checkbox" name="option1" value="' . $row_rsCampaigns['cam_id'] . '"> ' . $row_rsCampaigns['cam_name'] . '<br />';
+  $checboxOptions[] = '<input type="checkbox" name="expansions[]" value="' . $row_rsCampaigns['cam_id'] . '"> ' . $row_rsCampaigns['cam_name'] . '<br />';
 
 } while ($row_rsCampaigns = mysql_fetch_assoc($rsCampaigns));
 
@@ -41,10 +41,14 @@ do {
 // POST
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "new_game-form")) {
 
-  $insertSQL = sprintf("INSERT INTO tbgames (game_grp_id, game_dm, game_camp_id) VALUES (%s, %s, %s)",
+  $selectedExpansions = implode(",", $_POST['expansions']);
+  $selectedExpansions = '0,' . $_POST['campaign_id'] . ',' . $selectedExpansions;
+
+  $insertSQL = sprintf("INSERT INTO tbgames (game_grp_id, game_dm, game_camp_id, game_expansions) VALUES (%s, %s, %s, %s)",
                           GetSQLValueString($_POST['group_id'], "int"),
                           GetSQLValueString($username, "text"),
-                          GetSQLValueString($_POST['campaign_id'], "int"));
+                          GetSQLValueString($_POST['campaign_id'], "int"),
+                          GetSQLValueString($selectedExpansions, "text"));
 
 
   $Result = mysql_query($insertSQL, $dbDescent) or die(mysql_error());

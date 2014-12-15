@@ -16,8 +16,16 @@ if (isset($_SERVER['QUERY_STRING'])) {
 //select the database
 mysql_select_db($database_dbDescent, $dbDescent);
 
+// select expansions from the db
+$query_rsExpansions = sprintf("SELECT game_expansions FROM tbgames WHERE game_id = %s", GetSQLValueString($gameID, "int"));
+$rsExpansions = mysql_query($query_rsExpansions, $dbDescent) or die(mysql_error());
+$row_rsExpansions = mysql_fetch_assoc($rsExpansions);
+$totalRows_rsExpansions = mysql_num_rows($rsExpansions);
+
+$selExpansions = $row_rsExpansions['game_expansions'];
 // select the heroes from the db
-$query_rsHeroes = sprintf("SELECT * FROM tbheroes WHERE hero_name != %s", GetSQLValueString("Overlord", "text"));
+//$query_rsHeroes = sprintf("SELECT * FROM tbheroes WHERE hero_name != %s AND hero_expansion IN (%s)", GetSQLValueString("Overlord", "text"), GetSQLValueString($row_rsExpansions['game_expansions'], "text"));
+$query_rsHeroes = sprintf("SELECT * FROM tbheroes WHERE hero_expansion IN ($selExpansions) AND hero_name != 'Overlord'");
 $rsHeroes = mysql_query($query_rsHeroes, $dbDescent) or die(mysql_error());
 $row_rsHeroes = mysql_fetch_assoc($rsHeroes);
 $totalRows_rsHeroes = mysql_num_rows($rsHeroes);
@@ -148,7 +156,7 @@ do{
 
 
 // get the classes and its starting items/skills
-$query_rsClasses = sprintf("SELECT * FROM tbclasses");
+$query_rsClasses = sprintf("SELECT * FROM tbclasses WHERE class_exp_id IN ($selExpansions)");
 $rsClasses = mysql_query($query_rsClasses, $dbDescent) or die(mysql_error());
 $row_rsClasses = mysql_fetch_assoc($rsClasses);
 $totalRows_rsClasses = mysql_num_rows($rsClasses);
@@ -442,6 +450,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "save-heroes-form"))
           <!-- Overlord -->
           <div>
             <select id="class_hero1" name="classOverlord">
+              <option value="NULL" id="overlord">No Plot Deck</option>
               <?php foreach ($classesOverlord as $co) { echo $co; } ?>
             </select>
             <select id="class_hero1" name="playerOverlord">

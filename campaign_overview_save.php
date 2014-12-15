@@ -22,11 +22,15 @@
 
 <?php
 
+// ------------------ //
+// -- Search Cards -- //
+// ------------------ //
+
 // Select the search cards
-	$query_rsSearchData = sprintf("SELECT * FROM tbsearch ORDER BY search_name ASC");
-	$rsSearchData = mysql_query($query_rsSearchData, $dbDescent) or die(mysql_error());
-	$row_rsSearchData = mysql_fetch_assoc($rsSearchData);
-	$totalRows_rsSearchData = mysql_num_rows($rsSearchData);
+$query_rsSearchData = sprintf("SELECT * FROM tbsearch WHERE search_exp_id IN ($selExpansions) ORDER BY search_name ASC");
+$rsSearchData = mysql_query($query_rsSearchData, $dbDescent) or die(mysql_error());
+$row_rsSearchData = mysql_fetch_assoc($rsSearchData);
+$totalRows_rsSearchData = mysql_num_rows($rsSearchData);
 
 // create array with select options
 	$searchCards = array();
@@ -44,32 +48,6 @@
 	} while ($row_rsSearchData = mysql_fetch_assoc($rsSearchData));
 
 
-
-// Select all items FIX ME: implement Act and Expansion filter
-	$query_rsAllItems = sprintf("SELECT * FROM tbitems WHERE item_exp_id = %s AND owner = %s", GetSQLValueString(0, "int"),GetSQLValueString("hero", "text"));
-	$rsAllItems = mysql_query($query_rsAllItems, $dbDescent) or die(mysql_error());
-	$row_rsAllItems = mysql_fetch_assoc($rsAllItems);
-	$totalRows_rsAllItems = mysql_num_rows($rsAllItems);
-
-// Select aquired items
-	$query_rsAqItems = sprintf("SELECT * FROM tbitems_aquired WHERE aq_game_id = %s", GetSQLValueString($gameID, "int"));
-	$rsAqItems = mysql_query($query_rsAqItems, $dbDescent) or die(mysql_error());
-	$row_rsAqItems = mysql_fetch_assoc($rsAqItems);
-	$totalRows_rsAqItems = mysql_num_rows($rsAqItems);
-
-	$aquiredItems = array();
-	do { 
-		$aquiredItems[] = $row_rsAqItems['aq_item_id'];
-	} while ($row_rsAqItems = mysql_fetch_assoc($rsAqItems));
-
-// create array with select options
-	$availableItems = array();
-	do {
-		if(!(in_array($row_rsAllItems['item_id'], $aquiredItems))){
-			$availableItems[] = '<option value="' . $row_rsAllItems['item_id'] . '">' . $row_rsAllItems['item_name'] . '</option>';
-		}
-	} while ($row_rsAllItems = mysql_fetch_assoc($rsAllItems));
-
 // Select Gold
 /*
 	$query_rsGold = sprintf("SELECT game_gold FROM tbgames WHERE game_id = %s",GetSQLValueString($gameID, "int"));
@@ -77,6 +55,10 @@
 	$row_rsGold = mysql_fetch_assoc($rsGold);
 	$totalRows_rsGold = mysql_num_rows($rsGold);
 */
+
+// ------------------- //
+// -- Quest Details -- //
+// ------------------- //
 
 
 // Save Quest Details
@@ -166,8 +148,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "quest-details-form"
 
 }
 
-// Select the search cards
-$query_rsTravelData = sprintf("SELECT * FROM tbtravel");
+// ------------------- //
+// -- Travel Events -- //
+// ------------------- //
+
+// Select the travel events
+$query_rsTravelData = sprintf("SELECT * FROM tbtravel WHERE travel_exp_id IN ($selExpansions)");
 $rsTravelData = mysql_query($query_rsTravelData, $dbDescent) or die(mysql_error());
 $row_rsTravelData = mysql_fetch_assoc($rsTravelData);
 $totalRows_rsTravelData = mysql_num_rows($rsTravelData);
@@ -255,8 +241,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "travel-details-form
 }
 
 
-
-// Select available skills FIX ME: implement Act and Expansion filter
+// -------------- //
+// -- Spend XP -- //
+// -------------- //
 
 // loop through heroes
 $acquiredSkills = array();
@@ -332,30 +319,187 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "spendxp-details-for
 					$Result1 = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
 				}
 
-				
-				
+				$insertSQL2 = sprintf("UPDATE tbcharacters SET char_xp = char_xp - %s WHERE char_id = %s",
+		                      GetSQLValueString($totalCostPlayer[$sh['id']], "int"),
+		                      GetSQLValueString($sh['id'], "int"));
+
+				mysql_select_db($database_dbDescent, $dbDescent);
+				$Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
+		
 			}
-
-			$insertSQL2 = sprintf("UPDATE tbcharacters SET char_xp = char_xp - %s WHERE char_id = %s",
-	                      GetSQLValueString($totalCostPlayer[$sh['id']], "int"),
-	                      GetSQLValueString($sh['id'], "int"));
-
-			$insertSQL3 = sprintf("UPDATE tbquests_progress SET progress_set_spendxp = 1 WHERE progress_id = %s", 
-                       GetSQLValueString($_GET['PID'], "int"));
-
-	
-
-			mysql_select_db($database_dbDescent, $dbDescent);
-			$Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
-			$Result3 = mysql_query($insertSQL3, $dbDescent) or die(mysql_error());
+			
 
 		} //close foreach
+
+		$insertSQL3 = sprintf("UPDATE tbquests_progress SET progress_set_spendxp = 1 WHERE progress_id = %s", 
+                       GetSQLValueString($_GET['PID'], "int"));
+		$Result3 = mysql_query($insertSQL3, $dbDescent) or die(mysql_error());
+
 
 		$insertGoTo = "campaign_overview.php?urlGamingID=" . $gameID;
 		header(sprintf("Location: %s", $insertGoTo));
 	}
 
 }
+
+// --------------- //
+// -- Buy Items -- //
+// --------------- //
+
+if (!(isset($_POST["MM_insert"]))){
+	$_SESSION["shopItems"] = array();
+	$_SESSION["tempSold"] = array();
+}
+
+$validItems = 0;
+
+// Get the gold!
+$query_rsTotalGold = sprintf("SELECT game_gold FROM tbgames WHERE game_id = %s", GetSQLValueString($gameID, "int"));
+$rsTotalGold = mysql_query($query_rsTotalGold, $dbDescent) or die(mysql_error());
+$row_rsTotalGold = mysql_fetch_assoc($rsTotalGold);
+
+$availableGold = $row_rsTotalGold['game_gold'];
+
+// Select all items FIX ME: implement Act filter
+$query_rsAllItems = sprintf("SELECT * FROM tbitems WHERE item_exp_id IN ($selExpansions) AND owner = %s", GetSQLValueString("hero", "text"));
+$rsAllItems = mysql_query($query_rsAllItems, $dbDescent) or die(mysql_error());
+$row_rsAllItems = mysql_fetch_assoc($rsAllItems);
+
+// Select aquired items
+$query_rsAqItems = sprintf("SELECT * FROM tbitems_aquired INNER JOIN tbitems ON aq_item_id = item_id WHERE aq_game_id = %s", GetSQLValueString($gameID, "int"));
+$rsAqItems = mysql_query($query_rsAqItems, $dbDescent) or die(mysql_error());
+$row_rsAqItems = mysql_fetch_assoc($rsAqItems);
+
+$aquiredItems = array();
+$aquiredItemsList = array();
+
+do { 
+		$aquiredItems[] = $row_rsAqItems['aq_item_id'];
+		$aquiredItemsList[] = '<option value="' . $row_rsAqItems['aq_item_id'] . '">' . $row_rsAqItems['item_name'] . ' - ' . $row_rsAqItems['item_sell_price'] . ' Gold</option>';
+} while ($row_rsAqItems = mysql_fetch_assoc($rsAqItems));
+
+// create array with select options
+$availableItems = array();
+do {
+	if(!(in_array($row_rsAllItems['item_id'], $aquiredItems))){
+		$availableItems[] = '<option value="' . $row_rsAllItems['item_id'] . '">' . $row_rsAllItems['item_name'] . ' - ' . $row_rsAllItems['item_default_price'] . ' Gold</option>';
+	}
+} while ($row_rsAllItems = mysql_fetch_assoc($rsAllItems));
+
+
+
+$selectionPrice = 0;
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "buy-details-form")) {
+	$query_rsGetItem = sprintf("SELECT * FROM tbitems WHERE item_id = %s", GetSQLValueString($_POST["bought_item"], "int"));
+	$rsGetItem = mysql_query($query_rsGetItem, $dbDescent) or die(mysql_error());
+	$row_rsGetItem = mysql_fetch_assoc($rsGetItem);
+
+	$temp = $_SESSION["shopItems"];
+
+	// FIX ME: this could be done in a different way probably (without the foreach player)
+	foreach ($players as $pi){
+		if ($pi['id'] == $_POST["bought_player"]){
+			$temp[] = array(
+				"action" => "buy",
+				"id" => $_POST["bought_item"],
+				"name" => $row_rsGetItem['item_name'],
+				"player" => $_POST["bought_player"],
+				"hero" => $pi['name'],
+				"price" => $row_rsGetItem['item_default_price'],	
+				"overrid" => $_POST["bought_override"],
+			);
+		}
+	}
+}
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "sell-details-form")) {
+	$query_rsGetItem = sprintf("SELECT * FROM tbitems_aquired 
+		INNER JOIN tbitems ON aq_item_id = item_id 
+		INNER JOIN tbcharacters ON aq_char_id = char_id 
+		INNER JOIN tbheroes ON char_hero = hero_id 
+		WHERE aq_item_id = %s", GetSQLValueString($_POST["sold_item"], "int"));
+	$rsGetItem = mysql_query($query_rsGetItem, $dbDescent) or die(mysql_error());
+	$row_rsGetItem = mysql_fetch_assoc($rsGetItem);
+
+	$temp = $_SESSION["shopItems"];
+
+	// FIX ME: this could be done in a different way probably (without the foreach player)
+	$temp[] = array(
+		"action" => "sell",
+		"id" => $_POST["sold_item"],
+		"name" => $row_rsGetItem['item_name'],
+		"player" => $row_rsGetItem['char_id'],
+		"hero" => $row_rsGetItem['hero_name'],
+		"price" => $row_rsGetItem['item_sell_price'],	
+		"override" => NULL,
+	);
+}
+
+if (isset($_POST["MM_insert"])){
+	if ($_POST["MM_insert"] == "item-details-form"){
+		$temp = $_SESSION["shopItems"];
+	}
+
+	foreach ($temp as $tmp){
+		if ($tmp['action'] == "buy"){
+			$selectionPrice += $tmp["price"];
+		}	else if ($tmp['action'] == "sell"){
+			$selectionPrice -= $tmp["price"];
+		}
+	}
+
+	if ($selectionPrice > $availableGold){
+		echo '<div class="error">The selected item costs ' . ($selectionPrice - $availableGold) . ' more gold than is available</div>';
+	} else {
+		$_SESSION["shopItems"] = $temp;
+		$validItems = 1;
+	}
+
+}
+
+// Save items to the database
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "item-details-form")) {
+	if ($validItems == 1){
+		foreach ($_SESSION["shopItems"] as $siv){
+			if ($siv["action"] == "buy"){
+				$insertSQL = sprintf("INSERT INTO tbitems_aquired (aq_game_id, aq_char_id, aq_item_id, aq_progress_id) VALUES (%s, %s, %s, %s)",
+	                      GetSQLValueString($_GET['urlGamingID'], "int"),
+	                      GetSQLValueString($siv['player'], "int"),
+	                      GetSQLValueString($siv['id'], "int"),
+	                      GetSQLValueString($_GET['PID'], "int"));
+
+				mysql_select_db($database_dbDescent, $dbDescent);
+				$Result1 = mysql_query($insertSQL, $dbDescent) or die(mysql_error());
+
+			} else if ($siv["action"] == "sell"){
+				mysql_select_db($database_dbDescent, $dbDescent);
+				$insertSQL2 = sprintf("UPDATE tbitems_aquired SET aq_item_sold = 1 WHERE aq_game_id = %s AND aq_item_id = %s",
+											GetSQLValueString($_GET['urlGamingID'], "int"),
+                      GetSQLValueString($_GET['PID'], "int"));
+				$Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
+
+			}
+		}
+		mysql_select_db($database_dbDescent, $dbDescent);
+		$insertSQL3 = sprintf("UPDATE tbgames SET game_gold = game_gold - %s WHERE game_id = %s",
+											GetSQLValueString($selectionPrice, "int"),
+											GetSQLValueString($_GET['urlGamingID'], "int"));
+		$Result3 = mysql_query($insertSQL3, $dbDescent) or die(mysql_error());
+
+		$insertSQL4 = sprintf("UPDATE tbquests_progress SET progress_set_items = 1 WHERE progress_id = %s", 
+                       GetSQLValueString($_GET['PID'], "int"));
+		$Result4 = mysql_query($insertSQL4, $dbDescent) or die(mysql_error());
+
+		$insertGoTo = "campaign_overview.php?urlGamingID=" . $gameID;
+		header(sprintf("Location: %s", $insertGoTo));
+	}
+}
+
+/*
+echo '<pre>';
+var_dump($_SESSION["shopItems"]);
+echo '</pre>';
+*/
 
 ?> 
 
@@ -462,11 +606,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "spendxp-details-for
 
 			<?php
 						} else if(isset($_GET['part']) && $_GET['part'] == "xp") {// close if (isset)
-							/*
-							?><pre><?php
-							var_dump($availableSkills);
-							?></pre><?php
-							*/
 						?>
 							<form action="<?php echo $editFormAction; ?>" method="post" name="spendxp-details-form" id="spendxp-details-form">
 								<?php
@@ -488,6 +627,100 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "spendxp-details-for
 							</form>
 							<?php
 
+
+						} else if(isset($_GET['part']) && $_GET['part'] == "it") {// close if (isset)
+						?>
+							<div class="buy-column odd">
+								<form action="<?php echo $editFormAction; ?>" method="post" name="buy-details-form" id="buy-details-form">
+									<h2 class="center">Buy Item</h2>
+										<select name="bought_item">
+											<?php 
+												foreach($availableItems as $ai){
+													echo $ai;
+												}
+											?>
+										</select>
+										<select name="bought_player">
+											<?php 
+												foreach($players as $pl){
+													if ($pl['name'] != "Overlord"){
+														echo '<option value="' . $pl['id'] . '">' . $pl['name'] . '</option>';
+													}
+												}
+											?>
+										</select>
+										<select name="bought_override">
+											<option value="NULL">Override Price</div>
+											<option value="100">100 Gold</div>
+											<option value="125">125 Gold</div>
+											<option value="150">150 Gold</div>
+											<option value="175">175 Gold</div>
+											<option value="200">200 Gold</div>	
+										</select>
+									<div><input type="submit" value="Add" /></div>
+									<input type="hidden" name="MM_insert" value="buy-details-form" />
+								</form>
+							</div>
+							<div class="buy-column even">
+								<form action="<?php echo $editFormAction; ?>" method="post" name="sell-details-form" id="sell-details-form">
+									<h2 class="center">Sell Item</h2>
+										<select name="sold_item">
+											<?php 
+												foreach($aquiredItemsList as $ail){
+													echo $ail;
+												}
+											?>
+										</select>
+									<div><input type="submit" value="Add" /></div>
+									<input type="hidden" name="MM_insert" value="sell-details-form" />
+								</form>
+							</div>
+							<div class="buy-column odd">
+								<form action="<?php echo $editFormAction; ?>" method="post" name="trade-details-form" id="trade-details-form">
+									<h2 class="center">Trade Item</h2>
+										<select name="traded_item">
+											<?php 
+												foreach($aquiredItemsList as $ail){
+													echo $ail;
+												}
+											?>
+										</select>
+										<select name="traded_player">
+											<?php 
+												foreach($players as $pl){
+													if ($pl['name'] != "Overlord"){
+														echo '<option value="' . $pl['id'] . '">' . $pl['name'] . '</option>';
+													}
+												}
+											?>
+										</select>
+									<div><input type="submit" value="Add" /></div>
+									<input type="hidden" name="MM_insert" value="trade-details-form" />
+								</form>
+							</div>
+							<?php
+							echo '<br />';
+							foreach ($_SESSION["shopItems"] as $si){
+								if ($si['action'] == "buy"){
+									echo '<div>' . $si['hero'] . ' will buy <b>' . $si['name'] . '</b> for ' . $si['price'] . ' gold</div>';
+								} else if ($si['action'] == "sell"){
+									echo '<div>' . $si['hero'] . ' will sell <b>' . $si['name'] . '</b> for ' . $si['price'] . ' gold</div>';
+								}						
+							}
+							echo '<br />';
+							if ($selectionPrice > $availableGold){
+								echo '<div class="center">Total: <span style="color: red;">' . ($selectionPrice * -1) . '</span></div>';
+							} else {
+								echo '<div class="center">Total: ' . ($selectionPrice * -1) . '</div>';
+							}
+							
+							echo '<div class="center">Available: ' . $availableGold . '</div>';
+							?>
+							<form action="<?php echo $editFormAction; ?>" method="post" name="item-details-form" id="item-details-form">
+								<div><input type="submit" value="Save" /></div>
+								<input type="hidden" name="MM_insert" value="item-details-form" />
+							</form>
+							<?php
 
 						} else if(isset($_GET['part']) && $_GET['part'] == "t") {// close if (isset) ?>
 							<h2>Save Travel Details</h2>
@@ -546,3 +779,5 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "spendxp-details-for
 		</div>
 	</body>
 </html>
+
+

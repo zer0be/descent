@@ -17,6 +17,8 @@ $rsGroupCampaign = mysql_query($query_rsGroupCampaign, $dbDescent) or die(mysql_
 $row_rsGroupCampaign = mysql_fetch_assoc($rsGroupCampaign);
 $totalRows_rsGroupCampaign = mysql_num_rows($rsGroupCampaign);
 
+$selExpansions = $row_rsGroupCampaign['game_expansions'];
+
 //var_dump($row_rsGroupCampaign);
 
 // ------------- //
@@ -210,7 +212,7 @@ do {
   );
 
 
-
+  // FIX ME: Move this part to a seperate file so we can import the correct 'flow' for each campaign (this one only works for Shadow Rune for example)
   // keep track of where we are in the campaign
   if ($row_rsQuestData['quest_act'] == "Act 1" && $row_rsQuestData['progress_quest_type'] == "Quest"){
     $questsAct1 += 1;
