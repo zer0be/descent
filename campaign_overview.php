@@ -244,7 +244,17 @@
 										<div class="item clearfix">
 											<div class="hero-mini items" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
 											<div class="items item-name"><?php print $xit['name']; ?></div>
-											<div class="items item-xp"><?php print $xit['price']; ?></div>
+											<?php 
+												if($xit['action'] == "buy"){
+													if($xit['override'] != NULL){
+														echo '<div class="items item-xp"><span class="item-bought override">-' . $xit['override'] . '</span></div>';
+													} else {
+														echo '<div class="items item-xp"><span class="item-bought">-' . $xit['price'] . '</span></div>';
+													}
+												} else if ($xit['action'] == "sell"){
+													echo '<div class="items item-xp"><span class="item-sold">+' . $xit['price'] . '</span></div>';
+												}											
+											?>
 										</div>
 							<?php
 									}
@@ -285,11 +295,11 @@
 			} else {
 				include 'campaign_overview_hero.php';
 			}
-			/*
+			
 			echo '<pre>';
 			print_r($campaign);
 		  echo '</pre>';
-		  */
+		  
 		 	
 		  ?>
 		</div> <!-- close wrapper -->

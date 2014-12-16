@@ -372,11 +372,34 @@ $row_rsAqItems = mysql_fetch_assoc($rsAqItems);
 
 $aquiredItems = array();
 $aquiredItemsList = array();
+$sold = array();
 
+if (isset($_POST["sold_item"])){
+	$sold[] = $_POST["sold_item"];
+}
+
+foreach ($_SESSION["shopItems"] as $ses){
+	if ($ses['action'] == "sell"){
+		$sold[] = $ses['id'];
+	}
+}
+
+var_dump($sold);
 do { 
+	if($row_rsAqItems['aq_item_sold'] != 1 && (!(in_array($row_rsAqItems['aq_item_id'], $sold)))){
 		$aquiredItems[] = $row_rsAqItems['aq_item_id'];
 		$aquiredItemsList[] = '<option value="' . $row_rsAqItems['aq_item_id'] . '">' . $row_rsAqItems['item_name'] . ' - ' . $row_rsAqItems['item_sell_price'] . ' Gold</option>';
+	}
 } while ($row_rsAqItems = mysql_fetch_assoc($rsAqItems));
+
+
+
+if (isset($_POST["bought_item"])){
+	$aquiredItems[] = $_POST["bought_item"];
+}
+foreach ($_SESSION["shopItems"] as $ses){
+	$aquiredItems[] = $ses['id'];
+}
 
 // create array with select options
 $availableItems = array();
@@ -394,6 +417,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "buy-details-form"))
 	$rsGetItem = mysql_query($query_rsGetItem, $dbDescent) or die(mysql_error());
 	$row_rsGetItem = mysql_fetch_assoc($rsGetItem);
 
+	if($_POST["bought_override"] == 999){
+		$_POST["bought_override"] = NULL;
+	}
+
 	$temp = $_SESSION["shopItems"];
 
 	// FIX ME: this could be done in a different way probably (without the foreach player)
@@ -406,7 +433,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "buy-details-form"))
 				"player" => $_POST["bought_player"],
 				"hero" => $pi['name'],
 				"price" => $row_rsGetItem['item_default_price'],	
-				"overrid" => $_POST["bought_override"],
+				"override" => $_POST["bought_override"],
 			);
 		}
 	}
@@ -435,6 +462,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "sell-details-form")
 	);
 }
 
+$showError = 0;
 if (isset($_POST["MM_insert"])){
 	if ($_POST["MM_insert"] == "item-details-form"){
 		$temp = $_SESSION["shopItems"];
@@ -442,14 +470,20 @@ if (isset($_POST["MM_insert"])){
 
 	foreach ($temp as $tmp){
 		if ($tmp['action'] == "buy"){
-			$selectionPrice += $tmp["price"];
+			if ($tmp["override"] != NULL){
+				$selectionPrice += $tmp["override"];
+			} else {
+				$selectionPrice += $tmp["price"];
+				$lastprice = $tmp["price"];
+			}		
 		}	else if ($tmp['action'] == "sell"){
 			$selectionPrice -= $tmp["price"];
 		}
 	}
 
 	if ($selectionPrice > $availableGold){
-		echo '<div class="error">The selected item costs ' . ($selectionPrice - $availableGold) . ' more gold than is available</div>';
+		$showError = 1;
+		$selectionPrice -= $lastprice;
 	} else {
 		$_SESSION["shopItems"] = $temp;
 		$validItems = 1;
@@ -462,10 +496,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "item-details-form")
 	if ($validItems == 1){
 		foreach ($_SESSION["shopItems"] as $siv){
 			if ($siv["action"] == "buy"){
-				$insertSQL = sprintf("INSERT INTO tbitems_aquired (aq_game_id, aq_char_id, aq_item_id, aq_progress_id) VALUES (%s, %s, %s, %s)",
+				$insertSQL = sprintf("INSERT INTO tbitems_aquired (aq_game_id, aq_char_id, aq_item_id, aq_item_price_ovrd, aq_progress_id) VALUES (%s, %s, %s, %s, %s)",
 	                      GetSQLValueString($_GET['urlGamingID'], "int"),
 	                      GetSQLValueString($siv['player'], "int"),
 	                      GetSQLValueString($siv['id'], "int"),
+	                      GetSQLValueString($siv['override'], "int"),
 	                      GetSQLValueString($_GET['PID'], "int"));
 
 				mysql_select_db($database_dbDescent, $dbDescent);
@@ -496,11 +531,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "item-details-form")
 	}
 }
 
-/*
+
 echo '<pre>';
 var_dump($_SESSION["shopItems"]);
 echo '</pre>';
-*/
+
 
 ?> 
 
@@ -651,12 +686,13 @@ echo '</pre>';
 											?>
 										</select>
 										<select name="bought_override">
-											<option value="NULL">Override Price</div>
-											<option value="100">100 Gold</div>
-											<option value="125">125 Gold</div>
-											<option value="150">150 Gold</div>
-											<option value="175">175 Gold</div>
-											<option value="200">200 Gold</div>	
+											<option value="999">Override Price</option>
+											<?php 
+												for ($i=25; $i < 300 ; $i += 25) { 
+													echo '<option value="' . $i . '">' . $i . ' Gold</option>';
+												}
+											?>
+
 										</select>
 									<div><input type="submit" value="Add" /></div>
 									<input type="hidden" name="MM_insert" value="buy-details-form" />
@@ -703,19 +739,23 @@ echo '</pre>';
 							echo '<br />';
 							foreach ($_SESSION["shopItems"] as $si){
 								if ($si['action'] == "buy"){
-									echo '<div>' . $si['hero'] . ' will buy <b>' . $si['name'] . '</b> for ' . $si['price'] . ' gold</div>';
+									if($si['override'] != NULL){
+										echo '<div>' . $si['hero'] . ' will buy <b>' . $si['name'] . '</b> for ' . $si['override'] . ' gold</div>';
+									} else {
+										echo '<div>' . $si['hero'] . ' will buy <b>' . $si['name'] . '</b> for ' . $si['price'] . ' gold</div>';
+									}
 								} else if ($si['action'] == "sell"){
 									echo '<div>' . $si['hero'] . ' will sell <b>' . $si['name'] . '</b> for ' . $si['price'] . ' gold</div>';
 								}						
 							}
-							echo '<br />';
-							if ($selectionPrice > $availableGold){
-								echo '<div class="center">Total: <span style="color: red;">' . ($selectionPrice * -1) . '</span></div>';
+							echo '<div class="center">';
+							if ($showError == 1){ echo '<div class="error">The selected item costs ' . (($selectionPrice - $availableGold) * -1) . ' more gold than is available</div>'; }
+							if (($availableGold - $selectionPrice) > $availableGold){
+								echo '<div>Gold Left: ' . '<span style="color: green;">' . ($availableGold - $selectionPrice) . ' (+' . ($selectionPrice * -1) . ')</span></div>';
 							} else {
-								echo '<div class="center">Total: ' . ($selectionPrice * -1) . '</div>';
+								echo '<div>Gold Left: ' . ($availableGold - $selectionPrice) . '</div>';
 							}
-							
-							echo '<div class="center">Available: ' . $availableGold . '</div>';
+							echo '</div>';
 							?>
 							<form action="<?php echo $editFormAction; ?>" method="post" name="item-details-form" id="item-details-form">
 								<div><input type="submit" value="Save" /></div>

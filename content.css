@@ -237,6 +237,10 @@ body{
 	color: red;
 }
 
+.item-bought.override{
+	color: orange;
+}
+
 .items .xp-label{
 	font-size: 12px;
 }

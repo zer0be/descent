@@ -321,7 +321,9 @@ do {
       "hero_img" => $row_rsQuestItemsData['hero_img'],
       "type" => $itemType,
       "name" => $itemName,
-      "price" => '<span class="item-bought">-' . $row_rsQuestItemsData['item_default_price'] . '</span>',
+      "action" => "buy",
+      "price" => $row_rsQuestItemsData['item_default_price'],
+      "override" => $row_rsQuestItemsData['aq_item_price_ovrd'],
     );
 
     if ($row_rsQuestItemsData['aq_item_sold'] == 1){
@@ -329,7 +331,9 @@ do {
         "hero_img" => $row_rsQuestItemsData['hero_img'],
         "type" => $itemType,
         "name" => $itemName,
-        "price" => '<span class="item-sold">+' . $row_rsQuestItemsData['item_sell_price'] . '</span>',
+        "action" => "sell",
+        "price" => $row_rsQuestItemsData['item_sell_price'],
+        "override" => NULL,
       );
     }
 
