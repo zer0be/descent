@@ -212,12 +212,29 @@ body{
 	margin-top: 5px;
 }
 
+.buy-items .item-name{
+	width: 198px;
+}
+
+.buy-items .item-xp{
+	text-align: right;
+	width: 40px;
+}
+
 .detail-items .item-xp{
 	width: 40px;
 }
 
-.cost{
+.cost, .item-sold, .item-bought{
 	text-align: right;
+}
+
+.item-sold{
+	color: green;
+}
+
+.item-bought{
+	color: red;
 }
 
 .items .xp-label{

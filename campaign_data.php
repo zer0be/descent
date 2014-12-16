@@ -170,8 +170,8 @@ do {
       $qreward = $row_rsQuestData['quest_rew_h_xp'];
     } else {
       $qreward = $row_rsQuestData['relic_h_name'];
-      
     }
+
   } else {
     // xp or item?
     if($row_rsQuestData['quest_rew_ol_xp'] != 0){
@@ -179,6 +179,7 @@ do {
     } else {
       $qreward = $row_rsQuestData['relic_ol_name'];
     }
+
   }
 
   $short = $row_rsQuestData['quest_name'];
@@ -295,7 +296,7 @@ do {
     LEFT JOIN tbitems_relics ON tbitems_aquired.aq_relic_id = tbitems_relics.relic_id 
     INNER JOIN tbcharacters ON tbitems_aquired.aq_char_id = tbcharacters.char_id 
     INNER JOIN tbheroes ON tbcharacters.char_hero = tbheroes.hero_id 
-    WHERE aq_progress_id = %s", GetSQLValueString($row_rsQuestData['progress_id'], "int"));
+    WHERE aq_progress_id = %s OR aq_sold_progress_id = %s ORDER BY aq_char_id ASC", GetSQLValueString($row_rsQuestData['progress_id'], "int"), GetSQLValueString($row_rsQuestData['progress_id'], "int"));
   $rsQuestItemsData = mysql_query($query_rsQuestItemsData, $dbDescent) or die(mysql_error());
   $row_rsQuestItemsData = mysql_fetch_assoc($rsQuestItemsData);
   $totalRows_rsQuestItemsData = mysql_num_rows($rsQuestItemsData);
@@ -320,8 +321,19 @@ do {
       "hero_img" => $row_rsQuestItemsData['hero_img'],
       "type" => $itemType,
       "name" => $itemName,
-      "price" => $row_rsQuestItemsData['item_default_price'],
+      "price" => '<span class="item-bought">-' . $row_rsQuestItemsData['item_default_price'] . '</span>',
     );
+
+    if ($row_rsQuestItemsData['aq_item_sold'] == 1){
+      $campaign['quests'][$iq]['items'][$ips] = array(
+        "hero_img" => $row_rsQuestItemsData['hero_img'],
+        "type" => $itemType,
+        "name" => $itemName,
+        "price" => '<span class="item-sold">+' . $row_rsQuestItemsData['item_sell_price'] . '</span>',
+      );
+    }
+
+
 
     $ips++;
 
@@ -421,5 +433,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "start-quest-form"))
   }
   header(sprintf("Location: %s", $insertGoTo));
 }
+
+/*
+echo '<pre>';
+var_dump ($campaign);
+echo '</pre>';
+*/
 
 ?>

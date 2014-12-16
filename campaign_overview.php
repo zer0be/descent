@@ -175,16 +175,24 @@
 								<br />
 								<?php
 									if ($qs['act'] != "Introduction"){
-										if($qs['reward_type_h'] == "hxp" || $qs['reward_type_ol'] == "olxp"){
-											echo $qs['reward'] . '<span class="label">XP</span>';
-										} else if($qs['reward_type_h'] == "gold"){
-											echo ($qs['reward'] * (count($players) - 1)) . '<span class="label"> GOLD</span>';
+										if ($qs['winner'] == "Heroes Win"){ //FIX ME: this should be a boolean maybe?
+											if($qs['reward_type_h'] == "hxp"){
+												echo $qs['reward'] . '<span class="label">XP</span>';
+											} else if ($qs['reward_type_h'] == "gold"){
+												echo ($qs['reward'] * (count($players) - 1)) . '<span class="label"> GOLD</span>';
+											} else {
+												echo $qs['reward'];
+											}
 										} else {
-											echo $qs['reward'];
+											if($qs['reward_type_ol'] == "olxp"){
+												echo $qs['reward'] . '<span class="label">XP</span>';
+											} else {
+												echo $qs['reward'];
+											}
 										}
 									} else {
 										echo "None";
-									}
+									}								
 								?>
 							</div>
 
@@ -251,7 +259,7 @@
 										<div class="relic clearfix">
 											<div class="hero-mini items" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
 											<div class="items item-name"><?php print $xit['name']; ?></div>
-											<div class="items item-xp"><?php print $xit['price']; ?></div>
+											<div class="items item-price"><?php print $xit['price']; ?></div>
 										</div>
 									</div>
 							<?php

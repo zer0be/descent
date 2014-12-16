@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 15 dec 2014 om 01:32
--- Serverversie: 5.6.21
--- PHP-versie: 5.6.3
+-- Gegenereerd op: 16 dec 2014 om 16:19
+-- Serverversie: 5.6.16
+-- PHP-versie: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS `tbcampaign` (
   `expansion` varchar(21) DEFAULT NULL,
   `edition` varchar(3) DEFAULT NULL,
   `cam_logo` varchar(25) DEFAULT NULL,
-  `cam_icon` varchar(26) DEFAULT NULL
+  `cam_icon` varchar(26) DEFAULT NULL,
+  PRIMARY KEY (`cam_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -73,14 +74,15 @@ INSERT INTO `tbcampaign` (`cam_id`, `cam_name`, `cam_type`, `cam_map`, `cam_log`
 --
 
 CREATE TABLE IF NOT EXISTS `tbcharacters` (
-`char_id` int(3) NOT NULL,
+  `char_id` int(3) NOT NULL AUTO_INCREMENT,
   `char_ggrp_id` int(3) DEFAULT NULL,
   `char_game_id` int(3) DEFAULT NULL,
   `char_player` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `char_hero` int(3) DEFAULT NULL,
   `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `char_xp` int(3) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
+  `char_xp` int(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`char_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcharacters`
@@ -107,10 +109,10 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 (76, 20, 53, 'Frauke', 1, 'Berserker', 6),
 (77, 20, 53, 'Maaike', 4, 'Necromancer', 0),
 (78, 20, 53, 'Tim', 5, 'Wildlander', 6),
-(79, 20, 56, 'dllrt', 0, 'Cursed By Power', 2),
+(79, 20, 56, 'dllrt', 0, 'Cursed By Power', 4),
 (80, 20, 56, 'Frauke', 2, 'Berserker', 0),
 (81, 20, 56, 'Tim', 6, 'Thief', 0),
-(82, 20, 56, 'Maaike', 30, 'Runemaster', 0);
+(82, 20, 56, 'Maaike', 30, 'Runemaster', 1);
 
 -- --------------------------------------------------------
 
@@ -119,14 +121,15 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 --
 
 CREATE TABLE IF NOT EXISTS `tbclasses` (
-`class_id` int(3) NOT NULL,
+  `class_id` int(3) NOT NULL AUTO_INCREMENT,
   `class_name` varchar(24) NOT NULL,
   `class_archetype` varchar(20) NOT NULL,
   `class_item_id1` int(3) DEFAULT NULL,
   `class_item_id2` int(3) DEFAULT NULL,
   `class_skill_id` int(11) NOT NULL,
-  `class_exp_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+  `class_exp_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`class_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbclasses`
@@ -167,14 +170,15 @@ INSERT INTO `tbclasses` (`class_id`, `class_name`, `class_archetype`, `class_ite
 --
 
 CREATE TABLE IF NOT EXISTS `tbgames` (
-`game_id` int(3) NOT NULL,
+  `game_id` int(3) NOT NULL AUTO_INCREMENT,
   `game_grp_id` int(3) DEFAULT NULL,
   `game_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `game_dm` varchar(9) DEFAULT NULL,
   `game_camp_id` int(3) DEFAULT NULL,
   `game_gold` int(11) NOT NULL DEFAULT '0',
-  `game_expansions` varchar(64) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+  `game_expansions` varchar(64) NOT NULL,
+  PRIMARY KEY (`game_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgames`
@@ -197,13 +201,14 @@ INSERT INTO `tbgames` (`game_id`, `game_grp_id`, `game_timestamp`, `game_dm`, `g
 --
 
 CREATE TABLE IF NOT EXISTS `tbgroup` (
-`grp_id` int(2) NOT NULL,
+  `grp_id` int(2) NOT NULL AUTO_INCREMENT,
   `grp_name` varchar(23) DEFAULT NULL,
   `grp_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grp_startedby` varchar(9) DEFAULT NULL,
   `grp_state_country` varchar(7) DEFAULT NULL,
-  `grp_city` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+  `grp_city` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`grp_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgroup`
@@ -226,7 +231,8 @@ CREATE TABLE IF NOT EXISTS `tbheroes` (
   `hero_type` varchar(8) DEFAULT NULL,
   `hero_expansion` varchar(7) DEFAULT NULL,
   `hero_card` varchar(22) DEFAULT NULL,
-  `hero_img` varchar(26) DEFAULT NULL
+  `hero_img` varchar(26) DEFAULT NULL,
+  PRIMARY KEY (`hero_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -341,7 +347,8 @@ CREATE TABLE IF NOT EXISTS `tbitems` (
   `item_starting` tinyint(1) NOT NULL,
   `owner` varchar(15) DEFAULT NULL,
   `market_img` varchar(36) DEFAULT NULL,
-  `item_exp_id` int(3) DEFAULT NULL
+  `item_exp_id` int(3) DEFAULT NULL,
+  PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -456,67 +463,74 @@ INSERT INTO `tbitems` (`item_id`, `item_name`, `item_type`, `market_act`, `item_
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
-`shop_id` int(3) NOT NULL,
+  `shop_id` int(3) NOT NULL AUTO_INCREMENT,
   `aq_item_id` int(3) DEFAULT NULL,
   `aq_relic_id` int(3) DEFAULT NULL,
+  `aq_game_id` int(2) DEFAULT NULL,
+  `aq_progress_id` int(11) DEFAULT NULL,
   `aq_char_id` int(3) NOT NULL,
   `aq_item_price_ovrd` int(4) DEFAULT NULL,
   `aq_item_sold` tinyint(1) NOT NULL,
-  `aq_progress_id` int(11) DEFAULT NULL,
+  `aq_sold_progress_id` int(4) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL,
-  `aq_game_id` int(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`shop_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=352 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_aquired`
 --
 
-INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_id`, `aq_item_price_ovrd`, `aq_item_sold`, `aq_progress_id`, `shop_notes`, `aq_game_id`) VALUES
-(56, 40, NULL, 2, 0, 0, 1, '', 14),
-(57, 19, NULL, 3, 0, 0, 1, '', 14),
-(58, 21, NULL, 4, 0, 0, 1, '', 14),
-(59, 20, NULL, 4, 0, 0, 1, '', 14),
-(60, 33, NULL, 1, 0, 0, 1, '', 14),
-(63, 85, NULL, 1, -75, 0, 13, '', 14),
-(64, 86, NULL, 3, -75, 0, 13, '', 14),
-(67, 87, NULL, 2, -50, 0, 13, '', 14),
-(68, 88, NULL, 4, -100, 0, 13, '', 14),
-(69, 84, NULL, 1, 175, 0, 16, '', 14),
-(73, NULL, 4, 5, 0, 0, 16, '', 14),
-(134, 105, NULL, 4, -75, 0, 16, '', 14),
-(135, 85, NULL, 3, -75, 0, 16, '', 14),
-(140, NULL, 2, 1, 0, 0, 22, '', 14),
-(243, 103, NULL, 2, -100, 0, 22, '', 14),
-(270, 76, NULL, 7, 0, 0, 35, '', 38),
-(271, 82, NULL, 7, -175, 0, 35, '', 38),
-(278, NULL, 3, 6, NULL, 0, 43, NULL, 38),
-(279, NULL, 2, 7, NULL, 0, 56, NULL, 38),
-(318, 40, NULL, 69, NULL, 0, NULL, NULL, 50),
-(319, 30, NULL, 70, NULL, 0, NULL, NULL, 50),
-(320, 31, NULL, 70, NULL, 0, NULL, NULL, 50),
-(321, 33, NULL, 71, NULL, 0, NULL, NULL, 50),
-(322, NULL, 3, 70, NULL, 0, 83, NULL, 50),
-(323, NULL, 4, 68, NULL, 0, 86, NULL, 50),
-(324, NULL, 5, 68, NULL, 0, 87, NULL, 50),
-(325, 40, NULL, 73, NULL, 0, NULL, NULL, 52),
-(326, 19, NULL, 74, NULL, 0, NULL, NULL, 52),
-(327, 40, NULL, 76, NULL, 0, NULL, NULL, 53),
-(328, 15, NULL, 77, NULL, 0, NULL, NULL, 53),
-(329, 19, NULL, 78, NULL, 0, NULL, NULL, 53),
-(330, NULL, 3, 78, NULL, 0, 92, NULL, 53),
-(331, NULL, 4, 75, NULL, 0, 94, NULL, 53),
-(332, NULL, 5, 75, NULL, 0, 95, NULL, 53),
-(336, 93, NULL, 76, NULL, 0, 95, NULL, 53),
-(337, 89, NULL, 77, NULL, 0, 95, NULL, 53),
-(338, 90, NULL, 78, NULL, 0, 95, NULL, 53),
-(339, 40, NULL, 80, NULL, 0, NULL, NULL, 56),
-(340, 30, NULL, 81, NULL, 0, NULL, NULL, 56),
-(341, 31, NULL, 81, NULL, 0, NULL, NULL, 56),
-(342, 33, NULL, 82, NULL, 0, NULL, NULL, 56),
-(343, 103, NULL, 80, NULL, 0, 98, NULL, 56),
-(344, NULL, 3, 81, NULL, 0, 99, NULL, 56),
-(345, 85, NULL, 82, NULL, 0, 99, NULL, 56),
-(346, 105, NULL, 81, NULL, 0, 99, NULL, 56);
+INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_game_id`, `aq_progress_id`, `aq_char_id`, `aq_item_price_ovrd`, `aq_item_sold`, `aq_sold_progress_id`, `shop_notes`) VALUES
+(56, 40, NULL, 14, 1, 2, 0, 0, NULL, ''),
+(57, 19, NULL, 14, 1, 3, 0, 0, NULL, ''),
+(58, 21, NULL, 14, 1, 4, 0, 0, NULL, ''),
+(59, 20, NULL, 14, 1, 4, 0, 0, NULL, ''),
+(60, 33, NULL, 14, 1, 1, 0, 0, NULL, ''),
+(63, 85, NULL, 14, 13, 1, -75, 0, NULL, ''),
+(64, 86, NULL, 14, 13, 3, -75, 0, NULL, ''),
+(67, 87, NULL, 14, 13, 2, -50, 0, NULL, ''),
+(68, 88, NULL, 14, 13, 4, -100, 0, NULL, ''),
+(69, 84, NULL, 14, 16, 1, 175, 0, NULL, ''),
+(73, NULL, 4, 14, 16, 5, 0, 0, NULL, ''),
+(134, 105, NULL, 14, 16, 4, -75, 0, NULL, ''),
+(135, 85, NULL, 14, 16, 3, -75, 0, NULL, ''),
+(140, NULL, 2, 14, 22, 1, 0, 0, NULL, ''),
+(243, 103, NULL, 14, 22, 2, -100, 0, NULL, ''),
+(270, 76, NULL, 38, 35, 7, 0, 0, NULL, ''),
+(271, 82, NULL, 38, 35, 7, -175, 0, NULL, ''),
+(278, NULL, 3, 38, 43, 6, NULL, 0, NULL, NULL),
+(279, NULL, 2, 38, 56, 7, NULL, 0, NULL, NULL),
+(318, 40, NULL, 50, NULL, 69, NULL, 0, NULL, NULL),
+(319, 30, NULL, 50, NULL, 70, NULL, 0, NULL, NULL),
+(320, 31, NULL, 50, NULL, 70, NULL, 0, NULL, NULL),
+(321, 33, NULL, 50, NULL, 71, NULL, 0, NULL, NULL),
+(322, NULL, 3, 50, 83, 70, NULL, 0, NULL, NULL),
+(323, NULL, 4, 50, 86, 68, NULL, 0, NULL, NULL),
+(324, NULL, 5, 50, 87, 68, NULL, 0, NULL, NULL),
+(325, 40, NULL, 52, NULL, 73, NULL, 0, NULL, NULL),
+(326, 19, NULL, 52, NULL, 74, NULL, 0, NULL, NULL),
+(327, 40, NULL, 53, NULL, 76, NULL, 0, NULL, NULL),
+(328, 15, NULL, 53, NULL, 77, NULL, 0, NULL, NULL),
+(329, 19, NULL, 53, NULL, 78, NULL, 0, NULL, NULL),
+(330, NULL, 3, 53, 92, 78, NULL, 0, NULL, NULL),
+(331, NULL, 4, 53, 94, 75, NULL, 0, NULL, NULL),
+(332, NULL, 5, 53, 95, 75, NULL, 0, NULL, NULL),
+(336, 93, NULL, 53, 95, 76, NULL, 0, NULL, NULL),
+(337, 89, NULL, 53, 95, 77, NULL, 0, NULL, NULL),
+(338, 90, NULL, 53, 95, 78, NULL, 0, NULL, NULL),
+(339, 40, NULL, 56, NULL, 80, NULL, 0, NULL, NULL),
+(340, 30, NULL, 56, NULL, 81, NULL, 1, 101, NULL),
+(341, 31, NULL, 56, NULL, 81, NULL, 0, NULL, NULL),
+(342, 33, NULL, 56, NULL, 82, NULL, 0, NULL, NULL),
+(343, 103, NULL, 56, 98, 80, NULL, 0, NULL, NULL),
+(344, NULL, 3, 56, 99, 81, NULL, 0, NULL, NULL),
+(345, 85, NULL, 56, 99, 82, NULL, 0, NULL, NULL),
+(346, 105, NULL, 56, 99, 81, NULL, 1, 101, NULL),
+(347, 88, NULL, 56, 100, 82, NULL, 1, 101, NULL),
+(348, 89, NULL, 56, 100, 82, NULL, 0, NULL, NULL),
+(349, 90, NULL, 56, 101, 81, NULL, 0, NULL, NULL),
+(350, 96, NULL, 56, 101, 82, NULL, 0, NULL, NULL),
+(351, 94, NULL, 56, 101, 81, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -525,12 +539,13 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_char_
 --
 
 CREATE TABLE IF NOT EXISTS `tbitems_relics` (
-`relic_id` int(3) NOT NULL,
+  `relic_id` int(3) NOT NULL AUTO_INCREMENT,
   `relic_h_name` varchar(24) NOT NULL,
   `relic_ol_name` varchar(24) NOT NULL,
   `relic_type` varchar(8) NOT NULL,
-  `relic_exp_id` int(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `relic_exp_id` int(3) NOT NULL,
+  PRIMARY KEY (`relic_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_relics`
@@ -564,7 +579,8 @@ CREATE TABLE IF NOT EXISTS `tbplayerlist` (
   `player_handle` varchar(19) DEFAULT NULL,
   `player_password` varchar(14) DEFAULT NULL,
   `player_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` varchar(14) DEFAULT NULL
+  `created_by` varchar(14) DEFAULT NULL,
+  PRIMARY KEY (`player_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -632,7 +648,8 @@ CREATE TABLE IF NOT EXISTS `tbquests` (
   `quest_rew_special` tinyint(1) NOT NULL DEFAULT '0',
   `quest_travel` varchar(64) DEFAULT NULL,
   `quest_order` int(1) DEFAULT NULL,
-  `quest_expansion_id` int(3) DEFAULT NULL
+  `quest_expansion_id` int(3) DEFAULT NULL,
+  PRIMARY KEY (`quest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -724,7 +741,7 @@ INSERT INTO `tbquests` (`quest_id`, `quest_name`, `quest_type`, `quest_act`, `qu
 --
 
 CREATE TABLE IF NOT EXISTS `tbquests_progress` (
-`progress_id` int(11) NOT NULL,
+  `progress_id` int(11) NOT NULL AUTO_INCREMENT,
   `progress_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `progress_game_id` int(2) DEFAULT NULL,
   `progress_quest_id` int(3) DEFAULT NULL,
@@ -734,8 +751,9 @@ CREATE TABLE IF NOT EXISTS `tbquests_progress` (
   `progress_relic_char` int(11) DEFAULT NULL,
   `progress_set_travel` tinyint(1) NOT NULL,
   `progress_set_spendxp` tinyint(1) NOT NULL,
-  `progress_set_items` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+  `progress_set_items` tinyint(1) NOT NULL,
+  PRIMARY KEY (`progress_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests_progress`
@@ -768,7 +786,10 @@ INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_
 (96, '2014-12-15 00:22:23', 54, 0, 'Quest', NULL, NULL, NULL, 0, 0, 0),
 (97, '2014-12-15 00:23:39', 55, 0, 'Quest', NULL, NULL, NULL, 0, 0, 0),
 (98, '2014-12-15 00:24:51', 56, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 1, 1),
-(99, '2014-12-15 00:27:21', 56, 13, 'Quest', 'Heroes Win', 'Overlord Wins', 81, 1, 1, 1);
+(99, '2014-12-15 00:27:21', 56, 13, 'Quest', 'Heroes Win', 'Overlord Wins', 81, 1, 1, 1),
+(100, '2014-12-16 13:48:36', 56, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
+(101, '2014-12-16 14:01:10', 56, 4, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
+(102, '2014-12-16 14:29:07', 56, 16, 'Quest', NULL, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -777,15 +798,16 @@ INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_
 --
 
 CREATE TABLE IF NOT EXISTS `tbsearch` (
-`search_id` int(11) NOT NULL,
+  `search_id` int(11) NOT NULL AUTO_INCREMENT,
   `search_name` varchar(32) NOT NULL,
   `search_description` text NOT NULL,
   `search_value` int(11) NOT NULL,
   `search_amount` int(11) NOT NULL DEFAULT '1',
   `search_special` tinyint(1) NOT NULL,
   `search_found` int(11) NOT NULL,
-  `search_exp_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `search_exp_id` int(11) NOT NULL,
+  PRIMARY KEY (`search_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbsearch`
@@ -809,15 +831,16 @@ INSERT INTO `tbsearch` (`search_id`, `search_name`, `search_description`, `searc
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills` (
-`skill_id` int(3) NOT NULL,
+  `skill_id` int(3) NOT NULL AUTO_INCREMENT,
   `skill_name` varchar(28) DEFAULT NULL,
   `skill_type` varchar(8) DEFAULT NULL,
   `skill_class` varchar(24) DEFAULT NULL,
   `skill_plot` tinyint(1) NOT NULL,
   `skill_cost` int(2) DEFAULT NULL,
   `skill_card` varchar(28) DEFAULT NULL,
-  `skill_expansion` varchar(17) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8;
+  `skill_expansion` varchar(17) DEFAULT NULL,
+  PRIMARY KEY (`skill_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=311 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills`
@@ -1123,13 +1146,14 @@ INSERT INTO `tbskills` (`skill_id`, `skill_name`, `skill_type`, `skill_class`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
-`spendxp_id` int(3) NOT NULL,
+  `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,
   `spendxp_game_id` int(2) DEFAULT NULL,
   `spendxp_char_id` int(3) DEFAULT NULL,
   `spendxp_skill_id` int(3) DEFAULT NULL,
   `spendxp_progress_id` int(3) DEFAULT NULL,
-  `shop_notes` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
+  `shop_notes` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`spendxp_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=336 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
@@ -1188,7 +1212,12 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_char_i
 (327, 56, 82, 13, NULL, NULL),
 (328, 56, 80, 36, 99, NULL),
 (329, 56, 81, 122, 99, NULL),
-(330, 56, 82, 102, 99, NULL);
+(330, 56, 82, 102, 99, NULL),
+(331, 56, 80, 10, 100, NULL),
+(332, 56, 81, 118, 100, NULL),
+(333, 56, 82, 100, 100, NULL),
+(334, 56, 80, 35, 101, NULL),
+(335, 56, 81, 117, 101, NULL);
 
 -- --------------------------------------------------------
 
@@ -1197,15 +1226,16 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_char_i
 --
 
 CREATE TABLE IF NOT EXISTS `tbtravel` (
-`travel_id` int(11) NOT NULL,
+  `travel_id` int(11) NOT NULL AUTO_INCREMENT,
   `travel_type` varchar(24) NOT NULL,
   `travel_name` varchar(64) NOT NULL,
   `travel_card` int(4) NOT NULL,
   `travel_event` text NOT NULL,
   `travel_result` text NOT NULL,
   `travel_special` varchar(8) DEFAULT NULL,
-  `travel_exp_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+  `travel_exp_id` int(11) NOT NULL,
+  PRIMARY KEY (`travel_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbtravel`
@@ -1282,11 +1312,12 @@ INSERT INTO `tbtravel` (`travel_id`, `travel_type`, `travel_name`, `travel_card`
 --
 
 CREATE TABLE IF NOT EXISTS `tbtravel_aquired` (
-`travel_aq_id` int(11) NOT NULL,
+  `travel_aq_id` int(11) NOT NULL AUTO_INCREMENT,
   `travel_aq_event_id` int(4) NOT NULL,
   `travel_aq_progress_id` int(4) NOT NULL,
-  `travel_aq_game_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+  `travel_aq_game_id` int(11) NOT NULL,
+  PRIMARY KEY (`travel_aq_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbtravel_aquired`
@@ -1324,178 +1355,13 @@ INSERT INTO `tbtravel_aquired` (`travel_aq_id`, `travel_aq_event_id`, `travel_aq
 (55, 2, 95, 53),
 (56, 16, 99, 56),
 (57, 0, 99, 56),
-(58, 15, 99, 56);
+(58, 15, 99, 56),
+(59, 4, 100, 56),
+(60, 16, 100, 56),
+(61, 7, 100, 56),
+(62, 16, 101, 56),
+(63, 0, 101, 56);
 
---
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `tbcampaign`
---
-ALTER TABLE `tbcampaign`
- ADD PRIMARY KEY (`cam_id`);
-
---
--- Indexen voor tabel `tbcharacters`
---
-ALTER TABLE `tbcharacters`
- ADD PRIMARY KEY (`char_id`);
-
---
--- Indexen voor tabel `tbclasses`
---
-ALTER TABLE `tbclasses`
- ADD PRIMARY KEY (`class_id`);
-
---
--- Indexen voor tabel `tbgames`
---
-ALTER TABLE `tbgames`
- ADD PRIMARY KEY (`game_id`);
-
---
--- Indexen voor tabel `tbgroup`
---
-ALTER TABLE `tbgroup`
- ADD PRIMARY KEY (`grp_id`);
-
---
--- Indexen voor tabel `tbheroes`
---
-ALTER TABLE `tbheroes`
- ADD PRIMARY KEY (`hero_id`);
-
---
--- Indexen voor tabel `tbitems`
---
-ALTER TABLE `tbitems`
- ADD PRIMARY KEY (`item_id`);
-
---
--- Indexen voor tabel `tbitems_aquired`
---
-ALTER TABLE `tbitems_aquired`
- ADD PRIMARY KEY (`shop_id`);
-
---
--- Indexen voor tabel `tbitems_relics`
---
-ALTER TABLE `tbitems_relics`
- ADD PRIMARY KEY (`relic_id`);
-
---
--- Indexen voor tabel `tbplayerlist`
---
-ALTER TABLE `tbplayerlist`
- ADD PRIMARY KEY (`player_id`);
-
---
--- Indexen voor tabel `tbquests`
---
-ALTER TABLE `tbquests`
- ADD PRIMARY KEY (`quest_id`);
-
---
--- Indexen voor tabel `tbquests_progress`
---
-ALTER TABLE `tbquests_progress`
- ADD PRIMARY KEY (`progress_id`);
-
---
--- Indexen voor tabel `tbsearch`
---
-ALTER TABLE `tbsearch`
- ADD PRIMARY KEY (`search_id`);
-
---
--- Indexen voor tabel `tbskills`
---
-ALTER TABLE `tbskills`
- ADD PRIMARY KEY (`skill_id`);
-
---
--- Indexen voor tabel `tbskills_aquired`
---
-ALTER TABLE `tbskills_aquired`
- ADD PRIMARY KEY (`spendxp_id`);
-
---
--- Indexen voor tabel `tbtravel`
---
-ALTER TABLE `tbtravel`
- ADD PRIMARY KEY (`travel_id`);
-
---
--- Indexen voor tabel `tbtravel_aquired`
---
-ALTER TABLE `tbtravel_aquired`
- ADD PRIMARY KEY (`travel_aq_id`);
-
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `tbcharacters`
---
-ALTER TABLE `tbcharacters`
-MODIFY `char_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=83;
---
--- AUTO_INCREMENT voor een tabel `tbclasses`
---
-ALTER TABLE `tbclasses`
-MODIFY `class_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT voor een tabel `tbgames`
---
-ALTER TABLE `tbgames`
-MODIFY `game_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
---
--- AUTO_INCREMENT voor een tabel `tbgroup`
---
-ALTER TABLE `tbgroup`
-MODIFY `grp_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT voor een tabel `tbitems_aquired`
---
-ALTER TABLE `tbitems_aquired`
-MODIFY `shop_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=347;
---
--- AUTO_INCREMENT voor een tabel `tbitems_relics`
---
-ALTER TABLE `tbitems_relics`
-MODIFY `relic_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT voor een tabel `tbquests_progress`
---
-ALTER TABLE `tbquests_progress`
-MODIFY `progress_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
---
--- AUTO_INCREMENT voor een tabel `tbsearch`
---
-ALTER TABLE `tbsearch`
-MODIFY `search_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT voor een tabel `tbskills`
---
-ALTER TABLE `tbskills`
-MODIFY `skill_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=311;
---
--- AUTO_INCREMENT voor een tabel `tbskills_aquired`
---
-ALTER TABLE `tbskills_aquired`
-MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=331;
---
--- AUTO_INCREMENT voor een tabel `tbtravel`
---
-ALTER TABLE `tbtravel`
-MODIFY `travel_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
---
--- AUTO_INCREMENT voor een tabel `tbtravel_aquired`
---
-ALTER TABLE `tbtravel_aquired`
-MODIFY `travel_aq_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

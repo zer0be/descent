@@ -417,7 +417,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "sell-details-form")
 		INNER JOIN tbitems ON aq_item_id = item_id 
 		INNER JOIN tbcharacters ON aq_char_id = char_id 
 		INNER JOIN tbheroes ON char_hero = hero_id 
-		WHERE aq_item_id = %s", GetSQLValueString($_POST["sold_item"], "int"));
+		WHERE aq_item_id = %s AND aq_game_id = %s", GetSQLValueString($_POST["sold_item"], "int"), GetSQLValueString($gameID, "int"));
 	$rsGetItem = mysql_query($query_rsGetItem, $dbDescent) or die(mysql_error());
 	$row_rsGetItem = mysql_fetch_assoc($rsGetItem);
 
@@ -473,9 +473,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "item-details-form")
 
 			} else if ($siv["action"] == "sell"){
 				mysql_select_db($database_dbDescent, $dbDescent);
-				$insertSQL2 = sprintf("UPDATE tbitems_aquired SET aq_item_sold = 1 WHERE aq_game_id = %s AND aq_item_id = %s",
+				$insertSQL2 = sprintf("UPDATE tbitems_aquired SET aq_item_sold = 1, aq_sold_progress_id = %s WHERE aq_game_id = %s AND aq_item_id = %s",
+											GetSQLValueString($_GET['PID'], "int"),
 											GetSQLValueString($_GET['urlGamingID'], "int"),
-                      GetSQLValueString($_GET['PID'], "int"));
+                      GetSQLValueString($siv['id'], "int"));
 				$Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
 
 			}

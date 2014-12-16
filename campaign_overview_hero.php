@@ -3,7 +3,7 @@
   $detailCharID = $_GET['urlCharID'];
   
   // Get the items
-  $query_rsDetailItems = sprintf("SELECT * FROM tbitems_aquired INNER JOIN tbitems ON aq_item_id = item_id WHERE aq_char_id = %s", GetSQLValueString($detailCharID, "int"));
+  $query_rsDetailItems = sprintf("SELECT * FROM tbitems_aquired INNER JOIN tbitems ON aq_item_id = item_id WHERE aq_char_id = %s AND aq_item_sold = %s", GetSQLValueString($detailCharID, "int"), GetSQLValueString(0, "int"));
   $rsDetailItems = mysql_query($query_rsDetailItems, $dbDescent) or die(mysql_error());
   $row_rsDetailItems = mysql_fetch_assoc($rsDetailItems);
   $totalRows_rsDetailItems = mysql_num_rows($rsDetailItems);

@@ -56,6 +56,47 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_rsSelectGroup = sprintf("&totalRows_rsSelectGroup=%d%s", $totalRows_rsSelectGroup, $queryString_rsSelectGroup);
 
+$query_rsGamesStats = sprintf("SELECT * FROM tbgames");
+$rsGamesStats = mysql_query($query_rsGamesStats, $dbDescent) or die(mysql_error());
+$row_rsGamesStats = mysql_fetch_assoc($rsGamesStats);
+$totalRows_rsGamesStats = mysql_num_rows($rsGamesStats);
+
+$query_rsCharStats = sprintf("SELECT * FROM tbcharacters");
+$rsCharStats = mysql_query($query_rsCharStats, $dbDescent) or die(mysql_error());
+$row_rsCharStats = mysql_fetch_assoc($rsCharStats);
+$totalRows_rsCharStats = mysql_num_rows($rsCharStats);
+
+$OverlordTotal = 0;
+$HeroesTotal = 0;
+
+do{
+  if($row_rsCharStats['char_hero'] == 0){
+    $OverlordTotal += 1;
+  } else {
+    $HeroesTotal += 1;
+  }
+} while ($row_rsCharStats = mysql_fetch_assoc($rsCharStats));
+
+
+$OverlordQuests = 0;
+$HeroesQuests = 0;
+$undecidedQuests = 0;
+
+$query_rsQuestStats = sprintf("SELECT * FROM tbquests_progress");
+$rsQuestStats = mysql_query($query_rsQuestStats, $dbDescent) or die(mysql_error());
+$row_rsQuestStats = mysql_fetch_assoc($rsQuestStats);
+$totalRows_rsQuestStats = mysql_num_rows($rsQuestStats);
+
+do{
+  if($row_rsQuestStats['progress_quest_winner'] == "Overlord Wins"){
+    $OverlordQuests += 1;
+  } else if($row_rsQuestStats['progress_quest_winner'] == "Heroes Win"){
+    $HeroesQuests += 1;
+  } else {
+    $undecidedQuests += 1;
+  }
+} while ($row_rsQuestStats = mysql_fetch_assoc($rsQuestStats));
+
 
 
 ?>
@@ -75,6 +116,12 @@ $queryString_rsSelectGroup = sprintf("&totalRows_rsSelectGroup=%d%s", $totalRows
 
   <div id="gaming-groups" class="half-block">
     <div class="inner">
+      <h2 class="center">Stats</h2>
+      <?php 
+        echo '<b>' . $totalRows_rsSelectGroup . '</b> gaming groups, playing <b>' . $totalRows_rsGamesStats . '</b> games.<br />'; 
+        echo '<b>' . $HeroesTotal . '</b> Heroes vs. <b>' . $OverlordTotal . '</b> Overlords.<br />';
+        echo '<b>' . ($totalRows_rsQuestStats - $undecidedQuests) . '</b> quests completed, of which <b>' . $HeroesQuests . '</b> were won by the Heroes, and <b>' . $OverlordQuests . '</b> by the Overlord.'
+      ?>
       <h2 class="center">Gaming Groups</h2>
       <p class="center">Search For a Gaming Group</p>
       <?php do { ?>
