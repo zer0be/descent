@@ -286,30 +286,35 @@
 								foreach ($qs['items'] as $xit){
 									//if it's an item
 									if($xit['type'] == "Item"){
+										if($xit['action'] != "trade"){
 ?>
-										<div class="item clearfix">
-											<div class="hero-mini field" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
-											<div class="item-name field"><?php print $xit['name']; ?></div>
-											
+											<div class="item clearfix">
+												<div class="hero-mini field" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
+												<div class="item-name field"><?php print $xit['name']; ?></div>											
 <?php 
-												// if the item was bought or sold echo the cost, but with different classes
-												if($xit['action'] == "buy"){
-													// if an override price is set echo the override price, else echo the default one
-													if($xit['override'] != NULL){
-														echo '<div class="item-price buy override field">' . $xit['override'] . '</div>';
-													} else {
-														echo '<div class="item-price buy field">' . $xit['price'] . '</div>';
+													// if the item was bought or sold echo the cost, but with different classes
+													if($xit['action'] == "buy"){
+														// if an override price is set echo the override price, else echo the default one
+														if($xit['override'] != NULL){
+															echo '<div class="item-price buy override field">' . $xit['override'] . '</div>';
+														} else {
+															echo '<div class="item-price buy field">' . $xit['price'] . '</div>';
+														}
+													} else if ($xit['action'] == "sell"){
+														echo '<div class="item-price sell field">' . $xit['price'] . '</div>';
 													}
-												} else if ($xit['action'] == "sell"){
-													echo '<div class="item-price sell field">' . $xit['price'] . '</div>';
-												}	else if ($xit['action'] == "trade"){ 
-													?>
-														<div class="hero-mini trade field" style="background: url('img/heroes/mini_<?php print $xit['price']; ?>') center;"></div>
-													<?php
-												}										
 ?>
-										</div>
+											</div>
 <?php
+										} else {
+?>
+											<div class="item clearfix">
+												<div class="hero-mini field" style="background: url('img/heroes/mini_<?php print $xit['price']; ?>') center;"></div>
+												<div class="item-name field"><?php print $xit['name']; ?></div>												
+												<div class="hero-mini trade field" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>										
+											</div>
+<?php
+										}
 									}
 								} //close foreach
 								foreach ($qs['items'] as $xit){

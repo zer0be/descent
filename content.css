@@ -35,7 +35,7 @@ body {
 /* line 39, content.scss */
 #toolbar {
   background: #ccc;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0);
   font-family: Arial,Verdana,sans-serif;
   height: 40px;
   position: relative;
@@ -145,16 +145,17 @@ body {
 #campaign .campaign-phase .phase-column .skill .field, #campaign .campaign-phase .phase-column .item .field {
   float: left;
 }
-#campaign .campaign-phase .phase-column .item .hero-mini.trade {
+/* line 153, content.scss */
+#campaign .campaign-phase .phase-column .skill .hero-mini.trade, #campaign .campaign-phase .phase-column .item .hero-mini.trade {
   float: right;
 }
-/* line 154, content.scss */
+/* line 157, content.scss */
 #campaign .campaign-phase .phase-column .skill .skill-name, #campaign .campaign-phase .phase-column .skill .item-name, #campaign .campaign-phase .phase-column .item .skill-name, #campaign .campaign-phase .phase-column .item .item-name {
   margin-top: 10px;
   font-weight: 600;
   font-size: 14px;
 }
-/* line 160, content.scss */
+/* line 163, content.scss */
 #campaign .campaign-phase .phase-column .skill .skill-xp, #campaign .campaign-phase .phase-column .skill .item-price, #campaign .campaign-phase .phase-column .item .skill-xp, #campaign .campaign-phase .phase-column .item .item-price {
   float: right;
   width: 30px;
@@ -170,44 +171,44 @@ body {
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
 }
-/* line 175, content.scss */
+/* line 178, content.scss */
 #campaign .campaign-phase .phase-column .skill .skill-xp-label, #campaign .campaign-phase .phase-column .item .skill-xp-label {
   font-size: 8px;
 }
-/* line 180, content.scss */
+/* line 183, content.scss */
 #campaign .campaign-phase .phase-column .skill .item-price.buy.override, #campaign .campaign-phase .phase-column .item .item-price.buy.override {
   background-color: #ebb035;
 }
-/* line 183, content.scss */
+/* line 186, content.scss */
 #campaign .campaign-phase .phase-column .skill .item-price.buy, #campaign .campaign-phase .phase-column .item .item-price.buy {
   background-color: #dd1e2f;
 }
-/* line 186, content.scss */
+/* line 189, content.scss */
 #campaign .campaign-phase .phase-column .skill .item-price.sell, #campaign .campaign-phase .phase-column .item .item-price.sell {
   background-color: #218559;
 }
-/* line 189, content.scss */
+/* line 192, content.scss */
 #campaign .campaign-phase .phase-column .skill .item-price.relic, #campaign .campaign-phase .phase-column .item .item-price.relic {
   background-color: #06a2cb;
   font-size: 10px;
   height: 23px;
   padding-top: 7px;
 }
-/* line 204, content.scss */
+/* line 207, content.scss */
 #campaign .details-bar {
   width: 100%;
 }
-/* line 208, content.scss */
+/* line 211, content.scss */
 #campaign .details-bar .add-details {
   text-decoration: none;
   color: #fff;
   float: left;
 }
-/* line 216, content.scss */
+/* line 219, content.scss */
 #campaign .details-bar .add-details.set .add-label, #campaign .details-bar .add-details.setting .add-label {
   background-color: #06a2cb;
 }
-/* line 222, content.scss */
+/* line 225, content.scss */
 #campaign .details-bar .add-details .add-label {
   width: 278px;
   height: 20px;
@@ -218,17 +219,17 @@ body {
   text-align: center;
 }
 
-/* line 239, content.scss */
+/* line 242, content.scss */
 .inner {
   padding: 0 30px;
 }
 
-/* line 243, content.scss */
+/* line 246, content.scss */
 #heroes a {
   text-decoration: none;
 }
 
-/* line 247, content.scss */
+/* line 250, content.scss */
 .hero {
   display: block;
   width: 300px;
@@ -238,7 +239,7 @@ body {
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 260, content.scss */
+/* line 263, content.scss */
 .hero .name,
 .hero .class,
 .hero .xp,
@@ -246,35 +247,35 @@ body {
   text-align: center;
 }
 
-/* line 264, content.scss */
+/* line 267, content.scss */
 .hero .name {
   font-size: 18px;
   padding-top: 225px;
 }
 
-/* line 269, content.scss */
+/* line 272, content.scss */
 .hero .class {
   font-size: 16px;
 }
 
-/* line 273, content.scss */
+/* line 276, content.scss */
 .hero .xp {
   font-size: 28px;
 }
 
-/* line 277, content.scss */
+/* line 280, content.scss */
 .hero .xp .xp-label {
   font-size: 20px;
 }
 
-/* line 281, content.scss */
+/* line 284, content.scss */
 .hero .player {
   font-size: 28px;
   padding-top: 80px;
   text-transform: uppercase;
 }
 
-/* line 287, content.scss */
+/* line 290, content.scss */
 .gold {
   display: block;
   width: 110px;
@@ -288,51 +289,51 @@ body {
   padding-top: 30px;
 }
 
-/* line 300, content.scss */
+/* line 303, content.scss */
 .gold-amount {
   font-size: 28px;
 }
 
-/* line 304, content.scss */
+/* line 307, content.scss */
 .gold-label {
   font-size: 16px;
   line-height: 6px;
 }
 
-/* line 311, content.scss */
+/* line 314, content.scss */
 .save-left-column {
   text-align: center;
   color: #ccc;
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 317, content.scss */
+/* line 320, content.scss */
 .relic {
   margin-bottom: 3px;
 }
 
-/* line 321, content.scss */
+/* line 324, content.scss */
 .campaigns-overview {
   color: #333;
 }
 
-/* line 325, content.scss */
+/* line 328, content.scss */
 .campaigns-overview h1 {
   margin: 0px;
   padding: 15px 0 0;
 }
 
-/* line 330, content.scss */
+/* line 333, content.scss */
 .campaigns-overview .subtitle {
   margin-bottom: 20px;
 }
 
-/* line 334, content.scss */
+/* line 337, content.scss */
 .campaigns-overview h2 {
   margin: 0;
 }
 
-/* line 338, content.scss */
+/* line 341, content.scss */
 #campaigns-overview .campaigns-overview-campaign {
   display: block;
   width: 500px;
@@ -340,13 +341,13 @@ body {
   padding: 20px 50px;
 }
 
-/* line 346, content.scss */
+/* line 349, content.scss */
 #campaigns-overview .campaigns-overview-campaign .timestamp {
   margin-bottom: 10px;
   color: #666;
 }
 
-/* line 351, content.scss */
+/* line 354, content.scss */
 #campaigns-overview .hero {
   display: block;
   width: 98px;
@@ -358,25 +359,25 @@ body {
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 365, content.scss */
+/* line 368, content.scss */
 #campaigns-overview .hero .name,
 #campaigns-overview .hero .class,
 #campaigns-overview .hero .player {
   text-align: center;
 }
 
-/* line 369, content.scss */
+/* line 372, content.scss */
 #campaigns-overview .hero .name {
   font-size: 12px;
   padding-top: 75px;
 }
 
-/* line 374, content.scss */
+/* line 377, content.scss */
 #campaigns-overview .hero .class {
   font-size: 10px;
 }
 
-/* line 378, content.scss */
+/* line 381, content.scss */
 #campaigns-overview .hero .player {
   font-size: 18px;
   text-transform: uppercase;
@@ -386,19 +387,19 @@ body {
   width: 100%;
 }
 
-/* line 387, content.scss */
+/* line 390, content.scss */
 #campaigns-overview a {
   text-decoration: none;
   color: #333;
 }
 
-/* line 392, content.scss */
+/* line 395, content.scss */
 .half-block {
   width: 50%;
   float: left;
 }
 
-/* line 397, content.scss */
+/* line 400, content.scss */
 .half-block a, .half-block img {
   display: block;
   float: left;
@@ -407,25 +408,25 @@ body {
   width: 200px;
 }
 
-/* line 405, content.scss */
+/* line 408, content.scss */
 .column-title {
   font-weight: bold;
 }
 
-/* line 410, content.scss */
+/* line 413, content.scss */
 .relics {
   position: absolute;
   bottom: 0;
 }
 
-/* line 415, content.scss */
+/* line 418, content.scss */
 .buttons {
   margin: 0 auto;
   margin-bottom: 10px;
   width: 380px;
 }
 
-/* line 421, content.scss */
+/* line 424, content.scss */
 .button {
   float: left;
   width: 180px;
@@ -433,14 +434,14 @@ body {
   height: 30px;
 }
 
-/* line 428, content.scss */
+/* line 431, content.scss */
 .subbutton {
   width: 180px;
   margin: 0 auto;
   height: 30px;
 }
 
-/* line 434, content.scss */
+/* line 437, content.scss */
 .button .title, .subbutton .title {
   display: block;
   height: 25px;
@@ -455,19 +456,19 @@ body {
   margin: 0;
 }
 
-/* line 449, content.scss */
+/* line 452, content.scss */
 .button .title:hover, .subbutton .title:hover {
   background: #999;
   color: #666;
   border: 1px solid #666;
 }
 
-/* line 456, content.scss */
+/* line 459, content.scss */
 #start-quest-form, #start-rumor-form {
   display: none;
 }
 
-/* line 460, content.scss */
+/* line 463, content.scss */
 #start-quest-form, #start-rumor-form {
   margin: 0 auto;
   padding: 0 20px;
@@ -477,7 +478,7 @@ body {
 /* --------------------- */
 /* -- Quest Save Page -- */
 /* --------------------- */
-/* line 470, content.scss */
+/* line 473, content.scss */
 .save-left-column {
   display: block;
   width: 300px;
@@ -487,12 +488,12 @@ body {
   position: relative;
 }
 
-/* line 479, content.scss */
+/* line 482, content.scss */
 .save-back-column {
   float: left;
 }
 
-/* line 483, content.scss */
+/* line 486, content.scss */
 .save-right-column {
   display: block;
   width: 860px;
@@ -503,7 +504,7 @@ body {
   padding: 10px 20px;
 }
 
-/* line 493, content.scss */
+/* line 496, content.scss */
 .buy-column {
   display: block;
   width: 280px;
@@ -512,62 +513,62 @@ body {
   position: relative;
 }
 
-/* line 501, content.scss */
+/* line 504, content.scss */
 .buy-column.even {
   margin: 0 10px;
 }
 
-/* line 505, content.scss */
+/* line 508, content.scss */
 .buy-column select, .buy-column input[type="submit"] {
   width: 280px;
 }
 
-/* line 509, content.scss */
+/* line 512, content.scss */
 .buy-column input[type="submit"] {
   position: absolute;
   bottom: 0;
 }
 
-/* line 514, content.scss */
+/* line 517, content.scss */
 .list-checkbox {
   width: 210px;
   float: left;
 }
 
-/* line 519, content.scss */
+/* line 522, content.scss */
 .list-checkbox input {
   margin: 10px 10px 0;
   float: left;
 }
 
-/* line 524, content.scss */
+/* line 527, content.scss */
 .list-checkbox div {
   float: left;
 }
 
-/* line 528, content.scss */
+/* line 531, content.scss */
 .list-checkbox .search-gold {
   font-style: italic;
   font-size: 12px;
 }
 
-/* line 533, content.scss */
+/* line 536, content.scss */
 #select-item {
   display: none;
 }
 
-/* line 537, content.scss */
+/* line 540, content.scss */
 .select-hero {
   width: 150px;
   float: left;
 }
 
-/* line 542, content.scss */
+/* line 545, content.scss */
 .select-hero input[type=checkbox] {
   margin: 0 65px;
 }
 
-/* line 546, content.scss */
+/* line 549, content.scss */
 .select-hero-image {
   display: block;
   width: 148px;
@@ -579,20 +580,20 @@ body {
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 558, content.scss */
+/* line 561, content.scss */
 .select-hero-image .hero-name {
   text-align: center;
   font-size: 12px;
   padding-top: 75px;
 }
 
-/* line 564, content.scss */
+/* line 567, content.scss */
 .hero-select {
   width: 300px;
   float: left;
 }
 
-/* line 569, content.scss */
+/* line 572, content.scss */
 .hero-select img {
   width: 300px;
   height: 500px;
@@ -617,7 +618,7 @@ padding: 0 0 0 0px;
 }
 
 */
-/* line 593, content.scss */
+/* line 596, content.scss */
 input[type="submit"], a.normal-button {
   background-color: #666;
   border: none;
@@ -630,7 +631,7 @@ input[type="submit"], a.normal-button {
   margin-top: 20px;
 }
 
-/* line 605, content.scss */
+/* line 608, content.scss */
 a.normal-button {
   margin-top: 0;
   display: block;
@@ -639,19 +640,19 @@ a.normal-button {
   padding-top: 7px;
 }
 
-/* line 613, content.scss */
+/* line 616, content.scss */
 .save-back-column a.normal-button {
   background-color: #333;
   border-bottom: 5px solid #111;
 }
 
-/* line 618, content.scss */
+/* line 621, content.scss */
 .save-back-column a.normal-button:hover {
   background-color: #666;
   border-bottom: 5px solid #333;
 }
 
-/* line 623, content.scss */
+/* line 626, content.scss */
 input[type="submit"]:hover, a.normal-button:hover {
   background-color: #333;
   border: none;
@@ -659,7 +660,7 @@ input[type="submit"]:hover, a.normal-button:hover {
   color: #fff;
 }
 
-/* line 630, content.scss */
+/* line 633, content.scss */
 select {
   width: 300px;
   height: 30px;
@@ -667,17 +668,17 @@ select {
   text-align: center;
 }
 
-/* line 637, content.scss */
+/* line 640, content.scss */
 #save-heroes-form input, #set-heroes-form input {
   margin-left: 450px;
 }
 
-/* line 641, content.scss */
+/* line 644, content.scss */
 #travel-details-form input {
   margin-left: 60px;
 }
 
-/* line 645, content.scss */
+/* line 648, content.scss */
 .error {
   padding: 20px 10px 0px;
   color: red;
@@ -685,7 +686,7 @@ select {
   text-align: center;
 }
 
-/* line 653, content.scss */
+/* line 656, content.scss */
 #travel-details-form .travel-step {
   height: auto;
 }
