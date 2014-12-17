@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 16 dec 2014 om 16:19
+-- Gegenereerd op: 17 dec 2014 om 16:35
 -- Serverversie: 5.6.16
 -- PHP-versie: 5.5.11
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `tbcharacters` (
   `char_class` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
   `char_xp` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`char_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=87 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbcharacters`
@@ -98,21 +98,10 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 (7, 17, 38, 'Maaike', 30, 'Runemaster', 4),
 (8, 17, 38, 'Tim', 6, 'Thief', 4),
 (9, 17, 38, 'Frauke', 2, 'Berserker', 4),
-(68, 20, 50, 'dllrt', 0, 'Cursed By Power', 0),
-(69, 20, 50, 'Frauke', 2, 'Berserker', 0),
-(70, 20, 50, 'Tim', 6, 'Thief', 0),
-(71, 20, 50, 'Maaike', 30, 'Runemaster', 0),
-(72, 20, 52, 'dllrt', 0, 'Hybrid Loyalty', 1),
-(73, 20, 52, 'Maaike', 2, 'Berserker', 1),
-(74, 20, 52, 'Tim', 6, 'Wildlander', 1),
-(75, 20, 53, 'dllrt', 0, 'NULL', 1),
-(76, 20, 53, 'Frauke', 1, 'Berserker', 6),
-(77, 20, 53, 'Maaike', 4, 'Necromancer', 0),
-(78, 20, 53, 'Tim', 5, 'Wildlander', 6),
-(79, 20, 56, 'dllrt', 0, 'Cursed By Power', 4),
-(80, 20, 56, 'Frauke', 2, 'Berserker', 0),
-(81, 20, 56, 'Tim', 6, 'Thief', 0),
-(82, 20, 56, 'Maaike', 30, 'Runemaster', 1);
+(83, 20, 57, 'dllrt', 0, 'Cursed By Power', 5),
+(84, 20, 57, 'Frauke', 2, 'Berserker', 1),
+(85, 20, 57, 'Tim', 6, 'Wildlander', 1),
+(86, 20, 57, 'Maaike', 30, 'Necromancer', 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `tbgames` (
   `game_gold` int(11) NOT NULL DEFAULT '0',
   `game_expansions` varchar(64) NOT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbgames`
@@ -187,12 +176,7 @@ CREATE TABLE IF NOT EXISTS `tbgames` (
 INSERT INTO `tbgames` (`game_id`, `game_grp_id`, `game_timestamp`, `game_dm`, `game_camp_id`, `game_gold`, `game_expansions`) VALUES
 (14, 7, '2014-10-03 09:06:52', 'Tundrra', 0, 0, ''),
 (38, 17, '2014-11-27 06:46:16', 'dllrt', 0, 200, ''),
-(50, 17, '2014-12-13 23:31:22', 'dllrt', 0, 350, ''),
-(52, 17, '2014-12-14 14:13:08', 'dllrt', 2, 125, '0,2,1,10,11,12,13,14,15'),
-(53, 17, '2014-12-14 16:30:25', 'dllrt', 0, 0, '0,0,0,1'),
-(54, 17, '2014-12-15 00:22:23', 'dllrt', 0, 0, '0,0,1'),
-(55, 17, '2014-12-15 00:23:39', 'dllrt', 0, 0, '0,0,1,7'),
-(56, 17, '2014-12-15 00:24:51', 'dllrt', 0, 0, '0,0,1,7,10,11,12,13,14,15,16');
+(57, 17, '2014-12-16 17:49:00', 'dllrt', 0, 100, '0,0,1,7,10,11,12,13,14,15');
 
 -- --------------------------------------------------------
 
@@ -474,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
   `aq_sold_progress_id` int(4) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`shop_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=352 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=364 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_aquired`
@@ -522,15 +506,18 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_game_
 (340, 30, NULL, 56, NULL, 81, NULL, 1, 101, NULL),
 (341, 31, NULL, 56, NULL, 81, NULL, 0, NULL, NULL),
 (342, 33, NULL, 56, NULL, 82, NULL, 0, NULL, NULL),
-(343, 103, NULL, 56, 98, 80, NULL, 0, NULL, NULL),
-(344, NULL, 3, 56, 99, 81, NULL, 0, NULL, NULL),
-(345, 85, NULL, 56, 99, 82, NULL, 0, NULL, NULL),
-(346, 105, NULL, 56, 99, 81, NULL, 1, 101, NULL),
-(347, 88, NULL, 56, 100, 82, NULL, 1, 101, NULL),
-(348, 89, NULL, 56, 100, 82, NULL, 0, NULL, NULL),
-(349, 90, NULL, 56, 101, 81, NULL, 0, NULL, NULL),
-(350, 96, NULL, 56, 101, 82, NULL, 0, NULL, NULL),
-(351, 94, NULL, 56, 101, 81, NULL, 0, NULL, NULL);
+(352, 40, NULL, 57, NULL, 84, NULL, 1, 104, NULL),
+(353, 19, NULL, 57, NULL, 85, NULL, 1, 106, NULL),
+(354, 15, NULL, 57, NULL, 86, NULL, 1, 105, NULL),
+(355, 83, NULL, 57, 104, 84, NULL, 0, NULL, NULL),
+(356, 89, NULL, 57, 105, 86, NULL, 0, NULL, NULL),
+(357, 107, NULL, 57, 105, 85, 75, 0, NULL, NULL),
+(358, 85, NULL, 57, 105, 84, NULL, 0, NULL, NULL),
+(359, 88, NULL, 57, 105, 84, NULL, 0, NULL, NULL),
+(360, NULL, 2, 57, 106, 85, NULL, 0, NULL, NULL),
+(361, 103, NULL, 57, 106, 84, NULL, 0, NULL, NULL),
+(362, 86, NULL, 57, 106, 85, NULL, 0, NULL, NULL),
+(363, NULL, 5, 57, 107, 84, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -753,7 +740,7 @@ CREATE TABLE IF NOT EXISTS `tbquests_progress` (
   `progress_set_spendxp` tinyint(1) NOT NULL,
   `progress_set_items` tinyint(1) NOT NULL,
   PRIMARY KEY (`progress_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=108 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbquests_progress`
@@ -770,26 +757,11 @@ INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_
 (54, '2014-12-08 23:34:08', 38, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
 (55, '2014-12-08 23:34:49', 38, 4, 'Quest', 'Overlord Wins', 'No Winner', NULL, 0, 0, 0),
 (56, '2014-12-08 23:35:29', 38, 10, 'Quest', 'Heroes Win', 'No Winner', 7, 0, 0, 0),
-(82, '2014-12-13 23:31:22', 50, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
-(83, '2014-12-13 23:33:33', 50, 13, 'Quest', 'Heroes Win', 'Overlord Wins', 70, 1, 0, 0),
-(85, '2014-12-13 23:38:10', 50, 4, 'Quest', 'Overlord Wins', 'No Winner', NULL, 1, 1, 0),
-(86, '2014-12-14 00:29:17', 50, 7, 'Quest', 'Overlord Wins', 'Overlord Wins', 68, 1, 1, 0),
-(87, '2014-12-14 13:00:51', 50, 17, 'Quest', 'Heroes Win', 'No Winner', 68, 1, 1, 0),
-(88, '2014-12-14 14:12:11', 51, 25, 'Quest', NULL, NULL, NULL, 0, 0, 0),
-(89, '2014-12-14 14:13:08', 52, 25, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
-(90, '2014-12-14 14:43:18', 52, 27, 'Quest', NULL, NULL, NULL, 1, 0, 0),
-(91, '2014-12-14 16:30:26', 53, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 1, 0),
-(92, '2014-12-14 16:37:40', 53, 13, 'Quest', 'Heroes Win', 'No Winner', 78, 1, 1, 0),
-(93, '2014-12-14 16:43:27', 53, 4, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 0),
-(94, '2014-12-14 16:43:42', 53, 7, 'Quest', 'Overlord Wins', 'No Winner', 75, 1, 1, 0),
-(95, '2014-12-14 16:48:02', 53, 16, 'Quest', 'Overlord Wins', 'Heroes Win', 75, 1, 1, 1),
-(96, '2014-12-15 00:22:23', 54, 0, 'Quest', NULL, NULL, NULL, 0, 0, 0),
-(97, '2014-12-15 00:23:39', 55, 0, 'Quest', NULL, NULL, NULL, 0, 0, 0),
-(98, '2014-12-15 00:24:51', 56, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 1, 1),
-(99, '2014-12-15 00:27:21', 56, 13, 'Quest', 'Heroes Win', 'Overlord Wins', 81, 1, 1, 1),
-(100, '2014-12-16 13:48:36', 56, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
-(101, '2014-12-16 14:01:10', 56, 4, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
-(102, '2014-12-16 14:29:07', 56, 16, 'Quest', NULL, NULL, NULL, 0, 0, 0);
+(103, '2014-12-16 17:49:01', 57, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
+(104, '2014-12-16 17:50:02', 57, 4, 'Quest', 'Heroes Win', 'Heroes Win', NULL, 1, 1, 1),
+(105, '2014-12-16 20:11:05', 57, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
+(106, '2014-12-17 13:14:25', 57, 10, 'Quest', 'Heroes Win', 'Overlord Wins', 85, 1, 1, 1),
+(107, '2014-12-17 13:29:02', 57, 16, 'Quest', 'Heroes Win', 'No Winner', 84, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1153,7 +1125,7 @@ CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
   `spendxp_progress_id` int(3) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`spendxp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=336 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=348 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
@@ -1180,44 +1152,18 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_char_i
 (244, 14, 3, 27, 22, ''),
 (269, 38, 7, 98, 34, ''),
 (270, 38, 7, 99, 34, NULL),
-(298, 50, 68, 231, NULL, NULL),
-(299, 50, 69, 33, NULL, NULL),
-(300, 50, 70, 116, NULL, NULL),
-(301, 50, 71, 13, NULL, NULL),
-(302, 50, 69, 10, 86, NULL),
-(303, 50, 70, 118, 86, NULL),
-(304, 50, 70, 122, 86, NULL),
-(305, 50, 71, 103, 86, NULL),
-(306, 50, 69, 39, 85, NULL),
-(307, 50, 71, 99, 85, NULL),
-(308, 50, 69, 32, 87, NULL),
-(309, 50, 70, 119, 87, NULL),
-(310, 52, 72, 201, NULL, NULL),
-(311, 52, 73, 33, NULL, NULL),
-(312, 52, 74, 2, NULL, NULL),
-(313, 53, 76, 33, NULL, NULL),
-(314, 53, 77, 11, NULL, NULL),
-(315, 53, 78, 2, NULL, NULL),
-(316, 53, 77, 45, 91, NULL),
-(317, 53, 78, 1, 91, NULL),
-(318, 53, 77, 43, 92, NULL),
-(319, 53, 78, 25, 92, NULL),
-(320, 53, 77, 46, 94, NULL),
-(321, 53, 77, 47, 93, NULL),
-(322, 53, 77, 49, 95, NULL),
-(323, 53, 77, 49, 95, NULL),
-(324, 56, 79, 231, NULL, NULL),
-(325, 56, 80, 33, NULL, NULL),
-(326, 56, 81, 116, NULL, NULL),
-(327, 56, 82, 13, NULL, NULL),
-(328, 56, 80, 36, 99, NULL),
-(329, 56, 81, 122, 99, NULL),
-(330, 56, 82, 102, 99, NULL),
-(331, 56, 80, 10, 100, NULL),
-(332, 56, 81, 118, 100, NULL),
-(333, 56, 82, 100, 100, NULL),
-(334, 56, 80, 35, 101, NULL),
-(335, 56, 81, 117, 101, NULL);
+(336, 57, 83, 231, NULL, NULL),
+(337, 57, 84, 33, NULL, NULL),
+(338, 57, 85, 2, NULL, NULL),
+(339, 57, 86, 11, NULL, NULL),
+(340, 57, 84, 36, 104, NULL),
+(341, 57, 85, 1, 104, NULL),
+(342, 57, 85, 25, 104, NULL),
+(343, 57, 86, 43, 104, NULL),
+(344, 57, 84, 32, 105, NULL),
+(345, 57, 84, 35, 106, NULL),
+(346, 57, 85, 28, 106, NULL),
+(347, 57, 86, 49, 106, NULL);
 
 -- --------------------------------------------------------
 
@@ -1317,50 +1263,25 @@ CREATE TABLE IF NOT EXISTS `tbtravel_aquired` (
   `travel_aq_progress_id` int(4) NOT NULL,
   `travel_aq_game_id` int(11) NOT NULL,
   PRIMARY KEY (`travel_aq_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbtravel_aquired`
 --
 
 INSERT INTO `tbtravel_aquired` (`travel_aq_id`, `travel_aq_event_id`, `travel_aq_progress_id`, `travel_aq_game_id`) VALUES
-(27, 32, 83, 50),
-(28, 16, 83, 50),
-(29, 0, 83, 50),
-(30, 16, 85, 50),
-(31, 0, 85, 50),
-(32, 4, 86, 50),
-(33, 15, 86, 50),
-(34, 5, 86, 50),
-(35, 3, 86, 50),
-(36, 4, 87, 50),
-(37, 16, 87, 50),
-(38, 7, 87, 50),
-(39, 0, 87, 50),
-(40, 4, 90, 52),
-(41, 60, 90, 52),
-(42, 8, 90, 52),
-(43, 16, 92, 53),
-(44, 0, 92, 53),
-(45, 15, 92, 53),
-(46, 16, 93, 53),
-(47, 0, 93, 53),
-(48, 25, 94, 53),
-(49, 21, 94, 53),
-(50, 7, 94, 53),
-(51, 9, 94, 53),
-(52, 16, 95, 53),
-(53, 0, 95, 53),
-(54, 1, 95, 53),
-(55, 2, 95, 53),
-(56, 16, 99, 56),
-(57, 0, 99, 56),
-(58, 15, 99, 56),
-(59, 4, 100, 56),
-(60, 16, 100, 56),
-(61, 7, 100, 56),
-(62, 16, 101, 56),
-(63, 0, 101, 56);
+(64, 4, 104, 57),
+(65, 35, 104, 57),
+(66, 19, 105, 57),
+(67, 16, 105, 57),
+(68, 0, 105, 57),
+(69, 32, 106, 57),
+(70, 25, 106, 57),
+(71, 22, 106, 57),
+(76, 0, 107, 57),
+(77, 4, 107, 57),
+(78, 5, 107, 57),
+(79, 0, 107, 57);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

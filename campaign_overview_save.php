@@ -432,6 +432,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "buy-details-form"))
 				"name" => $row_rsGetItem['item_name'],
 				"player" => $_POST["bought_player"],
 				"hero" => $pi['name'],
+				"player2" => "",
+				"hero2" => "",
 				"price" => $row_rsGetItem['item_default_price'],	
 				"override" => $_POST["bought_override"],
 			);
@@ -450,14 +452,46 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "sell-details-form")
 
 	$temp = $_SESSION["shopItems"];
 
-	// FIX ME: this could be done in a different way probably (without the foreach player)
 	$temp[] = array(
 		"action" => "sell",
 		"id" => $_POST["sold_item"],
 		"name" => $row_rsGetItem['item_name'],
 		"player" => $row_rsGetItem['char_id'],
 		"hero" => $row_rsGetItem['hero_name'],
+		"player2" => "",
+		"hero2" => "",
 		"price" => $row_rsGetItem['item_sell_price'],	
+		"override" => NULL,
+	);
+}
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "trade-details-form")) {
+	$query_rsGetItem = sprintf("SELECT * FROM tbitems_aquired 
+		INNER JOIN tbitems ON aq_item_id = item_id 
+		INNER JOIN tbcharacters ON aq_char_id = char_id 
+		INNER JOIN tbheroes ON char_hero = hero_id 
+		WHERE aq_item_id = %s AND aq_game_id = %s", GetSQLValueString($_POST["traded_item"], "int"), GetSQLValueString($gameID, "int"));
+	$rsGetItem = mysql_query($query_rsGetItem, $dbDescent) or die(mysql_error());
+	$row_rsGetItem = mysql_fetch_assoc($rsGetItem);
+
+	$query_rsGetHero = sprintf("SELECT * FROM tbcharacters INNER JOIN tbheroes ON char_hero = hero_id WHERE char_id = %s", GetSQLValueString($_POST["traded_player"], "int"));
+	$rsGetHero = mysql_query($query_rsGetHero, $dbDescent) or die(mysql_error());
+	$row_rsGetHero = mysql_fetch_assoc($rsGetHero);
+
+	echo $_POST["traded_player"];
+	var_dump($row_rsGetHero);
+
+	$temp = $_SESSION["shopItems"];
+
+	$temp[] = array(
+		"action" => "trade",
+		"id" => $_POST["traded_item"],
+		"name" => $row_rsGetItem['item_name'],
+		"player" => $row_rsGetItem['char_id'],
+		"hero" => $row_rsGetItem['hero_name'],
+		"player2" => $_POST["traded_player"],
+		"hero2" => $row_rsGetHero['hero_name'],
+		"price" => 0,	
 		"override" => NULL,
 	);
 }
@@ -513,6 +547,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "item-details-form")
 											GetSQLValueString($_GET['urlGamingID'], "int"),
                       GetSQLValueString($siv['id'], "int"));
 				$Result2 = mysql_query($insertSQL2, $dbDescent) or die(mysql_error());
+
+			} else if ($siv["action"] == "trade"){
+				mysql_select_db($database_dbDescent, $dbDescent);
+				$insertSQL5 = sprintf("UPDATE tbitems_aquired SET aq_trade_char_id = %s, aq_trade_progress_id = %s WHERE aq_game_id = %s AND aq_item_id = %s",
+											GetSQLValueString($siv['player2'], "int"),
+											GetSQLValueString($_GET['PID'], "int"),
+											GetSQLValueString($_GET['urlGamingID'], "int"),
+                      GetSQLValueString($siv['id'], "int"));
+				$Result5 = mysql_query($insertSQL5, $dbDescent) or die(mysql_error());
 
 			}
 		}
@@ -746,6 +789,8 @@ echo '</pre>';
 									}
 								} else if ($si['action'] == "sell"){
 									echo '<div>' . $si['hero'] . ' will sell <b>' . $si['name'] . '</b> for ' . $si['price'] . ' gold</div>';
+								}	else if ($si['action'] == "trade"){
+									echo '<div>' . $si['hero'] . ' will trade his/her <b>' . $si['name'] . '</b> with <b>' . $si['hero2'] . '</b></div>';
 								}						
 							}
 							echo '<div class="center">';

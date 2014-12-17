@@ -134,40 +134,100 @@
 					// loop through quests
 					
 					foreach ($campaign['quests'] as $qs){
-				?>
+						/*if($qs['travel_set'] == 1 && $qs['spendxp_set'] == 1 && $qs['items_set'] == 1 && $qs['winner'] != NULL) {
+
+						} else { */
+							?>
+							<div class="details-bar clearfix">
+								<?php 
+								if ($qs['travel_set'] == 0 && $qs['act'] != "Introduction"){ 
+									?>
+									<a class="add-details setting" href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=t">
+										<div class="add-label field">+ Add Travel Details</div>
+									</a>
+									<?php 
+								} else if ($qs['travel_set'] == 1 || $qs['act'] == "Introduction") { 
+									?>
+									<div class="add-details">
+										<div class="add-label field">Travel</div>
+									</div>
+									<?php 
+								}
+
+								if ($qs['winner'] == NULL && ($qs['travel_set'] == 1 || $qs['act'] == "Introduction")){ 
+									?>
+									<a class="add-details setting" href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=q">
+										<div class="add-label field">+ Add Quest Details</div>
+									</a>
+									<?php 
+								} else { 
+									?>
+									<div class="add-details">
+										<div class="add-label field">Quest Details</div>
+									</div>
+									<?php 
+								}
+
+								if ($qs['winner'] != NULL && $qs['spendxp_set'] == 0){ 
+									?>
+									<a class="add-details setting" href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=xp">
+										<div class="add-label field">+ Add Skills</div>
+									</a>
+									<?php 
+								} else { 
+									?>
+										<div class="add-details">
+											<div class="add-label field">Skills</div>
+										</div>									
+									<?php 
+								}
+
+								if ($qs['winner'] != NULL && $qs['items_set'] == 0){ 
+									?>
+									<a class="add-details setting" href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=it">
+										<div class="add-label field">+ Add Items</div>
+									</a>
+									<?php 
+								} else { 
+									?>
+									<div class="add-details">
+										<div class="add-label field">Items</div>
+									</div>	
+									<?php 
+								}
+
+								?>
+								</div>
+							<?php 
+						// }
+					
+?>
+
+
+
+
+
 				<div class="campaign-phase campaign-phase-<?php echo $qs['id']; ?> clearfix">
 					<div class="phase-column travel">
-						<?php if ($qs['travel_set'] == 0 && $qs['act'] != "Introduction"){ ?>
-							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=t" class="title">Add Travel Steps</a></div>
-						<?php } else { ?>
-
-							<?php 
+						<?php 
+							// show the travel steps only if they are set, and only if the quest is not an introduction (you don't travel for that)
+							if ($qs['travel_set'] == 1 && $qs['act'] != "Introduction"){ 
 								// loop through travel steps
-								$its = 0;
 								foreach ($qs['travel'] as $ts){
-								?>
-									<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center;">
-										<div class="travel-child">
-											<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
+									?>
+										<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center;">
+											<div class="travel-child">
+												<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
+											</div>
 										</div>
-									</div>
-								<?php
-								$its++;
+									<?php
 								} //close travel foreach
-							?>
-
-						<?php } ?>
+							} 
+						?>
 					</div>
 
 					<div class="phase-column quest" style="background: url('img/quests/<?php print $qs['img']; ?>') no-repeat center;">
-						<?php if ($qs['winner'] == NULL && ($qs['travel_set'] == 1 || $qs['act'] == "Introduction")){ ?>
-
-							<div class="quest-name"><?php print $qs['name']; ?></div>
-							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=q" class="title">Add Details</a></div>
-						<?php } else if ($qs['winner'] == NULL && ($qs['travel_set'] == 0 || $qs['act'] != "Introduction")){ ?>
-							<div class="quest-name"><?php print $qs['name']; ?></div>
-							<div class="center">Add Travel Details first</div>
-						<?php } else { ?>
+						<?php if ($qs['winner'] != NULL) { ?>
 
 							<div class="quest-name"><?php print $qs['name']; ?></div>
 							<div class="quest-winner"><?php print $qs['winner']; ?></div>
@@ -202,25 +262,16 @@
 					
 				
 					<div class="phase-column spend-xp">
-						<div class="column-title center">Skills</div>
-						<?php if ($qs['winner'] == NULL){ ?>
-							<div class="center"><p class="title">Add Quest Details First</p></div>
-						<?php } else if ($qs['winner'] != NULL && $qs['spendxp_set'] == 0){ ?>
-							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=xp"  class="title">Spend XP</a></div>
-						<?php } else { ?>
-
-							<?php 
+							<?php if ($qs['winner'] != NULL) {
 								// loop through skills per hero
-								$isx = 0;
 								foreach ($qs['spendxp'] as $xsk){
 							?>
-										<div class="item clearfix">
-											<div class="hero-mini items" style="background: url('img/heroes/mini_<?php print $xsk['hero_img']; ?>') center;"></div>
-											<div class="items item-name"><?php print $xsk['name']; ?></div>
-											<div class="items item-xp"><?php print $xsk['xpcost']; ?><span class="xp-label">XP</span></div>
+										<div class="skill clearfix">
+											<div class="hero-mini field" style="background: url('img/heroes/mini_<?php print $xsk['hero_img']; ?>') center;"></div>
+											<div class="skill-name field"><?php print $xsk['name']; ?></div>
+											<div class="skill-xp field"><?php print $xsk['xpcost']; ?><span class="skill-xp-label">XP</span></div>
 										</div>
 							<?php
-									$isx++;
 								} //close foreach
 							?>
 
@@ -228,53 +279,49 @@
 					</div>
 
 					<div class="phase-column buy-items">
-						<div class="column-title center">Items</div>
-						<?php if ($qs['winner'] == NULL){ ?>
-							<div class="center"><p class="title">Add Quest Details First</p></div>
-						<?php } else if ($qs['winner'] != NULL && $qs['items_set'] == 0){ ?>
-							<div class="center subbutton"><a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=it"  class="title">Shop & Trade</a></div>
-						<?php } else { ?>
+						<?php  if ($qs['winner'] != NULL){ ?>
 
-							<?php 
-								// loop through items that are items
-								$iit = 0;
+<?php 
+								// loop through items
 								foreach ($qs['items'] as $xit){
+									//if it's an item
 									if($xit['type'] == "Item"){
-							?>
+?>
 										<div class="item clearfix">
-											<div class="hero-mini items" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
-											<div class="items item-name"><?php print $xit['name']; ?></div>
-											<?php 
+											<div class="hero-mini field" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
+											<div class="item-name field"><?php print $xit['name']; ?></div>
+											
+<?php 
+												// if the item was bought or sold echo the cost, but with different classes
 												if($xit['action'] == "buy"){
+													// if an override price is set echo the override price, else echo the default one
 													if($xit['override'] != NULL){
-														echo '<div class="items item-xp"><span class="item-bought override">-' . $xit['override'] . '</span></div>';
+														echo '<div class="item-price buy override field">' . $xit['override'] . '</div>';
 													} else {
-														echo '<div class="items item-xp"><span class="item-bought">-' . $xit['price'] . '</span></div>';
+														echo '<div class="item-price buy field">' . $xit['price'] . '</div>';
 													}
 												} else if ($xit['action'] == "sell"){
-													echo '<div class="items item-xp"><span class="item-sold">+' . $xit['price'] . '</span></div>';
-												}											
-											?>
+													echo '<div class="item-price sell field">' . $xit['price'] . '</div>';
+												}	else if ($xit['action'] == "trade"){ 
+													?>
+														<div class="hero-mini trade field" style="background: url('img/heroes/mini_<?php print $xit['price']; ?>') center;"></div>
+													<?php
+												}										
+?>
 										</div>
-							<?php
+<?php
 									}
-									$iit++;
 								} //close foreach
-								$irt = 0;
 								foreach ($qs['items'] as $xit){
 									if($xit['type'] == "Relic"){
-							?>
-									<div class="relics">
-										<?php if($irt == 0){ ?><div class="column-title center">Relics</div><?php }; ?>
-										<div class="relic clearfix">
-											<div class="hero-mini items" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
-											<div class="items item-name"><?php print $xit['name']; ?></div>
-											<div class="items item-price"><?php print $xit['price']; ?></div>
-										</div>
+?>
+										<div class="item clearfix">
+											<div class="hero-mini field" style="background: url('img/heroes/mini_<?php print $xit['hero_img']; ?>') center;"></div>
+											<div class="item-name field"><?php print $xit['name']; ?></div>
+											<div class="item-price field relic">Relic</div>
 									</div>
 							<?php
 									}
-									$irt++;
 								} //close foreach
 							?>
 
@@ -295,11 +342,11 @@
 			} else {
 				include 'campaign_overview_hero.php';
 			}
-			
+			/*
 			echo '<pre>';
 			print_r($campaign);
 		  echo '</pre>';
-		  
+		  */
 		 	
 		  ?>
 		</div> <!-- close wrapper -->

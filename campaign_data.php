@@ -278,12 +278,13 @@ do {
 
   $ips = 0;
    do {
-
-    $campaign['quests'][$iq]['spendxp'][$ips] = array(
-      "hero_img" => $row_rsQuestSkillsData['hero_img'],
-      "name" => $row_rsQuestSkillsData['skill_name'],
-      "xpcost" => $row_rsQuestSkillsData['skill_cost'],
-    );
+    if($row_rsQuestSkillsData['skill_name'] != NULL){
+      $campaign['quests'][$iq]['spendxp'][$ips] = array(
+        "hero_img" => $row_rsQuestSkillsData['hero_img'],
+        "name" => $row_rsQuestSkillsData['skill_name'],
+        "xpcost" => $row_rsQuestSkillsData['skill_cost'],
+      );
+    }
 
     $ips++;
 
@@ -296,7 +297,11 @@ do {
     LEFT JOIN tbitems_relics ON tbitems_aquired.aq_relic_id = tbitems_relics.relic_id 
     INNER JOIN tbcharacters ON tbitems_aquired.aq_char_id = tbcharacters.char_id 
     INNER JOIN tbheroes ON tbcharacters.char_hero = tbheroes.hero_id 
-    WHERE aq_progress_id = %s OR aq_sold_progress_id = %s ORDER BY aq_char_id ASC", GetSQLValueString($row_rsQuestData['progress_id'], "int"), GetSQLValueString($row_rsQuestData['progress_id'], "int"));
+    WHERE aq_progress_id = %s OR aq_sold_progress_id = %s OR aq_trade_progress_id = %s ORDER BY aq_char_id ASC", 
+      GetSQLValueString($row_rsQuestData['progress_id'], "int"), 
+      GetSQLValueString($row_rsQuestData['progress_id'], "int"), 
+      GetSQLValueString($row_rsQuestData['progress_id'], "int"));
+
   $rsQuestItemsData = mysql_query($query_rsQuestItemsData, $dbDescent) or die(mysql_error());
   $row_rsQuestItemsData = mysql_fetch_assoc($rsQuestItemsData);
   $totalRows_rsQuestItemsData = mysql_num_rows($rsQuestItemsData);
@@ -304,42 +309,61 @@ do {
   $ips = 0;
    do {
 
-    if($row_rsQuestItemsData['aq_item_id'] != NULL){
-      $itemName = $row_rsQuestItemsData['item_name'];
-      $itemType = "Item";
-    } else {
-      $itemType = "Relic";
-      if($row_rsQuestData['progress_quest_winner'] == "Heroes Win"){
-        $itemName = $row_rsQuestItemsData['relic_h_name'];
+    if($row_rsQuestItemsData['aq_item_id'] != NULL || $row_rsQuestItemsData['aq_relic_id'] != NULL){
 
+      if($row_rsQuestItemsData['aq_item_id'] != NULL){
+        $itemName = $row_rsQuestItemsData['item_name'];
+        $itemType = "Item";
       } else {
-        $itemName = $row_rsQuestItemsData['relic_ol_name'];
+        $itemType = "Relic";
+        if($row_rsQuestData['progress_quest_winner'] == "Heroes Win"){
+          $itemName = $row_rsQuestItemsData['relic_h_name'];
+
+        } else {
+          $itemName = $row_rsQuestItemsData['relic_ol_name'];
+        }
       }
-    }
 
-    $campaign['quests'][$iq]['items'][$ips] = array(
-      "hero_img" => $row_rsQuestItemsData['hero_img'],
-      "type" => $itemType,
-      "name" => $itemName,
-      "action" => "buy",
-      "price" => $row_rsQuestItemsData['item_default_price'],
-      "override" => $row_rsQuestItemsData['aq_item_price_ovrd'],
-    );
-
-    if ($row_rsQuestItemsData['aq_item_sold'] == 1){
       $campaign['quests'][$iq]['items'][$ips] = array(
         "hero_img" => $row_rsQuestItemsData['hero_img'],
         "type" => $itemType,
         "name" => $itemName,
-        "action" => "sell",
-        "price" => $row_rsQuestItemsData['item_sell_price'],
-        "override" => NULL,
+        "action" => "buy",
+        "price" => $row_rsQuestItemsData['item_default_price'],
+        "override" => $row_rsQuestItemsData['aq_item_price_ovrd'],
       );
+
+      if ($row_rsQuestItemsData['aq_item_sold'] == 1){
+        $campaign['quests'][$iq]['items'][$ips] = array(
+          "hero_img" => $row_rsQuestItemsData['hero_img'],
+          "type" => $itemType,
+          "name" => $itemName,
+          "action" => "sell",
+          "price" => $row_rsQuestItemsData['item_sell_price'],
+          "override" => NULL,
+        );
+      }
+
+      if ($row_rsQuestItemsData['aq_trade_char_id'] != NULL && $row_rsQuestItemsData['aq_trade_progress_id'] == $row_rsQuestData['progress_id']){
+
+        $query_rsTradedPlayer = sprintf("SELECT * 
+          FROM tbcharacters INNER JOIN tbheroes ON tbcharacters.char_hero = tbheroes.hero_id WHERE char_id = %s", GetSQLValueString($row_rsQuestItemsData['aq_trade_char_id'], "int"));
+        $rsTradedPlayer = mysql_query($query_rsTradedPlayer, $dbDescent) or die(mysql_error());
+        $row_rsTradedPlayer = mysql_fetch_assoc($rsTradedPlayer);
+        $totalRows_rsTradedPlayer = mysql_num_rows($rsTradedPlayer);
+
+        $campaign['quests'][$iq]['items'][$ips] = array(
+          "hero_img" => $row_rsQuestItemsData['hero_img'],
+          "type" => $itemType,
+          "name" => $itemName,
+          "action" => "trade",
+          "price" => $row_rsTradedPlayer['hero_img'], // small cheat here ;)
+          "override" => NULL,
+        );
+      }
+
+      $ips++;
     }
-
-
-
-    $ips++;
 
   } while ($row_rsQuestItemsData = mysql_fetch_assoc($rsQuestItemsData));
 

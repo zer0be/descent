@@ -1,12 +1,40 @@
-body{
-	background: url('img/bg.jpg');
-	margin: 0;
-	padding: 0;
-	font-family: verdana;
+/* ------------ */
+/* -- GLOBAL -- */
+/* ------------ */
+/* line 11, content.scss */
+body {
+  background: url("img/bg.jpg");
+  margin: 0;
+  padding: 0;
+  font-family: verdana;
 }
 
-#toolbar{
-	background: #ccc;
+/* line 18, content.scss */
+#wrapper {
+  border-top: 5px solid #333;
+  width: 1200px;
+  background: #dddddd;
+  margin: 0px auto;
+  padding-bottom: 20px;
+}
+
+/* line 26, content.scss */
+.clearfix {
+  overflow: auto;
+  clear: both;
+}
+
+/* line 31, content.scss */
+.center {
+  text-align: center;
+}
+
+/* ------------ */
+/* -- Header -- */
+/* ------------ */
+/* line 39, content.scss */
+#toolbar {
+  background: #ccc;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
   font-family: Arial,Verdana,sans-serif;
   height: 40px;
@@ -14,489 +42,562 @@ body{
   z-index: 999;
 }
 
-#header{
-	width: 1400px;
-	height: 500px;
-	background: url('img/descentbanner.png') no-repeat center;
-	margin: 0px auto;
-	margin-bottom: -50px;
+/* line 48, content.scss */
+#header {
+  width: 1400px;
+  height: 500px;
+  background: url("img/descentbanner.png") no-repeat center;
+  margin: 0px auto;
+  margin-bottom: -50px;
 }
 
-#wrapper{
-	border-top: 5px solid #333;
-	width: 1200px;
-	background: #ccc;
-	margin: 0px auto;
-	padding-bottom: 20px;
+/* ------------- */
+/* -- CONTENT -- */
+/* ------------- */
+/* -- CAMPAIGN OVERVIEW -- */
+/* line 65, content.scss */
+#campaign .campaign-phase {
+  margin-bottom: 20px;
 }
-
-.clearfix{
-	overflow: auto;
+/* line 68, content.scss */
+#campaign .campaign-phase .phase-column {
+  display: block;
+  width: 298px;
+  height: 400px;
+  background: #f9f9f9;
+  float: left;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  position: relative;
+  /* travel */
+  /* quest */
+  /* skills & items*/
 }
-
-.center{
-	text-align: center;
+/* line 79, content.scss */
+#campaign .campaign-phase .phase-column .v-center {
+  padding-top: 32px;
 }
-
-.inner{
-	padding: 0 30px
+/* line 84, content.scss */
+#campaign .campaign-phase .phase-column.travel {
+  overflow: auto;
 }
-
-#heroes a{
-	text-decoration: none;
+/* line 86, content.scss */
+#campaign .campaign-phase .phase-column.travel .travel-step {
+  width: 228px;
+  padding: 10px;
+  padding-left: 60px;
+  display: table;
+  border-top: 1px solid #fefefe;
+  border-bottom: 1px solid #eee;
 }
-
-.hero{
-	display: block;
-	width: 300px;
-	height: 500px;
-	float: left;
-
-	color: #fff;
-	text-shadow: 0 0 1px #000, 0 0 10px #000;
-}
-
-.hero .name, 
-.hero .class, 
-.hero .xp,
-.hero .player{
-	text-align: center;
-}
-
-.hero .name{
-	font-size: 18px;
-	padding-top: 225px;
-}
-
-.hero .class{
-	font-size: 16px;
-}
-
-.hero .xp{
-	font-size: 28px;
-}
-
-.hero .xp .xp-label{
-	font-size: 20px;
-}
-
-.hero .player{
-	font-size: 28px;
-	padding-top: 80px;
-	text-transform: uppercase;
-}
-
-.gold{
-	display: block;
-	width: 110px;
-	height: 85px;
-	background: url('img/bg_gold.png') no-repeat center;
-	color: #fff;
-	margin: 0 auto;
-	position: relative;
-	top: -55px;
-	text-align: center;
-	padding-top: 30px;
-}
-
-.gold-amount{
-	font-size: 28px;
-}
-
-.gold-label{
-	font-size: 16px;
-	line-height: 6px;
-}
-
-.campaign-phase{
-	margin-bottom: 20px;
-}
-
-.phase-column{
-	display: block;
-	width: 298px;
-	height: 400px;
-	background: #ddd;
-	float: left;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	position: relative;
-}
-
-.phase-column .v-center{
-	padding-top: 32px;
-}
-
-.travel-step{
-	/*height: 80px;*/
-	padding: 10px;
-	padding-left: 60px;
-	display: table;
-}
-
-.phase-column.travel{
-	overflow: auto;
-}
-
-.travel-child{
-	display: table-cell;
+/* line 95, content.scss */
+#campaign .campaign-phase .phase-column.travel .travel-child {
+  display: table-cell;
   vertical-align: middle;
 }
-
-.travel-event{
-	font-size: 11px;
-	font-style: italic;
-	margin-bottom: 3px;
-	font-weight: 600;
+/* line 100, content.scss */
+#campaign .campaign-phase .phase-column.travel .travel-event {
+  font-size: 11px;
+  font-style: italic;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+/* line 107, content.scss */
+#campaign .campaign-phase .phase-column.travel .travel-outcome {
+  font-size: 10px;
+}
+/* line 114, content.scss */
+#campaign .campaign-phase .phase-column.quest {
+  text-align: center;
+  color: #ccc;
+  text-shadow: 0 0 1px #000, 0 0 10px #000;
+}
+/* line 119, content.scss */
+#campaign .campaign-phase .phase-column.quest .quest-name {
+  font-size: 18px;
+  padding-top: 175px;
+}
+/* line 124, content.scss */
+#campaign .campaign-phase .phase-column.quest .quest-winner {
+  font-size: 24px;
+}
+/* line 128, content.scss */
+#campaign .campaign-phase .phase-column.quest .quest-reward {
+  margin-top: 100px;
+  font-size: 18px;
+}
+/* line 133, content.scss */
+#campaign .campaign-phase .phase-column.quest .quest-reward .label {
+  font-size: 14px;
+}
+/* line 139, content.scss */
+#campaign .campaign-phase .phase-column .hero-mini {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+/* line 146, content.scss */
+#campaign .campaign-phase .phase-column .skill, #campaign .campaign-phase .phase-column .item {
+  border-top: 1px solid #fefefe;
+  border-bottom: 1px solid #eee;
+}
+/* line 150, content.scss */
+#campaign .campaign-phase .phase-column .skill .field, #campaign .campaign-phase .phase-column .item .field {
+  float: left;
+}
+#campaign .campaign-phase .phase-column .item .hero-mini.trade {
+  float: right;
+}
+/* line 154, content.scss */
+#campaign .campaign-phase .phase-column .skill .skill-name, #campaign .campaign-phase .phase-column .skill .item-name, #campaign .campaign-phase .phase-column .item .skill-name, #campaign .campaign-phase .phase-column .item .item-name {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+/* line 160, content.scss */
+#campaign .campaign-phase .phase-column .skill .skill-xp, #campaign .campaign-phase .phase-column .skill .item-price, #campaign .campaign-phase .phase-column .item .skill-xp, #campaign .campaign-phase .phase-column .item .item-price {
+  float: right;
+  width: 30px;
+  height: 24px;
+  padding-top: 6px;
+  margin: 5px;
+  background-color: #dd1e2f;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+}
+/* line 175, content.scss */
+#campaign .campaign-phase .phase-column .skill .skill-xp-label, #campaign .campaign-phase .phase-column .item .skill-xp-label {
+  font-size: 8px;
+}
+/* line 180, content.scss */
+#campaign .campaign-phase .phase-column .skill .item-price.buy.override, #campaign .campaign-phase .phase-column .item .item-price.buy.override {
+  background-color: #ebb035;
+}
+/* line 183, content.scss */
+#campaign .campaign-phase .phase-column .skill .item-price.buy, #campaign .campaign-phase .phase-column .item .item-price.buy {
+  background-color: #dd1e2f;
+}
+/* line 186, content.scss */
+#campaign .campaign-phase .phase-column .skill .item-price.sell, #campaign .campaign-phase .phase-column .item .item-price.sell {
+  background-color: #218559;
+}
+/* line 189, content.scss */
+#campaign .campaign-phase .phase-column .skill .item-price.relic, #campaign .campaign-phase .phase-column .item .item-price.relic {
+  background-color: #06a2cb;
+  font-size: 10px;
+  height: 23px;
+  padding-top: 7px;
+}
+/* line 204, content.scss */
+#campaign .details-bar {
+  width: 100%;
+}
+/* line 208, content.scss */
+#campaign .details-bar .add-details {
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+/* line 216, content.scss */
+#campaign .details-bar .add-details.set .add-label, #campaign .details-bar .add-details.setting .add-label {
+  background-color: #06a2cb;
+}
+/* line 222, content.scss */
+#campaign .details-bar .add-details .add-label {
+  width: 278px;
+  height: 20px;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding: 5px 10px;
+  background-color: #ccc;
+  text-align: center;
 }
 
-.travel-outcome{
-	font-size: 10px;
+/* line 239, content.scss */
+.inner {
+  padding: 0 30px;
 }
 
-.quest, .save-left-column{
-	text-align: center;
-	color: #ccc;
-	text-shadow: 0 0 1px #000, 0 0 10px #000;
+/* line 243, content.scss */
+#heroes a {
+  text-decoration: none;
 }
 
-.quest-name{
-	font-size: 18px;
-	padding-top: 175px;
+/* line 247, content.scss */
+.hero {
+  display: block;
+  width: 300px;
+  height: 500px;
+  float: left;
+  color: #fff;
+  text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-.quest-winner{
-	font-size: 24px;
+/* line 260, content.scss */
+.hero .name,
+.hero .class,
+.hero .xp,
+.hero .player {
+  text-align: center;
 }
 
-.quest-reward{
-	margin-top: 100px;
-	font-size: 18px;
+/* line 264, content.scss */
+.hero .name {
+  font-size: 18px;
+  padding-top: 225px;
 }
 
-.quest-reward .label{
-	font-size: 14px;
+/* line 269, content.scss */
+.hero .class {
+  font-size: 16px;
 }
 
-.hero-mini{
-	width: 30px;
-	height: 30px;
+/* line 273, content.scss */
+.hero .xp {
+  font-size: 28px;
 }
 
-.items{
-	float: left;
-	margin: 0 5px 0;
+/* line 277, content.scss */
+.hero .xp .xp-label {
+  font-size: 20px;
 }
 
-.item{
-	margin-top: 3px;
+/* line 281, content.scss */
+.hero .player {
+  font-size: 28px;
+  padding-top: 80px;
+  text-transform: uppercase;
 }
 
-.relic{
-	margin-bottom: 3px;
+/* line 287, content.scss */
+.gold {
+  display: block;
+  width: 110px;
+  height: 85px;
+  background: url("img/bg_gold.png") no-repeat center;
+  color: #fff;
+  margin: 0 auto;
+  position: relative;
+  top: -55px;
+  text-align: center;
+  padding-top: 30px;
 }
 
-.item-name{
-	text-align: center;
-	width: 213px; 
-	margin-top: 5px;
+/* line 300, content.scss */
+.gold-amount {
+  font-size: 28px;
 }
 
-.detail-items .item-name{
-	width: 198px; 
+/* line 304, content.scss */
+.gold-label {
+  font-size: 16px;
+  line-height: 6px;
 }
 
-.item-xp{
-	font-size: 16px;
-	width: 25px;
-	margin-top: 5px;
+/* line 311, content.scss */
+.save-left-column {
+  text-align: center;
+  color: #ccc;
+  text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-.buy-items .item-name{
-	width: 198px;
+/* line 317, content.scss */
+.relic {
+  margin-bottom: 3px;
 }
 
-.buy-items .item-xp{
-	text-align: right;
-	width: 40px;
+/* line 321, content.scss */
+.campaigns-overview {
+  color: #333;
 }
 
-.detail-items .item-xp{
-	width: 40px;
+/* line 325, content.scss */
+.campaigns-overview h1 {
+  margin: 0px;
+  padding: 15px 0 0;
 }
 
-.cost, .item-sold, .item-bought{
-	text-align: right;
+/* line 330, content.scss */
+.campaigns-overview .subtitle {
+  margin-bottom: 20px;
 }
 
-.item-sold{
-	color: green;
+/* line 334, content.scss */
+.campaigns-overview h2 {
+  margin: 0;
 }
 
-.item-bought{
-	color: red;
+/* line 338, content.scss */
+#campaigns-overview .campaigns-overview-campaign {
+  display: block;
+  width: 500px;
+  float: left;
+  padding: 20px 50px;
 }
 
-.item-bought.override{
-	color: orange;
+/* line 346, content.scss */
+#campaigns-overview .campaigns-overview-campaign .timestamp {
+  margin-bottom: 10px;
+  color: #666;
 }
 
-.items .xp-label{
-	font-size: 12px;
+/* line 351, content.scss */
+#campaigns-overview .hero {
+  display: block;
+  width: 98px;
+  height: 200px;
+  float: left;
+  position: relative;
+  margin: 1px;
+  color: #fff;
+  text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-.campaigns-overview{
-	color: #333;
+/* line 365, content.scss */
+#campaigns-overview .hero .name,
+#campaigns-overview .hero .class,
+#campaigns-overview .hero .player {
+  text-align: center;
 }
 
-.campaigns-overview h1{
-	margin: 0px;
-	padding: 15px 0 0;
+/* line 369, content.scss */
+#campaigns-overview .hero .name {
+  font-size: 12px;
+  padding-top: 75px;
 }
 
-.campaigns-overview .subtitle{
-	margin-bottom: 20px;
+/* line 374, content.scss */
+#campaigns-overview .hero .class {
+  font-size: 10px;
 }
 
-.campaigns-overview h2{
-	margin: 0;
+/* line 378, content.scss */
+#campaigns-overview .hero .player {
+  font-size: 18px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
 }
 
-#campaigns-overview .campaigns-overview-campaign{
-	display: block;
-	width: 500px;
-	float: left;
-	padding: 20px 50px;
+/* line 387, content.scss */
+#campaigns-overview a {
+  text-decoration: none;
+  color: #333;
 }
 
-
-#campaigns-overview .campaigns-overview-campaign .timestamp{
-	margin-bottom: 10px;
-	color: #666;
+/* line 392, content.scss */
+.half-block {
+  width: 50%;
+  float: left;
 }
 
-#campaigns-overview .hero{
-	display: block;
-	width: 98px;
-	height: 200px;
-	float: left;
-	position: relative;
-	margin: 1px;
-
-	color: #fff;
-	text-shadow: 0 0 1px #000, 0 0 10px #000;
-}
-
-#campaigns-overview .hero .name, 
-#campaigns-overview .hero .class, 
-#campaigns-overview .hero .player{
-	text-align: center;
-}
-
-#campaigns-overview .hero .name{
-	font-size: 12px;
-	padding-top: 75px;
-}
-
-#campaigns-overview .hero .class{
-	font-size: 10px;
-}
-
-#campaigns-overview .hero .player{
-	font-size: 18px;
-	text-transform: uppercase;
-	position: absolute;
-	bottom: 20px;
-	text-align: center;
-   	width: 100%;
-}
-
-#campaigns-overview a{
-	text-decoration: none;
-	color: #333;
-}
-
-.half-block{
-	width: 50%;
-	float: left;
-}
-
-.half-block a, .half-block img{
-	display: block;
+/* line 397, content.scss */
+.half-block a, .half-block img {
+  display: block;
   float: left;
   margin: 0;
   padding: 0;
   width: 200px;
 }
 
-.column-title{
-	font-weight: bold;
+/* line 405, content.scss */
+.column-title {
+  font-weight: bold;
 }
 
-
-.relics{
-	position: absolute;
-	bottom: 0;
+/* line 410, content.scss */
+.relics {
+  position: absolute;
+  bottom: 0;
 }
 
-.buttons{
-	margin: 0 auto;
-	margin-bottom: 10px;
-	width: 380px;
+/* line 415, content.scss */
+.buttons {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 380px;
 }
 
-.button{
-	float: left;
-	width: 180px;
-	margin: 0 5px;
-	height: 30px;
+/* line 421, content.scss */
+.button {
+  float: left;
+  width: 180px;
+  margin: 0 5px;
+  height: 30px;
 }
 
-.subbutton{
-	width: 180px;
-	margin: 0 auto;
-	height: 30px;
+/* line 428, content.scss */
+.subbutton {
+  width: 180px;
+  margin: 0 auto;
+  height: 30px;
 }
 
-.button .title, .subbutton .title{
-	display: block;
-	height: 25px;
-	width: 180px;
-	border: 1px solid #999;
-	color: #999;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	text-decoration: none;
-
-	padding-top: 2px;
-	margin: 0;
+/* line 434, content.scss */
+.button .title, .subbutton .title {
+  display: block;
+  height: 25px;
+  width: 180px;
+  border: 1px solid #999;
+  color: #999;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  padding-top: 2px;
+  margin: 0;
 }
 
-.button .title:hover, .subbutton .title:hover{
-	background: #999;
-	color: #666;
-	border: 1px solid #666;
+/* line 449, content.scss */
+.button .title:hover, .subbutton .title:hover {
+  background: #999;
+  color: #666;
+  border: 1px solid #666;
 }
 
-
-#start-quest-form, #start-rumor-form{
-	display: none;
+/* line 456, content.scss */
+#start-quest-form, #start-rumor-form {
+  display: none;
 }
 
-#start-quest-form, #start-rumor-form{
-	margin: 0 auto;
-	padding: 0 20px;
-	width: 300px;
+/* line 460, content.scss */
+#start-quest-form, #start-rumor-form {
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 300px;
 }
 
 /* --------------------- */
 /* -- Quest Save Page -- */
 /* --------------------- */
-
-.save-left-column{
-	display: block;
-	width: 300px;
-	height: 400px;
-	background: #ddd;
-	float: left;
-	position: relative;
+/* line 470, content.scss */
+.save-left-column {
+  display: block;
+  width: 300px;
+  height: 400px;
+  background: #ddd;
+  float: left;
+  position: relative;
 }
 
-.save-back-column{
-	float: left;
+/* line 479, content.scss */
+.save-back-column {
+  float: left;
 }
 
-.save-right-column{
-	display: block;
-	width: 860px;
-	min-height: 380px;
-	background: #ddd;
-	float: right;
-	position: relative;
-	padding: 10px 20px;
+/* line 483, content.scss */
+.save-right-column {
+  display: block;
+  width: 860px;
+  min-height: 380px;
+  background: #ddd;
+  float: right;
+  position: relative;
+  padding: 10px 20px;
 }
 
-.buy-column{
-	display: block;
-	width: 280px;
-	height: 210px;
-	float: left;
-	position: relative;
+/* line 493, content.scss */
+.buy-column {
+  display: block;
+  width: 280px;
+  height: 210px;
+  float: left;
+  position: relative;
 }
 
-.buy-column.even{
-	margin: 0 10px;
+/* line 501, content.scss */
+.buy-column.even {
+  margin: 0 10px;
 }
 
-.buy-column select, .buy-column input[type="submit"]{
-	width: 280px;
+/* line 505, content.scss */
+.buy-column select, .buy-column input[type="submit"] {
+  width: 280px;
 }
 
-.buy-column input[type="submit"]{
-	position: absolute;
-	bottom: 0;
+/* line 509, content.scss */
+.buy-column input[type="submit"] {
+  position: absolute;
+  bottom: 0;
 }
 
-.list-checkbox{
-	width: 210px;
-	float: left;
+/* line 514, content.scss */
+.list-checkbox {
+  width: 210px;
+  float: left;
 }
 
-.list-checkbox input{
-	margin: 10px 10px 0;
-	float: left;
+/* line 519, content.scss */
+.list-checkbox input {
+  margin: 10px 10px 0;
+  float: left;
 }
 
-.list-checkbox div{
-	float: left;
+/* line 524, content.scss */
+.list-checkbox div {
+  float: left;
 }
 
-.list-checkbox .search-gold{
-	font-style: italic;
-	font-size: 12px;
+/* line 528, content.scss */
+.list-checkbox .search-gold {
+  font-style: italic;
+  font-size: 12px;
 }
 
-#select-item{
-	display: none;
+/* line 533, content.scss */
+#select-item {
+  display: none;
 }
 
-.select-hero{
-	width: 150px;
-	float: left;
+/* line 537, content.scss */
+.select-hero {
+  width: 150px;
+  float: left;
 }
 
-.select-hero input[type=checkbox]{
-	margin: 0 65px;
+/* line 542, content.scss */
+.select-hero input[type=checkbox] {
+  margin: 0 65px;
 }
 
-.select-hero-image{
-	display: block;
-	width: 148px;
-	height: 250px;
-	float: left;
-	position: relative;
-	margin: 1px;
-
-	color: #fff;
-	text-shadow: 0 0 1px #000, 0 0 10px #000;
+/* line 546, content.scss */
+.select-hero-image {
+  display: block;
+  width: 148px;
+  height: 250px;
+  float: left;
+  position: relative;
+  margin: 1px;
+  color: #fff;
+  text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-.select-hero-image .hero-name{
-	text-align: center;
-	font-size: 12px;
-	padding-top: 75px;
+/* line 558, content.scss */
+.select-hero-image .hero-name {
+  text-align: center;
+  font-size: 12px;
+  padding-top: 75px;
 }
 
-.hero-select{
-	width: 300px;
-	float: left;
+/* line 564, content.scss */
+.hero-select {
+  width: 300px;
+  float: left;
 }
 
-.hero-select img{
-	width: 300px;
-	height: 500px;
+/* line 569, content.scss */
+.hero-select img {
+  width: 300px;
+  height: 500px;
 }
+
 /*
 #heroselect input[type=checkbox]{
 display:none;
@@ -516,68 +617,75 @@ padding: 0 0 0 0px;
 }
 
 */
-
-input[type="submit"], a.normal-button{
-	background-color: #666;
-	border: none;
-	border-bottom: 5px solid #333;
-	color: #fff;
-	font-size: 18px;
-	width: 300px;
-	height: 40px;
-	text-align: center;
-	margin-top: 20px;
+/* line 593, content.scss */
+input[type="submit"], a.normal-button {
+  background-color: #666;
+  border: none;
+  border-bottom: 5px solid #333;
+  color: #fff;
+  font-size: 18px;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-a.normal-button{
-	margin-top: 0;
-	display: block;
-	text-decoration: none;
-	height: 33px;
-	padding-top: 7px;
+/* line 605, content.scss */
+a.normal-button {
+  margin-top: 0;
+  display: block;
+  text-decoration: none;
+  height: 33px;
+  padding-top: 7px;
 }
 
-.save-back-column a.normal-button{
-	background-color: #333;
-	border-bottom: 5px solid #111;
+/* line 613, content.scss */
+.save-back-column a.normal-button {
+  background-color: #333;
+  border-bottom: 5px solid #111;
 }
 
-.save-back-column a.normal-button:hover{
-	background-color: #666;
-	border-bottom: 5px solid #333;
+/* line 618, content.scss */
+.save-back-column a.normal-button:hover {
+  background-color: #666;
+  border-bottom: 5px solid #333;
 }
 
-input[type="submit"]:hover, a.normal-button:hover{
-	background-color: #333;
-	border: none;
-	border-bottom: 5px solid #111;
-	color: #fff;
+/* line 623, content.scss */
+input[type="submit"]:hover, a.normal-button:hover {
+  background-color: #333;
+  border: none;
+  border-bottom: 5px solid #111;
+  color: #fff;
 }
 
-select{
-	width: 300px;
-	height: 30px;
-	font-size: 18px;
-	text-align: center;
+/* line 630, content.scss */
+select {
+  width: 300px;
+  height: 30px;
+  font-size: 18px;
+  text-align: center;
 }
 
-#save-heroes-form input, #set-heroes-form input{
-	margin-left: 450px;
+/* line 637, content.scss */
+#save-heroes-form input, #set-heroes-form input {
+  margin-left: 450px;
 }
 
-#travel-details-form input{
-	margin-left: 60px;
+/* line 641, content.scss */
+#travel-details-form input {
+  margin-left: 60px;
 }
 
-.error{
-	padding: 20px 10px 0px;
-	color: red;
-	font-style: italic;
-	text-align: center;
+/* line 645, content.scss */
+.error {
+  padding: 20px 10px 0px;
+  color: red;
+  font-style: italic;
+  text-align: center;
 }
 
-
-#travel-details-form .travel-step{
-	height: auto;
+/* line 653, content.scss */
+#travel-details-form .travel-step {
+  height: auto;
 }
-
