@@ -104,7 +104,7 @@ if (isset($_SESSION['campaign_name'])) {
   $colname_rsSelectGamingGroup = $_SESSION['campaign_name'];
 }
 mysql_select_db($database_dbDescent, $dbDescent);
-$query_rsSelectGamingGroup = sprintf("SELECT ggrp_name, DATE_FORMAT(ggrp_timestamp, '%%d %%b %%Y') AS date, ggrp_id FROM tbgaminggroup WHERE ggrp_campaign = %s ORDER BY ggrp_timestamp DESC", GetSQLValueString($colname_rsSelectGamingGroup, "text"));
+$query_rsSelectGamingGroup = sprintf("SELECT game_grp_id, DATE_FORMAT(game_timestamp, '%%d %%b %%Y') AS date, game_id FROM tbgames WHERE game_camp_id = %s ORDER BY game_timestamp DESC", GetSQLValueString($colname_rsSelectGamingGroup, "text"));
 $query_limit_rsSelectGamingGroup = sprintf("%s LIMIT %d, %d", $query_rsSelectGamingGroup, $startRow_rsSelectGamingGroup, $maxRows_rsSelectGamingGroup);
 $rsSelectGamingGroup = mysql_query($query_limit_rsSelectGamingGroup, $dbDescent) or die(mysql_error());
 $row_rsSelectGamingGroup = mysql_fetch_assoc($rsSelectGamingGroup);

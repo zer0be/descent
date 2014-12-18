@@ -97,7 +97,8 @@ do{
   }
 } while ($row_rsQuestStats = mysql_fetch_assoc($rsQuestStats));
 
-
+$OverlordQuestsPerc = ($OverlordQuests /($totalRows_rsQuestStats - $undecidedQuests)) * 100;
+$HeroesQuestsPerc = ($HeroesQuests / ($totalRows_rsQuestStats - $undecidedQuests)) * 100;
 
 ?>
 
@@ -120,7 +121,8 @@ do{
       <?php 
         echo '<b>' . $totalRows_rsSelectGroup . '</b> gaming groups, playing <b>' . $totalRows_rsGamesStats . '</b> games.<br />'; 
         echo '<b>' . $HeroesTotal . '</b> Heroes vs. <b>' . $OverlordTotal . '</b> Overlords.<br />';
-        echo '<b>' . ($totalRows_rsQuestStats - $undecidedQuests) . '</b> quests completed, of which <b>' . $HeroesQuests . '</b> were won by the Heroes, and <b>' . $OverlordQuests . '</b> by the Overlord.'
+        echo '<b>' . ($totalRows_rsQuestStats - $undecidedQuests) . '</b> quests';
+        echo '<div><div class="statsbar-left" style="width: ' . $HeroesQuestsPerc . '%;">' . '<span class="statsbar-text">Heroes: ' . $HeroesQuests . '</span></div>' . '<div class="statsbar-right" style="width: ' . $OverlordQuestsPerc . '%;">' . '<span class="statsbar-text">Overlord: ' . $OverlordQuests . '</span></div></div>';
       ?>
       <h2 class="center">Gaming Groups</h2>
       <p class="center">Search For a Gaming Group</p>

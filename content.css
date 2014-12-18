@@ -35,7 +35,7 @@ body {
 /* line 39, content.scss */
 #toolbar {
   background: #ccc;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
   font-family: Arial,Verdana,sans-serif;
   height: 40px;
   position: relative;
@@ -71,7 +71,6 @@ body {
   position: relative;
   /* travel */
   /* quest */
-  /* skills & items*/
 }
 /* line 79, content.scss */
 #campaign .campaign-phase .phase-column .v-center {
@@ -130,33 +129,60 @@ body {
 #campaign .campaign-phase .phase-column.quest .quest-reward .label {
   font-size: 14px;
 }
-/* line 139, content.scss */
-#campaign .campaign-phase .phase-column .hero-mini {
+/* line 143, content.scss */
+#campaign .details-bar {
+  width: 100%;
+}
+/* line 147, content.scss */
+#campaign .details-bar .add-details {
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+/* line 155, content.scss */
+#campaign .details-bar .add-details.set .add-label, #campaign .details-bar .add-details.setting .add-label {
+  background-color: #06a2cb;
+}
+/* line 161, content.scss */
+#campaign .details-bar .add-details .add-label {
+  width: 278px;
+  height: 20px;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding: 5px 10px;
+  background-color: #ccc;
+  text-align: center;
+}
+
+/* line 177, content.scss */
+.hero-mini {
   width: 30px;
   height: 30px;
   margin: 5px;
 }
-/* line 146, content.scss */
-#campaign .campaign-phase .phase-column .skill, #campaign .campaign-phase .phase-column .item {
+
+/* skills & items*/
+/* line 184, content.scss */
+.skill, .item {
   border-top: 1px solid #fefefe;
   border-bottom: 1px solid #eee;
 }
-/* line 150, content.scss */
-#campaign .campaign-phase .phase-column .skill .field, #campaign .campaign-phase .phase-column .item .field {
+/* line 188, content.scss */
+.skill .field, .item .field {
   float: left;
 }
-/* line 153, content.scss */
-#campaign .campaign-phase .phase-column .skill .hero-mini.trade, #campaign .campaign-phase .phase-column .item .hero-mini.trade {
+/* line 191, content.scss */
+.skill .hero-mini.trade, .item .hero-mini.trade {
   float: right;
 }
-/* line 157, content.scss */
-#campaign .campaign-phase .phase-column .skill .skill-name, #campaign .campaign-phase .phase-column .skill .item-name, #campaign .campaign-phase .phase-column .item .skill-name, #campaign .campaign-phase .phase-column .item .item-name {
+/* line 195, content.scss */
+.skill .skill-name, .skill .item-name, .item .skill-name, .item .item-name {
   margin-top: 10px;
   font-weight: 600;
   font-size: 14px;
 }
-/* line 163, content.scss */
-#campaign .campaign-phase .phase-column .skill .skill-xp, #campaign .campaign-phase .phase-column .skill .item-price, #campaign .campaign-phase .phase-column .item .skill-xp, #campaign .campaign-phase .phase-column .item .item-price {
+/* line 201, content.scss */
+.skill .skill-xp, .skill .item-price, .item .skill-xp, .item .item-price {
   float: right;
   width: 30px;
   height: 24px;
@@ -171,65 +197,103 @@ body {
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
 }
-/* line 178, content.scss */
-#campaign .campaign-phase .phase-column .skill .skill-xp-label, #campaign .campaign-phase .phase-column .item .skill-xp-label {
+/* line 216, content.scss */
+.skill .skill-xp-label, .item .skill-xp-label {
   font-size: 8px;
 }
-/* line 183, content.scss */
-#campaign .campaign-phase .phase-column .skill .item-price.buy.override, #campaign .campaign-phase .phase-column .item .item-price.buy.override {
+/* line 221, content.scss */
+.skill .item-price.buy.override, .skill .item-price.override, .item .item-price.buy.override, .item .item-price.override {
   background-color: #ebb035;
 }
-/* line 186, content.scss */
-#campaign .campaign-phase .phase-column .skill .item-price.buy, #campaign .campaign-phase .phase-column .item .item-price.buy {
+/* line 224, content.scss */
+.skill .item-price.buy, .item .item-price.buy {
   background-color: #dd1e2f;
 }
-/* line 189, content.scss */
-#campaign .campaign-phase .phase-column .skill .item-price.sell, #campaign .campaign-phase .phase-column .item .item-price.sell {
+/* line 227, content.scss */
+.skill .item-price.sell, .item .item-price.sell {
   background-color: #218559;
 }
-/* line 192, content.scss */
-#campaign .campaign-phase .phase-column .skill .item-price.relic, #campaign .campaign-phase .phase-column .item .item-price.relic {
+/* line 230, content.scss */
+.skill .item-price.relic, .item .item-price.relic {
   background-color: #06a2cb;
   font-size: 10px;
   height: 23px;
   padding-top: 7px;
 }
-/* line 207, content.scss */
-#campaign .details-bar {
-  width: 100%;
-}
-/* line 211, content.scss */
-#campaign .details-bar .add-details {
-  text-decoration: none;
-  color: #fff;
-  float: left;
-}
-/* line 219, content.scss */
-#campaign .details-bar .add-details.set .add-label, #campaign .details-bar .add-details.setting .add-label {
+/* line 240, content.scss */
+.skill .skill-xp.starter, .item .skill-xp.starter {
   background-color: #06a2cb;
-}
-/* line 225, content.scss */
-#campaign .details-bar .add-details .add-label {
-  width: 278px;
-  height: 20px;
-  border-left: 1px solid #dddddd;
-  border-right: 1px solid #dddddd;
-  padding: 5px 10px;
-  background-color: #ccc;
-  text-align: center;
+  font-size: 10px;
+  height: 23px;
+  padding-top: 7px;
 }
 
-/* line 242, content.scss */
+/* -- HERO DETAIL -- */
+/* line 252, content.scss */
+.column {
+  display: block;
+  width: 298px;
+  background: #f9f9f9;
+  float: left;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  position: relative;
+}
+
+/* -- STATS -- */
+/* line 268, content.scss */
+.statsbar-text {
+  color: #fff;
+  padding: 0 15px;
+}
+
+/* line 273, content.scss */
+.statsbar-left {
+  display: block;
+  height: 25px;
+  float: left;
+  background-color: #218559;
+  padding: 7px 0;
+  border-radius: 30px 0 0 30px;
+  -moz-border-radius: 30px 0 0 30px;
+  -webkit-border-radius: 30px 0 0 30px;
+}
+
+/* line 285, content.scss */
+.statsbar-right {
+  display: block;
+  height: 25px;
+  float: right;
+  background-color: #dd1e2f;
+  padding: 7px 0;
+  border-radius: 0 30px 30px 0;
+  -moz-border-radius: 0 30px 30px 0;
+  -webkit-border-radius: 0 30px 30px 0;
+  text-align: right;
+}
+
+/* line 298, content.scss */
+.quest-stats {
+  margin: 0 auto;
+  width: 80%;
+}
+/* line 302, content.scss */
+.quest-stats h2 {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+
+/* line 309, content.scss */
 .inner {
   padding: 0 30px;
 }
 
-/* line 246, content.scss */
+/* line 313, content.scss */
 #heroes a {
   text-decoration: none;
 }
 
-/* line 250, content.scss */
+/* line 317, content.scss */
 .hero {
   display: block;
   width: 300px;
@@ -239,7 +303,7 @@ body {
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 263, content.scss */
+/* line 330, content.scss */
 .hero .name,
 .hero .class,
 .hero .xp,
@@ -247,35 +311,35 @@ body {
   text-align: center;
 }
 
-/* line 267, content.scss */
+/* line 334, content.scss */
 .hero .name {
   font-size: 18px;
   padding-top: 225px;
 }
 
-/* line 272, content.scss */
+/* line 339, content.scss */
 .hero .class {
   font-size: 16px;
 }
 
-/* line 276, content.scss */
+/* line 343, content.scss */
 .hero .xp {
   font-size: 28px;
 }
 
-/* line 280, content.scss */
+/* line 347, content.scss */
 .hero .xp .xp-label {
   font-size: 20px;
 }
 
-/* line 284, content.scss */
+/* line 351, content.scss */
 .hero .player {
   font-size: 28px;
   padding-top: 80px;
   text-transform: uppercase;
 }
 
-/* line 290, content.scss */
+/* line 357, content.scss */
 .gold {
   display: block;
   width: 110px;
@@ -289,51 +353,51 @@ body {
   padding-top: 30px;
 }
 
-/* line 303, content.scss */
+/* line 370, content.scss */
 .gold-amount {
   font-size: 28px;
 }
 
-/* line 307, content.scss */
+/* line 374, content.scss */
 .gold-label {
   font-size: 16px;
   line-height: 6px;
 }
 
-/* line 314, content.scss */
+/* line 381, content.scss */
 .save-left-column {
   text-align: center;
   color: #ccc;
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 320, content.scss */
+/* line 387, content.scss */
 .relic {
   margin-bottom: 3px;
 }
 
-/* line 324, content.scss */
+/* line 391, content.scss */
 .campaigns-overview {
   color: #333;
 }
 
-/* line 328, content.scss */
+/* line 395, content.scss */
 .campaigns-overview h1 {
   margin: 0px;
   padding: 15px 0 0;
 }
 
-/* line 333, content.scss */
+/* line 400, content.scss */
 .campaigns-overview .subtitle {
   margin-bottom: 20px;
 }
 
-/* line 337, content.scss */
+/* line 404, content.scss */
 .campaigns-overview h2 {
   margin: 0;
 }
 
-/* line 341, content.scss */
+/* line 408, content.scss */
 #campaigns-overview .campaigns-overview-campaign {
   display: block;
   width: 500px;
@@ -341,13 +405,13 @@ body {
   padding: 20px 50px;
 }
 
-/* line 349, content.scss */
+/* line 416, content.scss */
 #campaigns-overview .campaigns-overview-campaign .timestamp {
   margin-bottom: 10px;
   color: #666;
 }
 
-/* line 354, content.scss */
+/* line 421, content.scss */
 #campaigns-overview .hero {
   display: block;
   width: 98px;
@@ -359,25 +423,25 @@ body {
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 368, content.scss */
+/* line 435, content.scss */
 #campaigns-overview .hero .name,
 #campaigns-overview .hero .class,
 #campaigns-overview .hero .player {
   text-align: center;
 }
 
-/* line 372, content.scss */
+/* line 439, content.scss */
 #campaigns-overview .hero .name {
   font-size: 12px;
   padding-top: 75px;
 }
 
-/* line 377, content.scss */
+/* line 444, content.scss */
 #campaigns-overview .hero .class {
   font-size: 10px;
 }
 
-/* line 381, content.scss */
+/* line 448, content.scss */
 #campaigns-overview .hero .player {
   font-size: 18px;
   text-transform: uppercase;
@@ -387,19 +451,19 @@ body {
   width: 100%;
 }
 
-/* line 390, content.scss */
+/* line 457, content.scss */
 #campaigns-overview a {
   text-decoration: none;
   color: #333;
 }
 
-/* line 395, content.scss */
+/* line 462, content.scss */
 .half-block {
   width: 50%;
   float: left;
 }
 
-/* line 400, content.scss */
+/* line 467, content.scss */
 .half-block a, .half-block img {
   display: block;
   float: left;
@@ -408,25 +472,25 @@ body {
   width: 200px;
 }
 
-/* line 408, content.scss */
+/* line 475, content.scss */
 .column-title {
   font-weight: bold;
 }
 
-/* line 413, content.scss */
+/* line 480, content.scss */
 .relics {
   position: absolute;
   bottom: 0;
 }
 
-/* line 418, content.scss */
+/* line 485, content.scss */
 .buttons {
   margin: 0 auto;
   margin-bottom: 10px;
   width: 380px;
 }
 
-/* line 424, content.scss */
+/* line 491, content.scss */
 .button {
   float: left;
   width: 180px;
@@ -434,14 +498,14 @@ body {
   height: 30px;
 }
 
-/* line 431, content.scss */
+/* line 498, content.scss */
 .subbutton {
   width: 180px;
   margin: 0 auto;
   height: 30px;
 }
 
-/* line 437, content.scss */
+/* line 504, content.scss */
 .button .title, .subbutton .title {
   display: block;
   height: 25px;
@@ -456,19 +520,19 @@ body {
   margin: 0;
 }
 
-/* line 452, content.scss */
+/* line 519, content.scss */
 .button .title:hover, .subbutton .title:hover {
   background: #999;
   color: #666;
   border: 1px solid #666;
 }
 
-/* line 459, content.scss */
+/* line 526, content.scss */
 #start-quest-form, #start-rumor-form {
   display: none;
 }
 
-/* line 463, content.scss */
+/* line 530, content.scss */
 #start-quest-form, #start-rumor-form {
   margin: 0 auto;
   padding: 0 20px;
@@ -478,7 +542,7 @@ body {
 /* --------------------- */
 /* -- Quest Save Page -- */
 /* --------------------- */
-/* line 473, content.scss */
+/* line 540, content.scss */
 .save-left-column {
   display: block;
   width: 300px;
@@ -488,12 +552,12 @@ body {
   position: relative;
 }
 
-/* line 482, content.scss */
+/* line 549, content.scss */
 .save-back-column {
   float: left;
 }
 
-/* line 486, content.scss */
+/* line 553, content.scss */
 .save-right-column {
   display: block;
   width: 860px;
@@ -504,7 +568,7 @@ body {
   padding: 10px 20px;
 }
 
-/* line 496, content.scss */
+/* line 563, content.scss */
 .buy-column {
   display: block;
   width: 280px;
@@ -513,62 +577,62 @@ body {
   position: relative;
 }
 
-/* line 504, content.scss */
+/* line 571, content.scss */
 .buy-column.even {
   margin: 0 10px;
 }
 
-/* line 508, content.scss */
+/* line 575, content.scss */
 .buy-column select, .buy-column input[type="submit"] {
   width: 280px;
 }
 
-/* line 512, content.scss */
+/* line 579, content.scss */
 .buy-column input[type="submit"] {
   position: absolute;
   bottom: 0;
 }
 
-/* line 517, content.scss */
+/* line 584, content.scss */
 .list-checkbox {
   width: 210px;
   float: left;
 }
 
-/* line 522, content.scss */
+/* line 589, content.scss */
 .list-checkbox input {
   margin: 10px 10px 0;
   float: left;
 }
 
-/* line 527, content.scss */
+/* line 594, content.scss */
 .list-checkbox div {
   float: left;
 }
 
-/* line 531, content.scss */
+/* line 598, content.scss */
 .list-checkbox .search-gold {
   font-style: italic;
   font-size: 12px;
 }
 
-/* line 536, content.scss */
+/* line 603, content.scss */
 #select-item {
   display: none;
 }
 
-/* line 540, content.scss */
+/* line 607, content.scss */
 .select-hero {
   width: 150px;
   float: left;
 }
 
-/* line 545, content.scss */
+/* line 612, content.scss */
 .select-hero input[type=checkbox] {
   margin: 0 65px;
 }
 
-/* line 549, content.scss */
+/* line 616, content.scss */
 .select-hero-image {
   display: block;
   width: 148px;
@@ -580,20 +644,20 @@ body {
   text-shadow: 0 0 1px #000, 0 0 10px #000;
 }
 
-/* line 561, content.scss */
+/* line 628, content.scss */
 .select-hero-image .hero-name {
   text-align: center;
   font-size: 12px;
   padding-top: 75px;
 }
 
-/* line 567, content.scss */
+/* line 634, content.scss */
 .hero-select {
   width: 300px;
   float: left;
 }
 
-/* line 572, content.scss */
+/* line 639, content.scss */
 .hero-select img {
   width: 300px;
   height: 500px;
@@ -618,7 +682,7 @@ padding: 0 0 0 0px;
 }
 
 */
-/* line 596, content.scss */
+/* line 663, content.scss */
 input[type="submit"], a.normal-button {
   background-color: #666;
   border: none;
@@ -631,7 +695,7 @@ input[type="submit"], a.normal-button {
   margin-top: 20px;
 }
 
-/* line 608, content.scss */
+/* line 675, content.scss */
 a.normal-button {
   margin-top: 0;
   display: block;
@@ -640,19 +704,19 @@ a.normal-button {
   padding-top: 7px;
 }
 
-/* line 616, content.scss */
+/* line 683, content.scss */
 .save-back-column a.normal-button {
   background-color: #333;
   border-bottom: 5px solid #111;
 }
 
-/* line 621, content.scss */
+/* line 688, content.scss */
 .save-back-column a.normal-button:hover {
   background-color: #666;
   border-bottom: 5px solid #333;
 }
 
-/* line 626, content.scss */
+/* line 693, content.scss */
 input[type="submit"]:hover, a.normal-button:hover {
   background-color: #333;
   border: none;
@@ -660,7 +724,7 @@ input[type="submit"]:hover, a.normal-button:hover {
   color: #fff;
 }
 
-/* line 633, content.scss */
+/* line 700, content.scss */
 select {
   width: 300px;
   height: 30px;
@@ -668,17 +732,17 @@ select {
   text-align: center;
 }
 
-/* line 640, content.scss */
+/* line 707, content.scss */
 #save-heroes-form input, #set-heroes-form input {
   margin-left: 450px;
 }
 
-/* line 644, content.scss */
+/* line 711, content.scss */
 #travel-details-form input {
   margin-left: 60px;
 }
 
-/* line 648, content.scss */
+/* line 715, content.scss */
 .error {
   padding: 20px 10px 0px;
   color: red;
@@ -686,7 +750,7 @@ select {
   text-align: center;
 }
 
-/* line 656, content.scss */
+/* line 723, content.scss */
 #travel-details-form .travel-step {
   height: auto;
 }

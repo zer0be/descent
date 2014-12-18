@@ -30,22 +30,24 @@
           foreach ($players as $h){
             if (($players[$ih]['id'] == $detailCharID)){
         ?>
-                <div class="hero" style="background: url('img/heroes/<?php print $players[$ih]['img']; ?>');">
+                <div class="hero column" style="background: url('img/heroes/<?php print $players[$ih]['img']; ?>');">
                   <div class="name"><?php print $players[$ih]['name']; ?></div>
                   <div class="class"><?php print $players[$ih]['class']; ?></div>
                   <div class="player"><?php print $players[$ih]['player']; ?></div>
                   <div class="xp"><?php print $players[$ih]['xp']; ?><span class="xp-label">XP</span></div>
                 </div> <!-- close hero -->
 
-                <div class="detail-items phase-column">
+                <div class="detail-items column">
                   <?php do { ?>
                     <div class="item clearfix">      
-                      <div class="hero-mini items" style="background: url('img/<?php print $row_rsDetailItems['item_type']; ?>.jpg') center;"></div>  
-                      <div class="items item-name"><?php print $row_rsDetailItems['item_name']; ?></div>
+                      <div class="hero-mini field" style="background: url('img/<?php print $row_rsDetailItems['item_type']; ?>.jpg') center;"></div>  
+                      <div class="item-name field"><?php print $row_rsDetailItems['item_name']; ?></div>
                       <?php if ($row_rsDetailItems['item_default_price'] == 0){ ?>
-                        <div class="items item-xp">FREE</div>
+                        <div class="item-price field">FREE</div>
+                      <?php } else if ($row_rsDetailItems['aq_item_price_ovrd']) { ?>
+                        <div class="item-price field override"><?php print $row_rsDetailItems['aq_item_price_ovrd']; ?></div>
                       <?php } else { ?>
-                        <div class="items item-xp cost"><?php print $row_rsDetailItems['item_default_price']; ?><span class="xp-label">G</span></div>
+                        <div class="item-price field"><?php print $row_rsDetailItems['item_default_price']; ?></div>
                       <?php } ?>
                     </div>
                   <?php } while ($row_rsDetailItems = mysql_fetch_assoc($rsDetailItems)); ?>
@@ -53,22 +55,22 @@
                   <?php do { ?>
                     <?php if (isset($row_rsDetailRelics['relic_h_name'])){ ?>
                       <div class="item clearfix">      
-                        <div class="hero-mini items" style="background: url('img/<?php print $row_rsDetailRelics['relic_type']; ?>.jpg') center;"></div>  
-                        <div class="items item-name"><?php print $row_rsDetailRelics['relic_h_name']; ?></div> <!-- FIX ME: Overlord relics and stuff -->
-                        <div class="items item-xp cost">Relic</div>
+                        <div class="hero-mini field" style="background: url('img/<?php print $row_rsDetailRelics['relic_type']; ?>.jpg') center;"></div>  
+                        <div class="item-name field"><?php print $row_rsDetailRelics['relic_h_name']; ?></div> <!-- FIX ME: Overlord relics and stuff -->
+                        <div class="item-price field relic">Relic</div>
                       </div>
                     <?php } ?>
                   <?php } while ($row_rsDetailRelics = mysql_fetch_assoc($rsDetailRelics)); ?>
                 </div> <!-- close items -->
 
-                <div class="detail-skills phase-column">
+                <div class="detail-skills column">
                 <?php do { ?>
-                  <div class="item clearfix">   
-                    <div class="items item-name"><?php print $row_rsDetailSkills['skill_name']; ?></div>
+                  <div class="skill clearfix">   
+                    <div class="skill-name field"><?php print $row_rsDetailSkills['skill_name']; ?></div>
                     <?php if ($row_rsDetailSkills['skill_cost'] == 0){ ?>
-                      <div class="items item-xp">FREE</div>
+                      <div class="skill-xp field starter">Free</div>
                     <?php } else { ?>
-                      <div class="items item-xp"><?php echo $row_rsDetailSkills['skill_cost']; ?><span class="xp-label">XP</span></div>
+                      <div class="skill-xp field"><?php echo $row_rsDetailSkills['skill_cost']; ?><span class="skill-xp-label">XP</span></div>
                     <?php } ?>
                   </div>
                 <?php } while ($row_rsDetailSkills = mysql_fetch_assoc($rsDetailSkills)); ?>

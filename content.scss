@@ -136,70 +136,6 @@ body{
 
 			}
 
-			.hero-mini{
-				width: 30px;
-				height: 30px;
-				margin: 5px;
-			}
-
-			/* skills & items*/
-			.skill, .item{
-
-				border-top: 1px solid #fefefe;
-				border-bottom: 1px solid #eee;
-				.field{
-					float: left;
-				}
-				.hero-mini.trade{
-					float: right;
-				}
-
-				.skill-name, .item-name{
-					margin-top: 10px;
-					font-weight: 600;
-					font-size: 14px;
-				}
-
-				.skill-xp, .item-price{
-					float: right;
-					width: 30px;
-					height: 24px;
-					padding-top: 6px;
-					margin: 5px;
-					background-color: $color-red;
-					font-weight: 600;
-					font-size: 12px;
-					color: #fff;
-					text-align: center;
-					border-radius: 30px;
-					-moz-border-radius: 30px;
-					-webkit-border-radius: 30px;
-				}
-				.skill-xp-label{
-					font-size: 8px;
-				}
-
-				.item-price{
-					&.buy.override{
-						background-color: $color-yellow;
-					}
-					&.buy{
-						background-color: $color-red;
-					}
-					&.sell{
-						background-color: $color-green;
-					}
-					&.relic{
-						background-color: $color-blue;
-						font-size: 10px;
-						height: 23px;
-						padding-top: 7px;
-					}
-
-				}
-				
-			}
-
 		}
 
 	}
@@ -236,6 +172,137 @@ body{
 		
 	}
 
+}
+
+.hero-mini{
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+}
+
+/* skills & items*/
+.skill, .item{
+
+	border-top: 1px solid #fefefe;
+	border-bottom: 1px solid #eee;
+	.field{
+		float: left;
+	}
+	.hero-mini.trade{
+		float: right;
+	}
+
+	.skill-name, .item-name{
+		margin-top: 10px;
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	.skill-xp, .item-price{
+		float: right;
+		width: 30px;
+		height: 24px;
+		padding-top: 6px;
+		margin: 5px;
+		background-color: $color-red;
+		font-weight: 600;
+		font-size: 12px;
+		color: #fff;
+		text-align: center;
+		border-radius: 30px;
+		-moz-border-radius: 30px;
+		-webkit-border-radius: 30px;
+	}
+	.skill-xp-label{
+		font-size: 8px;
+	}
+
+	.item-price{
+		&.buy.override, &.override{
+			background-color: $color-yellow;
+		}
+		&.buy{
+			background-color: $color-red;
+		}
+		&.sell{
+			background-color: $color-green;
+		}
+		&.relic{
+			background-color: $color-blue;
+			font-size: 10px;
+			height: 23px;
+			padding-top: 7px;
+		}
+
+	}
+
+	.skill-xp{
+		&.starter{
+			background-color: $color-blue;
+			font-size: 10px;
+			height: 23px;
+			padding-top: 7px;
+		};
+	}
+	
+}
+
+/* -- HERO DETAIL -- */
+
+.column{
+	display: block;
+	width: 298px;
+	background: #f9f9f9;
+	float: left;
+	border-left: 1px solid $color-grey-med;
+	border-right: 1px solid $color-grey-med;
+	position: relative;
+}
+
+#heroes-detail{
+
+}
+
+/* -- STATS -- */
+
+.statsbar-text{
+	color: #fff;
+	padding: 0 15px;
+}
+
+.statsbar-left{
+	display: block;
+	height: 25px;
+	float: left;
+	background-color: $color-green;
+	padding: 7px 0;
+
+	border-radius: 30px 0 0 30px;
+	-moz-border-radius: 30px 0 0 30px;
+	-webkit-border-radius: 30px 0 0 30px;
+}
+
+.statsbar-right{
+	display: block;
+	height: 25px;
+	float: right;
+	background-color: $color-red;
+	padding: 7px 0;
+
+	border-radius: 0 30px 30px 0;
+	-moz-border-radius: 0 30px 30px 0;
+	-webkit-border-radius: 0 30px 30px 0;
+	text-align: right;
+}
+
+.quest-stats{
+	margin: 0 auto;
+	width: 80%;
+
+	h2{
+		text-align: center;
+		margin: 20px 0 10px;
+	}
 }
 
 
