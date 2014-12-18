@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 17 dec 2014 om 22:28
+-- Gegenereerd op: 18 dec 2014 om 02:15
 -- Serverversie: 5.6.21
 -- PHP-versie: 5.6.3
 
@@ -97,9 +97,9 @@ INSERT INTO `tbcharacters` (`char_id`, `char_ggrp_id`, `char_game_id`, `char_pla
 (8, 17, 38, 'Tim', 6, 'Thief', 4),
 (9, 17, 38, 'Frauke', 2, 'Berserker', 4),
 (83, 20, 57, 'dllrt', 0, 'Cursed By Power', 6),
-(84, 20, 57, 'Frauke', 2, 'Berserker', 2),
-(85, 20, 57, 'Tim', 6, 'Wildlander', 2),
-(86, 20, 57, 'Maaike', 30, 'Necromancer', 2);
+(84, 20, 57, 'Frauke', 2, 'Berserker', 0),
+(85, 20, 57, 'Tim', 6, 'Wildlander', 1),
+(86, 20, 57, 'Maaike', 30, 'Necromancer', 0);
 
 -- --------------------------------------------------------
 
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `tbgames` (
 INSERT INTO `tbgames` (`game_id`, `game_grp_id`, `game_timestamp`, `game_dm`, `game_camp_id`, `game_gold`, `game_expansions`) VALUES
 (14, 7, '2014-10-03 09:06:52', 'Tundrra', 0, 0, ''),
 (38, 17, '2014-11-27 06:46:16', 'dllrt', 0, 200, ''),
-(57, 17, '2014-12-16 17:49:00', 'dllrt', 0, 50, '0,0,1,7,10,11,12,13,14,15');
+(57, 17, '2014-12-16 17:49:00', 'dllrt', 0, 0, '0,0,1,7,10,11,12,13,14,15');
 
 -- --------------------------------------------------------
 
@@ -451,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `tbitems_aquired` (
   `aq_sold_progress_id` int(4) DEFAULT NULL,
   `aq_trade_char_id` int(11) DEFAULT NULL,
   `aq_trade_progress_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=366 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=367 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbitems_aquired`
@@ -505,13 +505,14 @@ INSERT INTO `tbitems_aquired` (`shop_id`, `aq_item_id`, `aq_relic_id`, `aq_game_
 (355, 83, NULL, 57, 104, 84, NULL, 0, NULL, NULL, NULL),
 (356, 89, NULL, 57, 105, 86, NULL, 0, NULL, NULL, NULL),
 (357, 107, NULL, 57, 105, 85, 75, 0, NULL, 84, 107),
-(358, 85, NULL, 57, 105, 84, NULL, 0, NULL, NULL, NULL),
+(358, 85, NULL, 57, 105, 84, NULL, 1, 103, NULL, NULL),
 (359, 88, NULL, 57, 105, 84, NULL, 0, NULL, NULL, NULL),
 (360, NULL, 2, 57, 106, 85, NULL, 0, NULL, NULL, NULL),
 (361, 103, NULL, 57, 106, 84, NULL, 0, NULL, NULL, NULL),
 (362, 86, NULL, 57, 106, 85, NULL, 0, NULL, NULL, NULL),
 (363, NULL, 5, 57, 107, 84, NULL, 0, NULL, NULL, NULL),
-(365, 96, NULL, 57, 107, 84, NULL, 0, NULL, NULL, NULL);
+(365, 96, NULL, 57, 107, 84, NULL, 0, NULL, NULL, NULL),
+(366, 94, NULL, 57, 103, 84, NULL, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -747,11 +748,11 @@ INSERT INTO `tbquests_progress` (`progress_id`, `progress_timestamp`, `progress_
 (54, '2014-12-08 23:34:08', 38, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
 (55, '2014-12-08 23:34:49', 38, 4, 'Quest', 'Overlord Wins', 'No Winner', NULL, 0, 0, 0),
 (56, '2014-12-08 23:35:29', 38, 10, 'Quest', 'Heroes Win', 'No Winner', 7, 0, 0, 0),
-(103, '2014-12-16 17:49:01', 57, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 0),
+(103, '2014-12-16 17:49:01', 57, 0, 'Quest', 'Heroes Win', 'No Winner', NULL, 0, 0, 1),
 (104, '2014-12-16 17:50:02', 57, 4, 'Quest', 'Heroes Win', 'Heroes Win', NULL, 1, 1, 1),
 (105, '2014-12-16 20:11:05', 57, 1, 'Quest', 'Heroes Win', 'No Winner', NULL, 1, 1, 1),
 (106, '2014-12-17 13:14:25', 57, 10, 'Quest', 'Heroes Win', 'Overlord Wins', 85, 1, 1, 1),
-(107, '2014-12-17 13:29:02', 57, 16, 'Quest', 'Heroes Win', 'No Winner', 84, 1, 0, 1);
+(107, '2014-12-17 13:29:02', 57, 16, 'Quest', 'Heroes Win', 'No Winner', 84, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1112,7 +1113,7 @@ CREATE TABLE IF NOT EXISTS `tbskills_aquired` (
   `spendxp_skill_id` int(3) DEFAULT NULL,
   `spendxp_progress_id` int(3) DEFAULT NULL,
   `shop_notes` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=348 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbskills_aquired`
@@ -1150,7 +1151,11 @@ INSERT INTO `tbskills_aquired` (`spendxp_id`, `spendxp_game_id`, `spendxp_char_i
 (344, 57, 84, 32, 105, NULL),
 (345, 57, 84, 35, 106, NULL),
 (346, 57, 85, 28, 106, NULL),
-(347, 57, 86, 49, 106, NULL);
+(347, 57, 86, 49, 106, NULL),
+(348, 57, 84, 38, 107, NULL),
+(349, 57, 85, 26, 107, NULL),
+(350, 57, 86, 44, 107, NULL),
+(351, 57, 86, 45, 107, NULL);
 
 -- --------------------------------------------------------
 
@@ -1405,7 +1410,7 @@ MODIFY `grp_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 -- AUTO_INCREMENT voor een tabel `tbitems_aquired`
 --
 ALTER TABLE `tbitems_aquired`
-MODIFY `shop_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=366;
+MODIFY `shop_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=367;
 --
 -- AUTO_INCREMENT voor een tabel `tbitems_relics`
 --
@@ -1430,7 +1435,7 @@ MODIFY `skill_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=311;
 -- AUTO_INCREMENT voor een tabel `tbskills_aquired`
 --
 ALTER TABLE `tbskills_aquired`
-MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=348;
+MODIFY `spendxp_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=352;
 --
 -- AUTO_INCREMENT voor een tabel `tbtravel`
 --

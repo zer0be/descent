@@ -82,6 +82,7 @@ body{
 
 			/* travel */
 			&.travel{
+				background: url('img/travel.jpg') center no-repeat #f9f9f9;
 				overflow: auto;
 				.travel-step{
 					width: 228px;
@@ -136,6 +137,14 @@ body{
 
 			}
 
+			&.spend-xp{
+				background: url('img/skills.jpg') center no-repeat #f9f9f9;
+			}
+
+			&.buy-items{
+				background: url('img/trade.jpg') center no-repeat #f9f9f9;
+			}
+
 		}
 
 	}
@@ -182,7 +191,7 @@ body{
 
 /* skills & items*/
 .skill, .item{
-
+	background: #f9f9f9;
 	border-top: 1px solid #fefefe;
 	border-bottom: 1px solid #eee;
 	.field{

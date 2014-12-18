@@ -215,7 +215,7 @@
 								// loop through travel steps
 								foreach ($qs['travel'] as $ts){
 									?>
-										<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center;">
+										<div class="travel-step" style="background: url('img/<?php print $ts['type']; ?>.png') no-repeat 10px center #f9f9f9;">
 											<div class="travel-child">
 												<div class="travel-event"><?php print $ts['event']; ?></div><div class="travel-outcome"><?php print $ts['outcome']; ?></div>
 											</div>
