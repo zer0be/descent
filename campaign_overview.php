@@ -224,7 +224,7 @@
 								} //close travel foreach
 							} 
 						?>
-					</div>
+                    <a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=t">edit</a></div>
 
 					<div class="phase-column quest" style="background: url('img/quests/<?php print $qs['img']; ?>') no-repeat center;">
 						<?php if ($qs['winner'] != NULL) { ?>
@@ -256,8 +256,8 @@
 								?>
 							</div>
 
-						<?php } ?>
-					</div>
+						<?php } ?>  
+					<a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=q">edit</a></div>
 
 					
 				
@@ -276,7 +276,7 @@
 							?>
 
 						<?php } ?>
-					</div>
+					<a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=xp">edit</a></div>
 
 					<div class="phase-column buy-items">
 						<?php  if ($qs['winner'] != NULL){ ?>
@@ -331,7 +331,7 @@
 							?>
 
 						<?php } ?>
-					</div>
+			        <a href="campaign_overview_save.php?urlGamingID=<?php echo $gameID; ?>&PID=<?php echo $qs['id']; ?>&QID=<?php echo $qs['quest_id']; ?>&part=it">edit</a></div>
 
 
 				</div>
